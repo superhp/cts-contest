@@ -319,7 +319,7 @@
     <Content Include="config\imageprocessor\processing.config" />
     <Content Include="config\imageprocessor\cache.config" />
     <Content Include="App_Plugins\ModelsBuilder\package.manifest" />
-    <Content Include="Views\**" /> 
+    <Content Include="Views\**" />  
     <Content Include="Media\**" />
     <Content Include="config\umbracoSettings.config" />
     <Content Include="config\trees.config" />
