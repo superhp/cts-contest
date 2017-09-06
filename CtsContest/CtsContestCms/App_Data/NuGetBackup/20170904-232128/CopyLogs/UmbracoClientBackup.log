@@ -3,10 +3,10 @@
    ROBOCOPY     ::     Robust File Copy for Windows                              
 -------------------------------------------------------------------------------
 
-  Started : Mon Sep 04 23:21:28 2017
+  Started : Mon Sep 04 23:21:31 2017
 
-   Source : C:\DEV\BuildStuff\CtsContest\CtsContest\Umbraco\
-     Dest : C:\DEV\BuildStuff\CtsContest\CtsContest\App_Data\NuGetBackup\20170904-232128\Umbraco\
+   Source : C:\DEV\BuildStuff\CtsContestCms\CtsContestCms\Umbraco_Client\
+     Dest : C:\DEV\BuildStuff\CtsContestCms\CtsContestCms\App_Data\NuGetBackup\20170904-232128\Umbraco_Client\
 
     Files : *.*
 	    
@@ -14,7 +14,7 @@
 
 ------------------------------------------------------------------------------
 
-	                   0	C:\DEV\BuildStuff\CtsContest\CtsContest\Umbraco\
+	                   0	C:\DEV\BuildStuff\CtsContestCms\CtsContestCms\Umbraco_Client\
 
 ------------------------------------------------------------------------------
 
@@ -24,4 +24,4 @@
    Bytes :         0         0         0         0         0         0
    Times :   0:00:00   0:00:00                       0:00:00   0:00:00
 
-   Ended : Mon Sep 04 23:21:28 2017
+   Ended : Mon Sep 04 23:21:31 2017

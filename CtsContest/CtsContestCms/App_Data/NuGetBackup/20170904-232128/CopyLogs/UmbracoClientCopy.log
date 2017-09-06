@@ -5,8 +5,8 @@
 
   Started : Mon Sep 04 23:21:31 2017
 
-   Source : C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\
-     Dest : C:\DEV\BuildStuff\CtsContest\CtsContest\Umbraco_Client\
+   Source : C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\
+     Dest : C:\DEV\BuildStuff\CtsContestCms\CtsContestCms\Umbraco_Client\
 
     Files : *.*
 	    
@@ -14,8 +14,8 @@
 
 ------------------------------------------------------------------------------
 
-	                   0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\
-	  New Dir          7	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Application\
+	                   0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\
+	  New Dir          7	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Application\
 	    New File  		   13503	Extensions.js  0%  100%  
 	    New File  		    2417	HistoryManager.js  0%  100%  
 	    New File  		     839	NamespaceManager.js  0%  100%  
@@ -23,7 +23,7 @@
 	    New File  		   12833	UmbracoClientManager.js  0%  100%  
 	    New File  		     374	UmbracoUtils.js  0%  100%  
 	    New File  		    2060	UrlEncoder.js  0%  100%  
-	  New Dir         12	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Application\JQuery\
+	  New Dir         12	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Application\JQuery\
 	    New File  		   30336	jquery.autocomplete.js  0%  100%  
 	    New File  		    5941	jquery.ba-bbq.min.js  0%  100%  
 	    New File  		    4344	jquery.cookie.js  0%  100%  
@@ -36,14 +36,14 @@
 	    New File  		    3745	jquery.validate.unobtrusive.min.js  0%  100%  
 	    New File  		    2057	jquery-fieldselection.js  0%  100%  
 	    New File  		     255	VerticalAlign.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\CodeArea\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\CodeArea\
 	    New File  		    6126	javascript.js  0%  100%  
 	    New File  		     305	styles.css  0%  100%  
 	    New File  		    6997	UmbracoEditor.js  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Colorpicker\
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Colorpicker\Css\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Colorpicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Colorpicker\Css\
 	    New File  		    3367	colorpicker.css  0%  100%  
-	  New Dir         26	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Colorpicker\Images\
+	  New Dir         26	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Colorpicker\Images\
 	    New File  		      49	blank.gif  0%  100%  
 	    New File  		    1897	colorpicker_background.png  0%  100%  
 	    New File  		     532	colorpicker_hex.png  0%  100%  
@@ -70,15 +70,15 @@
 	    New File  		     506	select.png  0%  100%  
 	    New File  		     518	select2.png  0%  100%  
 	    New File  		     315	slider.png  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Colorpicker\Js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Colorpicker\Js\
 	    New File  		   17175	colorpicker.js  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\ContextMenu\
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\ContextMenu\Css\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\ContextMenu\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\ContextMenu\Css\
 	    New File  		    4026	jquery.contextMenu.css  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\ContextMenu\Js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\ContextMenu\Js\
 	    New File  		   62773	jquery.contextMenu.js  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Datepicker\
-	  New Dir         10	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Datepicker\Aqua\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Datepicker\
+	  New Dir         10	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Datepicker\Aqua\
 	    New File  		      89	active-bg.gif  0%  100%  
 	    New File  		      85	dark-bg.gif  0%  100%  
 	    New File  		      89	hover-bg.gif  0%  100%  
@@ -89,18 +89,18 @@
 	    New File  		    4941	theme.css  0%  100%  
 	    New File  		     116	title-bg.gif  0%  100%  
 	    New File  		    1122	today-bg.gif  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Datepicker\Images\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Datepicker\Images\
 	    New File  		     674	calPickerIcon.png  0%  100%  
 	    New File  		     633	calPickerIconHover.png  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\DateTimePicker\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\DateTimePicker\
 	    New File  		   20315	datetimepicker.css  0%  100%  
 	    New File  		   13311	timepicker.js  0%  100%  
 	    New File  		    1939	umbDateTimePicker.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\DateTimePicker\Images\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\DateTimePicker\Images\
 	    New File  		    1110	calSprite.png  0%  100%  
 	    New File  		    8673	ui-icons_666666_256x240.png  0%  100%  
 	    New File  		    8641	ui-icons_999999_256x240.png  0%  100%  
-	  New Dir         10	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Dialogs\
+	  New Dir         10	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Dialogs\
 	    New File  		     362	AssignDomain2.css  0%  100%  
 	    New File  		    5351	AssignDomain2.js  0%  100%  
 	    New File  		     212	CreateDialog.css  0%  100%  
@@ -111,7 +111,7 @@
 	    New File  		    1171	SortDialog.css  0%  100%  
 	    New File  		    4674	SortDialog.js  0%  100%  
 	    New File  		    6012	UmbracoField.js  0%  100%  
-	  New Dir          9	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Editors\
+	  New Dir          9	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Editors\
 	    New File  		     486	DirectoryBrowser.css  0%  100%  
 	    New File  		     703	EditMacro.css  0%  100%  
 	    New File  		    3039	EditMacroScripts.js  0%  100%  
@@ -121,28 +121,28 @@
 	    New File  		   11260	EditView.js  0%  100%  
 	    New File  		     161	EditXslt.css  0%  100%  
 	    New File  		    2967	EditXslt.js  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\FileUploader\
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\FileUploader\Js\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\FileUploader\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\FileUploader\Js\
 	    New File  		   16856	jquery.fileUploader.js  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\FolderBrowser\
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\FolderBrowser\Css\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\FolderBrowser\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\FolderBrowser\Css\
 	    New File  		    5366	folderbrowser.css  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\FolderBrowser\Js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\FolderBrowser\Js\
 	    New File  		   18665	folderbrowser.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\IconPicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\IconPicker\
 	    New File  		      52	iconpicker.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Imagecropper\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Imagecropper\
 	    New File  		     329	Jcrop.gif  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Images\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Images\
 	    New File  		   10819	progressbar.gif  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Installer\
-	  New Dir          5	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Installer\Css\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Installer\
+	  New Dir          5	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Installer\Css\
 	    New File  		   23469	all.css  0%  100%  
 	    New File  		    1314	form.css  0%  100%  
 	    New File  		   20078	jquery-ui-1.8.6.custom.css  0%  100%  
 	    New File  		    7958	lt7.css  0%  100%  
 	    New File  		     967	reset.css  0%  100%  
-	  New Dir         98	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Installer\Images\
+	  New Dir         98	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Installer\Images\
 	    New File  		  184850	bg-bhuiness.jpg  0%   70%  100%  
 	    New File  		   19424	bg-bhuiness-cl.gif  0%  100%  
 	    New File  		   46684	bg-bhuiness-cr.gif  0%  100%  
@@ -241,94 +241,94 @@
 	    New File  		    4369	ui-icons_ffd27a_256x240.png  0%  100%  
 	    New File  		    4369	ui-icons_ffffff_256x240.png  0%  100%  
 	    New File  		    1207	zoom-in.png  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Installer\Js\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Installer\Js\
 	    New File  		    7058	ie-png.js  0%  100%  
 	    New File  		   62130	jquery.main.js  0%  100%  
 	    New File  		   19146	jquery.ui.selectmenu.js  0%  100%  
 	    New File  		    9543	PackageInstaller.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Jeditable\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Jeditable\
 	    New File  		   24034	jquery.jeditable.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\MacroContainer\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\MacroContainer\
 	    New File  		     666	macroContainer.css  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\MaskedInput\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\MaskedInput\
 	    New File  		    4028	jquery.maskedinput-1.3.min.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Menuicon\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Menuicon\
 	    New File  		     571	style.css  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Menuicon\Images\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Menuicon\Images\
 	    New File  		     273	buttonbg.gif  0%  100%  
 	    New File  		     273	buttonbgdown.gif  0%  100%  
 	    New File  		     851	split.gif  0%  100%  
-	  New Dir          5	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Modal\
+	  New Dir          5	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Modal\
 	    New File  		   24893	jquery.simplemodal.1.4.1.custom.js  0%  100%  
 	    New File  		   20746	modal.js  0%  100%  
 	    New File  		     475	modalBackground.gif  0%  100%  
 	    New File  		     151	modalGradiant.gif  0%  100%  
 	    New File  		    1417	style.css  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Mousewheel\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Mousewheel\
 	    New File  		    1638	jquery.mousewheel.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Panel\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Panel\
 	    New File  		     240	javascript.js  0%  100%  
 	    New File  		    2608	style.css  0%  100%  
-	  New Dir          6	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Panel\Images\
+	  New Dir          6	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Panel\Images\
 	    New File  		      98	panel_bg.gif  0%  100%  
 	    New File  		      43	panel_boxfooter_bg.gif  0%  100%  
 	    New File  		     162	panel_boxfooter_statusBar_bg.gif  0%  100%  
 	    New File  		     164	panel_boxfooter_statusBar_h2_bg.gif  0%  100%  
 	    New File  		     194	panel_boxhead_bg.gif  0%  100%  
 	    New File  		     193	panel_boxhead_h2_bg.gif  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Preview\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Preview\
 	    New File  		    3508	previewModeBadge.png  0%  100%  
 	    New File  		     169	umbracoPreview.css  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\ProgressBar\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\ProgressBar\
 	    New File  		     795	javascript.js  0%  100%  
 	    New File  		     524	style.css  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\ProgressBar\Images\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\ProgressBar\Images\
 	    New File  		     314	container_left.gif  0%  100%  
 	    New File  		     102	container_right.gif  0%  100%  
 	    New File  		     113	indicator.gif  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Propertypane\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Propertypane\
 	    New File  		    2000	style.css  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Propertypane\Images\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Propertypane\Images\
 	    New File  		    9038	propertyBackground.gif  0%  100%  
 	    New File  		     554	proppane_bg.png  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\PunyCode\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\PunyCode\
 	    New File  		    2802	punycode.min.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Scrollingmenu\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Scrollingmenu\
 	    New File  		    2851	javascript.js  0%  100%  
 	    New File  		     255	style.css  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Scrollingmenu\Images\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Scrollingmenu\Images\
 	    New File  		     834	arrawBack.gif  0%  100%  
 	    New File  		     834	arrowForward.gif  0%  100%  
 	    New File  		     183	background.gif  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Scrollingmenu\Images\Button\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Scrollingmenu\Images\Button\
 	    New File  		     273	buttonbg.gif  0%  100%  
 	    New File  		     273	buttonbgdown.gif  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\SimpleEditor\
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\SimpleEditor\Images\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\SimpleEditor\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\SimpleEditor\Images\
 	    New File  		      78	bold.gif  0%  100%  
 	    New File  		      73	italic.gif  0%  100%  
 	    New File  		     108	link.gif  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Splitbutton\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Splitbutton\
 	    New File  		    2245	InsertMacroSplitButton.js  0%  100%  
 	    New File  		   18462	jquery.splitbutton.js  0%  100%  
 	    New File  		    2773	splitbutton.css  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Splitbutton\Images\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Splitbutton\Images\
 	    New File  		     130	splitbutton_downarrow.png  0%  100%  
 	    New File  		     149	splitbutton_hover.png  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tablesorting\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tablesorting\
 	    New File  		   16523	jquery.tablesorter.min.js  0%  100%  
 	    New File  		   18249	tableDragAndDrop.js  0%  100%  
 	    New File  		   23499	tableFilter.js  0%  100%  
 	    New File  		   12838	tableFilterUtill.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tablesorting\img\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tablesorting\img\
 	    New File  		     830	asc.gif  0%  100%  
 	    New File  		      73	bg.gif  0%  100%  
 	    New File  		     833	desc.gif  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tabview\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tabview\
 	    New File  		    3721	javascript.js  0%  100%  
 	    New File  		    1589	oldstyle.css  0%  100%  
 	    New File  		    2633	style.css  0%  100%  
-	  New Dir          7	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tabview\Images\
+	  New Dir          7	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tabview\Images\
 	    New File  		     169	background.gif  0%  100%  
 	    New File  		      73	bg.gif  0%  100%  
 	    New File  		      43	footer_bg.gif  0%  100%  
@@ -336,18 +336,18 @@
 	    New File  		     164	footer_statusBar_h2_bg.gif  0%  100%  
 	    New File  		    1343	left_both.gif  0%  100%  
 	    New File  		    3913	right_both.gif  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tags\
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tags\Css\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tags\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tags\Css\
 	    New File  		    1117	jquery.tagsinput.css  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tags\Js\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tags\Js\
 	    New File  		   11891	jquery.tagsinput.js  0%  100%  
 	    New File  		    6400	jquery.tagsinput.min.js  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\
 	    New File  		   26930	license.txt  0%  100%  
 	    New File  		  232483	tiny_mce.js  0%   56%  100%  
 	    New File  		    4912	tiny_mce_popup.js  0%  100%  
 	    New File  		  524361	tiny_mce_src.js  0%   49%   99%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Langs\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Langs\
 	    New File  		    7049	da.js  0%  100%  
 	    New File  		    7251	de.js  0%  100%  
 	    New File  		    6515	en.js  0%  100%  
@@ -364,16 +364,16 @@
 	    New File  		   19794	ru.js  0%  100%  
 	    New File  		    6966	sv.js  0%  100%  
 	    New File  		    8432	zh.js  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advhr\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advhr\
 	    New File  		     847	editor_plugin.js  0%  100%  
 	    New File  		    1442	editor_plugin_src.js  0%  100%  
 	    New File  		    2422	rule.htm  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advhr\Css\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advhr\Css\
 	    New File  		     240	advhr.css  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advhr\Js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advhr\Js\
 	    New File  		    1322	rule.js  0%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advhr\Langs\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advhr\Langs\
 	    New File  		     127	da_dlg.js  0%  100%  
 	    New File  		     129	de_dlg.js  0%  100%  
 	    New File  		     117	en_dlg.js  0%  100%  
@@ -390,17 +390,17 @@
 	    New File  		     342	ru_dlg.js  0%  100%  
 	    New File  		     125	sv_dlg.js  0%  100%  
 	    New File  		     142	zh_dlg.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advimage\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advimage\
 	    New File  		     791	editor_plugin.js  0%  100%  
 	    New File  		    1391	editor_plugin_src.js  0%  100%  
 	    New File  		   12086	image.htm  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advimage\Css\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advimage\Css\
 	    New File  		     672	advimage.css  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advimage\Img\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advimage\Img\
 	    New File  		    1624	sample.gif  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advimage\Js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advimage\Js\
 	    New File  		   12909	image.js  0%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advimage\Langs\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advimage\Langs\
 	    New File  		    1352	da_dlg.js  0%  100%  
 	    New File  		    1363	de_dlg.js  0%  100%  
 	    New File  		    1270	en_dlg.js  0%  100%  
@@ -417,15 +417,15 @@
 	    New File  		    4924	ru_dlg.js  0%  100%  
 	    New File  		    1266	sv_dlg.js  0%  100%  
 	    New File  		    1761	zh_dlg.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advlink\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advlink\
 	    New File  		     973	editor_plugin.js  0%  100%  
 	    New File  		    1633	editor_plugin_src.js  0%  100%  
 	    New File  		   16123	link.htm  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advlink\Css\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advlink\Css\
 	    New File  		     480	advlink.css  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advlink\Js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advlink\Js\
 	    New File  		   17341	advlink.js  0%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advlink\Langs\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advlink\Langs\
 	    New File  		    1944	da_dlg.js  0%  100%  
 	    New File  		    1955	de_dlg.js  0%  100%  
 	    New File  		    1667	en_dlg.js  0%  100%  
@@ -442,35 +442,35 @@
 	    New File  		    5662	ru_dlg.js  0%  100%  
 	    New File  		    1846	sv_dlg.js  0%  100%  
 	    New File  		    2326	zh_dlg.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advlist\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Advlist\
 	    New File  		    2324	editor_plugin.js  0%  100%  
 	    New File  		    4726	editor_plugin_src.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Autolink\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Autolink\
 	    New File  		    2355	editor_plugin.js  0%  100%  
 	    New File  		    5492	editor_plugin_src.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Autoresize\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Autoresize\
 	    New File  		    1506	editor_plugin.js  0%  100%  
 	    New File  		    4158	editor_plugin_src.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Autosave\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Autosave\
 	    New File  		    3584	editor_plugin.js  0%  100%  
 	    New File  		   13766	editor_plugin_src.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Autosave\Langs\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Autosave\Langs\
 	    New File  		     256	en.js  0%  100%  
 	    New File  		     259	en_us.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Bbcode\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Bbcode\
 	    New File  		    3231	editor_plugin.js  0%  100%  
 	    New File  		    4361	editor_plugin_src.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Contextmenu\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Contextmenu\
 	    New File  		    2540	editor_plugin.js  0%  100%  
 	    New File  		    5227	editor_plugin_src.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Directionality\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Directionality\
 	    New File  		    1259	editor_plugin.js  0%  100%  
 	    New File  		    2189	editor_plugin_src.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Emotions\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Emotions\
 	    New File  		     676	editor_plugin.js  0%  100%  
 	    New File  		    1220	editor_plugin_src.js  0%  100%  
 	    New File  		    5972	emotions.htm  0%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Emotions\Img\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Emotions\Img\
 	    New File  		     354	smiley-cool.gif  0%  100%  
 	    New File  		     329	smiley-cry.gif  0%  100%  
 	    New File  		     331	smiley-embarassed.gif  0%  100%  
@@ -487,9 +487,9 @@
 	    New File  		     337	smiley-undecided.gif  0%  100%  
 	    New File  		     350	smiley-wink.gif  0%  100%  
 	    New File  		     336	smiley-yell.gif  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Emotions\Js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Emotions\Js\
 	    New File  		    1120	emotions.js  0%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Emotions\Langs\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Emotions\Langs\
 	    New File  		     463	da_dlg.js  0%  100%  
 	    New File  		     478	de_dlg.js  0%  100%  
 	    New File  		     421	en_dlg.js  0%  100%  
@@ -506,29 +506,29 @@
 	    New File  		    1380	ru_dlg.js  0%  100%  
 	    New File  		     496	sv_dlg.js  0%  100%  
 	    New File  		     456	zh_dlg.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Example\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Example\
 	    New File  		     908	dialog.htm  0%  100%  
 	    New File  		     860	editor_plugin.js  0%  100%  
 	    New File  		    2988	editor_plugin_src.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Example\Img\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Example\Img\
 	    New File  		      87	example.gif  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Example\Js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Example\Js\
 	    New File  		     609	dialog.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Example\Langs\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Example\Langs\
 	    New File  		      79	en.js  0%  100%  
 	    New File  		      82	en_dlg.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\example_dependency\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\example_dependency\
 	    New File  		     419	editor_plugin.js  0%  100%  
 	    New File  		    1885	editor_plugin_src.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Fullpage\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Fullpage\
 	    New File  		    6322	editor_plugin.js  0%  100%  
 	    New File  		   11568	editor_plugin_src.js  0%  100%  
 	    New File  		   10754	fullpage.htm  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Fullpage\Css\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Fullpage\Css\
 	    New File  		    2188	fullpage.css  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Fullpage\Js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Fullpage\Js\
 	    New File  		    8164	fullpage.js  0%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Fullpage\Langs\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Fullpage\Langs\
 	    New File  		    2347	da_dlg.js  0%  100%  
 	    New File  		    2469	de_dlg.js  0%  100%  
 	    New File  		    2297	en_dlg.js  0%  100%  
@@ -545,21 +545,21 @@
 	    New File  		    6193	ru_dlg.js  0%  100%  
 	    New File  		    2499	sv_dlg.js  0%  100%  
 	    New File  		    2863	zh_dlg.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Fullscreen\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Fullscreen\
 	    New File  		    4422	editor_plugin.js  0%  100%  
 	    New File  		    8222	editor_plugin_src.js  0%  100%  
 	    New File  		    3655	fullscreen.htm  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Iespell\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Iespell\
 	    New File  		     909	editor_plugin.js  0%  100%  
 	    New File  		    1484	editor_plugin_src.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Inlinepopups\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Inlinepopups\
 	    New File  		   11928	editor_plugin.js  0%  100%  
 	    New File  		   19657	editor_plugin_src.js  0%  100%  
 	    New File  		   12878	template.htm  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Inlinepopups\Skins\
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Inlinepopups\Skins\Clearlooks2\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Inlinepopups\Skins\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Inlinepopups\Skins\Clearlooks2\
 	    New File  		    6715	window.css  0%  100%  
-	  New Dir          7	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Inlinepopups\Skins\Clearlooks2\Img\
+	  New Dir          7	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Inlinepopups\Skins\Clearlooks2\Img\
 	    New File  		     810	alert.gif  0%  100%  
 	    New File  		     272	button.gif  0%  100%  
 	    New File  		    1195	buttons.gif  0%  100%  
@@ -567,9 +567,9 @@
 	    New File  		     909	corners.gif  0%  100%  
 	    New File  		     769	horizontal.gif  0%  100%  
 	    New File  		      84	vertical.gif  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Inlinepopups\Skins\Umbraco\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Inlinepopups\Skins\Umbraco\
 	    New File  		    4816	window.css  0%  100%  
-	  New Dir          8	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Inlinepopups\Skins\Umbraco\Img\
+	  New Dir          8	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Inlinepopups\Skins\Umbraco\Img\
 	    New File  		     818	alert.gif  0%  100%  
 	    New File  		     280	button.gif  0%  100%  
 	    New File  		    1195	buttons.gif  0%  100%  
@@ -578,29 +578,29 @@
 	    New File  		     569	corners.gif  0%  100%  
 	    New File  		     436	horizontal.gif  0%  100%  
 	    New File  		     140	vertical.gif  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Insertdatetime\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Insertdatetime\
 	    New File  		    1931	editor_plugin.js  0%  100%  
 	    New File  		    2860	editor_plugin_src.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Layer\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Layer\
 	    New File  		    4052	editor_plugin.js  0%  100%  
 	    New File  		    6747	editor_plugin_src.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Legacyoutput\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Legacyoutput\
 	    New File  		    2086	editor_plugin.js  0%  100%  
 	    New File  		    5077	editor_plugin_src.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Lists\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Lists\
 	    New File  		   14380	editor_plugin.js  0%  100%  
 	    New File  		   32531	editor_plugin_src.js  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Media\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Media\
 	    New File  		   12655	editor_plugin.js  0%  100%  
 	    New File  		   26419	editor_plugin_src.js  0%  100%  
 	    New File  		   38852	media.htm  0%  100%  
 	    New File  		   19980	moxieplayer.swf  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Media\Css\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Media\Css\
 	    New File  		    1357	media.css  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Media\Js\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Media\Js\
 	    New File  		    1938	embed.js  0%  100%  
 	    New File  		   16473	media.js  0%  100%  
-	  New Dir         18	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Media\Langs\
+	  New Dir         18	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Media\Langs\
 	    New File  		    3077	da_dlg.js  0%  100%  
 	    New File  		    3164	de_dlg.js  0%  100%  
 	    New File  		    2815	en_dlg.js  0%  100%  
@@ -619,24 +619,24 @@
 	    New File  		    9433	ru_dlg.js  0%  100%  
 	    New File  		    2962	sv_dlg.js  0%  100%  
 	    New File  		    3445	zh_dlg.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Nonbreaking\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Nonbreaking\
 	    New File  		     944	editor_plugin.js  0%  100%  
 	    New File  		    1521	editor_plugin_src.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Noneditable\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Noneditable\
 	    New File  		    5431	editor_plugin.js  0%  100%  
 	    New File  		   17154	editor_plugin_src.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Pagebreak\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Pagebreak\
 	    New File  		    1402	editor_plugin.js  0%  100%  
 	    New File  		    2161	editor_plugin_src.js  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Paste\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Paste\
 	    New File  		   13713	editor_plugin.js  0%  100%  
 	    New File  		   31674	editor_plugin_src.js  0%  100%  
 	    New File  		    1209	pastetext.htm  0%  100%  
 	    New File  		     783	pasteword.htm  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Paste\Js\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Paste\Js\
 	    New File  		     884	pastetext.js  0%  100%  
 	    New File  		    1647	pasteword.js  0%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Paste\Langs\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Paste\Langs\
 	    New File  		     227	da_dlg.js  0%  100%  
 	    New File  		     262	de_dlg.js  0%  100%  
 	    New File  		     226	en_dlg.js  0%  100%  
@@ -653,28 +653,28 @@
 	    New File  		     633	ru_dlg.js  0%  100%  
 	    New File  		     284	sv_dlg.js  0%  100%  
 	    New File  		     258	zh_dlg.js  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Preview\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Preview\
 	    New File  		    1051	editor_plugin.js  0%  100%  
 	    New File  		    1641	editor_plugin_src.js  0%  100%  
 	    New File  		     731	example.html  0%  100%  
 	    New File  		     630	preview.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Preview\Jscripts\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Preview\Jscripts\
 	    New File  		    1938	embed.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Print\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Print\
 	    New File  		     492	editor_plugin.js  0%  100%  
 	    New File  		     881	editor_plugin_src.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Save\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Save\
 	    New File  		    1569	editor_plugin.js  0%  100%  
 	    New File  		    2529	editor_plugin_src.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Searchreplace\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Searchreplace\
 	    New File  		    1046	editor_plugin.js  0%  100%  
 	    New File  		    1795	editor_plugin_src.js  0%  100%  
 	    New File  		    5334	searchreplace.htm  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Searchreplace\Css\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Searchreplace\Css\
 	    New File  		     176	searchreplace.css  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Searchreplace\Js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Searchreplace\Js\
 	    New File  		    3878	searchreplace.js  0%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Searchreplace\Langs\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Searchreplace\Langs\
 	    New File  		     461	da_dlg.js  0%  100%  
 	    New File  		     522	de_dlg.js  0%  100%  
 	    New File  		     445	en_dlg.js  0%  100%  
@@ -691,23 +691,23 @@
 	    New File  		    1262	ru_dlg.js  0%  100%  
 	    New File  		     535	sv_dlg.js  0%  100%  
 	    New File  		     633	zh_dlg.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Spellchecker\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Spellchecker\
 	    New File  		    7217	editor_plugin.js  0%  100%  
 	    New File  		   12791	editor_plugin_src.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Spellchecker\Css\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Spellchecker\Css\
 	    New File  		      98	content.css  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Spellchecker\Img\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Spellchecker\Img\
 	    New File  		      46	wline.gif  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Style\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Style\
 	    New File  		    1117	editor_plugin.js  0%  100%  
 	    New File  		    1927	editor_plugin_src.js  0%  100%  
 	    New File  		   38494	props.htm  0%  100%  
 	    New File  		    1030	readme.txt  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Style\Css\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Style\Css\
 	    New File  		     906	props.css  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Style\Js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Style\Js\
 	    New File  		   32355	props.js  0%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Style\Langs\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Style\Langs\
 	    New File  		    1689	da_dlg.js  0%  100%  
 	    New File  		    1824	de_dlg.js  0%  100%  
 	    New File  		    1627	en_dlg.js  0%  100%  
@@ -724,26 +724,26 @@
 	    New File  		    4509	ru_dlg.js  0%  100%  
 	    New File  		    1700	sv_dlg.js  0%  100%  
 	    New File  		    2005	zh_dlg.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Tabfocus\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Tabfocus\
 	    New File  		    1666	editor_plugin.js  0%  100%  
 	    New File  		    3057	editor_plugin_src.js  0%  100%  
-	  New Dir          6	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Table\
+	  New Dir          6	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Table\
 	    New File  		    7292	cell.htm  0%  100%  
 	    New File  		   17667	editor_plugin.js  0%  100%  
 	    New File  		   40915	editor_plugin_src.js  0%  100%  
 	    New File  		    1508	merge_cells.htm  0%  100%  
 	    New File  		    6263	row.htm  0%  100%  
 	    New File  		    9035	table.htm  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Table\Css\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Table\Css\
 	    New File  		     205	cell.css  0%  100%  
 	    New File  		     306	row.css  0%  100%  
 	    New File  		     170	table.css  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Table\Js\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Table\Js\
 	    New File  		    9458	cell.js  0%  100%  
 	    New File  		     566	merge_cells.js  0%  100%  
 	    New File  		    7775	row.js  0%  100%  
 	    New File  		   15534	table.js  0%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Table\Langs\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Table\Langs\
 	    New File  		    2262	da_dlg.js  0%  100%  
 	    New File  		    2462	de_dlg.js  0%  100%  
 	    New File  		    2092	en_dlg.js  0%  100%  
@@ -760,16 +760,16 @@
 	    New File  		    6724	ru_dlg.js  0%  100%  
 	    New File  		    2189	sv_dlg.js  0%  100%  
 	    New File  		    2859	zh_dlg.js  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Template\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Template\
 	    New File  		     332	blank.htm  0%  100%  
 	    New File  		    3302	editor_plugin.js  0%  100%  
 	    New File  		    4986	editor_plugin_src.js  0%  100%  
 	    New File  		    1441	template.htm  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Template\Css\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Template\Css\
 	    New File  		     275	template.css  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Template\Js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Template\Js\
 	    New File  		    2777	template.js  0%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Template\Langs\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Template\Langs\
 	    New File  		     670	da_dlg.js  0%  100%  
 	    New File  		     662	de_dlg.js  0%  100%  
 	    New File  		     627	en_dlg.js  0%  100%  
@@ -786,16 +786,16 @@
 	    New File  		    2076	ru_dlg.js  0%  100%  
 	    New File  		     670	sv_dlg.js  0%  100%  
 	    New File  		     989	zh_dlg.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracocontextmenu\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracocontextmenu\
 	    New File  		    2561	editor_plugin_src.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracocss\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracocss\
 	    New File  		     991	dialog.htm  0%  100%  
 	    New File  		    8362	editor_plugin_src.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracocss\Img\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracocss\Img\
 	    New File  		      87	example.gif  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracocss\Js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracocss\Js\
 	    New File  		     609	dialog.js  0%  100%  
-	  New Dir         14	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracocss\Langs\
+	  New Dir         14	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracocss\Langs\
 	    New File  		      79	en.js  0%  100%  
 	    New File  		      82	en_dlg.js  0%  100%  
 	    New File  		      82	en_us.js  0%  100%  
@@ -810,16 +810,16 @@
 	    New File  		      93	sv_dlg.js  0%  100%  
 	    New File  		      67	zh.js  0%  100%  
 	    New File  		      72	zh_dlg.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracoembed\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracoembed\
 	    New File  		    3816	dialog.htm  0%  100%  
 	    New File  		     860	editor_plugin.js  0%  100%  
 	    New File  		    2984	editor_plugin_src.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracoembed\Img\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracoembed\Img\
 	    New File  		    1928	ajax-loader.gif  0%  100%  
 	    New File  		     260	embed.gif  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracoembed\Js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracoembed\Js\
 	    New File  		    3260	dialog.js  0%  100%  
-	  New Dir         18	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracoembed\Langs\
+	  New Dir         18	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracoembed\Langs\
 	    New File  		      85	da.js  0%  100%  
 	    New File  		     251	da_dlg.js  0%  100%  
 	    New File  		     272	de.js  0%  100%  
@@ -838,11 +838,11 @@
 	    New File  		     260	sv_dlg.js  0%  100%  
 	    New File  		     235	zh.js  0%  100%  
 	    New File  		     235	zh_dlg.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracoimg\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracoimg\
 	    New File  		    1739	editor_plugin_src.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracoimg\Js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracoimg\Js\
 	    New File  		   10412	image.js  0%  100%  
-	  New Dir          8	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracoimg\Langs\
+	  New Dir          8	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracoimg\Langs\
 	    New File  		    1495	en_dlg.js  0%  100%  
 	    New File  		    1498	en_us_dlg.js  0%  100%  
 	    New File  		    1495	he_dlg.js  0%  100%  
@@ -851,11 +851,11 @@
 	    New File  		    2314	ru_dlg.js  0%  100%  
 	    New File  		    1536	sv_dlg.js  0%  100%  
 	    New File  		    1346	zh_dlg.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracolink\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracolink\
 	    New File  		    1860	editor_plugin_src.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracolink\Js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracolink\Js\
 	    New File  		   17755	umbracolink.js  0%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracolink\Langs\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracolink\Langs\
 	    New File  		    1944	da_dlg.js  0%  100%  
 	    New File  		    1955	de_dlg.js  0%  100%  
 	    New File  		    1667	en_dlg.js  0%  100%  
@@ -872,14 +872,14 @@
 	    New File  		    2727	ru_dlg.js  0%  100%  
 	    New File  		    1846	sv_dlg.js  0%  100%  
 	    New File  		    2326	zh_dlg.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracomacro\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracomacro\
 	    New File  		     991	dialog.htm  0%  100%  
 	    New File  		    6151	editor_plugin_src.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracomacro\Img\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracomacro\Img\
 	    New File  		     603	insMacro.gif  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracomacro\Js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracomacro\Js\
 	    New File  		     609	dialog.js  0%  100%  
-	  New Dir         14	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracomacro\Langs\
+	  New Dir         14	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracomacro\Langs\
 	    New File  		      69	en.js  0%  100%  
 	    New File  		      82	en_dlg.js  0%  100%  
 	    New File  		      72	en_us.js  0%  100%  
@@ -894,22 +894,22 @@
 	    New File  		      92	sv_dlg.js  0%  100%  
 	    New File  		      66	zh.js  0%  100%  
 	    New File  		      72	zh_dlg.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracopaste\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracopaste\
 	    New File  		    1753	editor_plugin_src.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracoshortcut\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Umbracoshortcut\
 	    New File  		    1255	editor_plugin_src.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Visualblocks\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Visualblocks\
 	    New File  		     958	editor_plugin.js  0%  100%  
 	    New File  		    1712	editor_plugin_src.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Visualblocks\Css\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Visualblocks\Css\
 	    New File  		    3040	visualblocks.css  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Visualchars\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Visualchars\
 	    New File  		    1368	editor_plugin.js  0%  100%  
 	    New File  		    2195	editor_plugin_src.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Wordcount\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Wordcount\
 	    New File  		    1960	editor_plugin.js  0%  100%  
 	    New File  		    3331	editor_plugin_src.js  0%  100%  
-	  New Dir          8	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Xhtmlxtras\
+	  New Dir          8	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Xhtmlxtras\
 	    New File  		    6243	abbr.htm  0%  100%  
 	    New File  		    6258	acronym.htm  0%  100%  
 	    New File  		    6232	attributes.htm  0%  100%  
@@ -918,10 +918,10 @@
 	    New File  		    2756	editor_plugin.js  0%  100%  
 	    New File  		    4098	editor_plugin_src.js  0%  100%  
 	    New File  		    7299	ins.htm  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Xhtmlxtras\Css\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Xhtmlxtras\Css\
 	    New File  		     197	attributes.css  0%  100%  
 	    New File  		     514	popup.css  0%  100%  
-	  New Dir          7	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Xhtmlxtras\Js\
+	  New Dir          7	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Xhtmlxtras\Js\
 	    New File  		     541	abbr.js  0%  100%  
 	    New File  		     559	acronym.js  0%  100%  
 	    New File  		    3471	attributes.js  0%  100%  
@@ -929,7 +929,7 @@
 	    New File  		    1356	del.js  0%  100%  
 	    New File  		    7159	element_common.js  0%  100%  
 	    New File  		    1356	ins.js  0%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Xhtmlxtras\Langs\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Plugins\Xhtmlxtras\Langs\
 	    New File  		    1194	da_dlg.js  0%  100%  
 	    New File  		    1141	de_dlg.js  0%  100%  
 	    New File  		    1092	en_dlg.js  0%  100%  
@@ -946,8 +946,8 @@
 	    New File  		    2564	ru_dlg.js  0%  100%  
 	    New File  		    1157	sv_dlg.js  0%  100%  
 	    New File  		    1372	zh_dlg.js  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\
-	  New Dir         10	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\
+	  New Dir         10	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\
 	    New File  		    2701	about.htm  0%  100%  
 	    New File  		    1167	anchor.htm  0%  100%  
 	    New File  		    2251	charmap.htm  0%  100%  
@@ -958,7 +958,7 @@
 	    New File  		    2527	link.htm  0%  100%  
 	    New File  		    1732	shortcuts.htm  0%  100%  
 	    New File  		    1269	source_editor.htm  0%  100%  
-	  New Dir         11	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Img\
+	  New Dir         11	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Img\
 	    New File  		    2584	colorpicker.jpg  0%  100%  
 	    New File  		     239	flash.gif  0%  100%  
 	    New File  		   11982	icons.gif  0%  100%  
@@ -970,7 +970,7 @@
 	    New File  		      43	trans.gif  0%  100%  
 	    New File  		     597	video.gif  0%  100%  
 	    New File  		     415	windowsmedia.gif  0%  100%  
-	  New Dir          7	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Js\
+	  New Dir          7	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Js\
 	    New File  		    2203	about.js  0%  100%  
 	    New File  		    1498	anchor.js  0%  100%  
 	    New File  		   15793	charmap.js  0%  100%  
@@ -978,7 +978,7 @@
 	    New File  		    6391	image.js  0%  100%  
 	    New File  		    4947	link.js  0%  100%  
 	    New File  		    1694	source_editor.js  0%  100%  
-	  New Dir         28	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Langs\
+	  New Dir         28	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Langs\
 	    New File  		    2547	da.js  0%  100%  
 	    New File  		    2201	da_dlg.js  0%  100%  
 	    New File  		    2623	de.js  0%  100%  
@@ -1007,38 +1007,38 @@
 	    New File  		    2205	sv_dlg.js  0%  100%  
 	    New File  		    3059	zh.js  0%  100%  
 	    New File  		    2544	zh_dlg.js  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Skins\
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Skins\Default\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Skins\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Skins\Default\
 	    New File  		    2607	content.css  0%  100%  
 	    New File  		    5761	dialog.css  0%  100%  
 	    New File  		   15959	ui.css  0%  100%  
-	  New Dir          6	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Skins\Default\Img\
+	  New Dir          6	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Skins\Default\Img\
 	    New File  		    3133	buttons.png  0%  100%  
 	    New File  		      64	items.gif  0%  100%  
 	    New File  		      68	menu_arrow.gif  0%  100%  
 	    New File  		      70	menu_check.gif  0%  100%  
 	    New File  		    1787	progress.gif  0%  100%  
 	    New File  		    1322	tabs.gif  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Skins\Highcontrast\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Skins\Highcontrast\
 	    New File  		    1122	content.css  0%  100%  
 	    New File  		    5219	dialog.css  0%  100%  
 	    New File  		    8886	ui.css  0%  100%  
-	  New Dir          5	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Skins\O2k7\
+	  New Dir          5	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Skins\O2k7\
 	    New File  		    2331	content.css  0%  100%  
 	    New File  		    5849	dialog.css  0%  100%  
 	    New File  		   15405	ui.css  0%  100%  
 	    New File  		    1695	ui_black.css  0%  100%  
 	    New File  		     860	ui_silver.css  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Skins\O2k7\Img\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Advanced\Skins\O2k7\Img\
 	    New File  		    2766	button_bg.png  0%  100%  
 	    New File  		     651	button_bg_black.png  0%  100%  
 	    New File  		    2084	button_bg_silver.png  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Simple\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Simple\
 	    New File  		    2226	editor_template.js  0%  100%  
 	    New File  		    3205	editor_template_src.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Simple\Img\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Simple\Img\
 	    New File  		     806	icons.gif  0%  100%  
-	  New Dir         14	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Simple\Langs\
+	  New Dir         14	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Simple\Langs\
 	    New File  		     359	da.js  0%  100%  
 	    New File  		     355	de.js  0%  100%  
 	    New File  		     347	en.js  0%  100%  
@@ -1053,16 +1053,16 @@
 	    New File  		     351	pt.js  0%  100%  
 	    New File  		     347	sv.js  0%  100%  
 	    New File  		     401	zh.js  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Simple\Skins\
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Simple\Skins\Default\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Simple\Skins\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Simple\Skins\Default\
 	    New File  		     513	content.css  0%  100%  
 	    New File  		    2105	ui.css  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Simple\Skins\O2k7\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Simple\Skins\O2k7\
 	    New File  		     461	content.css  0%  100%  
 	    New File  		    2340	ui.css  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Simple\Skins\O2k7\Img\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Simple\Skins\O2k7\Img\
 	    New File  		    5102	button_bg.png  0%  100%  
-	  New Dir          9	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Umbraco\
+	  New Dir          9	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Umbraco\
 	    New File  		    2682	about.htm  0%  100%  
 	    New File  		    1091	anchor.htm  0%  100%  
 	    New File  		    2339	charmap.htm  0%  100%  
@@ -1072,7 +1072,7 @@
 	    New File  		    2547	link.htm  0%  100%  
 	    New File  		    1730	shortcuts.htm  0%  100%  
 	    New File  		    1382	source_editor.htm  0%  100%  
-	  New Dir         11	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Umbraco\Img\
+	  New Dir         11	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Umbraco\Img\
 	    New File  		    2584	colorpicker.jpg  0%  100%  
 	    New File  		     239	flash.gif  0%  100%  
 	    New File  		   11982	icons.gif  0%  100%  
@@ -1084,7 +1084,7 @@
 	    New File  		      43	trans.gif  0%  100%  
 	    New File  		     597	video.gif  0%  100%  
 	    New File  		     415	windowsmedia.gif  0%  100%  
-	  New Dir          7	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Umbraco\Js\
+	  New Dir          7	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Umbraco\Js\
 	    New File  		    2203	about.js  0%  100%  
 	    New File  		    1193	anchor.js  0%  100%  
 	    New File  		   15793	charmap.js  0%  100%  
@@ -1092,7 +1092,7 @@
 	    New File  		    6391	image.js  0%  100%  
 	    New File  		    4884	link.js  0%  100%  
 	    New File  		    1694	source_editor.js  0%  100%  
-	  New Dir         30	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Umbraco\Langs\
+	  New Dir         30	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Umbraco\Langs\
 	    New File  		    2109	da.js  0%  100%  
 	    New File  		    1926	da_dlg.js  0%  100%  
 	    New File  		    2265	de.js  0%  100%  
@@ -1123,24 +1123,24 @@
 	    New File  		    1912	sv_dlg.js  0%  100%  
 	    New File  		    2409	zh.js  0%  100%  
 	    New File  		    2070	zh_dlg.js  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Umbraco\Skins\
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Umbraco\Skins\Umbraco\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Umbraco\Skins\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Umbraco\Skins\Umbraco\
 	    New File  		    1367	content.css  0%  100%  
 	    New File  		    5364	dialog.css  0%  100%  
 	    New File  		   16035	ui.css  0%  100%  
-	  New Dir          6	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Umbraco\Skins\Umbraco\Img\
+	  New Dir          6	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Themes\Umbraco\Skins\Umbraco\Img\
 	    New File  		    4579	buttons.png  0%  100%  
 	    New File  		      70	items.gif  0%  100%  
 	    New File  		      68	menu_arrow.gif  0%  100%  
 	    New File  		      70	menu_check.gif  0%  100%  
 	    New File  		    1787	progress.gif  0%  100%  
 	    New File  		    1326	tabs.gif  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Utils\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tinymce3\Utils\
 	    New File  		    2046	editable_selects.js  0%  100%  
 	    New File  		    5991	form_utils.js  0%  100%  
 	    New File  		    4055	mctabs.js  0%  100%  
 	    New File  		    6100	validate.js  0%  100%  
-	  New Dir         11	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tree\
+	  New Dir         11	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tree\
 	    New File  		    2638	jquery.tree.checkbox.js  0%  100%  
 	    New File  		    9637	jquery.tree.contextmenu.js  0%  100%  
 	    New File  		  114705	jquery.tree.js  0%  100%  
@@ -1152,18 +1152,18 @@
 	    New File  		    2597	treeIcons.css  0%  100%  
 	    New File  		    3662	UmbracoContext.js  0%  100%  
 	    New File  		   55287	UmbracoTree.js  0%  100%  
-	  New Dir          5	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tree\Themes\
+	  New Dir          5	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tree\Themes\
 	    New File  		      61	marker.gif  0%  100%  
 	    New File  		      62	marker_rtl.gif  0%  100%  
 	    New File  		      52	plus.gif  0%  100%  
 	    New File  		     720	remove.png  0%  100%  
 	    New File  		    3867	rename.png  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tree\Themes\Default\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tree\Themes\Default\
 	    New File  		      43	dot_for_ie.gif  0%  100%  
 	    New File  		    6680	icons.png  0%  100%  
 	    New File  		    2435	style.css  0%  100%  
 	    New File  		    1844	throbber.gif  0%  100%  
-	  New Dir         21	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tree\Themes\Umbraco\
+	  New Dir         21	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Tree\Themes\Umbraco\
 	    New File  		    1600	arrows.png  0%  100%  
 	    New File  		    2910	check_0.png  0%  100%  
 	    New File  		    3197	check_1.png  0%  100%  
@@ -1185,7 +1185,7 @@
 	    New File  		     282	protect_overlay.gif  0%  100%  
 	    New File  		    5258	style.css  0%  100%  
 	    New File  		    1844	throbber.gif  0%  100%  
-	  New Dir         14	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Ui\
+	  New Dir         14	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Ui\
 	    New File  		   52012	base2.js  0%  100%  
 	    New File  		    4482	dd.css  0%  100%  
 	    New File  		     138	dd_arrow.gif  0%  100%  
@@ -1200,9 +1200,9 @@
 	    New File  		    3954	json2.js  0%  100%  
 	    New File  		   41412	knockout.js  0%  100%  
 	    New File  		    8687	knockout.mapping.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Ui\ui-lightness\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Ui\ui-lightness\
 	    New File  		   33967	jquery-ui.custom.css  0%  100%  
-	  New Dir         14	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Ui\ui-lightness\images\
+	  New Dir         14	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco_Client\Ui\ui-lightness\images\
 	    New File  		     260	ui-bg_diagonals-thick_18_b81900_40x40.png  0%  100%  
 	    New File  		     251	ui-bg_diagonals-thick_20_666666_40x40.png  0%  100%  
 	    New File  		     178	ui-bg_flat_10_000000_40x100.png  0%  100%  

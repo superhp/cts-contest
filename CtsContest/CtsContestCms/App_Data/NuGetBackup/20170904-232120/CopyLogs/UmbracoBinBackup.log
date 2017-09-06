@@ -5,8 +5,8 @@
 
   Started : Mon Sep 04 23:21:21 2017
 
-   Source : C:\DEV\BuildStuff\CtsContest\CtsContest\bin\
-     Dest : C:\DEV\BuildStuff\CtsContest\CtsContest\App_Data\NuGetBackup\20170904-232120\bin\
+   Source : C:\DEV\BuildStuff\CtsContestCms\CtsContestCms\bin\
+     Dest : C:\DEV\BuildStuff\CtsContestCms\CtsContestCms\App_Data\NuGetBackup\20170904-232120\bin\
 
     Files : *.*
 	    
@@ -14,7 +14,7 @@
 
 ------------------------------------------------------------------------------
 
-	                  63	C:\DEV\BuildStuff\CtsContest\CtsContest\bin\
+	                  63	C:\DEV\BuildStuff\CtsContestCms\CtsContestCms\bin\
 	    New File  		  166400	AutoMapper.dll  0%   78%  100%  
 	    New File  		   28672	AutoMapper.Net4.dll  0%  100%  
 	    New File  		  118784	businesslogic.dll  0%  100%  

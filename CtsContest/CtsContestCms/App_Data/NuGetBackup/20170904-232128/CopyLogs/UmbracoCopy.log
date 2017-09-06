@@ -5,8 +5,8 @@
 
   Started : Mon Sep 04 23:21:28 2017
 
-   Source : C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\
-     Dest : C:\DEV\BuildStuff\CtsContest\CtsContest\Umbraco\
+   Source : C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\
+     Dest : C:\DEV\BuildStuff\CtsContestCms\CtsContestCms\Umbraco\
 
     Files : *.*
 	    
@@ -16,7 +16,7 @@ Exc Files : UI.xml
 
 ------------------------------------------------------------------------------
 
-	                  12	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\
+	                  12	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\
 	    New File  		    2295	ClientRedirect.aspx  0%  100%  
 	    New File  		    1442	create.aspx  0%  100%  
 	    New File  		     792	endPreview.aspx  0%  100%  
@@ -29,24 +29,24 @@ Exc Files : UI.xml
 	    New File  		     179	tree.aspx  0%  100%  
 	    New File  		    1887	treeInit.aspx  0%  100%  
 	    New File  		     126	umbraco.aspx  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Actions\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Actions\
 	    New File  		    1155	delete.aspx  0%  100%  
 	    New File  		     480	editContent.aspx  0%  100%  
 	    New File  		     471	preview.aspx  0%  100%  
 	    New File  		    1203	publish.aspx  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\css\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\css\
 	    New File  		   40430	canvasdesigner.css  0%  100%  
 	    New File  		   41570	installer.css  0%  100%  
 	    New File  		    7110	nonodes.style.min.css  0%  100%  
 	    New File  		  281307	umbraco.css  0%   46%   93%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\fonts\
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\fonts\helveticons\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\fonts\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\fonts\helveticons\
 	    New File  		  117324	helveticons.eot  0%  100%  
 	    New File  		  793966	helveticons.svg  0%   33%   66%   99%  100%  
 	    New File  		  117160	helveticons.ttf  0%  100%  
 	    New File  		  294540	helveticons.woff  0%   44%   89%  100%  
-	  New Dir         32	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\fonts\lato\
+	  New Dir         32	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\fonts\lato\
 	    New File  		   66110	LatoLatin-Black.eot  0%  100%  
 	    New File  		  144228	LatoLatin-Black.ttf  0%   90%  100%  
 	    New File  		   70460	LatoLatin-Black.woff  0%  100%  
@@ -79,7 +79,7 @@ Exc Files : UI.xml
 	    New File  		  148540	LatoLatin-Regular.ttf  0%   88%  100%  
 	    New File  		   72456	LatoLatin-Regular.woff  0%  100%  
 	    New File  		   43760	LatoLatin-Regular.woff2  0%  100%  
-	  New Dir          9	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\fonts\opensans\
+	  New Dir          9	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\fonts\opensans\
 	    New File  		  217360	OpenSans-Regular.ttf  0%   60%  100%  
 	    New File  		   19836	OpenSans-Regular-webfont.eot  0%  100%  
 	    New File  		  119399	OpenSans-Regular-webfont.svg  0%  100%  
@@ -89,7 +89,7 @@ Exc Files : UI.xml
 	    New File  		  118464	OpenSans-Semibold-webfont.svg  0%  100%  
 	    New File  		   39476	OpenSans-Semibold-webfont.ttf  0%  100%  
 	    New File  		   22908	OpenSans-Semibold-webfont.woff  0%  100%  
-	  New Dir          7	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\img\
+	  New Dir          7	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\img\
 	    New File  		     165	checkered-background.png  0%  100%  
 	    New File  		     957	checkered-background-20.png  0%  100%  
 	    New File  		  317197	installer.jpg  0%   41%   82%  100%  
@@ -97,13 +97,13 @@ Exc Files : UI.xml
 	    New File  		    1746	logo.png  0%  100%  
 	    New File  		  237538	nonodesbg.jpg  0%   55%  100%  
 	    New File  		   14993	transparent.png  0%  100%  
-	  New Dir          5	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\img\application\
+	  New Dir          5	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\img\application\
 	    New File  		    1175	logo.png  0%  100%  
 	    New File  		    2433	logo@2x.png  0%  100%  
 	    New File  		    3796	logo@3x.png  0%  100%  
 	    New File  		    1280	logo_black.png  0%  100%  
 	    New File  		    1333	logo_white.png  0%  100%  
-	  New Dir         11	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\img\applicationIcons\
+	  New Dir         11	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\img\applicationIcons\
 	    New File  		    1139	content.png  0%  100%  
 	    New File  		    1581	default.png  0%  100%  
 	    New File  		    1376	developer.png  0%  100%  
@@ -115,12 +115,12 @@ Exc Files : UI.xml
 	    New File  		    1612	settings.png  0%  100%  
 	    New File  		    2828	tree-arrow.png  0%  100%  
 	    New File  		    1304	users.png  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\img\forms\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\img\forms\
 	    New File  		   37864	installer-background.png  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\img\uploader\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\img\uploader\
 	    New File  		    1738	upload-illustration.png  0%  100%  
 	    New File  		    1378	upload-illustration.svg  0%  100%  
-	  New Dir         11	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\less\
+	  New Dir         11	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\assets\less\
 	    New File  		     693	background.less  0%  100%  
 	    New File  		    1827	border.less  0%  100%  
 	    New File  		     360	color.less  0%  100%  
@@ -132,12 +132,12 @@ Exc Files : UI.xml
 	    New File  		    2185	radius.less  0%  100%  
 	    New File  		     622	shadow.less  0%  100%  
 	    New File  		     458	slider.less  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Channels\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Channels\
 	    New File  		     963	rsd.aspx  0%  100%  
 	    New File  		    1912	wlwmanifest.aspx  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Config\
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Config\Create\
-	  New Dir         20	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Config\Lang\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Config\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Config\Create\
+	  New Dir         20	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Config\Lang\
 	    New File  		   66869	cs.xml  0%  100%  
 	    New File  		   81312	da.xml  0%  100%  
 	    New File  		   71908	de.xml  0%  100%  
@@ -158,19 +158,19 @@ Exc Files : UI.xml
 	    New File  		   66637	tr.xml  0%  100%  
 	    New File  		   91104	zh.xml  0%  100%  
 	    New File  		   81008	zh_tw.xml  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Controls\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Controls\
 	    New File  		    7209	passwordChanger.ascx  0%  100%  
 	    New File  		     309	ProgressBar.ascx  0%  100%  
-	  New Dir          5	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Controls\Images\
+	  New Dir          5	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Controls\Images\
 	    New File  		    2224	ImageViewer.ascx  0%  100%  
 	    New File  		    6000	ImageViewer.js  0%  100%  
 	    New File  		     127	ImageViewerUpdater.asmx  0%  100%  
 	    New File  		    1826	UploadMediaImage.ascx  0%  100%  
 	    New File  		    2618	UploadMediaImage.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Controls\Tree\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Controls\Tree\
 	    New File  		      82	CustomTreeService.asmx  0%  100%  
 	    New File  		    2725	TreeControl.ascx  0%  100%  
-	  New Dir          8	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Create\
+	  New Dir          8	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Create\
 	    New File  		    2412	DlrScripting.ascx  0%  100%  
 	    New File  		    1039	language.ascx  0%  100%  
 	    New File  		    1867	PartialView.ascx  0%  100%  
@@ -179,45 +179,45 @@ Exc Files : UI.xml
 	    New File  		    1279	simple.ascx  0%  100%  
 	    New File  		    2338	User.ascx  0%  100%  
 	    New File  		    1696	xslt.ascx  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Css\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Css\
 	    New File  		     151	background.gif  0%  100%  
 	    New File  		     674	permissionsEditor.css  0%  100%  
 	    New File  		      88	splitter.gif  0%  100%  
 	    New File  		    7686	umbracoGui.css  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Dashboard\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Dashboard\
 	    New File  		   13245	ExamineManagement.ascx  0%  100%  
 	    New File  		     178	FeedProxy.aspx  0%  100%  
 	    New File  		     565	LatestEdits.ascx  0%  100%  
 	    New File  		    1761	UserControlProxy.aspx  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Developer\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Developer\
 	    New File  		     995	autoDoc.aspx  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Developer\Macros\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Developer\Macros\
 	    New File  		    1674	assemblyBrowser.aspx  0%  100%  
 	    New File  		   11871	editMacro.aspx  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Developer\Packages\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Developer\Packages\
 	    New File  		    1171	directoryBrowser.aspx  0%  100%  
 	    New File  		   12700	editPackage.aspx  0%  100%  
 	    New File  		   18426	installer.aspx  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Developer\Python\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Developer\Python\
 	    New File  		    2701	editPython.aspx  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Developer\RelationTypes\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Developer\RelationTypes\
 	    New File  		    6536	EditRelationType.aspx  0%  100%  
 	    New File  		    3013	NewRelationType.aspx  0%  100%  
 	    New File  		     162	RelationTypesWebService.asmx  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Developer\RelationTypes\Images\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Developer\RelationTypes\Images\
 	    New File  		     421	Bidirectional.png  0%  100%  
 	    New File  		     434	ParentToChild.png  0%  100%  
 	    New File  		    1053	Refresh.gif  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Developer\RelationTypes\TreeMenu\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Developer\RelationTypes\TreeMenu\
 	    New File  		     731	ActionDeleteRelationType.js  0%  100%  
 	    New File  		     172	ActionNewRelationType.js  0%  100%  
-	  New Dir          5	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Developer\Xslt\
+	  New Dir          5	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Developer\Xslt\
 	    New File  		    3251	editXslt.aspx  0%  100%  
 	    New File  		     108	getXsltStatus.asmx  0%  100%  
 	    New File  		    2160	xsltChooseExtension.aspx  0%  100%  
 	    New File  		    2588	xsltInsertValueOf.aspx  0%  100%  
 	    New File  		    2895	xsltVisualize.aspx  0%  100%  
-	  New Dir         33	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Dialogs\
+	  New Dir         33	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Dialogs\
 	    New File  		    1518	about.aspx  0%  100%  
 	    New File  		    2115	AssignDomain.aspx  0%  100%  
 	    New File  		    4277	AssignDomain2.aspx  0%  100%  
@@ -251,7 +251,7 @@ Exc Files : UI.xml
 	    New File  		    6939	umbracoField.aspx  0%  100%  
 	    New File  		    1170	uploadImage.aspx  0%  100%  
 	    New File  		    3076	viewAuditTrail.aspx  0%  100%  
-	  New Dir         98	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\
+	  New Dir         98	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\
 	    New File  		    1178	aboutNew.png  0%  100%  
 	    New File  		     834	arrawBack.gif  0%  100%  
 	    New File  		     832	arrowDown.gif  0%  100%  
@@ -350,14 +350,14 @@ Exc Files : UI.xml
 	    New File  		     222	Tplus.png  0%  100%  
 	    New File  		     612	true.png  0%  100%  
 	    New File  		    3134	umbracoSplash.png  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\Actions\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\Actions\
 	    New File  		   12301	sprites.png  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\Developer\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\Developer\
 	    New File  		     842	customControlIcon.png  0%  100%  
 	    New File  		   30235	pythonIcon.png  0%  100%  
 	    New File  		     775	usercontrolIcon.png  0%  100%  
 	    New File  		     776	xsltIcon.png  0%  100%  
-	  New Dir        138	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\Editor\
+	  New Dir        138	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\Editor\
 	    New File  		     171	anchor.gif  0%  100%  
 	    New File  		    1152	anchor.png  0%  100%  
 	    New File  		      70	anchor_symbol.gif  0%  100%  
@@ -496,7 +496,7 @@ Exc Files : UI.xml
 	    New File  		     206	visualaid.gif  0%  100%  
 	    New File  		     663	xslVisualize.gif  0%  100%  
 	    New File  		     302	zoom.gif  0%  100%  
-	  New Dir          8	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\PinnedIcons\
+	  New Dir          8	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\PinnedIcons\
 	    New File  		    1150	task_content.ico  0%  100%  
 	    New File  		    1150	task_default.ico  0%  100%  
 	    New File  		    1150	task_developer.ico  0%  100%  
@@ -505,7 +505,7 @@ Exc Files : UI.xml
 	    New File  		    1150	task_settings.ico  0%  100%  
 	    New File  		    1150	task_users.ico  0%  100%  
 	    New File  		   17542	umb.ico  0%  100%  
-	  New Dir         18	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\SpeechBubble\
+	  New Dir         18	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\SpeechBubble\
 	    New File  		     582	error.gif  0%  100%  
 	    New File  		    1915	error.png  0%  100%  
 	    New File  		     630	info.gif  0%  100%  
@@ -524,7 +524,7 @@ Exc Files : UI.xml
 	    New File  		    1774	speechbubbleShadowNew.gif  0%  100%  
 	    New File  		    1036	success.png  0%  100%  
 	    New File  		    1188	warning.png  0%  100%  
-	  New Dir         12	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\Thumbnails\
+	  New Dir         12	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\Thumbnails\
 	    New File  		   19431	developer.png  0%  100%  
 	    New File  		    8311	doc.png  0%  100%  
 	    New File  		   21725	docWithImage.png  0%  100%  
@@ -537,9 +537,9 @@ Exc Files : UI.xml
 	    New File  		   19684	members.png  0%  100%  
 	    New File  		   11883	template.png  0%  100%  
 	    New File  		   12153	xml.png  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\Tray\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\Tray\
 	    New File  		   11965	traySprites.png  0%  100%  
-	  New Dir         54	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\Umbraco\
+	  New Dir         54	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Images\Umbraco\
 	    New File  		    3435	bin.png  0%  100%  
 	    New File  		     363	bin_closed.png  0%  100%  
 	    New File  		     659	bin_empty.png  0%  100%  
@@ -594,11 +594,11 @@ Exc Files : UI.xml
 	    New File  		     998	user.gif  0%  100%  
 	    New File  		    1000	userGroup.gif  0%  100%  
 	    New File  		    1012	userType.gif  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Install\
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Install\Views\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Install\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Install\Views\
 	    New File  		    2884	Index.cshtml  0%  100%  
 	    New File  		    2812	Web.config  0%  100%  
-	  New Dir         29	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Js\
+	  New Dir         29	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Js\
 	    New File  		    2494	app.js  0%  100%  
 	    New File  		    8041	canvasdesigner.config.js  0%  100%  
 	    New File  		   10291	canvasdesigner.front.js  0%  100%  
@@ -628,9 +628,9 @@ Exc Files : UI.xml
 	    New File  		     586	umbracoUpgradeChecker.js  0%  100%  
 	    New File  		    4102	xmlextras.js  0%  100%  
 	    New File  		    1951	xmlRequest.js  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\ace-builds\
-	  New Dir          8	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\ace-builds\src-min-noconflict\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\ace-builds\
+	  New Dir          8	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\ace-builds\src-min-noconflict\
 	    New File  		  362292	ace.js  0%   36%   72%  100%  
 	    New File  		   34629	ext-language_tools.js  0%  100%  
 	    New File  		   11711	ext-searchbox.js  0%  100%  
@@ -639,16 +639,16 @@ Exc Files : UI.xml
 	    New File  		   67147	mode-razor.js  0%  100%  
 	    New File  		    2712	theme-chrome.js  0%  100%  
 	    New File  		  164518	worker-javascript.js  0%   79%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\ace-builds\src-min-noconflict\snippets\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\ace-builds\src-min-noconflict\snippets\
 	    New File  		    3840	javascript.js  0%  100%  
 	    New File  		     131	text.js  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\ace-razor-mode\
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\ace-razor-mode\theme\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\ace-razor-mode\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\ace-razor-mode\theme\
 	    New File  		    2877	razor_chrome.css  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\angular\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\angular\
 	    New File  		   1.2 m	angular.js  0%   20%   41%   62%   82%  100%  
 	    New File  		   12260	angular-ui-sortable.js  0%  100%  
-	  New Dir         14	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\angular\1.1.5\
+	  New Dir         14	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\angular\1.1.5\
 	    New File  		  590854	angular.js  0%   44%   88%  100%  
 	    New File  		   88852	angular.min.js  0%  100%  
 	    New File  		    5399	angular-cookies.js  0%  100%  
@@ -663,7 +663,7 @@ Exc Files : UI.xml
 	    New File  		   18873	angular-sanitize.js  0%  100%  
 	    New File  		    3942	angular-sanitize.min.js  0%  100%  
 	    New File  		  934395	angular-scenario.js  0%   28%   56%   84%  100%  
-	  New Dir        287	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\angular\1.1.5\i18n\
+	  New Dir        287	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\angular\1.1.5\i18n\
 	    New File  		    2223	angular-locale_af.js  0%  100%  
 	    New File  		    2218	angular-locale_af-na.js  0%  100%  
 	    New File  		    2226	angular-locale_af-za.js  0%  100%  
@@ -951,15 +951,15 @@ Exc Files : UI.xml
 	    New File  		    2404	angular-locale_zh-tw.js  0%  100%  
 	    New File  		    2228	angular-locale_zu.js  0%  100%  
 	    New File  		    2231	angular-locale_zu-za.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\angular-bootstrap\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\angular-bootstrap\
 	    New File  		   53004	ui-bootstrap-tpls-0.10.0.min.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\angular-dynamic-locale\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\angular-dynamic-locale\
 	    New File  		    2976	tmhDynamicLocale.min.js  0%  100%  
 	    New File  		    4024	tmhDynamicLocale.min.js.map  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\angular-local-storage\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\angular-local-storage\
 	    New File  		    5315	angular-local-storage.min.js  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\bootstrap\
-	  New Dir          7	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\bootstrap\css\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\bootstrap\
+	  New Dir          7	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\bootstrap\css\
 	    New File  		  114358	bootstrap.cosmo.min.css  0%  100%  
 	    New File  		  105909	bootstrap.css  0%  100%  
 	    New File  		  102593	bootstrap.min.3.0.1.css  0%  100%  
@@ -967,13 +967,13 @@ Exc Files : UI.xml
 	    New File  		   22057	bootstrap-responsive.css  0%  100%  
 	    New File  		   16858	bootstrap-responsive.min.css  0%  100%  
 	    New File  		   16850	responsive.css  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\bootstrap\img\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\bootstrap\img\
 	    New File  		   12799	glyphicons-halflings.png  0%  100%  
 	    New File  		    8777	glyphicons-halflings-white.png  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\bootstrap\js\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\bootstrap\js\
 	    New File  		   61962	bootstrap.2.3.2.js  0%  100%  
 	    New File  		   28631	bootstrap.2.3.2.min.js  0%  100%  
-	  New Dir         41	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\bootstrap\less\
+	  New Dir         41	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\bootstrap\less\
 	    New File  		     670	accordion.less  0%  100%  
 	    New File  		    1448	alerts.less  0%  100%  
 	    New File  		    1552	bootstrap.less  0%  100%  
@@ -1015,7 +1015,7 @@ Exc Files : UI.xml
 	    New File  		     365	utilities.less  0%  100%  
 	    New File  		    9443	variables.less  0%  100%  
 	    New File  		     581	wells.less  0%  100%  
-	  New Dir          8	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\bootstrap\less\tests\
+	  New Dir          8	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\bootstrap\less\tests\
 	    New File  		    6550	buttons.html  0%  100%  
 	    New File  		    5625	css-tests.css  0%  100%  
 	    New File  		   41537	css-tests.html  0%  100%  
@@ -1024,98 +1024,98 @@ Exc Files : UI.xml
 	    New File  		    4904	navbar.html  0%  100%  
 	    New File  		    4796	navbar-fixed-top.html  0%  100%  
 	    New File  		    4818	navbar-static-top.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\bootstrap-social\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\bootstrap-social\
 	    New File  		   20453	bootstrap-social.css  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\bootstrap-tabdrop\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\bootstrap-tabdrop\
 	    New File  		    3680	bootstrap-tabdrop.js  0%  100%  
 	    New File  		    1490	README.md  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\addon\
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\addon\dialog\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\addon\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\addon\dialog\
 	    New File  		     507	dialog.css  0%  100%  
 	    New File  		    4938	dialog.js  0%  100%  
-	  New Dir          6	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\addon\edit\
+	  New Dir          6	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\addon\edit\
 	    New File  		    6498	closebrackets.js  0%  100%  
 	    New File  		    7590	closetag.js  0%  100%  
 	    New File  		    1750	continuelist.js  0%  100%  
 	    New File  		    5254	matchbrackets.js  0%  100%  
 	    New File  		    2355	matchtags.js  0%  100%  
 	    New File  		    1003	trailingspace.js  0%  100%  
-	  New Dir          5	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\addon\search\
+	  New Dir          5	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\addon\search\
 	    New File  		     188	matchesonscrollbar.css  0%  100%  
 	    New File  		    3808	matchesonscrollbar.js  0%  100%  
 	    New File  		    4943	match-highlighter.js  0%  100%  
 	    New File  		    7294	search.js  0%  100%  
 	    New File  		    7723	searchcursor.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\addon\selection\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\addon\selection\
 	    New File  		    2442	active-line.js  0%  100%  
 	    New File  		    3781	mark-selection.js  0%  100%  
 	    New File  		    3292	selection-pointer.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\lib\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\lib\
 	    New File  		    7771	codemirror.css  0%  100%  
 	    New File  		  347063	codemirror.js  0%   37%   75%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\mode\
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\mode\css\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\mode\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\mode\css\
 	    New File  		   34123	css.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\mode\htmlmixed\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\mode\htmlmixed\
 	    New File  		    5001	htmlmixed.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\mode\javascript\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\mode\javascript\
 	    New File  		   26636	javascript.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\mode\razor\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\mode\razor\
 	    New File  		   22051	index.html  0%  100%  
 	    New File  		    1151	LICENSE  0%  100%  
 	    New File  		    9378	razor.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\mode\xml\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\codemirror\mode\xml\
 	    New File  		   12375	xml.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\cssparser\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\cssparser\
 	    New File  		  175686	cssparser.js  0%   74%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\datetimepicker\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\datetimepicker\
 	    New File  		   59387	bootstrap-datetimepicker.js  0%  100%  
 	    New File  		    5058	bootstrap-datetimepicker.min.css  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\font-awesome\
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\font-awesome\css\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\font-awesome\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\font-awesome\css\
 	    New File  		   21984	font-awesome.min.css  0%  100%  
-	  New Dir          5	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\font-awesome\fonts\
+	  New Dir          5	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\font-awesome\fonts\
 	    New File  		   85908	FontAwesome.otf  0%  100%  
 	    New File  		   56006	fontawesome-webfont.eot  0%  100%  
 	    New File  		  287007	fontawesome-webfont.svg  0%   45%   91%  100%  
 	    New File  		  112160	fontawesome-webfont.ttf  0%  100%  
 	    New File  		   65452	fontawesome-webfont.woff  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\jquery\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\jquery\
 	    New File  		   85578	jquery.min.js  0%  100%  
 	    New File  		  129572	jquery.min.map  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\jquery-migrate\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\jquery-migrate\
 	    New File  		    9632	jquery-migrate.min.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\jquery-ui\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\jquery-ui\
 	    New File  		  240427	jquery-ui.min.js  0%   54%  100%  
 	    New File  		   27244	jquery-ui-1.10.4.custom.min.css  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\jquery-ui-touch-punch\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\jquery-ui-touch-punch\
 	    New File  		    4787	jquery.ui.touch-punch.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\less\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\less\
 	    New File  		  101854	less-1.7.0.min.js  0%  100%  
-	  New Dir          5	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\markdown\
+	  New Dir          5	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\markdown\
 	    New File  		   46410	markdown.converter.js  0%  100%  
 	    New File  		    1658	markdown.css  0%  100%  
 	    New File  		   78546	markdown.editor.js  0%  100%  
 	    New File  		    4188	markdown.sanitizer.js  0%  100%  
 	    New File  		      95	red.css  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\moment\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\moment\
 	    New File  		  370101	moment-with-locales.js  0%   35%   70%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\ng-file-upload\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\ng-file-upload\
 	    New File  		   23766	ng-file-upload.min.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\rgrove-lazyload\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\rgrove-lazyload\
 	    New File  		   13187	lazyload.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\slider\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\slider\
 	    New File  		    8238	bootstrap-slider.css  0%  100%  
 	    New File  		    2210	bootstrap-slider-custom.css  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\slider\js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\slider\js\
 	    New File  		   49898	bootstrap-slider.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\spectrum\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\spectrum\
 	    New File  		   14603	spectrum.css  0%  100%  
 	    New File  		   40676	spectrum.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\
 	    New File  		  405216	tinymce.min.js  0%   32%   64%   97%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\langs\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\langs\
 	    New File  		    7512	da.js  0%  100%  
 	    New File  		    8279	de.js  0%  100%  
 	    New File  		    6515	en.js  0%  100%  
@@ -1132,43 +1132,43 @@ Exc Files : UI.xml
 	    New File  		   22289	ru.js  0%  100%  
 	    New File  		    6966	sv.js  0%  100%  
 	    New File  		    8432	zh.js  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\advlist\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\advlist\
 	    New File  		     205	index.js  0%  100%  
 	    New File  		    3888	plugin.js  0%  100%  
 	    New File  		    2091	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\anchor\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\anchor\
 	    New File  		     202	index.js  0%  100%  
 	    New File  		    2259	plugin.js  0%  100%  
 	    New File  		    1188	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\autolink\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\autolink\
 	    New File  		     208	index.js  0%  100%  
 	    New File  		    5137	plugin.js  0%  100%  
 	    New File  		    2060	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\autoresize\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\autoresize\
 	    New File  		     214	index.js  0%  100%  
 	    New File  		    4990	plugin.js  0%  100%  
 	    New File  		    1903	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\autosave\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\autosave\
 	    New File  		     208	index.js  0%  100%  
 	    New File  		    4159	plugin.js  0%  100%  
 	    New File  		    2187	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\bbcode\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\bbcode\
 	    New File  		     202	index.js  0%  100%  
 	    New File  		    4223	plugin.js  0%  100%  
 	    New File  		    3136	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\charmap\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\charmap\
 	    New File  		     205	index.js  0%  100%  
 	    New File  		   11537	plugin.js  0%  100%  
 	    New File  		    8199	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\code\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\code\
 	    New File  		     196	index.js  0%  100%  
 	    New File  		    1569	plugin.js  0%  100%  
 	    New File  		     721	plugin.min.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\codemirror\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\codemirror\
 	    New File  		    1117	plugin.min.js  0%  100%  
 	    New File  		    7416	source.html  0%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\codemirror\langs\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\codemirror\langs\
 	    New File  		     216	da.js  0%  100%  
 	    New File  		     216	de.js  0%  100%  
 	    New File  		     216	en.js  0%  100%  
@@ -1185,29 +1185,29 @@ Exc Files : UI.xml
 	    New File  		     216	ru.js  0%  100%  
 	    New File  		     216	sv.js  0%  100%  
 	    New File  		     216	zh.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\codesample\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\codesample\
 	    New File  		     214	index.js  0%  100%  
 	    New File  		   34938	plugin.js  0%  100%  
 	    New File  		   20332	plugin.min.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\codesample\css\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\codesample\css\
 	    New File  		    2289	prism.css  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\colorpicker\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\colorpicker\
 	    New File  		     217	index.js  0%  100%  
 	    New File  		    2450	plugin.js  0%  100%  
 	    New File  		    1222	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\contextmenu\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\contextmenu\
 	    New File  		     217	index.js  0%  100%  
 	    New File  		    2659	plugin.js  0%  100%  
 	    New File  		    1131	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\directionality\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\directionality\
 	    New File  		     226	index.js  0%  100%  
 	    New File  		    1465	plugin.js  0%  100%  
 	    New File  		     726	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\emoticons\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\emoticons\
 	    New File  		     211	index.js  0%  100%  
 	    New File  		    1615	plugin.js  0%  100%  
 	    New File  		     911	plugin.min.js  0%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\emoticons\img\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\emoticons\img\
 	    New File  		     354	smiley-cool.gif  0%  100%  
 	    New File  		     329	smiley-cry.gif  0%  100%  
 	    New File  		     331	smiley-embarassed.gif  0%  100%  
@@ -1224,120 +1224,120 @@ Exc Files : UI.xml
 	    New File  		     337	smiley-undecided.gif  0%  100%  
 	    New File  		     350	smiley-wink.gif  0%  100%  
 	    New File  		     336	smiley-yell.gif  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\fullpage\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\fullpage\
 	    New File  		     208	index.js  0%  100%  
 	    New File  		   12277	plugin.js  0%  100%  
 	    New File  		    6308	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\fullscreen\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\fullscreen\
 	    New File  		     214	index.js  0%  100%  
 	    New File  		    3587	plugin.js  0%  100%  
 	    New File  		    1675	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\hr\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\hr\
 	    New File  		     190	index.js  0%  100%  
 	    New File  		     648	plugin.js  0%  100%  
 	    New File  		     322	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\image\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\image\
 	    New File  		     199	index.js  0%  100%  
 	    New File  		   16015	plugin.js  0%  100%  
 	    New File  		    8204	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\imagetools\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\imagetools\
 	    New File  		     214	index.js  0%  100%  
 	    New File  		   75753	plugin.js  0%  100%  
 	    New File  		   30906	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\importcss\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\importcss\
 	    New File  		     211	index.js  0%  100%  
 	    New File  		    7241	plugin.js  0%  100%  
 	    New File  		    2747	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\insertdatetime\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\insertdatetime\
 	    New File  		     226	index.js  0%  100%  
 	    New File  		    3484	plugin.js  0%  100%  
 	    New File  		    1971	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\legacyoutput\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\legacyoutput\
 	    New File  		     220	index.js  0%  100%  
 	    New File  		    6332	plugin.js  0%  100%  
 	    New File  		    3263	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\link\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\link\
 	    New File  		     196	index.js  0%  100%  
 	    New File  		   14355	plugin.js  0%  100%  
 	    New File  		    6994	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\lists\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\lists\
 	    New File  		     199	index.js  0%  100%  
 	    New File  		   37046	plugin.js  0%  100%  
 	    New File  		   14635	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\media\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\media\
 	    New File  		     199	index.js  0%  100%  
 	    New File  		   35729	plugin.js  0%  100%  
 	    New File  		   16452	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\nonbreaking\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\nonbreaking\
 	    New File  		     217	index.js  0%  100%  
 	    New File  		    1210	plugin.js  0%  100%  
 	    New File  		     655	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\noneditable\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\noneditable\
 	    New File  		     217	index.js  0%  100%  
 	    New File  		    3137	plugin.js  0%  100%  
 	    New File  		    1270	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\pagebreak\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\pagebreak\
 	    New File  		     211	index.js  0%  100%  
 	    New File  		    2400	plugin.js  0%  100%  
 	    New File  		    1230	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\paste\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\paste\
 	    New File  		     199	index.js  0%  100%  
 	    New File  		   53343	plugin.js  0%  100%  
 	    New File  		   18068	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\preview\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\preview\
 	    New File  		     205	index.js  0%  100%  
 	    New File  		    2999	plugin.js  0%  100%  
 	    New File  		    1602	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\print\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\print\
 	    New File  		     199	index.js  0%  100%  
 	    New File  		     624	plugin.js  0%  100%  
 	    New File  		     293	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\save\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\save\
 	    New File  		     196	index.js  0%  100%  
 	    New File  		    2065	plugin.js  0%  100%  
 	    New File  		    1150	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\searchreplace\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\searchreplace\
 	    New File  		     223	index.js  0%  100%  
 	    New File  		   15562	plugin.js  0%  100%  
 	    New File  		    6493	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\spellchecker\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\spellchecker\
 	    New File  		     220	index.js  0%  100%  
 	    New File  		   26505	plugin.js  0%  100%  
 	    New File  		   10048	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\tabfocus\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\tabfocus\
 	    New File  		     208	index.js  0%  100%  
 	    New File  		    2505	plugin.js  0%  100%  
 	    New File  		    1264	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\table\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\table\
 	    New File  		     199	index.js  0%  100%  
 	    New File  		  114941	plugin.js  0%  100%  
 	    New File  		   47126	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\template\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\template\
 	    New File  		     208	index.js  0%  100%  
 	    New File  		    7692	plugin.js  0%  100%  
 	    New File  		    4520	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\textcolor\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\textcolor\
 	    New File  		     211	index.js  0%  100%  
 	    New File  		    7189	plugin.js  0%  100%  
 	    New File  		    4145	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\textpattern\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\textpattern\
 	    New File  		     217	index.js  0%  100%  
 	    New File  		    6783	plugin.js  0%  100%  
 	    New File  		    2745	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\toc\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\toc\
 	    New File  		     193	index.js  0%  100%  
 	    New File  		    6359	plugin.js  0%  100%  
 	    New File  		    2771	plugin.min.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracocontextmenu\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracocontextmenu\
 	    New File  		    2561	editor_plugin_src.js  0%  100%  
 	    New File  		    2561	plugin.min.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracocss\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracocss\
 	    New File  		    8362	plugin.min.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracocss\img\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracocss\img\
 	    New File  		      87	example.gif  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracocss\js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracocss\js\
 	    New File  		     609	dialog.js  0%  100%  
-	  New Dir         14	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracocss\langs\
+	  New Dir         14	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracocss\langs\
 	    New File  		      79	en.js  0%  100%  
 	    New File  		      82	en_dlg.js  0%  100%  
 	    New File  		      82	en_us.js  0%  100%  
@@ -1352,17 +1352,17 @@ Exc Files : UI.xml
 	    New File  		      93	sv_dlg.js  0%  100%  
 	    New File  		      67	zh.js  0%  100%  
 	    New File  		      72	zh_dlg.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracoembed\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracoembed\
 	    New File  		    3816	dialog.htm  0%  100%  
 	    New File  		     860	editor_plugin.js  0%  100%  
 	    New File  		    2984	editor_plugin_src.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracoembed\img\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracoembed\img\
 	    New File  		    1928	ajax-loader.gif  0%  100%  
 	    New File  		     260	embed.gif  0%  100%  
 	    New File  		     537	embed.png  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracoembed\js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracoembed\js\
 	    New File  		    3260	dialog.js  0%  100%  
-	  New Dir         18	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracoembed\langs\
+	  New Dir         18	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracoembed\langs\
 	    New File  		      85	da.js  0%  100%  
 	    New File  		     251	da_dlg.js  0%  100%  
 	    New File  		     272	de.js  0%  100%  
@@ -1381,11 +1381,11 @@ Exc Files : UI.xml
 	    New File  		     260	sv_dlg.js  0%  100%  
 	    New File  		     235	zh.js  0%  100%  
 	    New File  		     235	zh_dlg.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracoimg\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracoimg\
 	    New File  		    1739	editor_plugin_src.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracoimg\js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracoimg\js\
 	    New File  		   10412	image.js  0%  100%  
-	  New Dir          8	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracoimg\langs\
+	  New Dir          8	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracoimg\langs\
 	    New File  		    1495	en_dlg.js  0%  100%  
 	    New File  		    1498	en_us_dlg.js  0%  100%  
 	    New File  		    1495	he_dlg.js  0%  100%  
@@ -1394,16 +1394,16 @@ Exc Files : UI.xml
 	    New File  		    2314	ru_dlg.js  0%  100%  
 	    New File  		    1536	sv_dlg.js  0%  100%  
 	    New File  		    1346	zh_dlg.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracolink\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracolink\
 	    New File  		     197	plugin.min.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracomacro\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracomacro\
 	    New File  		     991	dialog.htm  0%  100%  
 	    New File  		    6151	editor_plugin_src.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracomacro\img\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracomacro\img\
 	    New File  		     603	insMacro.gif  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracomacro\js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracomacro\js\
 	    New File  		     609	dialog.js  0%  100%  
-	  New Dir         14	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracomacro\langs\
+	  New Dir         14	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracomacro\langs\
 	    New File  		      69	en.js  0%  100%  
 	    New File  		      82	en_dlg.js  0%  100%  
 	    New File  		      72	en_us.js  0%  100%  
@@ -1418,75 +1418,75 @@ Exc Files : UI.xml
 	    New File  		      92	sv_dlg.js  0%  100%  
 	    New File  		      66	zh.js  0%  100%  
 	    New File  		      72	zh_dlg.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracopaste\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracopaste\
 	    New File  		    1753	editor_plugin_src.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracoshortcut\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\umbracoshortcut\
 	    New File  		    1255	editor_plugin_src.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\visualblocks\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\visualblocks\
 	    New File  		     220	index.js  0%  100%  
 	    New File  		    2139	plugin.js  0%  100%  
 	    New File  		    1153	plugin.min.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\visualblocks\css\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\visualblocks\css\
 	    New File  		    5092	visualblocks.css  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\visualchars\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\visualchars\
 	    New File  		     217	index.js  0%  100%  
 	    New File  		    2589	plugin.js  0%  100%  
 	    New File  		    1178	plugin.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\wordcount\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\plugins\wordcount\
 	    New File  		     211	index.js  0%  100%  
 	    New File  		   21184	plugin.js  0%  100%  
 	    New File  		   12030	plugin.min.js  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\skins\
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\skins\umbraco\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\skins\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\skins\umbraco\
 	    New File  		    2389	content.min.css  0%  100%  
 	    New File  		   30624	skin.classic.min.css  0%  100%  
 	    New File  		   30481	skin.ie7.min.css  0%  100%  
 	    New File  		   30624	skin.min.css  0%  100%  
-	  New Dir          5	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\skins\umbraco\fonts\
+	  New Dir          5	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\skins\umbraco\fonts\
 	    New File  		    8196	icomoon.eot  0%  100%  
 	    New File  		   33681	icomoon.svg  0%  100%  
 	    New File  		    8032	icomoon.ttf  0%  100%  
 	    New File  		    8340	icomoon.woff  0%  100%  
 	    New File  		      68	readme.md  0%  100%  
-	  New Dir          5	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\skins\umbraco\img\
+	  New Dir          5	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\skins\umbraco\img\
 	    New File  		      53	anchor.gif  0%  100%  
 	    New File  		    2608	loader.gif  0%  100%  
 	    New File  		     152	object.gif  0%  100%  
 	    New File  		      43	trans.gif  0%  100%  
 	    New File  		      46	wline.gif  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\themes\
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\themes\inlite\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\themes\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\themes\inlite\
 	    New File  		     198	index.js  0%  100%  
 	    New File  		   45788	theme.js  0%  100%  
 	    New File  		   16578	theme.min.js  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\themes\modern\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\themes\modern\
 	    New File  		     198	index.js  0%  100%  
 	    New File  		   33903	theme.js  0%  100%  
 	    New File  		   13154	theme.min.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\themes\umbraco\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\tinymce\themes\umbraco\
 	    New File  		    4762	theme.min.js  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\typeahead.js\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\typeahead.js\
 	    New File  		   29675	typeahead.bundle.min.js  0%  100%  
-	  New Dir          5	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\umbraco\
+	  New Dir          5	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\umbraco\
 	    New File  		    1223	compat.js  0%  100%  
 	    New File  		   11364	Extensions.js  0%  100%  
 	    New File  		    2438	LegacySpeechBubble.js  0%  100%  
 	    New File  		   19027	LegacyUmbClientMgr.js  0%  100%  
 	    New File  		     839	NamespaceManager.js  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\underscore\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\lib\underscore\
 	    New File  		   15626	underscore-min.js  0%  100%  
 	    New File  		   25382	underscore-min.map  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Masterpages\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Masterpages\
 	    New File  		     234	default.Master  0%  100%  
 	    New File  		    1767	umbracoDialog.Master  0%  100%  
 	    New File  		    2281	umbracoPage.Master  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Members\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Members\
 	    New File  		    1010	EditMemberGroup.aspx  0%  100%  
 	    New File  		    1838	MemberSearch.ascx  0%  100%  
 	    New File  		     798	search.aspx  0%  100%  
 	    New File  		    1913	ViewMembers.aspx  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\PartialViewMacros\
-	  New Dir         20	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\PartialViewMacros\Templates\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\PartialViewMacros\
+	  New Dir         20	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\PartialViewMacros\Templates\
 	    New File  		     891	Breadcrumb.cshtml  0%  100%  
 	    New File  		    2658	EditProfile.cshtml  0%  100%  
 	    New File  		      53	Empty (ForUseWithCustomViews).cshtml  0%  100%  
@@ -1507,17 +1507,17 @@ Exc Files : UI.xml
 	    New File  		     682	Navigation.cshtml  0%  100%  
 	    New File  		    4538	RegisterMember.cshtml  0%  100%  
 	    New File  		    1266	SiteMap.cshtml  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Plugins\
-	  New Dir          6	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Plugins\Tinymce3\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Plugins\
+	  New Dir          6	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Plugins\Tinymce3\
 	    New File  		    1621	InsertAnchor.aspx  0%  100%  
 	    New File  		    2962	insertChar.aspx  0%  100%  
 	    New File  		    9415	insertImage.aspx  0%  100%  
 	    New File  		    6194	insertLink.aspx  0%  100%  
 	    New File  		    6617	insertMacro.aspx  0%  100%  
 	    New File  		     171	tinymce3tinymceCompress.aspx  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\preview\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\preview\
 	    New File  		    8281	index.html  0%  100%  
-	  New Dir         11	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\preview\editors\
+	  New Dir         11	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\preview\editors\
 	    New File  		    2450	background.html  0%  100%  
 	    New File  		     964	border.html  0%  100%  
 	    New File  		      91	color.html  0%  100%  
@@ -1529,9 +1529,9 @@ Exc Files : UI.xml
 	    New File  		     880	radius.html  0%  100%  
 	    New File  		     191	shadow.html  0%  100%  
 	    New File  		     211	slider.html  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Scripting\
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Scripting\templates\
-	  New Dir         15	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Scripting\templates\cshtml\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Scripting\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Scripting\templates\
+	  New Dir         15	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Scripting\templates\cshtml\
 	    New File  		     822	Breadcrumb.cshtml  0%  100%  
 	    New File  		     340	EmptyTemplate.cshtml  0%  100%  
 	    New File  		    1058	Gallery.cshtml  0%  100%  
@@ -1547,44 +1547,44 @@ Exc Files : UI.xml
 	    New File  		     647	MultinodeTree-picker.cshtml  0%  100%  
 	    New File  		     534	Navigation.cshtml  0%  100%  
 	    New File  		    1062	SiteMap.cshtml  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Search\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Search\
 	    New File  		    1100	QuickSearch.ascx  0%  100%  
 	    New File  		    3887	quickSearch.js  0%  100%  
 	    New File  		     139	QuickSearchHandler.ashx  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Settings\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Settings\
 	    New File  		     688	DictionaryItemList.aspx  0%  100%  
 	    New File  		     726	EditDictionaryItem.aspx  0%  100%  
 	    New File  		     899	editLanguage.aspx  0%  100%  
 	    New File  		    8552	editTemplate.aspx  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Settings\Modals\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Settings\Modals\
 	    New File  		    3355	ShowUmbracoTags.aspx  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Settings\Scripts\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Settings\Scripts\
 	    New File  		    2606	editScript.aspx  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Settings\Stylesheet\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Settings\Stylesheet\
 	    New File  		    2484	editstylesheet.aspx  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Settings\Stylesheet\Property\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Settings\Stylesheet\Property\
 	    New File  		    2723	EditStyleSheetProperty.aspx  0%  100%  
-	  New Dir          5	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Translation\
+	  New Dir          5	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Translation\
 	    New File  		    2597	default.aspx  0%  100%  
 	    New File  		    1856	details.aspx  0%  100%  
 	    New File  		    1325	preview.aspx  0%  100%  
 	    New File  		    1007	translationTasks.dtd  0%  100%  
 	    New File  		     220	xml.aspx  0%  100%  
-	  New Dir          6	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Users\
+	  New Dir          6	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Users\
 	    New File  		     723	EditUser.aspx  0%  100%  
 	    New File  		    1445	EditUserType.aspx  0%  100%  
 	    New File  		    1572	NodePermissions.ascx  0%  100%  
 	    New File  		    2333	PermissionEditor.aspx  0%  100%  
 	    New File  		    6683	PermissionsEditor.js  0%  100%  
 	    New File  		     130	PermissionsHandler.asmx  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\
 	    New File  		    2632	AuthorizeUpgrade.cshtml  0%  100%  
 	    New File  		    3187	Default.cshtml  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\
 	    New File  		    1588	dashboard.html  0%  100%  
 	    New File  		     198	legacy.html  0%  100%  
 	    New File  		      62	login.html  0%  100%  
-	  New Dir         15	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\dialogs\
+	  New Dir         15	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\dialogs\
 	    New File  		     346	approvedcolorpicker.html  0%  100%  
 	    New File  		    2424	help.html  0%  100%  
 	    New File  		    2328	iconpicker.html  0%  100%  
@@ -1600,64 +1600,64 @@ Exc Files : UI.xml
 	    New File  		    2450	treepicker.html  0%  100%  
 	    New File  		    4836	user.html  0%  100%  
 	    New File  		     981	ysod.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\dialogs\content\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\dialogs\content\
 	    New File  		    2724	edit.html  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\dialogs\template\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\dialogs\template\
 	    New File  		    4847	querybuilder.html  0%  100%  
 	    New File  		    1519	snippet.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\notifications\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\notifications\
 	    New File  		     570	confirmroutechange.html  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\contentpicker\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\contentpicker\
 	    New File  		    1623	contentpicker.html  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\contenttypeeditor\
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\contenttypeeditor\compositions\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\contenttypeeditor\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\contenttypeeditor\compositions\
 	    New File  		    2675	compositions.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\contenttypeeditor\editorpicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\contenttypeeditor\editorpicker\
 	    New File  		    3923	editorpicker.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\contenttypeeditor\editorsettings\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\contenttypeeditor\editorsettings\
 	    New File  		     871	editorsettings.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\contenttypeeditor\propertysettings\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\contenttypeeditor\propertysettings\
 	    New File  		    4586	propertysettings.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\copy\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\copy\
 	    New File  		    1921	copy.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\embed\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\embed\
 	    New File  		    1202	embed.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\help\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\help\
 	    New File  		    2382	help.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\iconpicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\iconpicker\
 	    New File  		    2156	iconpicker.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\insert\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\insert\
 	    New File  		    2380	insert.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\insertfield\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\insertfield\
 	    New File  		    9659	insertfield.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\itempicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\itempicker\
 	    New File  		     902	itempicker.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\linkpicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\linkpicker\
 	    New File  		    3037	linkpicker.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\macropicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\macropicker\
 	    New File  		    2214	macropicker.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\mediaPicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\mediaPicker\
 	    New File  		    5301	mediapicker.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\mediatypepicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\mediatypepicker\
 	    New File  		     444	mediatypepicker.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\membergrouppicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\membergrouppicker\
 	    New File  		     317	membergrouppicker.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\memberpicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\memberpicker\
 	    New File  		    1622	memberpicker.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\move\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\move\
 	    New File  		    1400	move.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\querybuilder\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\querybuilder\
 	    New File  		    4219	querybuilder.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\templatesections\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\templatesections\
 	    New File  		    2972	templatesections.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\treepicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\treepicker\
 	    New File  		    1914	treepicker.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\user\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\user\
 	    New File  		    4125	user.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\ysod\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\common\overlays\ysod\
 	    New File  		    1084	ysod.html  0%  100%  
-	  New Dir         25	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\
+	  New Dir         25	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\
 	    New File  		      83	umb-avatar.html  0%  100%  
 	    New File  		    1586	umb-child-selector.html  0%  100%  
 	    New File  		     433	umb-confirm.html  0%  100%  
@@ -1683,14 +1683,14 @@ Exc Files : UI.xml
 	    New File  		     122	umb-progress-bar.html  0%  100%  
 	    New File  		    3292	umb-table.html  0%  100%  
 	    New File  		      86	umb-tooltip.html  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\application\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\application\
 	    New File  		     579	umb-contextmenu.html  0%  100%  
 	    New File  		    4654	umb-navigation.html  0%  100%  
 	    New File  		    2615	umb-sections.html  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\buttons\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\buttons\
 	    New File  		    1969	umb-button.html  0%  100%  
 	    New File  		    1096	umb-button-group.html  0%  100%  
-	  New Dir         10	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\editor\
+	  New Dir         10	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\editor\
 	    New File  		     780	umb-breadcrumbs.html  0%  100%  
 	    New File  		     265	umb-editor-container.html  0%  100%  
 	    New File  		     130	umb-editor-footer.html  0%  100%  
@@ -1701,38 +1701,38 @@ Exc Files : UI.xml
 	    New File  		     508	umb-editor-navigation.html  0%  100%  
 	    New File  		     281	umb-editor-sub-views.html  0%  100%  
 	    New File  		     136	umb-editor-view.html  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\editor\subheader\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\editor\subheader\
 	    New File  		     129	umb-editor-sub-header.html  0%  100%  
 	    New File  		      70	umb-editor-sub-header-content-left.html  0%  100%  
 	    New File  		      71	umb-editor-sub-header-content-right.html  0%  100%  
 	    New File  		      65	umb-editor-sub-header-section.html  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\html\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\html\
 	    New File  		     494	umb-control-group.html  0%  100%  
 	    New File  		      47	umb-pane.html  0%  100%  
 	    New File  		      58	umb-panel.html  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\imaging\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\imaging\
 	    New File  		     553	umb-image-crop.html  0%  100%  
 	    New File  		     311	umb-image-gravity.html  0%  100%  
 	    New File  		     225	umb-image-thumbnail.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\notifications\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\notifications\
 	    New File  		     965	umb-notifications.html  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\overlays\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\overlays\
 	    New File  		    3292	umb-overlay.html  0%  100%  
 	    New File  		      94	umb-overlay-backdrop.html  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\property\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\property\
 	    New File  		     859	umb-property.html  0%  100%  
 	    New File  		     128	umb-property-editor.html  0%  100%  
 	    New File  		       0	umb-property-group.html100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\tabs\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\tabs\
 	    New File  		     130	umb-tab.html  0%  100%  
 	    New File  		      84	umb-tabs-content.html  0%  100%  
 	    New File  		     210	umb-tabs-nav.html  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\tree\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\tree\
 	    New File  		     587	umb-tree-search-box.html  0%  100%  
 	    New File  		     866	umb-tree-search-results.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\upload\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\components\upload\
 	    New File  		    3607	umb-file-dropzone.html  0%  100%  
-	  New Dir          9	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\content\
+	  New Dir          9	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\content\
 	    New File  		    3833	copy.html  0%  100%  
 	    New File  		    1545	create.html  0%  100%  
 	    New File  		     463	delete.html  0%  100%  
@@ -1742,42 +1742,42 @@ Exc Files : UI.xml
 	    New File  		     522	recyclebin.html  0%  100%  
 	    New File  		     952	restore.html  0%  100%  
 	    New File  		     198	umbpreview.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\dashboard\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\dashboard\
 	    New File  		     587	ChangePassword.html  0%  100%  
-	  New Dir          6	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\dashboard\default\
+	  New Dir          6	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\dashboard\default\
 	    New File  		   25651	ourumbraco.jpg  0%  100%  
 	    New File  		    3498	StartupDashboardIntro.html  0%  100%  
 	    New File  		    1350	StartupDashboardKits.html  0%  100%  
 	    New File  		       0	StartupDashboardLastEdits.html100%  
 	    New File  		     828	StartupDashboardVideos.html  0%  100%  
 	    New File  		   49817	umbracotv.jpg  0%  100%  
-	  New Dir          6	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\dashboard\developer\
+	  New Dir          6	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\dashboard\developer\
 	    New File  		    1237	developerdashboardintro.html  0%  100%  
 	    New File  		    1059	developerdashboardvideos.html  0%  100%  
 	    New File  		   17669	examinemanagement.html  0%  100%  
 	    New File  		    6942	healthcheck.html  0%  100%  
 	    New File  		    5138	redirecturls.html  0%  100%  
 	    New File  		    1280	xmldataintegrityreport.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\dashboard\forms\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\dashboard\forms\
 	    New File  		    1625	formsdashboardintro.html  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\dashboard\media\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\dashboard\media\
 	    New File  		    1800	desktopmediauploader.html  0%  100%  
 	    New File  		     904	mediadashboardintro.html  0%  100%  
 	    New File  		     829	mediadashboardvideos.html  0%  100%  
 	    New File  		     154	mediafolderbrowser.html  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\dashboard\members\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\dashboard\members\
 	    New File  		     384	membersdashboardintro.html  0%  100%  
 	    New File  		     796	membersdashboardvideos.html  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\dashboard\settings\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\dashboard\settings\
 	    New File  		    1307	settingsdashboardintro.html  0%  100%  
 	    New File  		     829	settingsdashboardvideos.html  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\datatypes\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\datatypes\
 	    New File  		    1881	create.html  0%  100%  
 	    New File  		    1578	delete.html  0%  100%  
 	    New File  		    2104	edit.html  0%  100%  
 	    New File  		    2085	move.html  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\directives\
-	  New Dir          8	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\directives\_obsolete\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\directives\
+	  New Dir          8	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\directives\_obsolete\
 	    New File  		     738	umb-content-name.html  0%  100%  
 	    New File  		     406	umb-header.html  0%  100%  
 	    New File  		    1472	umb-item-sorter.html  0%  100%  
@@ -1786,7 +1786,7 @@ Exc Files : UI.xml
 	    New File  		    1052	umb-photo-folder.html  0%  100%  
 	    New File  		     147	umb-tab-view.html  0%  100%  
 	    New File  		     239	umb-upload-dropzone.html  0%  100%  
-	  New Dir          7	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\documenttypes\
+	  New Dir          7	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\documenttypes\
 	    New File  		    2143	copy.html  0%  100%  
 	    New File  		    2349	create.html  0%  100%  
 	    New File  		    1667	delete.html  0%  100%  
@@ -1794,16 +1794,16 @@ Exc Files : UI.xml
 	    New File  		    2141	move.html  0%  100%  
 	    New File  		     145	property.html  0%  100%  
 	    New File  		       0	propertygroup.html100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\documenttypes\views\
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\documenttypes\views\design\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\documenttypes\views\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\documenttypes\views\design\
 	    New File  		      95	design.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\documenttypes\views\listview\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\documenttypes\views\listview\
 	    New File  		     534	listview.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\documenttypes\views\permissions\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\documenttypes\views\permissions\
 	    New File  		    1633	permissions.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\documenttypes\views\templates\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\documenttypes\views\templates\
 	    New File  		     822	templates.html  0%  100%  
-	  New Dir          8	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\install\
+	  New Dir          8	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\install\
 	    New File  		     391	continueinstall.html  0%  100%  
 	    New File  		    4606	database.html  0%  100%  
 	    New File  		     320	error.html  0%  100%  
@@ -1812,55 +1812,55 @@ Exc Files : UI.xml
 	    New File  		     868	upgrade.html  0%  100%  
 	    New File  		    2848	user.html  0%  100%  
 	    New File  		     997	version7upgradereport.html  0%  100%  
-	  New Dir          6	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\media\
+	  New Dir          6	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\media\
 	    New File  		    1638	create.html  0%  100%  
 	    New File  		     435	delete.html  0%  100%  
 	    New File  		    2134	edit.html  0%  100%  
 	    New File  		     695	emptyrecyclebin.html  0%  100%  
 	    New File  		    1747	move.html  0%  100%  
 	    New File  		     506	recyclebin.html  0%  100%  
-	  New Dir          5	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\mediatypes\
+	  New Dir          5	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\mediatypes\
 	    New File  		    2137	copy.html  0%  100%  
 	    New File  		    1903	create.html  0%  100%  
 	    New File  		    1610	delete.html  0%  100%  
 	    New File  		    2351	edit.html  0%  100%  
 	    New File  		    2119	move.html  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\mediatypes\views\
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\mediatypes\views\design\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\mediatypes\views\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\mediatypes\views\design\
 	    New File  		      88	design.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\mediatypes\views\listview\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\mediatypes\views\listview\
 	    New File  		     531	listview.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\mediatypes\views\permissions\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\mediatypes\views\permissions\
 	    New File  		    1630	permissions.html  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\member\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\member\
 	    New File  		    1009	create.html  0%  100%  
 	    New File  		     459	delete.html  0%  100%  
 	    New File  		    2040	edit.html  0%  100%  
 	    New File  		    1057	list.html  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\membertypes\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\membertypes\
 	    New File  		    1871	create.html  0%  100%  
 	    New File  		    1101	delete.html  0%  100%  
 	    New File  		    2311	edit.html  0%  100%  
 	    New File  		     351	move.html  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\membertypes\views\
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\membertypes\views\design\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\membertypes\views\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\membertypes\views\design\
 	    New File  		     116	design.html  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\packager\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\packager\
 	    New File  		     441	delete.html  0%  100%  
 	    New File  		     755	overview.html  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\packager\views\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\packager\views\
 	    New File  		    6000	installed.html  0%  100%  
 	    New File  		    9044	install-local.html  0%  100%  
 	    New File  		   20517	repo.html  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\partialviewmacros\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\partialviewmacros\
 	    New File  		    3901	create.html  0%  100%  
 	    New File  		     430	delete.html  0%  100%  
 	    New File  		    4290	edit.html  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\partialviews\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\partialviews\
 	    New File  		    3419	create.html  0%  100%  
 	    New File  		     425	delete.html  0%  100%  
 	    New File  		    4660	edit.html  0%  100%  
-	  New Dir         16	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\prevalueeditors\
+	  New Dir         16	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\prevalueeditors\
 	    New File  		     101	boolean.html  0%  100%  
 	    New File  		     427	decimal.html  0%  100%  
 	    New File  		      84	hidden.html  0%  100%  
@@ -1877,123 +1877,123 @@ Exc Files : UI.xml
 	    New File  		     937	treepicker.html  0%  100%  
 	    New File  		    2855	treesource.html  0%  100%  
 	    New File  		     264	valuetype.html  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\boolean\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\boolean\
 	    New File  		     187	boolean.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\changepassword\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\changepassword\
 	    New File  		    3826	changepassword.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\checkboxlist\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\checkboxlist\
 	    New File  		     468	checkboxlist.html  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\colorpicker\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\colorpicker\
 	    New File  		     595	colorpicker.html  0%  100%  
 	    New File  		     728	colorpicker.prevalues.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\contentpicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\contentpicker\
 	    New File  		    2062	contentpicker.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\datepicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\datepicker\
 	    New File  		    1866	datepicker.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\decimal\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\decimal\
 	    New File  		     633	decimal.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\dropdown\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\dropdown\
 	    New File  		     782	dropdown.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\email\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\email\
 	    New File  		     699	email.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\entitypicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\entitypicker\
 	    New File  		     661	entitypicker.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\fileupload\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\fileupload\
 	    New File  		    1719	fileupload.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\folderbrowser\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\folderbrowser\
 	    New File  		     149	folderbrowser.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\googlemaps\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\googlemaps\
 	    New File  		     185	googlemaps.html  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\grid\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\grid\
 	    New File  		   16086	grid.html  0%  100%  
 	    New File  		    6921	grid.prevalues.html  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\grid\config\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\grid\config\
 	    New File  		    6965	grid.default.config.js  0%  100%  
 	    New File  		     251	grid.default.rtestyles.css  0%  100%  
-	  New Dir          5	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\grid\dialogs\
+	  New Dir          5	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\grid\dialogs\
 	    New File  		     469	config.html  0%  100%  
 	    New File  		     458	editconfig.html  0%  100%  
 	    New File  		    4800	layoutconfig.html  0%  100%  
 	    New File  		    4047	rowconfig.html  0%  100%  
 	    New File  		     414	rowdeleteconfirm.html  0%  100%  
-	  New Dir          6	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\grid\editors\
+	  New Dir          6	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\grid\editors\
 	    New File  		     502	embed.html  0%  100%  
 	    New File  		     113	error.html  0%  100%  
 	    New File  		     580	macro.html  0%  100%  
 	    New File  		     775	media.html  0%  100%  
 	    New File  		    1000	rte.html  0%  100%  
 	    New File  		     293	textstring.html  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\imagecropper\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\imagecropper\
 	    New File  		    3041	imagecropper.html  0%  100%  
 	    New File  		    2324	imagecropper.prevalues.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\integer\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\integer\
 	    New File  		     663	integer.html  0%  100%  
-	  New Dir          6	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\listview\
+	  New Dir          6	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\listview\
 	    New File  		    1189	bulkActionPermissions.prevalues.html  0%  100%  
 	    New File  		    2428	includeproperties.prevalues.html  0%  100%  
 	    New File  		    2240	layouts.prevalues.html  0%  100%  
 	    New File  		    8482	listview.html  0%  100%  
 	    New File  		     462	orderDirection.prevalues.html  0%  100%  
 	    New File  		     190	sortby.prevalues.html  0%  100%  
-	  New Dir          0	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\listview\layouts\
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\listview\layouts\grid\
+	  New Dir          0	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\listview\layouts\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\listview\layouts\grid\
 	    New File  		    3131	grid.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\listview\layouts\list\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\listview\layouts\list\
 	    New File  		    2505	list.html  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\macrocontainer\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\macrocontainer\
 	    New File  		    1126	macrocontainer.html  0%  100%  
 	    New File  		     211	macrolist.prevalues.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\markdowneditor\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\markdowneditor\
 	    New File  		     538	markdowneditor.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\mediapicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\mediapicker\
 	    New File  		    1636	mediapicker.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\membergrouppicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\membergrouppicker\
 	    New File  		     688	membergrouppicker.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\membergroups\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\membergroups\
 	    New File  		     688	membergroups.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\memberpicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\memberpicker\
 	    New File  		     728	memberpicker.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\multipletextbox\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\multipletextbox\
 	    New File  		     938	multipletextbox.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\radiobuttons\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\radiobuttons\
 	    New File  		     477	radiobuttons.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\readonlyvalue\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\readonlyvalue\
 	    New File  		     164	readonlyvalue.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\relatedlinks\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\relatedlinks\
 	    New File  		    5873	relatedlinks.html  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\rte\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\rte\
 	    New File  		    1050	rte.html  0%  100%  
 	    New File  		    1783	rte.prevalues.html  0%  100%  
-	  New Dir          4	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\slider\
+	  New Dir          4	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\slider\
 	    New File  		     374	handle.prevalues.html  0%  100%  
 	    New File  		     365	orientation.prevalues.html  0%  100%  
 	    New File  		     146	slider.html  0%  100%  
 	    New File  		     375	tooltip.prevalues.html  0%  100%  
-	  New Dir          2	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\tags\
+	  New Dir          2	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\tags\
 	    New File  		     962	tags.html  0%  100%  
 	    New File  		     200	tags.prevalues.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\templatepicker\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\templatepicker\
 	    New File  		     113	templatepicker.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\test\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\test\
 	    New File  		     476	test.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\textarea\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\textarea\
 	    New File  		     656	textarea.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\textbox\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\textbox\
 	    New File  		     746	textbox.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\ultrasimple\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\ultrasimple\
 	    New File  		     242	ultrasimple.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\urllist\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\urllist\
 	    New File  		     512	urllist.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\validationtest\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\propertyeditors\validationtest\
 	    New File  		     561	validationtest.html  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\scripts\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\scripts\
 	    New File  		    2042	create.html  0%  100%  
 	    New File  		     420	delete.html  0%  100%  
 	    New File  		    1731	edit.html  0%  100%  
-	  New Dir          1	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\templates\
+	  New Dir          1	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Views\templates\
 	    New File  		    7210	edit.html  0%  100%  
-	  New Dir         20	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Webservices\
+	  New Dir         20	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Webservices\
 	    New File  		   26403	ajax.js  0%  100%  
 	    New File  		     125	CacheRefresher.asmx  0%  100%  
 	    New File  		     130	CheckForUpgrade.asmx  0%  100%  
@@ -2014,13 +2014,13 @@ Exc Files : UI.xml
 	    New File  		     130	TreeDataService.ashx  0%  100%  
 	    New File  		     174	UltimatePickerAutoCompleteHandler.ashx  0%  100%  
 	    New File  		    8404	wsdl.xslt  0%  100%  
-	  New Dir          5	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Xslt\
+	  New Dir          5	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Xslt\
 	    New File  		     667	macroGetCurrent.xsl  0%  100%  
 	    New File  		    1178	macroGetSubs.xsl  0%  100%  
 	    New File  		    1114	searchResult.xslt  0%  100%  
 	    New File  		    1756	sqlNodeHierachy.xslt  0%  100%  
 	    New File  		     594	Web.config  0%  100%  
-	  New Dir         15	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Xslt\Templates\
+	  New Dir         15	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Xslt\Templates\
 	    New File  		    1085	Breadcrumb.xslt  0%  100%  
 	    New File  		     527	Clean.xslt  0%  100%  
 	    New File  		    1264	ListSubPagesAsThumbnails.xslt  0%  100%  
@@ -2036,7 +2036,7 @@ Exc Files : UI.xml
 	    New File  		    3263	RSSFeed.xslt  0%  100%  
 	    New File  		    1579	Sitemap.xslt  0%  100%  
 	    New File  		    1586	TablePrototype.xslt  0%  100%  
-	  New Dir         15	C:\DEV\BuildStuff\CtsContest\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Xslt\Templates\Schema2\
+	  New Dir         15	C:\DEV\BuildStuff\CtsContestCms\packages\UmbracoCms.7.6.5\UmbracoFiles\Umbraco\Xslt\Templates\Schema2\
 	    New File  		    1066	Breadcrumb.xslt  0%  100%  
 	    New File  		     527	Clean.xslt  0%  100%  
 	    New File  		    1015	ListSubPagesAsThumbnails.xslt  0%  100%  

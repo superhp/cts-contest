@@ -5,8 +5,8 @@
 
   Started : Mon Sep 04 23:21:28 2017
 
-   Source : C:\DEV\BuildStuff\CtsContest\CtsContest\Config\
-     Dest : C:\DEV\BuildStuff\CtsContest\CtsContest\App_Data\NuGetBackup\20170904-232128\Config\
+   Source : C:\DEV\BuildStuff\CtsContestCms\CtsContestCms\Config\
+     Dest : C:\DEV\BuildStuff\CtsContestCms\CtsContestCms\App_Data\NuGetBackup\20170904-232128\Config\
 
     Files : *.*
 	    
@@ -14,7 +14,7 @@
 
 ------------------------------------------------------------------------------
 
-	                  17	C:\DEV\BuildStuff\CtsContest\CtsContest\Config\
+	                  17	C:\DEV\BuildStuff\CtsContestCms\CtsContestCms\Config\
 	    New File  		     305	404handlers.config  0%  100%  
 	    New File  		     681	applications.config  0%  100%  
 	    New File  		     739	BaseRestExtensions.config  0%  100%  
@@ -32,11 +32,11 @@
 	    New File  		   12365	tinyMceConfig.config  0%  100%  
 	    New File  		    5821	trees.config  0%  100%  
 	    New File  		    9354	umbracoSettings.config  0%  100%  
-	  New Dir          3	C:\DEV\BuildStuff\CtsContest\CtsContest\Config\imageprocessor\
+	  New Dir          3	C:\DEV\BuildStuff\CtsContestCms\CtsContestCms\Config\imageprocessor\
 	    New File  		     378	cache.config  0%  100%  
 	    New File  		    3934	processing.config  0%  100%  
 	    New File  		    1064	security.config  0%  100%  
-	  New Dir         18	C:\DEV\BuildStuff\CtsContest\CtsContest\Config\Lang\
+	  New Dir         18	C:\DEV\BuildStuff\CtsContestCms\CtsContestCms\Config\Lang\
 	    New File  		      81	cs-CZ.user.xml  0%  100%  
 	    New File  		      79	da-DK.user.xml  0%  100%  
 	    New File  		      79	de-DE.user.xml  0%  100%  
