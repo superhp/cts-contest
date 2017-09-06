@@ -1,0 +1,3 @@
+[submodule "CtsContest/cts-contest-web"]
+	path = CtsContest/cts-contest-web
+	url = https://github.com/superhp/cts-contest-web.git
