@@ -19,8 +19,8 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "7ec439a5b4110671")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.5")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "845798f8a72ec656")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 namespace Umbraco.Web.PublishedContentModels
 {
@@ -609,9 +609,9 @@ namespace Umbraco.Web.PublishedContentModels
 		/// Your Address: Plot your address on the map and it'll be displayed on the contact page
 		///</summary>
 		[ImplementPropertyType("map")]
-		public Terratype.Models.Model Map
+		public object Map
 		{
-			get { return this.GetPropertyValue<Terratype.Models.Model>("map"); }
+			get { return this.GetPropertyValue("map"); }
 		}
 
 		///<summary>
@@ -731,166 +731,6 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 	}
 
-	/// <summary>Tasks</summary>
-	[PublishedContentModel("people")]
-	public partial class People : PublishedContentModel, IContentBase, INavigationBase
-	{
-#pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "people";
-		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
-#pragma warning restore 0109
-
-		public People(IPublishedContent content)
-			: base(content)
-		{ }
-
-#pragma warning disable 0109 // new is redundant
-		public new static PublishedContentType GetModelContentType()
-		{
-			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
-		}
-#pragma warning restore 0109
-
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<People, TValue>> selector)
-		{
-			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
-		}
-
-		///<summary>
-		/// Content
-		///</summary>
-		[ImplementPropertyType("bodyText")]
-		public Newtonsoft.Json.Linq.JToken BodyText
-		{
-			get { return Umbraco.Web.PublishedContentModels.ContentBase.GetBodyText(this); }
-		}
-
-		///<summary>
-		/// Page Title: The title of the page, this is also the first text in a google search result. The ideal length is between 40 and 60 characters
-		///</summary>
-		[ImplementPropertyType("pageTitle")]
-		public string PageTitle
-		{
-			get { return Umbraco.Web.PublishedContentModels.ContentBase.GetPageTitle(this); }
-		}
-
-		///<summary>
-		/// Keywords: Keywords that describe the content of the page. This is consired optional since most modern search engines don't use this anymore
-		///</summary>
-		[ImplementPropertyType("keywords")]
-		public IEnumerable<string> Keywords
-		{
-			get { return Umbraco.Web.PublishedContentModels.NavigationBase.GetKeywords(this); }
-		}
-
-		///<summary>
-		/// Description: A brief description of the content on your page. This text is shown below the title in a google search result and also used for Social Sharing Cards. The ideal length is between 130 and 155 characters
-		///</summary>
-		[ImplementPropertyType("seoMetaDescription")]
-		public string SeoMetaDescription
-		{
-			get { return Umbraco.Web.PublishedContentModels.NavigationBase.GetSeoMetaDescription(this); }
-		}
-
-		///<summary>
-		/// Hide in Navigation: If you don't want this page to appear in the navigation, check this box
-		///</summary>
-		[ImplementPropertyType("umbracoNavihide")]
-		public bool UmbracoNavihide
-		{
-			get { return Umbraco.Web.PublishedContentModels.NavigationBase.GetUmbracoNavihide(this); }
-		}
-	}
-
-	/// <summary>Task</summary>
-	[PublishedContentModel("person")]
-	public partial class Person : PublishedContentModel, INavigationBase
-	{
-#pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "person";
-		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
-#pragma warning restore 0109
-
-		public Person(IPublishedContent content)
-			: base(content)
-		{ }
-
-#pragma warning disable 0109 // new is redundant
-		public new static PublishedContentType GetModelContentType()
-		{
-			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
-		}
-#pragma warning restore 0109
-
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Person, TValue>> selector)
-		{
-			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
-		}
-
-		///<summary>
-		/// Description
-		///</summary>
-		[ImplementPropertyType("description")]
-		public IHtmlString Description
-		{
-			get { return this.GetPropertyValue<IHtmlString>("description"); }
-		}
-
-		///<summary>
-		/// Photo
-		///</summary>
-		[ImplementPropertyType("photo")]
-		public IPublishedContent Photo
-		{
-			get { return this.GetPropertyValue<IPublishedContent>("photo"); }
-		}
-
-		///<summary>
-		/// Score
-		///</summary>
-		[ImplementPropertyType("points")]
-		public int Points
-		{
-			get { return this.GetPropertyValue<int>("points"); }
-		}
-
-		///<summary>
-		/// Title
-		///</summary>
-		[ImplementPropertyType("title")]
-		public string Title
-		{
-			get { return this.GetPropertyValue<string>("title"); }
-		}
-
-		///<summary>
-		/// Keywords: Keywords that describe the content of the page. This is consired optional since most modern search engines don't use this anymore
-		///</summary>
-		[ImplementPropertyType("keywords")]
-		public IEnumerable<string> Keywords
-		{
-			get { return Umbraco.Web.PublishedContentModels.NavigationBase.GetKeywords(this); }
-		}
-
-		///<summary>
-		/// Description: A brief description of the content on your page. This text is shown below the title in a google search result and also used for Social Sharing Cards. The ideal length is between 130 and 155 characters
-		///</summary>
-		[ImplementPropertyType("seoMetaDescription")]
-		public string SeoMetaDescription
-		{
-			get { return Umbraco.Web.PublishedContentModels.NavigationBase.GetSeoMetaDescription(this); }
-		}
-
-		///<summary>
-		/// Hide in Navigation: If you don't want this page to appear in the navigation, check this box
-		///</summary>
-		[ImplementPropertyType("umbracoNavihide")]
-		public bool UmbracoNavihide
-		{
-			get { return Umbraco.Web.PublishedContentModels.NavigationBase.GetUmbracoNavihide(this); }
-		}
-	}
-
 	/// <summary>Product</summary>
 	[PublishedContentModel("product")]
 	public partial class Product : PublishedContentModel
@@ -947,9 +787,9 @@ namespace Umbraco.Web.PublishedContentModels
 		/// Features
 		///</summary>
 		[ImplementPropertyType("features")]
-		public IEnumerable<IPublishedContent> Features
+		public object Features
 		{
-			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("features"); }
+			get { return this.GetPropertyValue("features"); }
 		}
 
 		///<summary>
@@ -1075,6 +915,59 @@ namespace Umbraco.Web.PublishedContentModels
 		public bool UmbracoNavihide
 		{
 			get { return Umbraco.Web.PublishedContentModels.NavigationBase.GetUmbracoNavihide(this); }
+		}
+	}
+
+	/// <summary>Task</summary>
+	[PublishedContentModel("task")]
+	public partial class Task : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "task";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Task(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Task, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Description: Task's description, example inputs and outputs, etc.
+		///</summary>
+		[ImplementPropertyType("description")]
+		public string Description
+		{
+			get { return this.GetPropertyValue<string>("description"); }
+		}
+
+		///<summary>
+		/// Difficulty: Task's difficulty
+		///</summary>
+		[ImplementPropertyType("difficulty")]
+		public int Difficulty
+		{
+			get { return this.GetPropertyValue<int>("difficulty"); }
+		}
+
+		///<summary>
+		/// Title: Task's name
+		///</summary>
+		[ImplementPropertyType("title")]
+		public string Title
+		{
+			get { return this.GetPropertyValue<string>("title"); }
 		}
 	}
 
