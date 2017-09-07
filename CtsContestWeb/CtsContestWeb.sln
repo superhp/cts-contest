@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CtsContestWeb", "CtsContest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CtsContestWeb.Communication", "CtsContestWeb.Communication\CtsContestWeb.Communication.csproj", "{C5E38A74-57EC-458F-957D-1501B813154E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CtsContestWeb.Tests", "CtsContestWeb.Tests\CtsContestWeb.Tests.csproj", "{40B6A4D2-7049-4538-B684-DE11B89B9412}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CtsContestWeb.Db", "CtsContestWeb.Db\CtsContestWeb.Db.csproj", "{CD3E9DD1-3984-4A79-9C55-5E30684EE4B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{C5E38A74-57EC-458F-957D-1501B813154E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5E38A74-57EC-458F-957D-1501B813154E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5E38A74-57EC-458F-957D-1501B813154E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{40B6A4D2-7049-4538-B684-DE11B89B9412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40B6A4D2-7049-4538-B684-DE11B89B9412}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40B6A4D2-7049-4538-B684-DE11B89B9412}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40B6A4D2-7049-4538-B684-DE11B89B9412}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD3E9DD1-3984-4A79-9C55-5E30684EE4B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD3E9DD1-3984-4A79-9C55-5E30684EE4B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD3E9DD1-3984-4A79-9C55-5E30684EE4B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD3E9DD1-3984-4A79-9C55-5E30684EE4B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
