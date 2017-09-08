@@ -19,8 +19,8 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "10d07f2bc1cd07cd")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.4")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "721f8773fed0aa7b")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.10")]
 
 namespace Umbraco.Web.PublishedContentModels
 {
@@ -953,21 +953,30 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// Difficulty: Task's difficulty
+		/// Input: Input (list of strings) sent to the API.
 		///</summary>
-		[ImplementPropertyType("difficulty")]
-		public int Difficulty
+		[ImplementPropertyType("input")]
+		public IEnumerable<string> Input
 		{
-			get { return this.GetPropertyValue<int>("difficulty"); }
+			get { return this.GetPropertyValue<IEnumerable<string>>("input"); }
 		}
 
 		///<summary>
-		/// Title: Task's name
+		/// Output: Outputs for each of the sent input strings.
 		///</summary>
-		[ImplementPropertyType("title")]
-		public string Title
+		[ImplementPropertyType("output")]
+		public IEnumerable<string> Output
 		{
-			get { return this.GetPropertyValue<string>("title"); }
+			get { return this.GetPropertyValue<IEnumerable<string>>("output"); }
+		}
+
+		///<summary>
+		/// Value: Task's value in virtual wallet points.
+		///</summary>
+		[ImplementPropertyType("value")]
+		public int Value
+		{
+			get { return this.GetPropertyValue<int>("value"); }
 		}
 	}
 
@@ -992,6 +1001,85 @@ namespace Umbraco.Web.PublishedContentModels
 #pragma warning restore 0109
 
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Tasks, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+	}
+
+	/// <summary>Prize</summary>
+	[PublishedContentModel("prize")]
+	public partial class Prize : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "prize";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Prize(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Prize, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Picture: Picture of the prize
+		///</summary>
+		[ImplementPropertyType("picture")]
+		public IPublishedContent Picture
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("picture"); }
+		}
+
+		///<summary>
+		/// Price: Price of the prize in points
+		///</summary>
+		[ImplementPropertyType("price")]
+		public int Price
+		{
+			get { return this.GetPropertyValue<int>("price"); }
+		}
+
+		///<summary>
+		/// Quantity: The quantity of this prize
+		///</summary>
+		[ImplementPropertyType("quantity")]
+		public int Quantity
+		{
+			get { return this.GetPropertyValue<int>("quantity"); }
+		}
+	}
+
+	/// <summary>Prizes</summary>
+	[PublishedContentModel("prizes")]
+	public partial class Prizes : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "prizes";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Prizes(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Prizes, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
