@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CtsContestWeb.Communication\CtsContestWeb.Communication.csproj" />
-    <ProjectReference Include="..\CtsContestWeb.Db\CtsContestWeb.Db.csproj" />
+    <ProjectReference Include="..\CtsContestWeb.Dto\CtsContestWeb.Dto.csproj" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

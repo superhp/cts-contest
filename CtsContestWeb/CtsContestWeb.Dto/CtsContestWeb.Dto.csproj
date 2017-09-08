@@ -4,8 +4,4 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\CtsContestWeb.Dto\CtsContestWeb.Dto.csproj" />
-  </ItemGroup>
-
 </Project>
