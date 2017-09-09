@@ -8,7 +8,7 @@ using CtsContestWeb.Db;
 using Microsoft.EntityFrameworkCore;
 
 namespace CtsContestWeb
-{    
+{
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -43,6 +43,13 @@ namespace CtsContestWeb
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+
+                // Automatic migrations 
+                // TODO: move it to TSVS in future
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                {
+                    serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
+                }
             }
 
             app.UseStaticFiles();
