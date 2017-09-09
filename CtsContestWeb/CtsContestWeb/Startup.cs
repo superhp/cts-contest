@@ -42,7 +42,8 @@ namespace CtsContestWeb
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                //app.UseExceptionHandler("/Home/Error");
+                app.UseDeveloperExceptionPage();
 
                 // Automatic migrations 
                 // TODO: move it to TSVS in future
