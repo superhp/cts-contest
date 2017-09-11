@@ -7,7 +7,7 @@ namespace CtsContestWeb.Db.Entities
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid PurchaseId { get; set; }
-        public int UserId { get; set; }
+        public string UserEmail { get; set; }
         public int PrizeId { get; set; }
         public int Cost { get; set; }
         public virtual GivenPurchase GivenPurchase { get; set; }

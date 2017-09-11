@@ -13,4 +13,8 @@
     <ProjectReference Include="..\CtsContestWeb.Dto\CtsContestWeb.Dto.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

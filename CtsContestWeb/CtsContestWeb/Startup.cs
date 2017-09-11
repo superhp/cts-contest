@@ -33,12 +33,17 @@ namespace CtsContestWeb
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseExceptionHandler("/Home/Error");
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
                     HotModuleReplacement = true,
                     ReactHotModuleReplacement = true
                 });
+                //using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                //{
+                //    var db = serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database;
+                //    serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
+                //}
             }
             else
             {
