@@ -17,11 +17,11 @@ namespace CtsContestWeb.Db
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Purchase>()
-                .HasIndex(p => new { p.UserId, p.PrizeId })
+                .HasIndex(p => new { p.UserEmail, p.PrizeId })
                 .IsUnique(true);
 
             modelBuilder.Entity<Solution>()
-                .HasIndex(p => new { p.UserId, p.TaskId })
+                .HasIndex(p => new { p.UserEmail, p.TaskId })
                 .IsUnique(true);
         }
 
