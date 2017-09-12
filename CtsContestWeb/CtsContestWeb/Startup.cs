@@ -46,11 +46,11 @@ namespace CtsContestWeb
                     HotModuleReplacement = true,
                     ReactHotModuleReplacement = true
                 });
-                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-                {
-                    var db = serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database;
-                    db.Migrate();
-                }
+                //using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                //{
+                //    var db = serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database;
+                //    db.Migrate();
+                //}
             }
             else
             {
