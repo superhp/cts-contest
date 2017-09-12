@@ -23,7 +23,7 @@ namespace CtsContestWeb
         {
             services.AddMvc();
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
             services.AddScoped<ISolutionRepository, SolutionRepository>();
         }
@@ -39,11 +39,11 @@ namespace CtsContestWeb
                     HotModuleReplacement = true,
                     ReactHotModuleReplacement = true
                 });
-                //using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-                //{
-                //    var db = serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database;
-                //    serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
-                //}
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                {
+                    var db = serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database;
+                    serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
+                }
             }
             else
             {
