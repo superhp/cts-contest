@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace CtsContestWeb.Controllers
 {
@@ -24,6 +25,15 @@ namespace CtsContestWeb.Controllers
                 TemperatureC = rng.Next(-20, 55),
                 Summary = Summaries[rng.Next(Summaries.Length)]
             });
+        }
+
+        [HttpGet("[action]")]
+        public string GetUser()
+        {
+            var claimsPrincipal = User as ClaimsPrincipal;
+            string email = claimsPrincipal.FindFirst(ClaimTypes.Email).Value;
+
+            return email;
         }
 
         public class WeatherForecast
