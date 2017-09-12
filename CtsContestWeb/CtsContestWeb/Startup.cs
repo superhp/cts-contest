@@ -42,7 +42,7 @@ namespace CtsContestWeb
                 using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {
                     var db = serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database;
-                    serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
+                    db.Migrate();
                 }
             }
             else
