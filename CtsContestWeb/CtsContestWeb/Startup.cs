@@ -65,7 +65,7 @@ namespace CtsContestWeb
                 }
             }
 
-            app.Use(async (context, next) =>
+            /*app.Use(async (context, next) =>
             {
                 // Create a user on current thread from provided header
                 if (context.Request.Headers.ContainsKey("X-MS-CLIENT-PRINCIPAL-ID"))
@@ -112,7 +112,7 @@ namespace CtsContestWeb
                 };
 
                 await next.Invoke();
-            });
+            });*/
 
             app.UseStaticFiles();
 
