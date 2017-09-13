@@ -1,8 +1,11 @@
-﻿namespace CtsContestWeb.Communication
+﻿using CtsContestWeb.Dto;
+using System.Collections.Generic;
+
+namespace CtsContestWeb.Communication
 {
     public interface ITask
     {
-        void GetAllTasks();
-        void GetTaskById(int id);
+        List<TaskDto> GetAllTasks();
+        TaskDto GetTaskById(int id);
     }
 }

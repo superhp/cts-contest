@@ -1,8 +1,11 @@
-﻿namespace CtsContestWeb.Communication
+﻿using CtsContestWeb.Dto;
+using System.Collections.Generic;
+
+namespace CtsContestWeb.Communication
 {
     public interface IPrize
     {
-        void GetAllPrizes();
-        void GetPrizeById(int id);
+        List<PrizeDto> GetAllPrizes();
+        PrizeDto GetPrizeById(int id);
     }
 }
