@@ -19,7 +19,10 @@ namespace CtsContestWeb
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseSetting("detailedErrors", "true")
                 .UseStartup<Startup>()
+                .CaptureStartupErrors(true)
                 .Build();
     }
 }
