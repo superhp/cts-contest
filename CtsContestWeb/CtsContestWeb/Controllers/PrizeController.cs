@@ -1,19 +1,41 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
+using CtsContestWeb.Communication;
+using CtsContestWeb.Dto;
+using System.Collections.Generic;
 
 namespace CtsContestWeb.Controllers
 {
     [Route("api/[controller]")]
     public class PrizeController : Controller
     {
-        public void Get()
+        public IPrize PrizeManager { get; }
+
+        public PrizeController(IPrize prizeManager)
         {
-            throw new NotImplementedException();
+            PrizeManager = prizeManager;
         }
-        
-        public void Get(int id)
+
+        [HttpGet("[action]")]
+        public Response<List<PrizeDto>> Get()
         {
-            throw new NotImplementedException();
+            var prizes = PrizeManager.GetAllPrizes();
+
+            return new Response<List<PrizeDto>>
+            {
+                Data = prizes
+            };
+        }
+
+        [HttpGet("[action]/{id}")]
+        public Response<PrizeDto> Get(int id)
+        {
+            var prize = PrizeManager.GetPrizeById(id);
+
+            return new Response<PrizeDto>
+            {
+                Data = prize
+            };
         }
 
         [HttpPut("[action]")]

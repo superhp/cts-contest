@@ -313,13 +313,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\**" />
-	<Content Include="scripts\**" />
+    <Content Include="scripts\**" />
     <Content Include="packages.config" />
     <Content Include="config\imageprocessor\security.config" />
     <Content Include="config\imageprocessor\processing.config" />
     <Content Include="config\imageprocessor\cache.config" />
     <Content Include="App_Plugins\ModelsBuilder\package.manifest" />
-    <Content Include="Views\**" />  
+    <Content Include="Views\**" />
     <Content Include="Media\**" />
     <Content Include="config\umbracoSettings.config" />
     <Content Include="config\trees.config" />
@@ -374,13 +374,19 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\PrizeController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Models\PrizeDto.cs" />
+    <Compile Include="Models\TaskDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Prize\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

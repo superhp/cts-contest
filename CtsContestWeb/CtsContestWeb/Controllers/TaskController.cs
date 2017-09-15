@@ -1,19 +1,41 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
+using CtsContestWeb.Communication;
+using CtsContestWeb.Dto;
+using System.Collections.Generic;
 
 namespace CtsContestWeb.Controllers
 {
     [Route("api/[controller]")]
     public class TaskController : Controller
     {
-        public void Get()
+        public ITask TaskManager { get; }
+
+        public TaskController(ITask taskManager)
         {
-            throw new NotImplementedException();
+            TaskManager = taskManager;
+        }
+
+        [HttpGet("[action]")]
+        public Response<List<TaskDto>> Get()
+        {
+            var tasks = TaskManager.GetAllTasks();
+
+            return new Response<List<TaskDto>>
+            {
+                Data = tasks
+            };
         }
         
-        public void Get(int id)
+        [HttpGet("[action]/{id}")]
+        public Response<TaskDto> Get(int id)
         {
-            throw new NotImplementedException();
+            var task = TaskManager.GetTaskById(id);
+
+            return new Response<TaskDto>
+            {
+                Data = task
+            };
         }
 
         [HttpPut("[action]")]

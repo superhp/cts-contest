@@ -8,8 +8,8 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "721f8773fed0aa7b")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.10")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "ad779f20a450b006")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 
 // FILE: models.generated.cs
@@ -960,12 +960,12 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// Description: Task's description, example inputs and outputs, etc.
+		/// Description
 		///</summary>
 		[ImplementPropertyType("description")]
-		public string Description
+		public IHtmlString Description
 		{
-			get { return this.GetPropertyValue<string>("description"); }
+			get { return this.GetPropertyValue<IHtmlString>("description"); }
 		}
 
 		///<summary>
