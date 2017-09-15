@@ -11,7 +11,7 @@ import { Responsive } from 'semantic-ui-react'
 export class Footer extends React.Component<{}, {}> {
     public render() {
         return (
-            <Segment inverted vertical style={{ padding: '5em 0em' }} textAlign='center'>
+            <Segment inverted vertical style={{ padding: '3em 0em' }} textAlign='center' color='blue'>
                 <Container>
                     &copy; Copyright 2017
                 </Container>
