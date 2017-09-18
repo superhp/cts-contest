@@ -1,11 +1,12 @@
 ﻿using CtsContestWeb.Dto;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CtsContestWeb.Communication
 {
     public interface ITask
     {
-        List<TaskDto> GetAllTasks();
-        TaskDto GetTaskById(int id);
+        Task<List<TaskDto>> GetAllTasks();
+        Task<TaskDto> GetTaskById(int id);
     }
 }

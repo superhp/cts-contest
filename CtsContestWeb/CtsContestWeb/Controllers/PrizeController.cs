@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using CtsContestWeb.Communication;
 using CtsContestWeb.Dto;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CtsContestWeb.Controllers
 {
@@ -17,9 +18,9 @@ namespace CtsContestWeb.Controllers
         }
 
         [HttpGet("[action]")]
-        public Response<List<PrizeDto>> Get()
+        public async Task<Response<List<PrizeDto>>> Get()
         {
-            var prizes = PrizeManager.GetAllPrizes();
+            var prizes = await PrizeManager.GetAllPrizes();
 
             return new Response<List<PrizeDto>>
             {
@@ -28,9 +29,9 @@ namespace CtsContestWeb.Controllers
         }
 
         [HttpGet("[action]/{id}")]
-        public Response<PrizeDto> Get(int id)
+        public async Task<Response<PrizeDto>> Get(int id)
         {
-            var prize = PrizeManager.GetPrizeById(id);
+            var prize = await PrizeManager.GetPrizeById(id);
 
             return new Response<PrizeDto>
             {

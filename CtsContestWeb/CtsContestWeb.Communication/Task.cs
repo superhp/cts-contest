@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CtsContestWeb.Communication
 {
@@ -14,32 +15,39 @@ namespace CtsContestWeb.Communication
             _iconfiguration = iconfiguration;
         }
 
-        public List<TaskDto> GetAllTasks()
+        public async Task<List<TaskDto>> GetAllTasks()
         {
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
             var client = new RestClient(umbracoApiUrl);
 
             var request = new RestRequest("task/getAll", Method.GET);
 
-            var response = client.Execute<List<TaskDto>>(request);
+            TaskCompletionSource<List<TaskDto>> taskCompletion = new TaskCompletionSource<List<TaskDto>>();
+            client.ExecuteAsync<List<TaskDto>>(request, response =>
+            {
+                taskCompletion.SetResult(response.Data);
+            });
 
-            return response.Data;
+            return await taskCompletion.Task;
         }
-        
-        public TaskDto GetTaskById(int id)
+
+        public async Task<TaskDto> GetTaskById(int id)
         {
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
             var client = new RestClient(umbracoApiUrl);
 
             var request = new RestRequest("task/get/{id}", Method.GET);
-            request.AddUrlSegment("id", id.ToString()); 
+            request.AddUrlSegment("id", id.ToString());
 
-            var response = client.Execute<TaskDto>(request);
+            TaskCompletionSource<TaskDto> taskCompletion = new TaskCompletionSource<TaskDto>();
+            client.ExecuteAsync<TaskDto>(request, response =>
+            {
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                    throw new ArgumentException("No task with given ID");
+                taskCompletion.SetResult(response.Data);
+            });
 
-            if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new ArgumentException("No task with given ID");
-
-            return response.Data;
+            return await taskCompletion.Task;
         }
     }
 }
