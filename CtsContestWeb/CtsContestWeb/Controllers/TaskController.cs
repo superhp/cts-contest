@@ -16,25 +16,37 @@ namespace CtsContestWeb.Controllers
             TaskManager = taskManager;
         }
 
-        [HttpGet("[action]")]
-        public Response<List<TaskDto>> Get()
+        public IEnumerable<TaskDto> Get()
         {
             var tasks = TaskManager.GetAllTasks();
 
-            return new Response<List<TaskDto>>
+            return new List<TaskDto>
             {
-                Data = tasks
+                new TaskDto
+                {
+                    Id = 1,
+                    Name = "1st task",
+                    Value = 1
+                },
+                new TaskDto
+                {
+                    Id = 2,
+                    Name = "2nd task",
+                    Value = 2
+                }
             };
         }
-        
-        [HttpGet("[action]/{id}")]
-        public Response<TaskDto> Get(int id)
+
+        [HttpGet("{id}")]
+        public TaskDto Get(int id)
         {
             var task = TaskManager.GetTaskById(id);
 
-            return new Response<TaskDto>
+            return new TaskDto
             {
-                Data = task
+                Id = 1,
+                Name = "Task by ID",
+                Value = 11
             };
         }
 
