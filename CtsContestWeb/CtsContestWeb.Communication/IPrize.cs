@@ -1,11 +1,12 @@
 ﻿using CtsContestWeb.Dto;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CtsContestWeb.Communication
 {
     public interface IPrize
     {
-        List<PrizeDto> GetAllPrizes();
-        PrizeDto GetPrizeById(int id);
+        Task<List<PrizeDto>> GetAllPrizes();
+        Task<PrizeDto> GetPrizeById(int id);
     }
 }

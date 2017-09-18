@@ -1,17 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CtsContestWeb", "CtsContestWeb\CtsContestWeb.csproj", "{DA3B4C6E-E2DD-4E82-A0CD-525494ABC58E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CtsContestWeb.Communication", "CtsContestWeb.Communication\CtsContestWeb.Communication.csproj", "{C5E38A74-57EC-458F-957D-1501B813154E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CtsContestWeb.Communication", "CtsContestWeb.Communication\CtsContestWeb.Communication.csproj", "{C5E38A74-57EC-458F-957D-1501B813154E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CtsContestWeb.Db", "CtsContestWeb.Db\CtsContestWeb.Db.csproj", "{CD3E9DD1-3984-4A79-9C55-5E30684EE4B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CtsContestWeb.Db", "CtsContestWeb.Db\CtsContestWeb.Db.csproj", "{CD3E9DD1-3984-4A79-9C55-5E30684EE4B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CtsContestWeb.Logic", "CtsContestWeb.Logic\CtsContestWeb.Logic.csproj", "{523571C6-5CC9-4FDA-8D63-F919DB44FE6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CtsContestWeb.Logic", "CtsContestWeb.Logic\CtsContestWeb.Logic.csproj", "{523571C6-5CC9-4FDA-8D63-F919DB44FE6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CtsContestWeb.Dto", "CtsContestWeb.Dto\CtsContestWeb.Dto.csproj", "{B769B9BC-53E6-4688-8412-6FD6AD3D27F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CtsContestWeb.Dto", "CtsContestWeb.Dto\CtsContestWeb.Dto.csproj", "{B769B9BC-53E6-4688-8412-6FD6AD3D27F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CtsContestWeb.Tests", "CtsContestWeb.Tests\CtsContestWeb.Tests.csproj", "{A53B64A6-E90D-4369-AC5F-14505A15756C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{B769B9BC-53E6-4688-8412-6FD6AD3D27F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B769B9BC-53E6-4688-8412-6FD6AD3D27F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B769B9BC-53E6-4688-8412-6FD6AD3D27F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A53B64A6-E90D-4369-AC5F-14505A15756C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A53B64A6-E90D-4369-AC5F-14505A15756C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A53B64A6-E90D-4369-AC5F-14505A15756C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A53B64A6-E90D-4369-AC5F-14505A15756C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
