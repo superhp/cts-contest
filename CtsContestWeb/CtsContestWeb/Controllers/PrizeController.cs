@@ -17,26 +17,20 @@ namespace CtsContestWeb.Controllers
             PrizeManager = prizeManager;
         }
 
-        [HttpGet("[action]")]
-        public async Task<Response<List<PrizeDto>>> Get()
+        [HttpGet("")]
+        public async Task<List<PrizeDto>> Get()
         {
             var prizes = await PrizeManager.GetAllPrizes();
 
-            return new Response<List<PrizeDto>>
-            {
-                Data = prizes
-            };
+            return prizes;
         }
 
-        [HttpGet("[action]/{id}")]
-        public async Task<Response<PrizeDto>> Get(int id)
+        [HttpGet("{id}")]
+        public async Task<PrizeDto> Get(int id)
         {
             var prize = await PrizeManager.GetPrizeById(id);
 
-            return new Response<PrizeDto>
-            {
-                Data = prize
-            };
+            return prize;
         }
 
         [HttpPut("[action]")]

@@ -20,7 +20,7 @@ namespace CtsContestWeb.Communication
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
             var client = new RestClient(umbracoApiUrl);
 
-            var request = new RestRequest("task/getAll", Method.GET);
+            var request = new RestRequest("prize/getAll", Method.GET);
 
             TaskCompletionSource<List<PrizeDto>> taskCompletion = new TaskCompletionSource<List<PrizeDto>>();
             client.ExecuteAsync<List<PrizeDto>>(request, response =>
@@ -36,7 +36,7 @@ namespace CtsContestWeb.Communication
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
             var client = new RestClient(umbracoApiUrl);
 
-            var request = new RestRequest("task/get/{id}", Method.GET);
+            var request = new RestRequest("prize/get/{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
 
             TaskCompletionSource<PrizeDto> taskCompletion = new TaskCompletionSource<PrizeDto>();
