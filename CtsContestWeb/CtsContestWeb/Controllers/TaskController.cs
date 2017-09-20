@@ -26,13 +26,40 @@ namespace CtsContestWeb.Controllers
                 {
                     Id = 1,
                     Name = "1st task",
-                    Value = 1
+                    Value = 1,
+                    Description = "hey ho lets go"
                 },
                 new TaskDto
                 {
                     Id = 2,
                     Name = "2nd task",
-                    Value = 2
+                    Value = 2,
+                    Description = "lets go hey ho"
+                },
+                new TaskDto
+                {
+                    Id = 3,
+                    Name = "3rd task",
+                    Value = 2,
+                    Description = "tralialia"
+                },
+                new TaskDto
+                {
+                    Id = 4,
+                    Name = "Task for 5 points",
+                    Value = 5
+                },
+                new TaskDto
+                {
+                    Id = 5,
+                    Name = "Another task for 5 points",
+                    Value = 5
+                },
+                new TaskDto()
+                {
+                    Id = 6,
+                    Name = "Task for 3 points",
+                    Value = 3
                 }
             };
         }
