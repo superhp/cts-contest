@@ -6,15 +6,20 @@ import { Menu, Sidebar, Container, Segment } from 'semantic-ui-react';
 import { Button, Icon } from 'semantic-ui-react';
 import { Responsive } from 'semantic-ui-react'
 
-const links = [{
-    routeTo: '/',
-    name: 'Tasks'
-},
-{
-    routeTo: '/about',
-    name: 'About'
-}
-]
+const links = [
+    {
+        routeTo: '/',
+        name: 'Home'
+    },
+    {
+        routeTo: '/about',
+        name: 'About'
+    },
+    {
+        routeTo: '/tasks',
+        name: 'Tasks'
+    }
+];
 
 export type HeaderState = {
     activeItem: string;

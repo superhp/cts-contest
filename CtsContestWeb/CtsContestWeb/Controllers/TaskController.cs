@@ -20,7 +20,6 @@ namespace CtsContestWeb.Controllers
         public async Task<IEnumerable<TaskDto>> Get()
         {
             var tasks = await TaskManager.GetAllTasks();
-
             return tasks;
         }
 
@@ -28,7 +27,6 @@ namespace CtsContestWeb.Controllers
         public async Task<TaskDto> Get(int id)
         {
             var task = await TaskManager.GetTaskById(id);
-
             return task;
         }
 

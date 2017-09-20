@@ -4,6 +4,7 @@ import { Layout } from './components/Layout';
 import { Home } from './views/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
+import { Tasks } from './components/Tasks';
 import { About } from './views/About';
 
 export const routes = <Layout>
@@ -11,4 +12,5 @@ export const routes = <Layout>
     <Route path='/counter' component={ Counter } />
     <Route path='/fetchdata' component={FetchData} />
     <Route path='/about' component={About} />
+    <Route path='/tasks' component={Tasks} />
 </Layout>;
