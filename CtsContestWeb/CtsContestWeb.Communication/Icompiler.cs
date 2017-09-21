@@ -1,8 +1,11 @@
-﻿namespace CtsContestWeb.Communication
+﻿using System.Threading.Tasks;
+using CtsContestWeb.Dto;
+
+namespace CtsContestWeb.Communication
 {
     public interface ICompiler
     {
-        void GetLanguages();
-        void Compile(string source, string[] inputs);
+        Task<LanguageDto> GetLanguages();
+        Task<CompileDto> Compile(int taskId, string source, int language);
     }
 }

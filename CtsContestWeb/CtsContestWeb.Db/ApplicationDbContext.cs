@@ -13,6 +13,7 @@ namespace CtsContestWeb.Db
 
         public DbSet<Solution> Solutions { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<GivenPurchase> GivenPurchases { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CtsContestWeb.Communication
 {
@@ -14,32 +15,39 @@ namespace CtsContestWeb.Communication
             _iconfiguration = iconfiguration;
         }
 
-        public List<PrizeDto> GetAllPrizes()
+        public async Task<List<PrizeDto>> GetAllPrizes()
         {
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
             var client = new RestClient(umbracoApiUrl);
 
-            var request = new RestRequest("task/getAll", Method.GET);
+            var request = new RestRequest("prize/getAll", Method.GET);
 
-            var response = client.Execute<List<PrizeDto>>(request);
+            TaskCompletionSource<List<PrizeDto>> taskCompletion = new TaskCompletionSource<List<PrizeDto>>();
+            client.ExecuteAsync<List<PrizeDto>>(request, response =>
+            {
+                taskCompletion.SetResult(response.Data);
+            });
 
-            return response.Data;
+            return await taskCompletion.Task;
         }
 
-        public PrizeDto GetPrizeById(int id)
+        public async Task<PrizeDto> GetPrizeById(int id)
         {
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
             var client = new RestClient(umbracoApiUrl);
 
-            var request = new RestRequest("task/get/{id}", Method.GET);
+            var request = new RestRequest("prize/get/{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
 
-            var response = client.Execute<PrizeDto>(request);
+            TaskCompletionSource<PrizeDto> taskCompletion = new TaskCompletionSource<PrizeDto>();
+            client.ExecuteAsync<PrizeDto>(request, response =>
+            {
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                    throw new ArgumentException("No task with given ID");
+                taskCompletion.SetResult(response.Data);
+            });
 
-            if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new ArgumentException("No task with given ID");
-
-            return response.Data;
+            return await taskCompletion.Task;
         }
     }
 }

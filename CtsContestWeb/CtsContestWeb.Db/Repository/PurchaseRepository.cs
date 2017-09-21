@@ -1,14 +1,16 @@
 ﻿using System;
-using CtsContestWeb.Db.Entities;
 using System.Collections.Generic;
+using CtsContestWeb.Db.DataAccess;
+using CtsContestWeb.Db.Entities;
 
-namespace CtsContestWeb.Db.DataAccess
+namespace CtsContestWeb.Db.Repository
 {
     public class PurchaseRepository : IPurchaseRepository
     {
+        private readonly ApplicationDbContext _dbContext;
         public PurchaseRepository(ApplicationDbContext dbContext)
         {
-
+            _dbContext = dbContext;
         }
 
         public void Create(Purchase purchase)
@@ -21,9 +23,14 @@ namespace CtsContestWeb.Db.DataAccess
             throw new NotImplementedException();
         }
 
-        public void GiveAway(Guid id)
+        public bool GiveAway(Guid id)
         {
-            throw new NotImplementedException();
+            _dbContext.GivenPurchases.Add(new GivenPurchase
+            {
+                Created = DateTime.Now,
+                GivenPurchaseId = id
+            });
+            return _dbContext.SaveChanges() == 1;
         }
     }
 }

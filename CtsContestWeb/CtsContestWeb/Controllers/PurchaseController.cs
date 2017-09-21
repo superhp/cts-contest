@@ -1,20 +1,32 @@
 using System;
+using CtsContestWeb.Db.Repository;
+using CtsContestWeb.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CtsContestWeb.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class PurchaseController : Controller
     {
+        private readonly IPurchaseRepository _purchaseRepository;
+
+        public PurchaseController(IPurchaseRepository purchaseRepository)
+        {
+            _purchaseRepository = purchaseRepository;
+        }
+
         public Guid Get(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        [HttpPut("[action]")]
-        public bool GiveAway(Guid id)
+        [HttpPost("[action]")]
+        public bool GiveAway([FromBody] PurchaseIdDto id)
         {
-            throw new NotImplementedException();
+            var giveAwaySuccessful = _purchaseRepository.GiveAway(id.Id);
+            return giveAwaySuccessful;
         }
     }
 }

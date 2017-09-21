@@ -1,3 +1,4 @@
+import 'semantic-ui-css/semantic.min.css';
 import './css/site.css';
 import 'bootstrap';
 import * as React from 'react';
@@ -6,6 +7,8 @@ import { AppContainer } from 'react-hot-loader';
 import { BrowserRouter } from 'react-router-dom';
 import * as RoutesModule from './routes';
 let routes = RoutesModule.routes;
+
+import 'semantic-ui-css/semantic.min.css';
 
 function renderApp() {
     // This code starts up the React app when it runs in a browser. It sets up the routing
