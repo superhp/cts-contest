@@ -1,6 +1,7 @@
 ﻿using System;
 using CtsContestWeb.Db.Entities;
 using System.Collections.Generic;
+using CtsContestWeb.Db.Repository;
 
 namespace CtsContestWeb.Db.DataAccess
 {

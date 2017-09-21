@@ -14,6 +14,7 @@ using System.Net.Http;
 using System;
 using Newtonsoft.Json.Linq;
 using CtsContestWeb.Communication;
+using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Middleware;
 
 namespace CtsContestWeb
