@@ -39,6 +39,7 @@ namespace CtsContestWeb
 
             services.AddTransient<ITask, Task>();
             services.AddTransient<IPrize, Prize>();
+            services.AddTransient<ICompiler, Compiler>();
 
             services.AddSingleton<IConfiguration>(Configuration);
         }

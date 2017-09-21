@@ -82,3 +82,7 @@ button.google, button.facebook {
 .right-menu {
     display: inherit;
 }
+
+.language-select {
+    margin: 20px;
+}
