@@ -1,6 +1,12 @@
 ﻿import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
+import { Grid } from 'semantic-ui-react';
+//https://react.semantic-ui.com/usage stylesheet missing
+//import { Prize } from './PrizeCard';
+import { PrizeCard } from './PrizeCard';
 import 'isomorphic-fetch';
+
+
 
 interface PrizesState {
     prizes: Prize[];
@@ -32,30 +38,32 @@ export class Prizes extends React.Component<RouteComponentProps<{}>, PrizesState
     }
 
     private static renderForecastsTable(prizes: Prize[]) {
-        return <table className='table'>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Cost</th>
-                    <th>Left</th>
-                </tr>
-            </thead>
-            <tbody>
-                {prizes.map(prize =>
-                    <tr key={prize.id}>
-                        <td>{prize.name}</td>
-                        <td>{prize.cost}</td>
-                        <td>{prize.leftCount}</td>
-                    </tr>
+        var groups = new Array<Array<Prize>>();
+        prizes.forEach((val, i) => {
+            var idx = Math.floor(i / 4);
+            if (groups.length <= idx) {
+                groups.push(new Array<Prize>());
+            }
+            groups[idx].push(val)
+        });
+        return <Grid columns={4}>
+            {groups.map((group, rowIndex) =>
+                <Grid.Row key={rowIndex}>
+                    {group.map((prize, colIndex) =>
+                        <Grid.Column key={colIndex}>
+                            <PrizeCard name={prize.name} picture={prize.picture} quantity={prize.quantity} price={prize.price} />
+                        </Grid.Column>
+                        )}
+                </Grid.Row>
                 )}
-            </tbody>
-        </table>;
+        </Grid>;
     }
 }
 
 interface Prize {
-    id: number,
-    cost: number,
-    leftCount: number,
-    name: string
+    id: number;
+    price: number;
+    quantity: number;
+    name: string;
+    picture: string;
 }
