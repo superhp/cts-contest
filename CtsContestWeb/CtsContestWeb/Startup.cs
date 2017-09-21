@@ -60,11 +60,11 @@ namespace CtsContestWeb
                     // Create claims for testing/development
                     var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, "LocalDev"),
+                        new Claim(ClaimTypes.Name, "Test Developer"),
                         new Claim(ClaimTypes.NameIdentifier, "LocalDev"),
                         new Claim(ClaimTypes.Email, "LocalDev@local.com"),
                         new Claim(ClaimTypes.Surname, "Developer"),
-                        new Claim(ClaimTypes.GivenName, "LocalDev"),
+                        new Claim(ClaimTypes.GivenName, "Test"),
                         new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity")
                     };
 

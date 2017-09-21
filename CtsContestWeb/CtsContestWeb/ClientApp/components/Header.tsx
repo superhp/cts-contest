@@ -5,6 +5,8 @@ import { Link, NavLink } from 'react-router-dom';
 import { Menu, Sidebar, Container, Segment } from 'semantic-ui-react';
 import { Button, Icon } from 'semantic-ui-react';
 import { Responsive } from 'semantic-ui-react'
+import { Header as ModalHeader, Image, Modal } from 'semantic-ui-react'
+import { Login } from './login';
 
 const links = [
     {
@@ -21,16 +23,20 @@ const links = [
     }
 ];
 
+export interface HeaderProps {
+    userInfo: UserInfo;
+}
+
 export type HeaderState = {
     activeItem: string;
     collapsed: boolean;
 }
 
-export class Header extends React.Component<{}, HeaderState> {
+export class Header extends React.Component<HeaderProps, HeaderState> {
 
     handleItemClick = (e: any, { name }: any) => this.setState({ activeItem: name })
-    constructor() {
-        super();
+    constructor(props: HeaderProps) {
+        super(props);
 
         let collapsed = false;
         if (window.innerWidth <= 768)
@@ -40,9 +46,8 @@ export class Header extends React.Component<{}, HeaderState> {
             activeItem: "tasks",
             collapsed: collapsed
         }
-
     }
-
+    
     handleResize = () => {
         if (window.innerWidth >= 768)
             this.setState({ collapsed: false });
@@ -77,9 +82,7 @@ export class Header extends React.Component<{}, HeaderState> {
                 {!this.state.collapsed
                     ?
                     <Menu.Menu position="right">
-                        <NavLink className='item' to="#" exact>
-                            Sign In
-                        </NavLink>
+                        <Login userInfo={this.props.userInfo} />
                     </Menu.Menu>
                     : ""
                 }

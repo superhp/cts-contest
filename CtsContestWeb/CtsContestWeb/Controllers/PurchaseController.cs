@@ -1,10 +1,12 @@
 using System;
 using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CtsContestWeb.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class PurchaseController : Controller
     {
