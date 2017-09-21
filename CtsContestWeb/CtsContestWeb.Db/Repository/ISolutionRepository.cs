@@ -1,7 +1,7 @@
-﻿using CtsContestWeb.Db.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using CtsContestWeb.Db.Entities;
 
-namespace CtsContestWeb.Db.DataAccess
+namespace CtsContestWeb.Db.Repository
 {
     public interface ISolutionRepository
     {

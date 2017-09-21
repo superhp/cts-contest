@@ -1,13 +1,13 @@
 ﻿using System;
-using CtsContestWeb.Db.Entities;
 using System.Collections.Generic;
+using CtsContestWeb.Db.Entities;
 
-namespace CtsContestWeb.Db.DataAccess
+namespace CtsContestWeb.Db.Repository
 {
     public interface IPurchaseRepository
     {
         IEnumerable<Purchase> GetAllByUserId(int userId);
         void Create(Purchase purchase);
-        void GiveAway(Guid id);
+        bool GiveAway(Guid id);
     }
 }
