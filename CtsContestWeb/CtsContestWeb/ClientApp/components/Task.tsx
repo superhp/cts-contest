@@ -27,7 +27,7 @@ export class TaskComponent extends React.Component<any, any> {
         this.setMode = this.setMode.bind(this);
         this.onChange = this.onChange.bind(this);
 
-        fetch('api/Compiler/GetLanguages')
+        fetch('api/Task/GetLanguages')
             .then(response => response.json() as Promise<Languages>)
             .then(data => {
                 var unsupportedLanguages: string[] = ['bash', 'fsharp', 'lolcode', 'smalltalk', 'whitespace', 'tsql', 'java8', 'db2', 'octave', 'racket', 'oracle'];
