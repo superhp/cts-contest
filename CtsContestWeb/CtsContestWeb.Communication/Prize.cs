@@ -18,6 +18,7 @@ namespace CtsContestWeb.Communication
         public async Task<List<PrizeDto>> GetAllPrizes()
         {
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
+            var pictureUrl = _iconfiguration["UmbracoPictureUrl"];
             var client = new RestClient(umbracoApiUrl);
 
             var request = new RestRequest("prize/getAll", Method.GET);
@@ -27,8 +28,12 @@ namespace CtsContestWeb.Communication
             {
                 taskCompletion.SetResult(response.Data);
             });
-
-            return await taskCompletion.Task;
+            var tasks = await taskCompletion.Task;
+            foreach (var item in tasks)
+            {
+                item.Picture = pictureUrl + item.Picture;
+            }
+            return tasks;
         }
 
         public async Task<PrizeDto> GetPrizeById(int id)
