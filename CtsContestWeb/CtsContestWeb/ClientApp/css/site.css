@@ -70,3 +70,19 @@
     border-radius: 0 !important;
     background-color: #A5D6A7;
 }
+
+.login-modal {
+    height: 200px;
+}
+
+button.google, button.facebook {
+    margin: 24px !important;
+}
+
+.right-menu {
+    display: inherit;
+}
+
+.language-select {
+    margin: 20px;
+}

@@ -9,20 +9,66 @@ namespace CtsContestWeb.Communication
 {
     public class Compiler : ICompiler
     {
-        IConfiguration _iconfiguration;
-
-        public Compiler(IConfiguration iconfiguration)
+        IConfiguration _configuration;
+        private ITask _taskManager;
+        public Compiler(IConfiguration configuration, ITask taskManger)
         {
-            _iconfiguration = iconfiguration;
+            _configuration = configuration;
+            _taskManager = taskManger;
         }
-        public void Compile(string source, string[] inputs)
+
+        public async Task<CompileDto> Compile(int taskId, string source, int language)
         {
-            throw new NotImplementedException();
+            var task = await _taskManager.GetTaskById(taskId);
+
+            var hackerRankUrl = _configuration["HackerRankUrl"];
+
+            var client = new RestClient(hackerRankUrl);
+
+            var request = new RestRequest("/checker/submission.json", Method.POST);
+
+            request.AddParameter("source", source);
+            request.AddParameter("lang", language);
+            request.AddParameter("testcases", JsonConvert.SerializeObject(task.Inputs));
+            request.AddParameter("api_key", _configuration["HackerRankApiKey"]);
+            request.AddParameter("wait", "true");
+            request.AddParameter("format", "json");
+
+            TaskCompletionSource<IRestResponse> taskCompletion = new TaskCompletionSource<IRestResponse>();
+            client.ExecuteAsync(request, r => taskCompletion.SetResult(r));
+
+            RestResponse response = (RestResponse)await taskCompletion.Task;
+
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                throw new ArgumentException("Error compiling task");
+
+            dynamic data = JsonConvert.DeserializeObject(response.Content);
+
+            var compileResult = new CompileDto
+            {
+                Compiled = data.result.result.Value.ToString() == "0",
+                TotalInputs = task.Inputs.Count
+            };
+
+            if (compileResult.Compiled)
+            {
+                for (int i = 0; i < task.Inputs.Count; i++)
+                {
+                    if (task.Outputs[i] != data.result.stdout[i].Value.ToString())
+                        compileResult.FailedInputs++;
+                }
+            }
+            else
+            {
+                compileResult.Message = data.result.compilemessage.Value.ToString();
+            }
+
+            return compileResult;
         }
 
         public async Task<LanguageDto> GetLanguages()
         {
-            var hackerRankUrl = _iconfiguration["HackerRankUrl"];
+            var hackerRankUrl = _configuration["HackerRankUrl"];
             var client = new RestClient(hackerRankUrl);
 
             var request = new RestRequest("checker/languages.json", Method.GET);

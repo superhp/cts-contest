@@ -1,5 +1,6 @@
 ﻿import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
+import { Link } from 'react-router-dom';
 import 'isomorphic-fetch';
 import { Accordion, Icon, Table } from 'semantic-ui-react';
 import * as _ from 'lodash';
@@ -50,7 +51,7 @@ export class Tasks extends React.Component<RouteComponentProps<{}>, TasksState> 
             tableRows.push(
                 <Table.Row key={t.id}>
                     <Table.Cell selectable>
-                        <a href={"/tasks/" + t.id}>{t.name}</a>
+                        <Link to={"/task/" + t.id}> {t.name}</Link>
                     </Table.Cell>
                 </Table.Row>);
         });
@@ -62,9 +63,3 @@ export class Tasks extends React.Component<RouteComponentProps<{}>, TasksState> 
     }
 }
 
-interface Task {
-    id: number;
-    name: string;
-    description: string;
-    value: number;
-}

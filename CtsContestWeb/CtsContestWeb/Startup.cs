@@ -14,6 +14,7 @@ using System.Net.Http;
 using System;
 using Newtonsoft.Json.Linq;
 using CtsContestWeb.Communication;
+using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Middleware;
 
 namespace CtsContestWeb
@@ -38,6 +39,7 @@ namespace CtsContestWeb
 
             services.AddTransient<ITask, Task>();
             services.AddTransient<IPrize, Prize>();
+            services.AddTransient<ICompiler, Compiler>();
 
             services.AddSingleton<IConfiguration>(Configuration);
         }
@@ -59,11 +61,11 @@ namespace CtsContestWeb
                     // Create claims for testing/development
                     var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, "LocalDev"),
+                        new Claim(ClaimTypes.Name, "Test Developer"),
                         new Claim(ClaimTypes.NameIdentifier, "LocalDev"),
                         new Claim(ClaimTypes.Email, "LocalDev@local.com"),
                         new Claim(ClaimTypes.Surname, "Developer"),
-                        new Claim(ClaimTypes.GivenName, "LocalDev"),
+                        new Claim(ClaimTypes.GivenName, "Test"),
                         new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity")
                     };
 

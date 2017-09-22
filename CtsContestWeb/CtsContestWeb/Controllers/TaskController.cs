@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
 using CtsContestWeb.Communication;
 using CtsContestWeb.Dto;
@@ -11,29 +10,35 @@ namespace CtsContestWeb.Controllers
     public class TaskController : Controller
     {
         public ITask TaskManager { get; }
+        public ICompiler Compiler { get; }
 
-        public TaskController(ITask taskManager)
+        public TaskController(ITask taskManager, ICompiler compiler)
         {
             TaskManager = taskManager;
+            Compiler = compiler;
         }
 
         public async Task<IEnumerable<TaskDto>> Get()
         {
-            var tasks = await TaskManager.GetAllTasks();
-            return tasks;
+            return await TaskManager.GetAllTasks();
         }
 
         [HttpGet("{id}")]
         public async Task<TaskDto> Get(int id)
         {
-            var task = await TaskManager.GetTaskById(id);
-            return task;
+            return await TaskManager.GetTaskById(id);
         }
 
         [HttpPut("[action]")]
-        public void Solve(string source)
+        public async Task<CompileDto> Solve(int taskId, string source, int language)
         {
-            throw new NotImplementedException();
+            return await Compiler.Compile(taskId, source, language);
+        }
+
+        [HttpGet("[action]")]
+        public async Task<LanguageDto> GetLanguages()
+        {
+            return await Compiler.GetLanguages();
         }
     }
 }

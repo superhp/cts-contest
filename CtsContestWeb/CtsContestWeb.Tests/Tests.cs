@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CtsContestWeb.Dto;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -39,6 +40,68 @@ namespace CtsContestWeb.Tests
             {
                 result.Codes.Add(item.Name, Int32.Parse(item.Value.ToString()));
             }
+        }
+
+        [TestMethod]
+        public async Task ShouldSolveProblem()
+        {
+            Console.WriteLine("Started");
+
+            var client = new RestClient("http://api.hackerrank.com");
+
+            var request = new RestRequest("/checker/submission.json", Method.POST);
+
+            var task = new TaskDto();
+            task.Inputs = new List<string>();
+            task.Inputs.Add("1");
+            task.Inputs.Add("2");
+            task.Inputs.Add("3");
+
+            task.Outputs = new List<string>();
+            task.Outputs.Add("2\n");
+            task.Outputs.Add("2\n");
+            task.Outputs.Add("3\n");
+
+            request.AddParameter("source", "print 2");
+            request.AddParameter("lang", 5);
+            request.AddParameter("testcases", JsonConvert.SerializeObject(task.Inputs));
+            request.AddParameter("api_key", "hackerrank|2980862-1817|3684f35257abaa03dda0cc7a6564ea2d6bde13e3");
+            request.AddParameter("wait", "true");
+            request.AddParameter("format", "json");
+
+            TaskCompletionSource<IRestResponse> taskCompletion = new TaskCompletionSource<IRestResponse>();
+            client.ExecuteAsync(request, r => taskCompletion.SetResult(r));
+
+            RestResponse response = (RestResponse)await taskCompletion.Task;
+
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                throw new ArgumentException("Error compiling task");
+
+            dynamic data = JsonConvert.DeserializeObject(response.Content);
+
+            var compileResult = new CompileDto
+            {
+                Compiled = data.result.result.Value.ToString() == "0",
+                TotalInputs = task.Inputs.Count
+            };
+
+            if (compileResult.Compiled)
+            {
+                for (int i = 0; i < task.Inputs.Count; i++)
+                {
+                    if (task.Outputs[i] != data.result.stdout[i].Value.ToString())
+                        compileResult.FailedInputs++;
+                }
+            }
+            else
+            {
+                compileResult.Message = data.result.compilemessage.Value.ToString();
+            }
+
+            if (!compileResult.Compiled)
+                Console.WriteLine("Cannot compile: " + compileResult.Message);
+            else
+                Console.WriteLine(compileResult.ResultCorrect ? "Solution with all inputs is correct" : "Solution is not correct");
         }
     }
 }
