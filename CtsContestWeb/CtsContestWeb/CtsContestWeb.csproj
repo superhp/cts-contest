@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\components\PrizeModal.tsx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
   </ItemGroup>
 
@@ -19,6 +23,10 @@
     <ProjectReference Include="..\CtsContestWeb.Communication\CtsContestWeb.Communication.csproj" />
     <ProjectReference Include="..\CtsContestWeb.Db\CtsContestWeb.Db.csproj" />
     <ProjectReference Include="..\CtsContestWeb.Dto\CtsContestWeb.Dto.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\components\PrizeModal.tsx" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

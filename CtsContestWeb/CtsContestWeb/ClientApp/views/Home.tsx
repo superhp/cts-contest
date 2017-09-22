@@ -1,9 +1,42 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
+import { PrizeModal } from '../components/PrizeModal';
+import { Button } from 'semantic-ui-react';
 
-export class Home extends React.Component<RouteComponentProps<{}>, {}> {
+interface HomeState {
+    prizeModalOpen: boolean;
+    prize: Prize;
+}
+export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
+    constructor() {
+        super();
+        this.state = {
+            prizeModalOpen: false,
+            prize: {
+                id: 0,
+                name: "",
+                price: 0,
+                quantity: 0,
+                picture: ""
+            }
+        };
+    }
+    close = () => {
+        this.setState({ prizeModalOpen: false });
+    }
+    open = () => {
+        this.setState({ prizeModalOpen: true });
+        fetch('api/prize/1166')
+            .then(response => response.json() as Promise<Prize>)
+            .then(data => {
+                this.setState({ prize: data });
+                console.log(this.state.prize);
+            });
+    }
     public render() {
         return <div>
+            <Button onClick={this.open}>Open Prize modal</Button>
+            <PrizeModal open={this.state.prizeModalOpen} onClose={this.close} prize={this.state.prize}/>
             <h1>Hello, world!</h1>
             <p>Welcome to your new single-page application, built with:</p>
             <ul>
@@ -24,6 +57,15 @@ export class Home extends React.Component<RouteComponentProps<{}>, {}> {
                 For larger applications, or for server-side prerendering (i.e., for <em>isomorphic</em> or <em>universal</em> applications), you should consider using a Flux/Redux-like architecture.
                 You can generate an ASP.NET Core application with React and Redux using <code>dotnet new reactredux</code> instead of using this template.
             </p>
+
         </div>;
     }
+}
+
+interface Prize {
+    id: number;
+    name: string;
+    price: number;
+    quantity: number;
+    picture: string;
 }
