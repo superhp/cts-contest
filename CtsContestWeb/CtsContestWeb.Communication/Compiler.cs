@@ -44,14 +44,23 @@ namespace CtsContestWeb.Communication
 
             dynamic data = JsonConvert.DeserializeObject(response.Content);
 
-            var compileResult = new CompileDto();
-
-            compileResult.TotalInputs = task.Inputs.Count;
-
-            for (int i = 0; i < task.Inputs.Count; i++)
+            var compileResult = new CompileDto
             {
-                if (task.Outputs[i] != data.result.stdout[i].Value.ToString())
-                    compileResult.FailedInputs++;
+                Compiled = data.result.result.Value.ToString() == "0",
+                TotalInputs = task.Inputs.Count
+            };
+
+            if (compileResult.Compiled)
+            {
+                for (int i = 0; i < task.Inputs.Count; i++)
+                {
+                    if (task.Outputs[i] != data.result.stdout[i].Value.ToString())
+                        compileResult.FailedInputs++;
+                }
+            }
+            else
+            {
+                compileResult.Message = data.result.compilemessage.Value.ToString();
             }
 
             return compileResult;
