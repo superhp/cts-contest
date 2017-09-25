@@ -79,16 +79,29 @@ namespace CtsContestWeb.Tests
 
             dynamic data = JsonConvert.DeserializeObject(response.Content);
 
-            var compileResult = new CompileDto();
-
-            compileResult.TotalInputs = task.Inputs.Count;
-
-            for (int i = 0; i < task.Inputs.Count; i++)
+            var compileResult = new CompileDto
             {
-                Console.WriteLine(data.result.stdout[i].Value.ToString());
-                if (task.Outputs[i] != data.result.stdout[i].Value.ToString())
-                    compileResult.FailedInputs++;
+                Compiled = data.result.result.Value.ToString() == "0",
+                TotalInputs = task.Inputs.Count
+            };
+
+            if (compileResult.Compiled)
+            {
+                for (int i = 0; i < task.Inputs.Count; i++)
+                {
+                    if (task.Outputs[i] != data.result.stdout[i].Value.ToString())
+                        compileResult.FailedInputs++;
+                }
             }
+            else
+            {
+                compileResult.Message = data.result.compilemessage.Value.ToString();
+            }
+
+            if (!compileResult.Compiled)
+                Console.WriteLine("Cannot compile: " + compileResult.Message);
+            else
+                Console.WriteLine(compileResult.ResultCorrect ? "Solution with all inputs is correct" : "Solution is not correct");
         }
     }
 }
