@@ -28,5 +28,13 @@ namespace CtsContestWeb.Controllers
             var giveAwaySuccessful = _purchaseRepository.GiveAway(id.Id);
             return giveAwaySuccessful;
         }
+
+        public bool Purchase()
+        {
+            //iskviest repositorija
+            //tureti metoda, kuris sukuria ta irasa
+            //grazint Guid'a pakurta i fronteanda
+            return false;
+        }
     }
 }

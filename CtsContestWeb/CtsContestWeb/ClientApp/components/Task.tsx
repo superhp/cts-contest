@@ -1,9 +1,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import AceEditor from 'react-ace';
 import { RouteComponentProps } from 'react-router-dom';
 import { Grid, Segment, Divider, Header, Button } from 'semantic-ui-react';
 import * as brace from 'brace';
-import AceEditor from 'react-ace';
+
 import 'brace/mode/jsx';
 import 'brace/theme/monokai';
 import * as _ from 'lodash';
