@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CtsContestWeb.Communication
@@ -18,6 +19,7 @@ namespace CtsContestWeb.Communication
         public async Task<List<TaskDto>> GetAllTasks()
         {
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
+            var pictureUrl = _iconfiguration["UmbracoPictureUrl"];
             var client = new RestClient(umbracoApiUrl);
 
             var request = new RestRequest("task/getAll", Method.GET);
@@ -27,13 +29,18 @@ namespace CtsContestWeb.Communication
             {
                 taskCompletion.SetResult(response.Data);
             });
-
-            return await taskCompletion.Task;
+            var tasks = await taskCompletion.Task;
+            foreach (var task in tasks)
+            {
+                task.Description = PrependRootUrlToImageLinks(task.Description, pictureUrl);
+            }
+            return tasks;
         }
 
         public async Task<TaskDto> GetTaskById(int id)
         {
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
+            var pictureUrl = _iconfiguration["UmbracoPictureUrl"];
             var client = new RestClient(umbracoApiUrl);
 
             var request = new RestRequest("task/get/{id}", Method.GET);
@@ -47,7 +54,15 @@ namespace CtsContestWeb.Communication
                 taskCompletion.SetResult(response.Data);
             });
 
-            return await taskCompletion.Task;
+            var task = await taskCompletion.Task;
+            task.Description = PrependRootUrlToImageLinks(task.Description, pictureUrl);
+            return task;
+        }
+        private String PrependRootUrlToImageLinks(string description, string url)
+        {
+            var htmlPattern = @"(src="")(/media/(.+?)"")";
+            var newDescription = Regex.Replace(description, htmlPattern, "$1" + url + "$2");
+            return newDescription;
         }
     }
 }
