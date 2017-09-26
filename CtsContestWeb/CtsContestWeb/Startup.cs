@@ -87,12 +87,8 @@ namespace CtsContestWeb
                 app.Use(async (context, next) =>
                 {
                     // Create a user on current thread from provided header
-                    if (context.Request.Headers.ContainsKey("X-MS-CLIENT-PRINCIPAL-ID"))
+                    if (context.User == null || context.User.Identity == null || context.User.Identity.IsAuthenticated == false)
                     {
-                        // Read headers from Azure
-                        var azureAppServicePrincipalIdHeader = context.Request.Headers["X-MS-CLIENT-PRINCIPAL-ID"][0];
-                        var azureAppServicePrincipalNameHeader = context.Request.Headers["X-MS-CLIENT-PRINCIPAL-NAME"][0];
-
                         //invoke /.auth/me
                         var cookieContainer = new CookieContainer();
                         HttpClientHandler handler = new HttpClientHandler()
@@ -104,7 +100,7 @@ namespace CtsContestWeb
                         {
                             cookieContainer.Add(new Uri(uriString), new Cookie(c.Key, c.Value));
                         }
-                        string jsonResult = string.Empty;
+                        string jsonResult;
                         using (HttpClient client = new HttpClient(handler))
                         {
                             var res = await client.GetAsync($"{uriString}/.auth/me");
@@ -113,7 +109,7 @@ namespace CtsContestWeb
 
                         //parse json
                         var obj = JArray.Parse(jsonResult);
-                        string user_id = obj[0]["user_id"].Value<string>(); //user_id
+                        string userId = obj[0]["user_id"].Value<string>(); //user_id
 
                         // Create claims id
                         List<Claim> claims = new List<Claim>();
@@ -123,7 +119,7 @@ namespace CtsContestWeb
                         }
 
                         // Set user in current context as claims principal
-                        var identity = new GenericIdentity(azureAppServicePrincipalIdHeader);
+                        var identity = new GenericIdentity(userId);
                         identity.AddClaims(claims);
 
                         // Set current thread user to identity

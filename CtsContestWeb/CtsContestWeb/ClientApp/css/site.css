@@ -86,3 +86,11 @@ button.google, button.facebook {
 .language-select {
     margin: 20px;
 }
+
+.error-message {
+    color: red;
+}
+
+.success-message {
+    color: green;
+}
