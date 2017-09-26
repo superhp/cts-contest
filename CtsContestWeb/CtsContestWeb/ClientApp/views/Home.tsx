@@ -34,9 +34,7 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
             });
     }
     public render() {
-        return <div>
-            <Button onClick={this.open}>Open Prize modal</Button>
-            <PrizeModal open={this.state.prizeModalOpen} onClose={this.close} prize={this.state.prize}/>
+        return <div>         
             <h1>Hello, world!</h1>
             <p>Welcome to your new single-page application, built with:</p>
             <ul>

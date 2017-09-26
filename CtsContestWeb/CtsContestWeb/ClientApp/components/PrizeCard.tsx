@@ -6,6 +6,10 @@ interface PrizeCardState {
 }
 export class PrizeCard extends React.Component<PrizeCardProps, PrizeCardState> {
 
+    buy = () => {
+        this.props.onBuy(this.props.id);
+    }
+
     public render() {
         return <Card>
             <Image src={this.props.picture}>
@@ -27,7 +31,7 @@ export class PrizeCard extends React.Component<PrizeCardProps, PrizeCardState> {
                                 {this.props.quantity} left
                             </Grid.Column>
                         <Grid.Column>
-                                <Button inverted color='blue'>Buy</Button>
+                            <Button inverted color='blue' onClick={this.buy}>Buy</Button>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
@@ -46,8 +50,10 @@ interface PrizeCardProps {
     prize: Prize;
 }*/
 interface PrizeCardProps {
+    id: number;
     price: number;
     quantity: number;
     name: string;
     picture: string;
+    onBuy: any;
 }
