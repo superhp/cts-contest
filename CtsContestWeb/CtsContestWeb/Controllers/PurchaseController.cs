@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using CtsContestWeb.Db.Entities;
 using CtsContestWeb.Communication;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace CtsContestWeb.Controllers
 {
@@ -34,19 +35,14 @@ namespace CtsContestWeb.Controllers
             return giveAwaySuccessful;
         }
 
-        //[HttpGet("{id}")]
-        //public async Task<PurchaseIdDto> Purchase(int prizeId, string userEmail)
+
         [HttpPost("[action]")]
         public async Task<PurchaseIdDto> Purchase([FromBody] PurchaseRequestDto req)
         {
-            //iskviest repositorija
-            //tureti metoda, kuris sukuria ta irasa
-            //grazint Guid'a pakurta i fronteanda
-
             var prizeId = req.PrizeId;
             var userEmail = req.UserEmail;
-
             var prize = await PrizeManager.GetPrizeById(prizeId);
+
             var purchase = new Db.Entities.Purchase
             {
                 UserEmail = userEmail,
@@ -55,8 +51,11 @@ namespace CtsContestWeb.Controllers
                 PurchaseId = Guid.NewGuid(),
                 Cost = prize.Price
             };
-            //_purchaseRepository.Create(purchase);
+
+            _purchaseRepository.Create(purchase);
             return new PurchaseIdDto { Id = purchase.PurchaseId };
         }
+
+        
     }
 }
