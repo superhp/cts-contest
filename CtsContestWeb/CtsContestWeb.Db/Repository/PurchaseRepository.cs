@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CtsContestWeb.Db.DataAccess;
 using CtsContestWeb.Db.Entities;
+using System.Linq;
 
 namespace CtsContestWeb.Db.Repository
 {
@@ -19,9 +20,9 @@ namespace CtsContestWeb.Db.Repository
             _dbContext.SaveChanges();
         }
 
-        public IEnumerable<Purchase> GetAllByUserId(int userId)
+        public IEnumerable<Purchase> GetAllByUserEmail(string userEmail)
         {
-            throw new NotImplementedException();
+            return _dbContext.Purchases.Where(x => x.UserEmail == userEmail);
         }
 
         public bool GiveAway(Guid id)
