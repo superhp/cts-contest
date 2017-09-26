@@ -15,7 +15,8 @@ namespace CtsContestWeb.Db.Repository
 
         public void Create(Purchase purchase)
         {
-            throw new NotImplementedException();
+            _dbContext.Purchases.Add(purchase);
+            _dbContext.SaveChanges();
         }
 
         public IEnumerable<Purchase> GetAllByUserId(int userId)
