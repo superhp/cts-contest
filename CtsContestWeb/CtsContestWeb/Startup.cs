@@ -87,7 +87,7 @@ namespace CtsContestWeb
                 app.Use(async (context, next) =>
                 {
                     // Create a user on current thread from provided header
-                    if (context.User == null || context.User.Identity == null || context.User.Identity.IsAuthenticated == false)
+                    if (context.User?.Identity == null || context.User.Identity.IsAuthenticated == false)
                     {
                         //invoke /.auth/me
                         var cookieContainer = new CookieContainer();
@@ -100,30 +100,33 @@ namespace CtsContestWeb
                         {
                             cookieContainer.Add(new Uri(uriString), new Cookie(c.Key, c.Value));
                         }
-                        string jsonResult;
                         using (HttpClient client = new HttpClient(handler))
                         {
                             var res = await client.GetAsync($"{uriString}/.auth/me");
-                            jsonResult = await res.Content.ReadAsStringAsync();
+                            if (res.StatusCode == HttpStatusCode.OK)
+                            {
+                                var jsonResult = await res.Content.ReadAsStringAsync();
+
+                                //parse json
+                                var obj = JArray.Parse(jsonResult);
+                                string userId = obj[0]["user_id"].Value<string>(); //user_id
+
+                                // Create claims id
+                                List<Claim> claims = new List<Claim>();
+                                foreach (var claim in obj[0]["user_claims"])
+                                {
+                                    claims.Add(new Claim(claim["typ"].ToString(), claim["val"].ToString()));
+                                }
+
+                                // Set user in current context as claims principal
+                                var identity = new GenericIdentity(userId);
+                                identity.AddClaims(claims);
+
+                                // Set current thread user to identity
+                                context.User = new GenericPrincipal(identity, null);
+                            }
                         }
 
-                        //parse json
-                        var obj = JArray.Parse(jsonResult);
-                        string userId = obj[0]["user_id"].Value<string>(); //user_id
-
-                        // Create claims id
-                        List<Claim> claims = new List<Claim>();
-                        foreach (var claim in obj[0]["user_claims"])
-                        {
-                            claims.Add(new Claim(claim["typ"].ToString(), claim["val"].ToString()));
-                        }
-
-                        // Set user in current context as claims principal
-                        var identity = new GenericIdentity(userId);
-                        identity.AddClaims(claims);
-
-                        // Set current thread user to identity
-                        context.User = new GenericPrincipal(identity, null);
                     }
 
                     await next.Invoke();

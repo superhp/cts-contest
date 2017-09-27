@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CtsContestWeb.Db.DataAccess;
 using CtsContestWeb.Db.Entities;
+using CtsContestWeb.Dto;
 
 namespace CtsContestWeb.Db.Repository
 {
@@ -31,6 +32,18 @@ namespace CtsContestWeb.Db.Repository
                 GivenPurchaseId = id
             });
             return _dbContext.SaveChanges() == 1;
+        }
+
+        public PurchaseDto GetPurchaseByPurchaseGuid(Guid id)
+        {
+            var purchase = _dbContext.Purchases.Find(id);
+            return new PurchaseDto
+            {
+                PurchaseId = purchase.PurchaseId,
+                UserEmail = purchase.UserEmail,
+                PrizeId = purchase.PrizeId,
+                IsGivenAway = purchase.GivenPurchase != null
+            };
         }
     }
 }
