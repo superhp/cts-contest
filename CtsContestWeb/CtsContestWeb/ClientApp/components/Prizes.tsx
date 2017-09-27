@@ -3,6 +3,7 @@ import { RouteComponentProps } from 'react-router';
 import { Grid } from 'semantic-ui-react';
 //https://react.semantic-ui.com/usage stylesheet missing
 import { PrizeModal } from './PrizeModal';
+import { PurchaseModal } from './PurchaseModal';
 import { PrizeCard } from './PrizeCard';
 import 'isomorphic-fetch';
 
@@ -11,9 +12,13 @@ import 'isomorphic-fetch';
 interface PrizesState {
     prizes: Prize[];
     loading: boolean;
-    prizeModalLoading: boolean;
+
     prizeModalOpen: boolean;
     prizeModalData: Prize;
+
+    purchaseModalOpen: boolean;
+    purchaseModalState: string;
+    purchaseId: string;
 }
 
 export class Prizes extends React.Component<RouteComponentProps<{}>, PrizesState> {
@@ -21,8 +26,12 @@ export class Prizes extends React.Component<RouteComponentProps<{}>, PrizesState
         super();
         this.state = {
             prizes: [], loading: true,
-            prizeModalLoading: true,
             prizeModalOpen: false,
+
+            purchaseModalState: 'closed',
+            purchaseModalOpen: false,
+            purchaseId: "",
+
             prizeModalData: {
                 id: 0,
                 name: "",
@@ -38,30 +47,53 @@ export class Prizes extends React.Component<RouteComponentProps<{}>, PrizesState
                 this.setState({ prizes: data, loading: false });
             });
     }
+    buy = (prize: Prize) => {
+        fetch('api/Purchase/Buy', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                userEmail: 'user@gmail.com',
+                prizeId: prize.id,
+            })
+        })
+            .then(response => response.json() as Promise<Purchase>)
+            .then(data => {
+                this.setState({ purchaseId: data.id, purchaseModalState: 'loaded' });
+            }).catch(error => {
+                //console.log(error);
+                this.setState({ purchaseId: prize.name, purchaseModalState: 'error' });
+            });
+        this.openPurchaseModal(prize);
+    }
+
+    /*
+     * QR modal
+     */
+    openPurchaseModal = (prize: Prize) => {
+        this.setState({ purchaseModalOpen: true, purchaseModalState: 'loading' });
+    }
+
+    closePurchaseModal = () => {
+        this.setState({ purchaseModalOpen: false, purchaseModalState: 'closed' });
+    }
+
+    /* 
+     * 'Are your sure' modal
+     */
+    openPrizeModal = (id: number) => {
+        const prize = this.state.prizes.filter((pr: Prize) => { return pr.id === id })[0];
+        this.setState({ prizeModalData: prize, prizeModalOpen: true});
+    }
+
     closePrizeModal = () => {
         this.setState({
-            prizeModalLoading: true,
             prizeModalOpen: false,
-            prizeModalData: {
-                id: 0,
-                name: "",
-                price: 0,
-                quantity: 0,
-                picture: ""
-            }
         });
     }
 
-    buy = (id: number) => {
-        this.setState({prizeModalOpen: true});
-        // fetch('api/Prize/' + id)
-        //     .then(response => response.json() as Promise<Prize>)
-        //     .then(data => {
-        //         this.setState({ prizeModalData: data, prizeModalLoading: false });
-        //     });
-        const prize = this.state.prizes.filter((pr: Prize) => {return pr.id === id})[0];
-        this.setState({ prizeModalData: prize, prizeModalLoading: false });
-    }
     public render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
@@ -71,7 +103,17 @@ export class Prizes extends React.Component<RouteComponentProps<{}>, PrizesState
             <h1>Prizes</h1>
             <p>Buy some stuff!</p>
             {contents}
-            <PrizeModal open={this.state.prizeModalOpen} onClose={this.closePrizeModal} prize={this.state.prizeModalData} loading={this.state.prizeModalLoading} />
+            <PrizeModal
+                open={this.state.prizeModalOpen}
+                onClose={this.closePrizeModal}
+                prize={this.state.prizeModalData}
+                onBuy={this.buy} />
+            <PurchaseModal
+                open={this.state.purchaseModalOpen}
+                onClose={this.closePurchaseModal}
+                prize={this.state.prizeModalData}
+                state={this.state.purchaseModalState}
+                purchaseId={this.state.purchaseId} />
         </div>;
     }
 
@@ -89,11 +131,11 @@ export class Prizes extends React.Component<RouteComponentProps<{}>, PrizesState
                 <Grid.Row key={rowIndex}>
                     {group.map((prize, colIndex) =>
                         <Grid.Column key={colIndex}>
-                            <PrizeCard id={prize.id} name={prize.name} picture={prize.picture} quantity={prize.quantity} price={prize.price} onBuy={this.buy}/>
+                            <PrizeCard id={prize.id} name={prize.name} picture={prize.picture} quantity={prize.quantity} price={prize.price} onBuy={this.openPrizeModal} />
                         </Grid.Column>
-                        )}
+                    )}
                 </Grid.Row>
-                )}
+            )}
         </Grid>;
     }
 }
@@ -104,4 +146,8 @@ interface Prize {
     quantity: number;
     name: string;
     picture: string;
+}
+
+interface Purchase {
+    id: string;
 }
