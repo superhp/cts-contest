@@ -37,6 +37,8 @@ namespace CtsContestWeb.Db.Repository
         public PurchaseDto GetPurchaseByPurchaseGuid(Guid id)
         {
             var purchase = _dbContext.Purchases.Find(id);
+            purchase.GivenPurchase = _dbContext.GivenPurchases.Find(id);
+
             return new PurchaseDto
             {
                 PurchaseId = purchase.PurchaseId,
