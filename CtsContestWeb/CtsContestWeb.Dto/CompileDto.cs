@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
-
-namespace CtsContestWeb.Dto
+﻿namespace CtsContestWeb.Dto
 {
     public class CompileDto
     {
