@@ -33,7 +33,7 @@ export class PurchaseModal extends React.Component<PurchaseModalProps, PurchaseM
         if (prevProps.state !== this.props.state) {
             this.counter = 0;
         }
-        if (this.modal.ref !== undefined && this.modal.ref !== null) {
+        if (this.modal != null && this.modal.ref !== undefined && this.modal.ref !== null) {
             this.modalHeight = 0;
             for (let i = 0; i < this.modal.ref.children.length; i++) {
                 this.modalHeight += this.modal.ref.children[i].clientHeight;

@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Container, Header, Icon, Loader, Divider } from 'semantic-ui-react';
 //https://react.semantic-ui.com/usage stylesheet missing
 import { PrizeModal } from './PrizeModal';
 import { PurchaseModal } from './PurchaseModal';
@@ -21,7 +21,7 @@ interface PrizesState {
     purchaseId: string;
 }
 
-export class Prizes extends React.Component<RouteComponentProps<{}>, PrizesState> {
+export class Prizes extends React.Component<any, any> {
     constructor() {
         super();
         this.state = {
@@ -31,6 +31,7 @@ export class Prizes extends React.Component<RouteComponentProps<{}>, PrizesState
             purchaseModalState: 'closed',
             purchaseModalOpen: false,
             purchaseId: "",
+            purchasedItems: [],
 
             prizeModalData: {
                 id: 0,
@@ -48,23 +49,23 @@ export class Prizes extends React.Component<RouteComponentProps<{}>, PrizesState
             });
     }
     buy = (prize: Prize) => {
-        fetch('api/Purchase/Buy', {
+        fetch('api/Purchase/Purchase', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                userEmail: 'user@gmail.com',
+                userEmail: 'LocalDev@local.com',
                 prizeId: prize.id,
             })
         })
             .then(response => response.json() as Promise<Purchase>)
             .then(data => {
-                this.setState({ purchaseId: data.id, purchaseModalState: 'loaded' });
+                this.setState({ purchaseId: data.id, purchaseModalState: 'loaded', purchasedItems: [...this.state.purchasedItems, prize.id] });
             }).catch(error => {
                 //console.log(error);
-                this.setState({ purchaseId: prize.name, purchaseModalState: 'error' });
+                this.setState({ purchaseId: "", purchaseModalState: 'error' });
             });
         this.openPurchaseModal(prize);
     }
@@ -85,7 +86,7 @@ export class Prizes extends React.Component<RouteComponentProps<{}>, PrizesState
      */
     openPrizeModal = (id: number) => {
         const prize = this.state.prizes.filter((pr: Prize) => { return pr.id === id })[0];
-        this.setState({ prizeModalData: prize, prizeModalOpen: true});
+        this.setState({ prizeModalData: prize, prizeModalOpen: true });
     }
 
     closePrizeModal = () => {
@@ -96,47 +97,65 @@ export class Prizes extends React.Component<RouteComponentProps<{}>, PrizesState
 
     public render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : this.renderForecastsTable(this.state.prizes);
+            ? <Loader active>Loading</Loader>
+            : this.renderPrizeList(this.state.prizes);
 
-        return <div>
-            <h1>Prizes</h1>
-            <p>Buy some stuff!</p>
-            {contents}
-            <PrizeModal
-                open={this.state.prizeModalOpen}
-                onClose={this.closePrizeModal}
-                prize={this.state.prizeModalData}
-                onBuy={this.buy} />
-            <PurchaseModal
-                open={this.state.purchaseModalOpen}
-                onClose={this.closePurchaseModal}
-                prize={this.state.prizeModalData}
-                state={this.state.purchaseModalState}
-                purchaseId={this.state.purchaseId} />
-        </div>;
+        return (
+            <div>
+                <Container fluid>
+                    <div style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: 225, paddingTop: 20 }}>
+                        <Header as='h1' textAlign='center'>
+                            <Icon name='gift' circular />
+                            <Header.Content>
+                                Prizes
+                            </Header.Content>
+                        </Header>
+                    </div>
+                </Container>
+                <Divider />
+                <Container fluid textAlign='center'>
+                    <p>Visit a stand to collect purchased items</p>
+                    <div style={{ height: 10 }} />
+                </Container>
+                <Container fluid>
+                    {contents}
+                    <PrizeModal
+                        open={this.state.prizeModalOpen}
+                        onClose={this.closePrizeModal}
+                        prize={this.state.prizeModalData}
+                        onBuy={this.buy} />
+                    <PurchaseModal
+                        open={this.state.purchaseModalOpen}
+                        onClose={this.closePurchaseModal}
+                        prize={this.state.prizeModalData}
+                        state={this.state.purchaseModalState}
+                        purchaseId={this.state.purchaseId} />
+                </Container>
+
+            </div>
+        );
     }
+    private renderPrizeList(prizes: Prize[]) {
+        return <div>
+            <div className='row'>
+                {prizes.map((prize, index) =>
+                    <div className='col-xs-6 col-sm-4 col-md-3 col-lg-2 col-centered' key={index} style={{ paddingBottom: 20 }}>
+                        <PrizeCard
+                            id={prize.id}
+                            name={prize.name}
+                            picture={prize.picture}
+                            quantity={prize.quantity}
+                            price={prize.price}
+                            onBuy={this.openPrizeModal}
+                            balance={200}
+                            purchased={this.state.purchasedItems.includes(prize.id)}
+                        />
+                    </div>
+                )}
 
-    private renderForecastsTable(prizes: Prize[]) {
-        var groups = new Array<Array<Prize>>();
-        prizes.forEach((val, i) => {
-            var idx = Math.floor(i / 4);
-            if (groups.length <= idx) {
-                groups.push(new Array<Prize>());
-            }
-            groups[idx].push(val)
-        });
-        return <Grid columns={4}>
-            {groups.map((group, rowIndex) =>
-                <Grid.Row key={rowIndex}>
-                    {group.map((prize, colIndex) =>
-                        <Grid.Column key={colIndex}>
-                            <PrizeCard id={prize.id} name={prize.name} picture={prize.picture} quantity={prize.quantity} price={prize.price} onBuy={this.openPrizeModal} />
-                        </Grid.Column>
-                    )}
-                </Grid.Row>
-            )}
-        </Grid>;
+            </div>
+        </div>
+
     }
 }
 

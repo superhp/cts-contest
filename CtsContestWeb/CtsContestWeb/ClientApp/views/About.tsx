@@ -33,7 +33,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                 as='h1'
                                 content='Programming contest' 
                                 //inverted
-                                style={{ fontSize: '4em', fontWeight: 'arial', marginBottom: 0, marginTop: '0.5em' }}
+                                style={{ fontSize: '3em', fontWeight: 'arial', marginBottom: 0, marginTop: '0.5em' }}
                             />
                             <Header
                                 as='h2'
