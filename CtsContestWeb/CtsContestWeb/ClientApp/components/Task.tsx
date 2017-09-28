@@ -2,12 +2,11 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import AceEditor from 'react-ace';
 import { RouteComponentProps } from 'react-router-dom';
-import { Grid, Segment, Divider, Header, Button } from 'semantic-ui-react';
+import { Responsive, Grid, Segment, Divider, Header, Button } from 'semantic-ui-react';
 import * as brace from 'brace';
 
 import 'brace/mode/jsx';
 import 'brace/theme/monokai';
-import * as _ from 'lodash';
 
 /*eslint-disable no-alert, no-console */
 import 'brace/ext/language_tools';
@@ -17,12 +16,16 @@ import 'brace/mode/javascript';
 export class TaskComponent extends React.Component<any, any> {
     constructor(props: any){
         super(props);
+
         this.state = { 
             taskId: this.props.match.params.id,
             theme: 'monokai',
             mode: 'javascript',
+            selectedLanguage: 'javascript',
             loadingLanguages: true,
-            loadingTask: true
+            loadingTask: true,
+            editorWidth: this.calculateEditorWidth(),
+            showResults: false
         };
 
         this.setMode = this.setMode.bind(this);
@@ -43,6 +46,44 @@ export class TaskComponent extends React.Component<any, any> {
                     let compiler = this.getHighlighter(key);
                     require(`brace/mode/${compiler}`)
                 }
+            });
+
+        this.compileCode = this.compileCode.bind(this);
+    }
+
+    calculateEditorWidth() {
+        let editorWidth = (window.innerWidth - 150) / 2 + 'px';
+        if (window.innerWidth < 768)
+            editorWidth = (window.innerWidth - 150) + 'px';
+
+        return editorWidth;
+    }
+
+    handleResize = () => {
+        this.setState({ editorWidth: this.calculateEditorWidth() });
+    }
+
+    compileCode() {
+        this.setState({
+            compileResult: null,
+            showResults: true
+        })
+
+        let languageCode = this.state.languages.codes[this.state.mode];
+
+        const formData = new FormData();
+        formData.append('taskId', this.state.taskId);
+        formData.append('source', this.state.value);
+        formData.append('language', languageCode);
+        fetch('api/Task/Solve', {
+            method: 'PUT',
+            body: formData
+        })
+        .then(response => response.json() as Promise<UserInfo>)
+        .then(data => {
+                this.setState({
+                    compileResult: data
+                })
             });
     }
 
@@ -75,7 +116,8 @@ export class TaskComponent extends React.Component<any, any> {
      
     setMode(e: any) {
         this.setState({
-            mode: this.getHighlighter(e.target.value)
+            mode: this.getHighlighter(e.target.value),
+            selectedLanguage: e.target.value
         })
     }
 
@@ -85,8 +127,8 @@ export class TaskComponent extends React.Component<any, any> {
         })
     }
 
-    private static renderLanguages(languages: Languages, setMode: any, mode: string) {
-        return <select name="mode" onChange={setMode} value={mode}>
+    private static renderLanguages(languages: Languages, setMode: any, selectedLanguage: string) {
+        return <select name="mode" onChange={setMode} value={selectedLanguage}>
                     {Object.keys(languages.names).sort().map((lang) => <option  key={lang} value={lang}>{languages.names[lang]}</option>)}
                 </select>;
     }
@@ -98,63 +140,104 @@ export class TaskComponent extends React.Component<any, any> {
         </div>;
     }
 
+    private static renderResult(compileResult: CompileResult) {
+        return  <span>
+                { compileResult.resultCorrect ?
+                    <p className="success-message">
+                        You successfully resolved this task. Congratulations!
+                    </p>
+                    :
+                    <p className="error-message">
+                        Failed {compileResult.failedInputs} out of {compileResult.totalInputs} inputs.
+                    </p>
+                }
+            </span>;
+    }
+
+    private static renderCompileResult(compileResult: CompileResult) {
+        return  <div>
+                { compileResult.message ?
+                    <p className="error-message">
+                        {compileResult.message}
+                    </p>
+                    :
+                    this.renderResult(compileResult)
+                }
+            </div>;
+    }
+
     render() {
         let selectOptions = this.state.loadingLanguages
             ? <em>Loading...</em>
-            : TaskComponent.renderLanguages(this.state.languages, this.setMode, this.state.mode);
+            : TaskComponent.renderLanguages(this.state.languages, this.setMode, this.state.selectedLanguage);
         
         let task = this.state.loadingTask
             ? <em>Loading...</em>
             : TaskComponent.renderTask(this.state.task);
 
+        let compileResult = this.state.compileResult 
+            ? TaskComponent.renderCompileResult(this.state.compileResult)
+            : <em>Loading...</em>;
+
         return <div>
             <h1>Solve this task</h1>
             <div>
-                <div className="field language-select">
-                    <label>
-                    Language:
-                    </label>
-                    <p className="control">
-                        <span className="select">
-                            {selectOptions}
-                        </span>
-                    </p>
-                </div>
-
+            
                 <Grid columns={2} relaxed>
-                    <Grid.Column>
-                    <Segment basic>
-                        <AceEditor 
-                            mode={this.state.mode}
-                            theme="monokai" 
-                            name="code" 
-                            fontSize={14} 
-                            showPrintMargin={true} 
-                            showGutter={true} 
-                            highlightActiveLine={true}
-                            value={this.state.value}
-                            onChange={this.onChange}
-                            setOptions={{
-                                enableBasicAutocompletion: false,
-                                enableLiveAutocompletion: true,
-                                enableSnippets: false,
-                                showLineNumbers: true,
-                                tabSize: 2,
-                            }}
-                        />
-
-                        <div><Button primary>Submit</Button></div>
-                    </Segment>
+                    <Grid.Column mobile={16} tablet={8} computer={8}>
+                        <Segment basic>
+                            {task}
+                        </Segment>
                     </Grid.Column>
-         
-                    <Grid.Column>
+
+                    <Grid.Column mobile={16} tablet={8} computer={8}>
                     <Segment basic>
-                        {task}
+                        <div className="field language-select">
+                            <label>
+                            Language:
+                            </label>
+                            <p className="control">
+                                <span className="select">
+                                    {selectOptions}
+                                </span>
+                            </p>
+                        </div>
+                        <Responsive onUpdate={this.handleResize}>
+                            <AceEditor 
+                                mode={this.state.mode}
+                                theme="monokai" 
+                                name="code" 
+                                fontSize={14} 
+                                showPrintMargin={true} 
+                                showGutter={true} 
+                                highlightActiveLine={true}
+                                value={this.state.value}
+                                onChange={this.onChange}
+                                width={this.state.editorWidth}
+                                setOptions={{
+                                    enableBasicAutocompletion: false,
+                                    enableLiveAutocompletion: true,
+                                    enableSnippets: false,
+                                    showLineNumbers: true,
+                                    tabSize: 4,
+                                }}
+                            />
+                        </Responsive>
+
+                        <div><Button onClick={this.compileCode} primary>Submit</Button></div>
                     </Segment>
                     </Grid.Column>
                 </Grid>
+
+                { this.state.showResults ?
+                    <Segment>
+                        <Header as='h2'>Result</Header>
+                        {compileResult}
+                    </Segment>
+                    : <div></div>
+                }
                 
-                </div>
+            </div>
         </div>;
     
     }
@@ -171,4 +254,12 @@ interface NameToCodeMap {
 interface Languages {
     names: NameToDisplayNameMap;
     codes: NameToCodeMap;
+}
+
+interface CompileResult {
+    comiled: boolean;
+    resultCorrect: boolean;
+    totalInputs: number;
+    failedInputs: number;
+    message: string;
 }

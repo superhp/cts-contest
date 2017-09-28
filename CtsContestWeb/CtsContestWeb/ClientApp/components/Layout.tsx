@@ -19,7 +19,9 @@ export class Layout extends React.Component<LayoutProps, UserState> {
     }
 
     componentDidMount() {
-        fetch('api/User')
+        fetch('api/User', {  
+            credentials: 'include'  
+        })
             .then(response => response.json() as Promise<UserInfo>)
             .then(data => {
                 this.setState({ userInfo: data, loading: false });
