@@ -56,12 +56,13 @@ export class Prizes extends React.Component<any, any> {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                userEmail: 'LocalDev@local.com',
                 prizeId: prize.id,
             })
         })
             .then(response => response.json() as Promise<Purchase>)
             .then(data => {
+                // const prizeId = this.state.prizes.indexOf((pr: any) => pr === prize.id);
+                // const prizeState = this.state.prizes[id];
                 this.setState({ purchaseId: data.id, purchaseModalState: 'loaded', purchasedItems: [...this.state.purchasedItems, prize.id] });
             }).catch(error => {
                 //console.log(error);

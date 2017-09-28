@@ -10,9 +10,7 @@ import { Prizes } from './components/Prizes';
 import { TaskComponent } from './components/Task';
 
 export const routes = <Layout>
-    <Route exact path='/' component={ Home } />
-    <Route path='/counter' component={ Counter } />
-    <Route path='/fetchdata' component={FetchData} />
+    <Route exact path='/' component={ Tasks } />
     <Route path='/about' component={About} />
     <Route path='/tasks' component={Tasks} />
     <Route path='/prizes' component={Prizes} />

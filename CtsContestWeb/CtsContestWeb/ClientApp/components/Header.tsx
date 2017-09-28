@@ -10,20 +10,16 @@ import { Login } from './login';
 
 const links = [
     {
-        routeTo: '/',
-        name: 'Home'
-    },
-    {
-        routeTo: '/about',
-        name: 'About'
-    },
-    {
         routeTo: '/tasks',
         name: 'Tasks'
     },
     {
         routeTo: '/prizes',
         name: 'Prizes'
+    },
+    {
+        routeTo: '/about',
+        name: 'About'
     }
 ];
 
