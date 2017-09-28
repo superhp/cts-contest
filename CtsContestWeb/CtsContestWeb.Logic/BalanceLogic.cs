@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CtsContestWeb.Logic
 {
-    public class BalanceLogic
+    public class BalanceLogic : IBalanceLogic
     {
         private int _amount;
         private readonly ISolutionRepository _solRep;

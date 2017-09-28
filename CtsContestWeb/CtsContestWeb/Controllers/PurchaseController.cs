@@ -7,6 +7,7 @@ using CtsContestWeb.Db.Entities;
 using CtsContestWeb.Communication;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using CtsContestWeb.Logic;
 
 namespace CtsContestWeb.Controllers
 {
@@ -16,11 +17,13 @@ namespace CtsContestWeb.Controllers
     {
         private readonly IPrizeManager _prizeManager;
         private readonly IPurchaseRepository _purchaseRepository;
+        private readonly PurchaseLogic _purchaseLogic;
 
         public PurchaseController(IPurchaseRepository purchaseRepository, IPrizeManager prizeManager, PurchaseLogic purchaseLogic)
         {
             _purchaseRepository = purchaseRepository;
             _prizeManager = prizeManager;
+            _purchaseLogic = purchaseLogic;
         }
 
         public Guid Get(Guid id)

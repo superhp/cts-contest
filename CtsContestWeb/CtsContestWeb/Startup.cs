@@ -16,6 +16,7 @@ using Newtonsoft.Json.Linq;
 using CtsContestWeb.Communication;
 using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Middleware;
+using CtsContestWeb.Logic;
 
 namespace CtsContestWeb
 {
@@ -36,6 +37,8 @@ namespace CtsContestWeb
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
             services.AddScoped<ISolutionRepository, SolutionRepository>();
+            services.AddScoped<IBalanceLogic, BalanceLogic>();
+            services.AddScoped<IPurchaseLogic, PurchaseLogic>();
 
             services.AddTransient<ITaskManager, TaskManager>();
             services.AddTransient<IPrizeManager, PrizeManager>();
