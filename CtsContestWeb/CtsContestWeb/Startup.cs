@@ -37,8 +37,8 @@ namespace CtsContestWeb
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
             services.AddScoped<ISolutionRepository, SolutionRepository>();
 
-            services.AddTransient<ITask, Task>();
-            services.AddTransient<IPrize, Prize>();
+            services.AddTransient<ITaskManager, TaskManager>();
+            services.AddTransient<IPrizeManager, PrizeManager>();
             services.AddTransient<ICompiler, Compiler>();
 
             services.AddSingleton<IConfiguration>(Configuration);

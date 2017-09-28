@@ -14,13 +14,13 @@ namespace CtsContestWeb.Controllers
     [Route("api/[controller]")]
     public class PurchaseController : Controller
     {
-        public IPrize PrizeManager { get; }
+        private readonly IPrizeManager _prizeManager;
         private readonly IPurchaseRepository _purchaseRepository;
 
-        public PurchaseController(IPurchaseRepository purchaseRepository, IPrize prizeManager)
+        public PurchaseController(IPurchaseRepository purchaseRepository, IPrizeManager prizeManager, PurchaseLogic purchaseLogic)
         {
             _purchaseRepository = purchaseRepository;
-            PrizeManager = prizeManager;
+            _prizeManager = prizeManager;
         }
 
         public Guid Get(Guid id)
@@ -41,7 +41,6 @@ namespace CtsContestWeb.Controllers
         {
             var prizeId = req.PrizeId;
             var userEmail = req.UserEmail;
-            var prize = await PrizeManager.GetPrizeById(prizeId);
 
             var purchase = new Db.Entities.Purchase
             {
@@ -54,6 +53,7 @@ namespace CtsContestWeb.Controllers
 
             _purchaseRepository.Create(purchase);
             return new PurchaseIdDto { Id = purchase.PurchaseId };
+            var prize = await _prizeManager.GetPrizeById(prizeId);
         }
 
         

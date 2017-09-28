@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace CtsContestWeb.Communication
 {
-    public interface IPrize
+    public interface ITaskManager
     {
-        Task<List<PrizeDto>> GetAllPrizes();
-        Task<PrizeDto> GetPrizeById(int id);
+        Task<List<TaskDto>> GetAllTasks();
+        Task<TaskDto> GetTaskById(int id);
     }
 }

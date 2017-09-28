@@ -10,9 +10,9 @@ namespace CtsContestWeb.Controllers
     [Route("api/[controller]")]
     public class PrizeController : Controller
     {
-        public IPrize PrizeManager { get; }
+        public IPrizeManager PrizeManager { get; }
 
-        public PrizeController(IPrize prizeManager)
+        public PrizeController(IPrizeManager prizeManager)
         {
             PrizeManager = prizeManager;
         }

@@ -10,8 +10,8 @@ namespace CtsContestWeb.Communication
     public class Compiler : ICompiler
     {
         IConfiguration _configuration;
-        private ITask _taskManager;
-        public Compiler(IConfiguration configuration, ITask taskManger)
+        private ITaskManager _taskManager;
+        public Compiler(IConfiguration configuration, ITaskManager taskManger)
         {
             _configuration = configuration;
             _taskManager = taskManger;

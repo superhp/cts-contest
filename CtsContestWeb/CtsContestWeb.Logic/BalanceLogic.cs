@@ -13,26 +13,26 @@ namespace CtsContestWeb.Logic
         private int _amount;
         private readonly ISolutionRepository _solRep;
         private readonly IPurchaseRepository _purRep;
-        public ITask TaskManager { get; }
-        public IPrize PrizeManager { get; }
+        private readonly ITaskManager _taskManager;
+        private readonly IPrizeManager _prizeManager;
 
-        public BalanceLogic(ISolutionRepository solRep, ITask taskManager, IPurchaseRepository purRep, IPrize prizeManager)
+        public BalanceLogic(ISolutionRepository solRep, ITaskManager taskManager, IPurchaseRepository purRep, IPrizeManager prizeManager)
         {
             _amount = 0;
             _solRep = solRep;
-            TaskManager = taskManager;
+            _taskManager = taskManager;
             _purRep = purRep;
-            PrizeManager = prizeManager;
         }
 
         public int Amount
         {
             get { return _amount; }
+            _prizeManager = prizeManager;
         }
 
         public async Task<bool> IsBalanceEnough(string userEmail, int prizeId)
         {
-            var prize = await PrizeManager.GetPrizeById(prizeId);
+            var prize = await _prizeManager.GetPrizeById(prizeId);
             var price = prize.Price;
             var balance = (await GetTotalEarnedMoney(userEmail)) - GetTotalSpentMoney(userEmail); 
             return balance >= price;
@@ -41,7 +41,7 @@ namespace CtsContestWeb.Logic
         private async Task<int> GetTotalEarnedMoney(string userEmail)
         {
             var ids = _solRep.GetTaskIdsByUserEmail(userEmail);
-            var tasks = await System.Threading.Tasks.Task.WhenAll(ids.Select(x => TaskManager.GetTaskById(x)));
+            var tasks = await System.Threading.Tasks.Task.WhenAll(ids.Select(x => _taskManager.GetTaskById(x)));
             var sum = tasks.Select(x => x.Value).DefaultIfEmpty(0).Sum();
             return sum;
         }

@@ -9,10 +9,10 @@ namespace CtsContestWeb.Controllers
     [Route("api/[controller]")]
     public class TaskController : Controller
     {
-        public ITask TaskManager { get; }
+        public ITaskManager TaskManager { get; }
         public ICompiler Compiler { get; }
 
-        public TaskController(ITask taskManager, ICompiler compiler)
+        public TaskController(ITaskManager taskManager, ICompiler compiler)
         {
             TaskManager = taskManager;
             Compiler = compiler;

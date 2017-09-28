@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace CtsContestWeb.Communication
 {
-    public class Prize : IPrize
+    public class PrizeManager : IPrizeManager
     {
         IConfiguration _iconfiguration;
-        public Prize(IConfiguration iconfiguration)
+        public PrizeManager(IConfiguration iconfiguration)
         {
             _iconfiguration = iconfiguration;
         }

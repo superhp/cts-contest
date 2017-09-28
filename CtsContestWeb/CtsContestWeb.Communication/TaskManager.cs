@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace CtsContestWeb.Communication
 {
-    public class Task : ITask
+    public class TaskManager : ITaskManager
     {
         IConfiguration _iconfiguration;
-        public Task(IConfiguration iconfiguration)
+        public TaskManager(IConfiguration iconfiguration)
         {
             _iconfiguration = iconfiguration;
         }
