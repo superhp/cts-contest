@@ -10,7 +10,6 @@ namespace CtsContestWeb.Logic
 {
     public class BalanceLogic : IBalanceLogic
     {
-        private int _amount;
         private readonly ISolutionRepository _solRep;
         private readonly IPurchaseRepository _purRep;
         private readonly ITaskManager _taskManager;
@@ -18,15 +17,9 @@ namespace CtsContestWeb.Logic
 
         public BalanceLogic(ISolutionRepository solRep, ITaskManager taskManager, IPurchaseRepository purRep, IPrizeManager prizeManager)
         {
-            _amount = 0;
             _solRep = solRep;
             _taskManager = taskManager;
             _purRep = purRep;
-        }
-
-        public int Amount
-        {
-            get { return _amount; }
             _prizeManager = prizeManager;
         }
 

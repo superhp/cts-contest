@@ -23,6 +23,7 @@
     <ProjectReference Include="..\CtsContestWeb.Communication\CtsContestWeb.Communication.csproj" />
     <ProjectReference Include="..\CtsContestWeb.Db\CtsContestWeb.Db.csproj" />
     <ProjectReference Include="..\CtsContestWeb.Dto\CtsContestWeb.Dto.csproj" />
+    <ProjectReference Include="..\CtsContestWeb.Logic\CtsContestWeb.Logic.csproj" />
   </ItemGroup>
 
   <ItemGroup>

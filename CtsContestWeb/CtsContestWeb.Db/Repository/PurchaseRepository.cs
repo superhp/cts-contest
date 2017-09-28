@@ -14,10 +14,19 @@ namespace CtsContestWeb.Db.Repository
             _dbContext = dbContext;
         }
 
-        public void Create(Purchase purchase)
+        public Guid Create(string userEmail, int prizeId, int price)
         {
+            var purchase = new Purchase
+            {
+                UserEmail = userEmail,
+                PrizeId = prizeId,
+                Created = DateTime.Now,
+                PurchaseId = Guid.NewGuid(),
+                Cost = price
+            };
             _dbContext.Purchases.Add(purchase);
             _dbContext.SaveChanges();
+            return purchase.PurchaseId;
         }
 
         public IEnumerable<Purchase> GetAllByUserEmail(string userEmail)

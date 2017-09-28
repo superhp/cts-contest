@@ -8,6 +8,7 @@ using CtsContestWeb.Communication;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using CtsContestWeb.Logic;
+using System.Security.Claims;
 
 namespace CtsContestWeb.Controllers
 {
@@ -43,20 +44,11 @@ namespace CtsContestWeb.Controllers
         public async Task<PurchaseIdDto> Purchase([FromBody] PurchaseRequestDto req)
         {
             var prizeId = req.PrizeId;
-            var userEmail = req.UserEmail;
-
-            var purchase = new Db.Entities.Purchase
-            {
-                UserEmail = userEmail,
-                PrizeId = prizeId,
-                Created = DateTime.Now,
-                PurchaseId = Guid.NewGuid(),
-                Cost = prize.Price
-            };
-
-            _purchaseRepository.Create(purchase);
-            return new PurchaseIdDto { Id = purchase.PurchaseId };
+            var userEmail = User.FindFirst(ClaimTypes.Email).Value;
             var prize = await _prizeManager.GetPrizeById(prizeId);
+
+            var id = _purchaseRepository.Create(userEmail, prizeId, prize.Price);
+            return new PurchaseIdDto { Id = id };
         }
 
         

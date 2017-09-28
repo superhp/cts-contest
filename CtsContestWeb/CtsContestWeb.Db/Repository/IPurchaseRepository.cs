@@ -7,7 +7,7 @@ namespace CtsContestWeb.Db.Repository
     public interface IPurchaseRepository
     {
         IEnumerable<Purchase> GetAllByUserEmail(string userEmail);
-        void Create(Purchase purchase);
+        Guid Create(string userEmail, int prizeId, int price);
         bool GiveAway(Guid id);
     }
 }
