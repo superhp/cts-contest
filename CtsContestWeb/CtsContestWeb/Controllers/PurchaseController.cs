@@ -18,9 +18,9 @@ namespace CtsContestWeb.Controllers
     {
         private readonly IPrizeManager _prizeManager;
         private readonly IPurchaseRepository _purchaseRepository;
-        private readonly PurchaseLogic _purchaseLogic;
+        private readonly IPurchaseLogic _purchaseLogic;
 
-        public PurchaseController(IPurchaseRepository purchaseRepository, IPrizeManager prizeManager, PurchaseLogic purchaseLogic)
+        public PurchaseController(IPurchaseRepository purchaseRepository, IPrizeManager prizeManager, IPurchaseLogic purchaseLogic)
         {
             _purchaseRepository = purchaseRepository;
             _prizeManager = prizeManager;
