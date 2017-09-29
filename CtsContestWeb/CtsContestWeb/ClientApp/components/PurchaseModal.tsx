@@ -11,7 +11,7 @@ interface PurchaseModalProps {
     onClose: any;
     prize: Prize;
     state: string;
-    purchaseId: string;
+    purchaseId: any;
 }
 
 interface PurchaseModalState {
@@ -84,7 +84,7 @@ export class PurchaseModal extends React.Component<PurchaseModalProps, PurchaseM
                     fgColor="#000000"
                     level="Q"
                     style={{ width: '100%' }}
-                    value={this.props.purchaseId !== undefined ? this.props.purchaseId : ''}
+                    value={this.props.purchaseId !== undefined ? this.props.purchaseId.toString() : ''}
                 />
             </Modal.Content>
         )

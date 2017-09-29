@@ -31,7 +31,7 @@ export class Prizes extends React.Component<any, any> {
             purchaseModalState: 'closed',
             purchaseModalOpen: false,
             purchaseId: "",
-            purchasedItems: [],
+            purchasedItems: {},
 
             prizeModalData: {
                 id: 0,
@@ -61,19 +61,49 @@ export class Prizes extends React.Component<any, any> {
         })
             .then(response => response.json() as Promise<Purchase>)
             .then(data => {
-                // const prizeId = this.state.prizes.indexOf((pr: any) => pr === prize.id);
-                // const prizeState = this.state.prizes[id];
-                this.setState({ purchaseId: data.id, purchaseModalState: 'loaded', purchasedItems: [...this.state.purchasedItems, prize.id] });
+                this.handleBuyResponse(prize, data);
             }).catch(error => {
-                //console.log(error);
+                console.log(error);
                 this.setState({ purchaseId: "", purchaseModalState: 'error' });
             });
         this.openPurchaseModal(prize);
     }
 
+    handleBuyResponse(prize: any, data: any) {
+        if (Object.keys(data)[0] === 'error') {
+            console.log(data);
+            this.setState({ purchaseId: "", purchaseModalState: 'error' });
+            return;
+        }
+
+        const id = this.state.prizes.findIndex((pr: any) => pr.id === prize.id);
+        prize.quantity = prize.quantity - 1;
+
+        const purchases = this.state.purchasedItems;
+        purchases[prize.id] = data.id;
+        //console.log(purchases);
+        this.setState({
+            purchaseId: data.id,
+            purchaseModalState: 'loaded',
+            purchasedItems: purchases,
+            prizes: [
+                ...this.state.prizes.slice(0, id),
+                prize,
+                ...this.state.prizes.slice(id + 1)
+            ]
+        });
+    }
     /*
      * QR modal
      */
+    openPurchasedQRModal = (prize: Prize) => {
+        this.setState({
+            purchaseModalOpen: true,
+            purchaseModalState: 'loaded',
+            purchaseId: this.state.purchasedItems[prize.id],
+            prizeModalData: prize
+        });
+    }
     openPurchaseModal = (prize: Prize) => {
         this.setState({ purchaseModalOpen: true, purchaseModalState: 'loading' });
     }
@@ -142,14 +172,11 @@ export class Prizes extends React.Component<any, any> {
                 {prizes.map((prize, index) =>
                     <div className='col-xs-6 col-sm-4 col-md-3 col-lg-2 col-centered' key={index} style={{ paddingBottom: 20 }}>
                         <PrizeCard
-                            id={prize.id}
-                            name={prize.name}
-                            picture={prize.picture}
-                            quantity={prize.quantity}
-                            price={prize.price}
+                            prize={prize}
                             onBuy={this.openPrizeModal}
+                            onOpenPurchaseQR={this.openPurchasedQRModal}
                             balance={200}
-                            purchased={this.state.purchasedItems.includes(prize.id)}
+                            purchased={prize.id in this.state.purchasedItems}
                         />
                     </div>
                 )}
