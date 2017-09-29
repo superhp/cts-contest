@@ -64,6 +64,13 @@
         text-overflow: ellipsis;
     }
 }
+body{
+    height: 100%;
+}
+
+#react-app {
+    height: inherit;
+}
 
 .header-nav {
     margin: 0 !important;
