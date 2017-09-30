@@ -17,7 +17,7 @@ import Prize from './Prize';
 class Scanner extends Component {
   state = {
     hasCameraPermission: null,
-    lastScannedUrl: null,
+    scanning: true,
   };
 
   componentDidMount() {
@@ -33,17 +33,17 @@ class Scanner extends Component {
   
 
   _handleBarCodeRead = result => {
-    if (result.data !== this.state.lastScannedUrl) {
+    if (this.state.scanning) {
       LayoutAnimation.spring();
-      this.setState({ lastScannedUrl: result.data });
+      this.setState({ scanning: false });
 
-      this.props.navigation.navigate('Prize', {purchaseId: result.data})
+      this.props.navigation.navigate('Prize', {purchaseId: result.data, resumeScanning: this.resumeScanning.bind(this)})
       
     }
   };
 
-  onBackClick() {
-    this.setState({ lastScannedUrl: null });
+  resumeScanning() {
+    this.setState({ scanning: true });
   }
 
   render() {

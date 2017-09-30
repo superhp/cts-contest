@@ -93,6 +93,7 @@ export default class Prize extends React.Component {
                     )
                 }
 
+                this.props.navigation.state.params.resumeScanning();
                 this.goBack();
             });
         
