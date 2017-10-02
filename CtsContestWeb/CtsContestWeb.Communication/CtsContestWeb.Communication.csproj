@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CtsContestWeb.Db\CtsContestWeb.Db.csproj" />
     <ProjectReference Include="..\CtsContestWeb.Dto\CtsContestWeb.Dto.csproj" />
   </ItemGroup>
 

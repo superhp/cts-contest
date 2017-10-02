@@ -9,57 +9,58 @@ export default class Prize extends React.Component {
         this.state = { 
             purchase: {},
             loading: true
-            
         };
     }
-    componentWillMount() {
+
+    componentDidMount() {
         console.log("Getting purchase");
-        this.state.purchaseId = this.props.navigation.state.purchaseId;
+        this.setState({
+            purchaseId: this.props.navigation.state.purchaseId
+        });
         console.log(this.state.purchaseId);
         this.getPurchase(this.props.navigation.state.purchaseId);
     }
 
-  render() {
-    const { params } = this.props.navigation.state;
-    this.getPurchase(params.purchaseId);
+    render() {
+        const { params } = this.props.navigation.state;
+        this.getPurchase(params.purchaseId);
 
-    var button = this.state.purchase.isGivenAway ?
-                    <Text>Already given away</Text>
-                    :
-                    <Button onPress={() => { this.giveAway(params.purchaseId) }}> Give away </Button>;
-    return (
-        
-        <View>
-            <Button onPress={() => { this.goBack() }}> Back </Button>
-            <Text>{params.purchaseId}</Text>
-            <Text>Prize name: {this.state.purchase.name}</Text>
-            <Text>Price: {this.state.purchase.price}</Text>
-            <Text>User: {this.state.purchase.userEmail}</Text>
-            <Image style={{height: 250}} source={{uri: this.state.purchase.picture }} />
-
-            { this.state.loading ? <Text>Loading...</Text> :
-                button
-            }
+        var button = this.state.purchase.isGivenAway ?
+                        <Text>Already given away</Text>
+                        :
+                        <Button onPress={() => { this.giveAway(params.purchaseId) }}> Give away </Button>;
+        return (
             
-        </View>
-    );
-    
-  }
+            <View style={styles.container}>
+                <Button onPress={() => { this.goBack() }}> Back </Button>
+                <Text>{params.purchaseId}</Text>
+                <Text>Prize name: {this.state.purchase.name}</Text>
+                <Text>Price: {this.state.purchase.price}</Text>
+                <Text>User: {this.state.purchase.userEmail}</Text>
+                <Image style={{height: 250}} source={{uri: this.state.purchase.picture }} />
 
-  getPurchase(purchaseId) {
+                { this.state.loading ? <Text>Loading...</Text> :
+                    button
+                }
+                
+            </View>
+        );
+    }
+
+    getPurchase(purchaseId) {
         fetch('https://cts-contest.azurewebsites.net/api/Purchase/GetPrizeByPurchaseGuid/' + purchaseId, {
             method: 'GET'
         })
         .then(response => response.json())
         .then(data => {
-                this.setState({
-                    purchase: data,
-                    loading: false
-                });
+            this.setState({
+                purchase: data,
+                loading: false
             });
-  }
+        });
+    }
 
-  giveAway(purchaseId) {
+    giveAway(purchaseId) {
         console.log(purchaseId);
 
         const formData = new FormData();
@@ -70,37 +71,71 @@ export default class Prize extends React.Component {
         })
         .then(response => response.json())
         .then(data => {
-                console.log("Give away");
-                console.log(data);
+            console.log("Give away");
+            console.log(data);
 
-                if (data.isGivenAway) {
-                    Alert.alert(
-                        'Successfully given away',
-                        'You will be redirected back to QR code scanner',
-                        [
-                            {text: 'OK', onPress: () => console.log('OK Pressed')},
-                        ],
-                        { cancelable: false }
-                    )
-                } else {
-                    Alert.alert(
-                        'Prize was already given away',
-                        'You will be redirected back to QR code scanner',
-                        [
-                            {text: 'OK', onPress: () => console.log('OK Pressed')},
-                        ],
-                        { cancelable: false }
-                    )
-                }
+            if (data.isGivenAway) {
+                Alert.alert(
+                    'Successfully given away',
+                    'You will be redirected back to QR code scanner',
+                    [
+                        {text: 'OK', onPress: () => console.log('OK Pressed')},
+                    ],
+                    { cancelable: false }
+                )
+            } else {
+                Alert.alert(
+                    'Prize was already given away',
+                    'You will be redirected back to QR code scanner',
+                    [
+                        {text: 'OK', onPress: () => console.log('OK Pressed')},
+                    ],
+                    { cancelable: false }
+                )
+            }
 
-                this.props.navigation.state.params.resumeScanning();
-                this.goBack();
-            });
-        
-        
-  }
+            this.goBack();
+        });
 
-  goBack() {
-    this.props.navigation.goBack();
-  }
+    }
+
+    goBack() {
+        this.props.navigation.state.params.resumeScanning();
+        this.props.navigation.goBack();
+    }
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+  },
+  bottomBar: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    padding: 15,
+    flexDirection: 'row',
+  },
+  url: {
+    flex: 1,
+  },
+  urlText: {
+    color: '#000',
+    fontSize: 20,
+  },
+  cancelButton: {
+    marginLeft: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cancelButtonText: {
+    color: 'rgba(255,255,255,0.8)',
+    fontSize: 18,
+  },
+});

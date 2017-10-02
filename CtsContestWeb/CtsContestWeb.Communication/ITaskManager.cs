@@ -6,7 +6,7 @@ namespace CtsContestWeb.Communication
 {
     public interface ITaskManager
     {
-        Task<List<TaskDto>> GetAllTasks();
-        Task<TaskDto> GetTaskById(int id);
+        Task<List<TaskDto>> GetAllTasks(string userEmail = null);
+        Task<TaskDto> GetTaskById(int id, string userEmail = null);
     }
 }

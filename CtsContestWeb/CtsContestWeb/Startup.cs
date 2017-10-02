@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CtsContestWeb.Db.DataAccess;
 using CtsContestWeb.Db;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Principal;
@@ -15,6 +14,7 @@ using System;
 using Newtonsoft.Json.Linq;
 using CtsContestWeb.Communication;
 using CtsContestWeb.Db.Repository;
+using CtsContestWeb.Logic;
 using CtsContestWeb.Middleware;
 using CtsContestWeb.Logic;
 
@@ -42,6 +42,9 @@ namespace CtsContestWeb
 
             services.AddTransient<ITaskManager, TaskManager>();
             services.AddTransient<IPrizeManager, PrizeManager>();
+
+            services.AddScoped<ISolutionLogic, SolutionLogic>();
+
             services.AddTransient<ICompiler, Compiler>();
 
             services.AddSingleton<IConfiguration>(Configuration);

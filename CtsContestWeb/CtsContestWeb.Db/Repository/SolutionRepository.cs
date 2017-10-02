@@ -1,10 +1,10 @@
 ﻿using System;
-using CtsContestWeb.Db.Entities;
 using System.Collections.Generic;
 using CtsContestWeb.Db.Repository;
 using System.Linq;
+using CtsContestWeb.Db.Entities;
 
-namespace CtsContestWeb.Db.DataAccess
+namespace CtsContestWeb.Db.Repository
 {
     public class SolutionRepository : ISolutionRepository
     {
@@ -17,7 +17,8 @@ namespace CtsContestWeb.Db.DataAccess
 
         public void Create(Solution solution)
         {
-            throw new NotImplementedException();
+            _dbContext.Add(solution);
+            _dbContext.SaveChanges();
         }
 
         public IEnumerable<int> GetTaskIdsByUserEmail(string userEmail)

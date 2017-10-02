@@ -9,16 +9,17 @@ namespace CtsContestWeb.Communication
 {
     public class PrizeManager : IPrizeManager
     {
-        IConfiguration _iconfiguration;
-        public PrizeManager(IConfiguration iconfiguration)
+        private readonly IConfiguration _configuration;
+
+        public PrizeManager(IConfiguration configuration)
         {
-            _iconfiguration = iconfiguration;
+            _configuration = configuration;
         }
 
         public async Task<List<PrizeDto>> GetAllPrizes()
         {
-            var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
-            var pictureUrl = _iconfiguration["UmbracoPictureUrl"];
+            var umbracoApiUrl = _configuration["UmbracoApiUrl"];
+            var pictureUrl = _configuration["UmbracoPictureUrl"];
             var client = new RestClient(umbracoApiUrl);
 
             var request = new RestRequest("prize/getAll", Method.GET);
@@ -28,18 +29,20 @@ namespace CtsContestWeb.Communication
             {
                 taskCompletion.SetResult(response.Data);
             });
+
             var prizes = await taskCompletion.Task;
             foreach (var item in prizes)
             {
                 item.Picture = pictureUrl + item.Picture;
             }
+
             return prizes;
         }
 
         public async Task<PrizeDto> GetPrizeById(int id)
         {
-            var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
-            var pictureUrl = _iconfiguration["UmbracoPictureUrl"];
+            var umbracoApiUrl = _configuration["UmbracoApiUrl"];
+            var pictureUrl = _configuration["UmbracoPictureUrl"];
             var client = new RestClient(umbracoApiUrl);
 
             var request = new RestRequest("prize/get/{id}", Method.GET);

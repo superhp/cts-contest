@@ -3,12 +3,7 @@ using System.Threading.Tasks;
 using CtsContestWeb.Communication;
 using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Dto;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using CtsContestWeb.Db.Entities;
-using CtsContestWeb.Communication;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using CtsContestWeb.Logic;
 using System.Security.Claims;
 
@@ -46,12 +41,12 @@ namespace CtsContestWeb.Controllers
         public GiveAwayResponse GiveAway(Guid id)
         {
             var giveAwaySuccessful = _purchaseRepository.GiveAway(id);
+
             return new GiveAwayResponse
             {
                 IsGivenAway = giveAwaySuccessful
             };
         }
-
 
         [HttpPost("[action]")]
         public async Task<PurchaseIdDto> Purchase([FromBody] PurchaseRequestDto req)
@@ -59,13 +54,14 @@ namespace CtsContestWeb.Controllers
             var prizeId = req.PrizeId;
             var userEmail = User.FindFirst(ClaimTypes.Email).Value;
             var prize = await _prizeManager.GetPrizeById(prizeId);
+
             var canBuy = await _purchaseLogic.CheckIfUserCanBuy(userEmail, prizeId);
-            if (!canBuy) throw new Exception();   //Don't know what kind of specific exception should be here
-            
+            if (!canBuy)
+                throw new Exception();   //Don't know what kind of specific exception should be here
+
             var id = _purchaseRepository.Create(userEmail, prizeId, prize.Price);
+
             return new PurchaseIdDto { Id = id };
         }
-
-        
     }
 }

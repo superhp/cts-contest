@@ -49,7 +49,7 @@ export class Tasks extends React.Component<RouteComponentProps<{}>, TasksState> 
         let tableRows: any = [];
         tasks.forEach(t => {
             tableRows.push(
-                <Table.Row key={t.id}>
+                <Table.Row positive={t.isSolved} key={t.id}>
                     <Table.Cell selectable>
                         <Link to={"/task/" + t.id}> {t.name}</Link>
                     </Table.Cell>

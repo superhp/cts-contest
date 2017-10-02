@@ -1,6 +1,4 @@
 ﻿using CtsContestWeb.Communication;
-using CtsContestWeb.Db;
-using CtsContestWeb.Db.DataAccess;
 using CtsContestWeb.Db.Repository;
 using System;
 using System.Linq;

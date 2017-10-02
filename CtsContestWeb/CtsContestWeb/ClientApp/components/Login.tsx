@@ -3,26 +3,36 @@ import { RouteComponentProps } from 'react-router';
 import { Responsive, Label, Button, Header as Header, Image, Modal, Icon } from 'semantic-ui-react'
 import { Link, NavLink } from 'react-router-dom';
 
-export interface LoginProps {
-    userInfo: UserInfo;
-}
-
 interface LoginModalState {
     modalHeight: number;
+    userInfo: any;
+    loading: boolean;
 }
 
-export class Login extends React.Component<LoginProps, LoginModalState> {
-    constructor(props: LoginProps) {
-        super(props);
+export class Login extends React.Component<{}, LoginModalState> {
+    constructor() {
+        super();
 
         let modalHeight = 200;
         if (window.innerWidth < 768)
             modalHeight = window.innerHeight - 200;
         this.state = {
-            modalHeight: modalHeight
+            modalHeight: modalHeight,
+            userInfo: null,
+            loading: true
         }
 
         this.handleResize = this.handleResize.bind(this);
+    }
+
+    componentDidMount() {
+        fetch('api/User', {
+            credentials: 'include'
+        })
+            .then(response => response.json() as Promise<UserInfo>)
+            .then(data => {
+                this.setState({ userInfo: data, loading: false });
+            });
     }
 
     handleResize = () => {
@@ -33,8 +43,8 @@ export class Login extends React.Component<LoginProps, LoginModalState> {
     }
 
     public render() {
-        let contents = this.props.userInfo.isLoggedIn
-            ? Login.renderLoggedInView(this.props.userInfo)
+        let contents = !this.state.loading && this.state.userInfo.isLoggedIn
+            ? Login.renderLoggedInView(this.state.userInfo)
             : Login.renderLoginModal(this.state.modalHeight, this.handleResize)
 
         return contents;
