@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CtsContestWeb.Logic
 {
@@ -17,10 +18,11 @@ namespace CtsContestWeb.Logic
             _balanceLogic = balanceLogic;
         }
 
-        public bool CheckIfUserCanBuy(string userEmail, int prizeId)
+        public async Task<bool> CheckIfUserCanBuy(string userEmail, int prizeId)
         {
             var purchases = _purRep.GetAllByUserEmail(userEmail);
-            return purchases.Any(x => x.PrizeId == prizeId);
+            if (purchases.Any(x => x.PrizeId == prizeId)) return false;
+            return await _balanceLogic.IsBalanceEnough(userEmail, prizeId);
         }
     }
 }

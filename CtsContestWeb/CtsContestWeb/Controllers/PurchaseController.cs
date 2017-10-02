@@ -59,8 +59,8 @@ namespace CtsContestWeb.Controllers
             var prizeId = req.PrizeId;
             var userEmail = User.FindFirst(ClaimTypes.Email).Value;
             var prize = await _prizeManager.GetPrizeById(prizeId);
-
-            if (!_purchaseLogic.CheckIfUserCanBuy(userEmail, prizeId)) throw new Exception();   //Don't know what kind of specific exception should be here
+            var canBuy = await _purchaseLogic.CheckIfUserCanBuy(userEmail, prizeId);
+            if (!canBuy) throw new Exception();   //Don't know what kind of specific exception should be here
             
             var id = _purchaseRepository.Create(userEmail, prizeId, prize.Price);
             return new PurchaseIdDto { Id = id };
