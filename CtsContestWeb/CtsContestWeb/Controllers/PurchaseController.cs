@@ -1,4 +1,6 @@
 using System;
+using System.Threading.Tasks;
+using CtsContestWeb.Communication;
 using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Dto;
 using Microsoft.AspNetCore.Authorization;
@@ -12,7 +14,6 @@ using System.Security.Claims;
 
 namespace CtsContestWeb.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     public class PurchaseController : Controller
     {
@@ -27,16 +28,28 @@ namespace CtsContestWeb.Controllers
             _purchaseLogic = purchaseLogic;
         }
 
-        public Guid Get(Guid id)
+        [HttpGet("[action]/{id}")]
+        public async Task<PurchaseDto> GetPrizeByPurchaseGuid(Guid id)
         {
-            throw new NotImplementedException();
+            var purchase = _purchaseRepository.GetPurchaseByPurchaseGuid(id);
+
+            var prizeDto = await _prizeManager.GetPrizeById(purchase.PrizeId);
+
+            purchase.Price = prizeDto.Price;
+            purchase.Name = prizeDto.Name;
+            purchase.Picture = prizeDto.Picture;
+
+            return purchase;
         }
 
         [HttpPost("[action]")]
-        public bool GiveAway([FromBody] PurchaseIdDto id)
+        public GiveAwayResponse GiveAway(Guid id)
         {
-            var giveAwaySuccessful = _purchaseRepository.GiveAway(id.Id);
-            return giveAwaySuccessful;
+            var giveAwaySuccessful = _purchaseRepository.GiveAway(id);
+            return new GiveAwayResponse
+            {
+                IsGivenAway = giveAwaySuccessful
+            };
         }
 
 

@@ -8,64 +8,88 @@ import { Responsive, Button, Header, Icon, Modal } from 'semantic-ui-react';
 interface PrizeModalProps {
     open: boolean;
     onClose: any;
+    onBuy: any;
     prize: Prize;
 }
 
 interface PrizeModalState {
-    modalHeight: any;
 }
 
 export class PrizeModal extends React.Component<PrizeModalProps, PrizeModalState> {
+    modal: any;
+    modalHeight: number;
+    modalHeightSet = false;
     constructor() {
         super();
 
-        let modalHeight = 512;
-        if (window.innerWidth < 768)
-            modalHeight = window.innerHeight - 50;
-        this.state = {
-            modalHeight: modalHeight
+    }
+    componentDidUpdate() {
+        this.modalFix();
+    }
+    modalFix() {
+        if (this.modal !== null && this.modal.ref !== undefined && this.modal.ref !== null) {
+            this.modalHeight = 0;
+            for (let i = 1; i < this.modal.ref.children.length; i++) {
+                this.modalHeight += this.modal.ref.children[i].clientHeight;
+            }
+            if (!this.modalHeightSet)
+                this.handleResize();
+            this.modalHeightSet = true;
         }
     }
     handleResize = () => {
-        if (window.innerWidth < 768)
-            this.setState({ modalHeight: window.innerHeight - 50 });
-        else
-            this.setState({ modalHeight: 512 });
+        this.setState({});
     }
+    buy = () => {
+        this.props.onBuy(this.props.prize);
+        this.close();
+    }
+    close = () => {
+        this.modalHeightSet = false;
+        this.props.onClose();
+    }
+    public renderHeader() {
+        return (
+            <Modal.Header>
+                {this.props.prize.name}
+            </Modal.Header>
+        )
+    }
+    public renderContent() {
+        return (
+            <Modal.Content>
+                <Header>Are you sure you want to buy this item?</Header>
+            </Modal.Content>
+        )
+    }
+    public renderActions() {
+        return (
+            <Modal.Actions>
+                <Button color='red' onClick={this.close}>
+                    <Icon name='remove' /> No
+                </Button>
+                <Button color='green' onClick={this.buy}>
+                    <Icon name='checkmark' /> Yes
+                </Button>
 
+            </Modal.Actions>
+        )
+    }
     public render() {
         return (
             <Responsive onUpdate={this.handleResize}>
                 <Modal open={this.props.open}
-                    size='large'
+                    size='tiny'
                     closeOnEscape={true}
                     closeOnRootNodeClick={true}
-                    style={{ height: 'auto', maxHeight: this.state.modalHeight }}
-                    onClose={this.props.onClose}
+                    style={{ height: window.innerHeight >= this.modalHeight ? this.modalHeight : 'auto' }}
+                    onClose={this.close}
                     closeIcon
+                    ref={(content: any) => this.modal = content}
                 >
-                    <Modal.Header>{this.props.prize.name}</Modal.Header>
-                    <Modal.Content scrolling>
-                        <Modal.Description>
-                            <Header>Default Profile Image</Header>
-                            <p>We've found the following gravatar image associated with your e-mail address.
-                            We've found the following gravatar image associated with your e-mail address.
-                            We've found the following gravatar image associated with your e-mail address.
-                            We've found the following gravatar image associated with your e-mail address.
-                            We've found the following gravatar image associated with your e-mail address.
-                            We've found the following gravatar image associated with your e-mail address.
-                            We've found the following gravatar image associated with your e-mail address.
-                            We've found the following gravatar image associated with your e-mail address.
-                            We've found the following gravatar image associated with your e-mail address.
-                        </p>
-                            <p>Is it okay to use this photo?</p>
-                        </Modal.Description>
-                    </Modal.Content>
-                    <Modal.Actions>
-                        <Button color='green'>
-                            <Icon name='checkmark' /> Buy
-                        </Button>
-                    </Modal.Actions>
+                    {this.renderHeader()}
+                    {this.renderContent()}
+                    {this.renderActions()}
                 </Modal>
             </Responsive>
         )

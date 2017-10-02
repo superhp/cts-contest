@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CtsContestWeb.Db.Entities;
+using CtsContestWeb.Dto;
 
 namespace CtsContestWeb.Db.Repository
 {
@@ -9,5 +10,6 @@ namespace CtsContestWeb.Db.Repository
         IEnumerable<Purchase> GetAllByUserEmail(string userEmail);
         Guid Create(string userEmail, int prizeId, int price);
         bool GiveAway(Guid id);
+        PurchaseDto GetPurchaseByPurchaseGuid(Guid id);
     }
 }

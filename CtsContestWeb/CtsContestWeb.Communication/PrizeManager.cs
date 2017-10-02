@@ -28,17 +28,18 @@ namespace CtsContestWeb.Communication
             {
                 taskCompletion.SetResult(response.Data);
             });
-            var tasks = await taskCompletion.Task;
-            foreach (var item in tasks)
+            var prizes = await taskCompletion.Task;
+            foreach (var item in prizes)
             {
                 item.Picture = pictureUrl + item.Picture;
             }
-            return tasks;
+            return prizes;
         }
 
         public async Task<PrizeDto> GetPrizeById(int id)
         {
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
+            var pictureUrl = _iconfiguration["UmbracoPictureUrl"];
             var client = new RestClient(umbracoApiUrl);
 
             var request = new RestRequest("prize/get/{id}", Method.GET);
@@ -48,11 +49,14 @@ namespace CtsContestWeb.Communication
             client.ExecuteAsync<PrizeDto>(request, response =>
             {
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                    throw new ArgumentException("No task with given ID");
+                    throw new ArgumentException("No prize with given ID");
                 taskCompletion.SetResult(response.Data);
             });
 
-            return await taskCompletion.Task;
+            var prize = await taskCompletion.Task;
+            prize.Picture = pictureUrl + prize.Picture;
+
+            return prize;
         }
     }
 }
