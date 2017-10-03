@@ -4,15 +4,18 @@ import { Header, Image, Table, Card } from 'semantic-ui-react';
 
 
 class LeaderBoard extends React.Component {
+    constructor(props) {
+        super(props);
+        console.log(props);
+    }
     render() {
+        let userlist = this.props.data.map((Board, i) => <User username={Board.Name} score={Board.Score} rank={i}/>);
         return (
             <div className="container">
                 <LeaderboardHeader />
                 <ColumnHeader />
                 <div>
-                    <User />
-                    <User />
-                    <User/>
+                    {userList}
                 </div>
             </div>
         )
@@ -44,17 +47,17 @@ const ColumnHeader = () => (
     </div>
     );
 
-const User = () => {
+const User = ({ username, score, rank}) => {
     return (
         <div className="row users  vcenter">
             <div className="col-xs-2 rank">
-                <h4>rank</h4>
+                <h4>{rank}</h4>
             </div>
             <div className="col-xs-7 name">
-                <h4>username</h4>
+                <h4>{username}</h4>
             </div>
             <div className="col-xs-3">
-                <h4>alltime</h4>
+                <h4>{score}</h4>
             </div>
         </div>
     )
