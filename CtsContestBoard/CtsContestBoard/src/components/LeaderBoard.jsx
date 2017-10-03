@@ -3,7 +3,7 @@ import { Header, Image, Table, Card } from 'semantic-ui-react';
 //import '../css/leaderboardStyle.css';
 
 
-class LeaderBoard extends React.Component {
+export default class LeaderBoard extends React.Component {
     constructor(props) {
         super(props);
         console.log(props);
@@ -15,15 +15,13 @@ class LeaderBoard extends React.Component {
                 <LeaderboardHeader />
                 <ColumnHeader />
                 <div>
-                    {userList}
+                    {userlist}
                 </div>
             </div>
         )
     }
 
 }
-
-export default LeaderBoard;
 
 const LeaderboardHeader = () => {
     return (
