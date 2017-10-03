@@ -1,5 +1,11 @@
-﻿using System.Security.Claims;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Dto;
+using CtsContestWeb.Logic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CtsContestWeb.Controllers
@@ -7,8 +13,17 @@ namespace CtsContestWeb.Controllers
     [Route("api/[controller]")]
     public class UserController : Controller
     {
+        private readonly IBalanceLogic _balanceLogic;
+        private readonly IPurchaseRepository _purchaseRepository;
+
+        public UserController(IBalanceLogic balanceLogic, IPurchaseRepository purchaseRepository)
+        {
+            _balanceLogic = balanceLogic;
+            _purchaseRepository = purchaseRepository;
+        }
+
         [HttpGet("")]
-        public UserInfoDto GetUser()
+        public async Task<UserInfoDto> GetUser()
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -16,6 +31,7 @@ namespace CtsContestWeb.Controllers
                 {
                     Email = User.FindFirst(ClaimTypes.Email).Value,
                     Name = User.FindFirst(ClaimTypes.GivenName).Value,
+                    Balance = await _balanceLogic.GetCurrentBalance(User.FindFirst(ClaimTypes.Email).Value),
                     IsLoggedIn = true
                 };
             }
@@ -24,6 +40,22 @@ namespace CtsContestWeb.Controllers
             {
                 IsLoggedIn = false
             };
+        }
+
+        [Authorize]
+        [HttpGet("purchases")]
+        public List<PurchaseDto> GetUserPurchases()
+        {
+            var userEmail = User.FindFirst(ClaimTypes.Email).Value;
+
+            return _purchaseRepository.GetAllByUserEmail(userEmail).ToList().Select(p => new PurchaseDto
+            {
+                PrizeId = p.PrizeId,
+                Price = p.Cost,
+                IsGivenAway = p.GivenPurchase != null,
+                PurchaseId = p.PurchaseId,
+                UserEmail = userEmail
+            }).ToList();
         }
     }
 }

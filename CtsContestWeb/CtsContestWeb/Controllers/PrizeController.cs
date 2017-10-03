@@ -10,29 +10,23 @@ namespace CtsContestWeb.Controllers
     [Route("api/[controller]")]
     public class PrizeController : Controller
     {
-        public IPrizeManager PrizeManager { get; }
+        private readonly IPrizeManager _prizeManager;
 
         public PrizeController(IPrizeManager prizeManager)
         {
-            PrizeManager = prizeManager;
+            _prizeManager = prizeManager;
         }
 
         [HttpGet("")]
         public async Task<List<PrizeDto>> Get()
         {
-           return await PrizeManager.GetAllPrizes();
+           return await _prizeManager.GetAllPrizes();
         }
 
         [HttpGet("{id}")]
         public async Task<PrizeDto> Get(int id)
         {
-            return await PrizeManager.GetPrizeById(id);
-        }
-
-        [HttpPut("[action]")]
-        public void Buy(int id)
-        {
-            throw new NotImplementedException();
+            return await _prizeManager.GetPrizeById(id);
         }
     }
 }

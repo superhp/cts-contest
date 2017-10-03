@@ -11,5 +11,6 @@ namespace CtsContestWeb.Db.Repository
         Guid Create(string userEmail, int prizeId, int price);
         bool GiveAway(Guid id);
         PurchaseDto GetPurchaseByPurchaseGuid(Guid id);
+        IEnumerable<Purchase> GetAll();
     }
 }

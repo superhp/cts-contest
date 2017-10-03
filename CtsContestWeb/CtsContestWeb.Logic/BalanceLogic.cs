@@ -29,6 +29,11 @@ namespace CtsContestWeb.Logic
             return balance >= price;
         }
 
+        public async Task<int> GetCurrentBalance(string userEmail)
+        {
+            return await GetTotalEarnedMoney(userEmail) - GetTotalSpentMoney(userEmail);
+        }
+
         private async Task<int> GetTotalEarnedMoney(string userEmail)
         {
             var ids = _solRep.GetTaskIdsByUserEmail(userEmail);
@@ -43,5 +48,6 @@ namespace CtsContestWeb.Logic
             var sum = purchases.Select(x => x.Cost).DefaultIfEmpty(0).Sum();
             return sum;
         }
+
     }
 }

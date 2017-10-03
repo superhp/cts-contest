@@ -60,5 +60,10 @@ namespace CtsContestWeb.Db.Repository
                 IsGivenAway = purchase.GivenPurchase != null
             };
         }
+
+        public IEnumerable<Purchase> GetAll()
+        {
+            return _dbContext.Purchases;
+        }
     }
 }

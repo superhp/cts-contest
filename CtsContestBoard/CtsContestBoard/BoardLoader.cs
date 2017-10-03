@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using CtsContestBoard.Communications;
 using CtsContestBoard.Db.Entities;
 using CtsContestBoard.Db.Repository;
@@ -17,24 +16,15 @@ namespace CtsContestBoard
         private readonly ISolutionRepository _solutionRepository;
         private readonly IPurchaseRepository _purchaseRepository;
 
-        public class Record
-        {
-            public string Name { get; set; }
-            public int Score { get; set; }
-        }
-
         public string LastUpdate => DateTime.Now.ToString();
 
-        private List<Record> _board = new List<Record>();
-        public List<Record> Board => _board;
+        private List<ParticipantDto> _board = new List<ParticipantDto>();
+        public List<ParticipantDto> Board => _board;
 
         private List<PrizeDto> _prizes = new List<PrizeDto>();
         public List<PrizeDto> Prizes => _prizes;
 
         public bool ShowLeaderboard { get; set; }
-
-        private int _a = 10;
-        public int A => _a;
 
         private Timer _timer;
         private List<Solution> _solutions;
@@ -46,13 +36,14 @@ namespace CtsContestBoard
             _solutionRepository = solutionRepository;
             _purchaseRepository = purchaseRepository;
 
-            _prizes = _prizeManager.GetAllPrizes().Result;
             _solutions = _solutionRepository.GetAll().ToList();
+
+            _prizes = _prizeManager.GetAllPrizes().Result;
             _purchases = _purchaseRepository.GetAll().ToList();
+            UpdatePrizes(_purchases);
 
             _timer = new Timer(state =>
             {
-                _a += 1;
                 InvertShowLeaderBoard();
 
                 if (ShowLeaderboard)
@@ -62,12 +53,10 @@ namespace CtsContestBoard
                 }
                 else
                 {
-                    UpdatePrizes();
+                    var newPurchases =  GetNewPurchases();
+                    UpdatePrizes(newPurchases);
                     Changed(nameof(Prizes));
                 }
-
-                Changed(nameof(Board));
-                Changed(nameof(A));
 
                 Changed(nameof(ShowLeaderboard));
                 Changed(nameof(LastUpdate));
@@ -82,20 +71,32 @@ namespace CtsContestBoard
             var newSolutions = _solutionRepository.GetAll().Where(s => s.SolutionId > lastId);
             _solutions.AddRange(newSolutions);
 
-            _board = _solutions.GroupBy(s => s.UserEmail).Select(ss => new Record
+            _board = _solutions.GroupBy(s => s.UserEmail).Select(ss => new ParticipantDto
             {
                 Name = ss.First().UserEmail,
                 Score = ss.Sum(sc => sc.Score)
             }).ToList();
         }
 
-        private void UpdatePrizes()
+        private List<Purchase> GetNewPurchases()
         {
             var lastDate = _purchases.Max(s => s.Created);
-            var newPurchases = _purchaseRepository.GetAll().Where(s => s.Created > lastDate);
+            var newPurchases = _purchaseRepository.GetAll().Where(s => s.Created > lastDate).ToList();
             _purchases.AddRange(newPurchases);
 
-            //_prizes = 
+            return newPurchases;
+        }
+
+        private void UpdatePrizes(List<Purchase> newPurchases)
+        {
+            _prizes = _prizes.Select(p => new PrizeDto
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Picture = p.Picture,
+                Price = p.Price,
+                Quantity = p.Quantity - newPurchases.Count(np => np.PrizeId == p.Id)
+            }).ToList();
         }
 
         private void InvertShowLeaderBoard()
