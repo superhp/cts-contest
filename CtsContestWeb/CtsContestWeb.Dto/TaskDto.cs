@@ -12,5 +12,6 @@ namespace CtsContestWeb.Dto
         public int Value { get; set; }
         public List<string> Inputs { get; set; }
         public List<string> Outputs { get; set; }
+        public bool IsSolved { get; set; }
     }
 }

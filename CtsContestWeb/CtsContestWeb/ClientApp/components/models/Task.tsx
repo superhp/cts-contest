@@ -3,4 +3,5 @@ interface Task {
     name: string;
     description: string;
     value: number;
+    isSolved: boolean;
 }

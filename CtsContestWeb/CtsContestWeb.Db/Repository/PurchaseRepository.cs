@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using CtsContestWeb.Db.DataAccess;
 using CtsContestWeb.Db.Entities;
 using CtsContestWeb.Dto;
 using System.Linq;
@@ -10,6 +9,7 @@ namespace CtsContestWeb.Db.Repository
     public class PurchaseRepository : IPurchaseRepository
     {
         private readonly ApplicationDbContext _dbContext;
+
         public PurchaseRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
@@ -27,6 +27,7 @@ namespace CtsContestWeb.Db.Repository
             };
             _dbContext.Purchases.Add(purchase);
             _dbContext.SaveChanges();
+
             return purchase.PurchaseId;
         }
 
@@ -42,6 +43,7 @@ namespace CtsContestWeb.Db.Repository
                 Created = DateTime.Now,
                 GivenPurchaseId = id
             });
+
             return _dbContext.SaveChanges() == 1;
         }
 

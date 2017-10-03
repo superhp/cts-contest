@@ -15,10 +15,14 @@ import { StackNavigator } from 'react-navigation';
 import Prize from './Prize';
 
 class Scanner extends Component {
-  state = {
-    hasCameraPermission: null,
-    scanning: true,
-  };
+  constructor() {
+    super();
+
+    this.state = {
+      hasCameraPermission: null,
+      scanning: true,
+    };
+  }
 
   componentDidMount() {
     this._requestCameraPermission();
@@ -43,7 +47,7 @@ class Scanner extends Component {
   };
 
   resumeScanning() {
-    this.setState({ scanning: true });
+      this.setState({ scanning: true });
   }
 
   render() {
@@ -66,8 +70,8 @@ class Scanner extends Component {
 
         <StatusBar hidden />
       </View>
-    );
-  }
+        );
+    }
 
 }
 

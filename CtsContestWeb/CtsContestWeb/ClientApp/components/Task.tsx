@@ -25,7 +25,9 @@ export class TaskComponent extends React.Component<any, any> {
             loadingLanguages: true,
             loadingTask: true,
             editorWidth: this.calculateEditorWidth(),
-            showResults: false
+            showResults: false,
+            loadingUserInfo: true,
+            disabledButton: true
         };
 
         this.setMode = this.setMode.bind(this);
@@ -79,19 +81,30 @@ export class TaskComponent extends React.Component<any, any> {
             method: 'PUT',
             body: formData
         })
-        .then(response => response.json() as Promise<UserInfo>)
+        .then(response => response.json() as Promise<CompileResult>)
         .then(data => {
+                let task = this.state.task;
+                task.isSolved = data.resultCorrect && data.compiled;
                 this.setState({
-                    compileResult: data
+                    compileResult: data,
+                    task: task
                 })
             });
     }
 
     componentDidMount() {
         fetch('api/Task/' + this.state.taskId)
-            .then(response => response.json() as Promise<UserInfo>)
+            .then(response => response.json() as Promise<Task>)
             .then(data => {
                 this.setState({ task: data, loadingTask: false });
+            });
+
+        fetch('api/User', {
+            credentials: 'include'
+        })
+            .then(response => response.json() as Promise<UserInfo>)
+            .then(data => {
+                this.setState({ userInfo: data, loadingUserInfo: false });
             });
     }
 
@@ -122,8 +135,13 @@ export class TaskComponent extends React.Component<any, any> {
     }
 
     onChange(newValue: any) {
+        let disabledButton = true;
+        if (newValue.length > 0)
+            disabledButton = false;
+            
         this.setState({
-            value: newValue
+            value: newValue,
+            disabledButton: disabledButton
         })
     }
 
@@ -155,7 +173,7 @@ export class TaskComponent extends React.Component<any, any> {
     }
 
     private static renderCompileResult(compileResult: CompileResult) {
-        return  <div>
+        return <div>
                 { compileResult.message ?
                     <p className="error-message">
                         {compileResult.message}
@@ -178,6 +196,14 @@ export class TaskComponent extends React.Component<any, any> {
         let compileResult = this.state.compileResult 
             ? TaskComponent.renderCompileResult(this.state.compileResult)
             : <em>Loading...</em>;
+
+        if (!this.state.loadingTask && this.state.task.isSolved) {
+            var submitButton = this.state.showResults ? <div></div> : <div className="success-message">You successfully resolved this task.</div>;
+        } else {
+            var submitButton = !this.state.loadingUserInfo && this.state.userInfo.isLoggedIn ?
+                <div><Button onClick={this.compileCode} disabled={this.state.disabledButton} primary>Submit</Button></div>
+                : <div className="error-message">Please login before solving tasks</div>;
+        }
 
         return <div>
             <h1>Solve this task</h1>
@@ -222,21 +248,21 @@ export class TaskComponent extends React.Component<any, any> {
                                     tabSize: 4,
                                 }}
                             />
-                        </Responsive>
+                            { submitButton }
 
-                        <div><Button onClick={this.compileCode} primary>Submit</Button></div>
+                            { this.state.showResults ?
+                                <Segment>
+                                    <Header as='h2'>Result</Header>
+                                    {compileResult}
+                                </Segment>
+                                : <div></div>
+                            }
+                        </Responsive>
+                        
                     </Segment>
                     </Grid.Column>
                 </Grid>
 
-                { this.state.showResults ?
-                    <Segment>
-                        <Header as='h2'>Result</Header>
-                        {compileResult}
-                    </Segment>
-                    : <div></div>
-                }
-                
             </div>
         </div>;
     
@@ -257,7 +283,7 @@ interface Languages {
 }
 
 interface CompileResult {
-    comiled: boolean;
+    compiled: boolean;
     resultCorrect: boolean;
     totalInputs: number;
     failedInputs: number;

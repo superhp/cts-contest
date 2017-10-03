@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using CtsContestWeb.Db.Repository;
+﻿using System.Collections.Generic;
 using System.Linq;
-using CtsContestWeb.Db.Entities;
+using CtsContestBoard.Db.Entities;
 
-namespace CtsContestWeb.Db.Repository
+namespace CtsContestBoard.Db.Repository
 {
     public class SolutionRepository : ISolutionRepository
     {
@@ -24,6 +22,11 @@ namespace CtsContestWeb.Db.Repository
         public IEnumerable<int> GetTaskIdsByUserEmail(string userEmail)
         {
             return _dbContext.Solutions.Where(x => x.UserEmail == userEmail).Select(x => x.TaskId);
+        }
+
+        public IEnumerable<Solution> GetAll()
+        {
+            return _dbContext.Solutions;
         }
     }
 }

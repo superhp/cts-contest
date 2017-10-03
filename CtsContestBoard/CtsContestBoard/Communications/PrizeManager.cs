@@ -1,11 +1,11 @@
-﻿using CtsContestWeb.Dto;
-using Microsoft.Extensions.Configuration;
-using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CtsContestBoard.Dto;
+using Microsoft.Extensions.Configuration;
+using RestSharp;
 
-namespace CtsContestWeb.Communication
+namespace CtsContestBoard.Communications
 {
     public class PrizeManager : IPrizeManager
     {

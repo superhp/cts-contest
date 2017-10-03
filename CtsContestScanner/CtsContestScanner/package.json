@@ -1,5 +1,5 @@
 {
-  "name": "AwesomeProject",
+  "name": "CtsContestScanner",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -19,7 +19,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "expo": "^21.0.0",
+    "expo": "^21.0.2",
     "react": "^16.0.0",
     "react-native": "^0.48.4",
     "react-native-camera": "0.10.0",

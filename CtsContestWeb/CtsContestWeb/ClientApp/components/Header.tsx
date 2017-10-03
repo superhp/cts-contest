@@ -23,20 +23,16 @@ const links = [
     }
 ];
 
-export interface HeaderProps {
-    userInfo: UserInfo;
-}
-
 export type HeaderState = {
     activeItem: string;
     collapsed: boolean;
 }
 
-export class Header extends React.Component<HeaderProps, HeaderState> {
+export class Header extends React.Component<{}, HeaderState> {
 
     handleItemClick = (e: any, { name }: any) => this.setState({ activeItem: name })
-    constructor(props: HeaderProps) {
-        super(props);
+    constructor() {
+        super();
 
         let collapsed = false;
         if (window.innerWidth <= 768)
@@ -82,7 +78,7 @@ export class Header extends React.Component<HeaderProps, HeaderState> {
                 {!this.state.collapsed
                     ?
                     <Menu.Menu position="right">
-                        <Login userInfo={this.props.userInfo} />
+                        <Login />
                     </Menu.Menu>
                     : ""
                 }
