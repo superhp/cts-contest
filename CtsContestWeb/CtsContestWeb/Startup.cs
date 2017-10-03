@@ -16,7 +16,6 @@ using CtsContestWeb.Communication;
 using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Logic;
 using CtsContestWeb.Middleware;
-using CtsContestWeb.Logic;
 
 namespace CtsContestWeb
 {
