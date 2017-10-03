@@ -1,11 +1,2 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿import React from 'react';
 
-namespace CtsContestBoard.src.components
-{
-    public class PrizeBoard
-    {
-    }
-}

@@ -1,11 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿import React from 'react';
+import { Header, Image, Table, Card } from 'semantic-ui-react';
+//import '../css/leaderboardStyle.css';
 
-namespace CtsContestBoard.src.components
-{
-    public class LeaderBoard
-    {
+
+class LeaderBoard extends React.Component {
+    render() {
+        return (
+            <div className="container">
+                <LeaderboardHeader />
+                <ColumnHeader />
+                <div>
+                    <User />
+                    <User />
+                    <User/>
+                </div>
+            </div>
+        )
     }
+
 }
+
+export default LeaderBoard;
+
+const LeaderboardHeader = () => {
+    return (
+        <div className="leadheader">
+            <h2>Leaderboard</h2>
+        </div>
+    )
+}
+
+const ColumnHeader = () => (
+    <div className="row colheader">
+        <div className="col-xs-2">
+            <h4>#</h4>
+        </div>
+        <div className="col-xs-7">
+            <h4>Name</h4>
+        </div>
+        <div className="col-xs-3 recent">
+            <h4>Score</h4>
+        </div>
+    </div>
+    );
+
+const User = () => {
+    return (
+        <div className="row users  vcenter">
+            <div className="col-xs-2 rank">
+                <h4>rank</h4>
+            </div>
+            <div className="col-xs-7 name">
+                <h4>username</h4>
+            </div>
+            <div className="col-xs-3">
+                <h4>alltime</h4>
+            </div>
+        </div>
+    )
+}
+

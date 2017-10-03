@@ -31,7 +31,7 @@ namespace CtsContestBoard
                 Changed(nameof(Board));
                 Changed(nameof(A));
                 PushUpdates();
-            }, null, 0, 5000);
+            }, null, 0, 0);
         }
 
         private void UpdateBoard()
