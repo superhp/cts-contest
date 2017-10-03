@@ -4,6 +4,7 @@ import AceEditor from 'react-ace';
 import { RouteComponentProps } from 'react-router-dom';
 import { Responsive, Grid, Segment, Divider, Header, Button } from 'semantic-ui-react';
 import * as brace from 'brace';
+import {UserStorage} from '../storage/UserStorage';
 
 import 'brace/mode/jsx';
 import 'brace/theme/monokai';
@@ -85,6 +86,8 @@ export class TaskComponent extends React.Component<any, any> {
         .then(data => {
                 let task = this.state.task;
                 task.isSolved = data.resultCorrect && data.compiled;
+                if(task.isSolved)
+                    UserStorage.incrementBalance(task.value);
                 this.setState({
                     compileResult: data,
                     task: task

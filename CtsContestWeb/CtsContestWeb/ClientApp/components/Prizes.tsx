@@ -65,7 +65,6 @@ export class Prizes extends React.Component<any, any> {
         this.checkForUserData();
         this.setState({ userInfo: UserStorage.getUser() });
     }
-
     checkForUserData() {
         if (UserStorage.getUser().isLoggedIn === false) {
             this.userStorageInterval = setInterval(() => {

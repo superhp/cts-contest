@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Responsive, Label, Button, Header as Header, Image, Modal, Icon } from 'semantic-ui-react'
 import { Link, NavLink } from 'react-router-dom';
-import {UserStorage} from '../storage/UserStorage';
+import { UserStorage } from '../storage/UserStorage';
 interface LoginModalState {
     modalHeight: number;
     userInfo: any;
@@ -23,6 +23,10 @@ export class Login extends React.Component<{}, LoginModalState> {
         }
 
         this.handleResize = this.handleResize.bind(this);
+
+        UserStorage.onSaveUser(() => {
+            this.setState({ userInfo: UserStorage.getUser(), loading: false });
+        });
     }
 
     componentDidMount() {
@@ -32,7 +36,6 @@ export class Login extends React.Component<{}, LoginModalState> {
             .then(response => response.json() as Promise<UserInfo>)
             .then(data => {
                 UserStorage.saveUser(data);
-                this.setState({ userInfo: data, loading: false });
             });
     }
 
@@ -55,7 +58,7 @@ export class Login extends React.Component<{}, LoginModalState> {
         return (
             <div className="right-menu">
                 <a className='item'>Hello, {userInfo.name}!</a>
-                <div className="item" style={{ fontWeight: 'bold'}}>{this.state.userInfo.balance} &nbsp;<Icon name='money' /></div> {/* Get balance from userinfo */}
+                <div className="item" style={{ fontWeight: 'bold' }}>{this.state.userInfo.balance} &nbsp;<Icon name='money' /></div> {/* Get balance from userinfo */}
                 <a className='item' href="https://cts-contest.azurewebsites.net/.auth/logout?post_logout_redirect_uri=/">Logout</a>
             </div>
         );
