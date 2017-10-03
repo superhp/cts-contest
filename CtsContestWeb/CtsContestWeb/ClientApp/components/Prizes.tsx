@@ -6,7 +6,7 @@ import { PrizeModal } from './PrizeModal';
 import { PurchaseModal } from './PurchaseModal';
 import { PrizeCard } from './PrizeCard';
 import 'isomorphic-fetch';
-
+import { UserStorage } from '../storage/UserStorage';
 
 
 interface PrizesState {
@@ -22,6 +22,7 @@ interface PrizesState {
 }
 
 export class Prizes extends React.Component<any, any> {
+    userStorageInterval: any;
     constructor() {
         super();
         this.state = {
@@ -39,14 +40,45 @@ export class Prizes extends React.Component<any, any> {
                 price: 0,
                 quantity: 0,
                 picture: ""
+            },
+
+            userInfo: {
+                isLoggedIn: false
             }
         };
 
+    }
+
+    componentDidMount() {
         fetch('api/Prize')
             .then(response => response.json() as Promise<Prize[]>)
             .then(data => {
                 this.setState({ prizes: data, loading: false });
             });
+
+        fetch('api/User/purchases')
+            .then(response => response.json() as Promise<any>)
+            .then(data => {
+                this.setState({ purchasedItems: data });
+            });
+
+        this.checkForUserData();
+        this.setState({ userInfo: UserStorage.getUser() });
+    }
+
+    checkForUserData() {
+        if (UserStorage.getUser().isLoggedIn === false) {
+            this.userStorageInterval = setInterval(() => {
+                const userData = UserStorage.getUser();
+                console.log('hello');
+                if (userData.isLoggedIn === true)
+                    clearInterval(this.userStorageInterval);
+
+                this.setState({
+                    userInfo: userData
+                })
+            }, 1000);
+        }
     }
     buy = (prize: Prize) => {
         fetch('api/Purchase/Purchase', {
@@ -80,8 +112,16 @@ export class Prizes extends React.Component<any, any> {
         prize.quantity = prize.quantity - 1;
 
         const purchases = this.state.purchasedItems;
-        purchases[prize.id] = data.id;
-        //console.log(purchases);
+        purchases.push({
+            prizeId: prize.id,
+            price: prize.price,
+            isGivenAway: false,
+            purchaseId: data.id,
+            userEmail: this.state.userInfo.email
+        });
+
+        UserStorage.decrementBalance(prize.price);
+
         this.setState({
             purchaseId: data.id,
             purchaseModalState: 'loaded',
@@ -93,6 +133,14 @@ export class Prizes extends React.Component<any, any> {
             ]
         });
     }
+
+    isPurchased(id: number) {
+        const index = this.state.purchasedItems.findIndex((element: any) => {
+            return element.prizeId === id;
+        });
+        if (index === -1) return false;
+        return true;
+    }
     /*
      * QR modal
      */
@@ -100,7 +148,10 @@ export class Prizes extends React.Component<any, any> {
         this.setState({
             purchaseModalOpen: true,
             purchaseModalState: 'loaded',
-            purchaseId: this.state.purchasedItems[prize.id],
+            purchaseId: this.state.purchasedItems
+                .find((element: any) =>
+                    element.prizeId === prize.id)
+                .purchaseId,
             prizeModalData: prize
         });
     }
@@ -175,12 +226,12 @@ export class Prizes extends React.Component<any, any> {
                             prize={prize}
                             onBuy={this.openPrizeModal}
                             onOpenPurchaseQR={this.openPurchasedQRModal}
-                            balance={200}
-                            purchased={prize.id in this.state.purchasedItems}
+                            balance={this.state.userInfo.balance}
+                            purchased={this.isPurchased(prize.id)}
+                            userLogedIn={this.state.userInfo.isLoggedIn}
                         />
                     </div>
                 )}
-
             </div>
         </div>
 

@@ -17,7 +17,6 @@ export class PrizeCard extends React.Component<any, PrizeCardState> {
     public render() {
         return <Card color={this.props.purchased ? 'green' : 'blue'}>
             <Image src={this.props.prize.picture}>
-
             </Image>
             <Card.Content>
                 <Card.Header>
@@ -32,38 +31,41 @@ export class PrizeCard extends React.Component<any, PrizeCardState> {
                         <p>{this.props.prize.quantity} left</p>
                     </div>
                     <div className='col-xs-6 col-center-block' style={{ paddingLeft: 0 }}>
-                        {this.props.purchased
-                            ? <Button
-                                color='green'
-                                size='big'
-                                fluid
-                                onClick={this.openPurchaseQR}
-                            >QR</Button>
-                            : <Button
-                                inverted
-                                color='blue'
-                                size='big'
-                                fluid
-                                onClick={this.buy}
-                                disabled={this.props.prize.quantity <= 0 || this.props.prize.price > this.props.balance ? true : false}
-                            >Buy</Button>}
-
+                        {this.props.userLogedIn
+                            ? this.renderButtons()
+                            : this.renderEmpty()
+                        }
                     </div>
                 </div>
             </Card.Content>
         </Card>
     }
+    renderEmpty(){
+        return '';
+    }
+    renderButtons() {
+        if (this.props.purchased)
+            return (
+                <Button
+                    color='green'
+                    size='big'
+                    fluid
+                    onClick={this.openPurchaseQR}
+                >QR</Button>
+            )
+        else
+            return (
+                <Button
+                    inverted
+                    color='blue'
+                    size='big'
+                    fluid
+                    onClick={this.buy}
+                    disabled={this.props.prize.quantity <= 0 || this.props.prize.price > this.props.balance ? true : false}
+                >Buy</Button>
+            )
+    }
 }
-/*export interface Prize {
-    id: number;
-    price: number;
-    quantity: number;
-    name: string;
-    picture: string;
-}
-interface PrizeCardProps {
-    prize: Prize;
-}*/
 interface PrizeCardProps {
     id: number;
     price: number;

@@ -2,7 +2,7 @@
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import 'isomorphic-fetch';
-import { Accordion, Icon, Table } from 'semantic-ui-react';
+import { Accordion, Icon, Table, Container, Header, Divider, Loader } from 'semantic-ui-react';
 import * as _ from 'lodash';
 
 interface TasksState {
@@ -24,25 +24,41 @@ export class Tasks extends React.Component<RouteComponentProps<{}>, TasksState> 
 
     public render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
+            ? <Loader active>Loading</Loader>
             : Tasks.renderTasksAccordion(this.state.tasks);
 
         return <div>
-            <h1>Tasks</h1>
-            <p>Solve coding tasks and earn points!</p>
-            {contents}
+            <Container fluid>
+                <div style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: 225, paddingTop: 20 }}>
+                    <Header as='h1' textAlign='center'>
+                        <Icon name='tasks' circular />
+                        <Header.Content>
+                            Tasks
+                            </Header.Content>
+                    </Header>
+                </div>
+            </Container>
+            <Divider />
+            <Container fluid textAlign='center'>
+                <p>Solve coding tasks and earn points!</p>
+                <div style={{ height: 10 }} />
+            </Container>
+             <Container fluid>
+                {contents}
+                <div style={{height: 10}}></div>
+            </Container>
         </div>;
     }
 
     private static renderTasksAccordion(tasks: Task[]) {
         let panels = _.chain(tasks)
             .groupBy('value')
-            .map((value:any, key:any) => ({
+            .map((value: any, key: any) => ({
                 title: "Tasks for " + key + " points",
                 content: this.createTasksSelectionTable(value)
             }))
             .value();
-        return <Accordion panels={panels} styled/>;
+        return <Accordion panels={panels} styled fluid/>;
     }
 
     private static createTasksSelectionTable(tasks: Task[]) {
@@ -56,10 +72,10 @@ export class Tasks extends React.Component<RouteComponentProps<{}>, TasksState> 
                 </Table.Row>);
         });
         return <Table celled>
-                   <Table.Body>
-                       {tableRows}
-                   </Table.Body>
-               </Table>;
+            <Table.Body>
+                {tableRows}
+            </Table.Body>
+        </Table>;
     }
 }
 
