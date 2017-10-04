@@ -8,9 +8,9 @@ export interface LayoutProps {
 
 const footerHeight = 50;
 
-export class Layout extends React.Component<LayoutProps, {}> {
-    constructor() {
-        super();
+export class Layout extends React.Component<any, any> {
+    constructor(props:any) {
+        super(props);
 
         this.state = { userInfo: null, loading: true };
     }
@@ -19,7 +19,7 @@ export class Layout extends React.Component<LayoutProps, {}> {
     public render() {
         return <div style={{ height: 'inherit' }}>
             <div style={{ minHeight: '100%', paddingBottom: footerHeight }}>
-                <Header />
+                <Header userInfo={this.props.userInfo}/>
                 {this.props.children}
             </div>
             <Footer height={footerHeight}/>

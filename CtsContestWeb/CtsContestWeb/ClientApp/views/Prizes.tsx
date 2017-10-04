@@ -2,11 +2,10 @@
 import { RouteComponentProps } from 'react-router';
 import { Grid, Container, Header, Icon, Loader, Divider } from 'semantic-ui-react';
 //https://react.semantic-ui.com/usage stylesheet missing
-import { PrizeModal } from './PrizeModal';
-import { PurchaseModal } from './PurchaseModal';
-import { PrizeCard } from './PrizeCard';
+import { PrizeModal } from '../components/PrizeModal';
+import { PurchaseModal } from '../components/PurchaseModal';
+import { PrizeCard } from '../components/PrizeCard';
 import 'isomorphic-fetch';
-import { UserStorage } from '../storage/UserStorage';
 
 
 interface PrizesState {
@@ -22,7 +21,7 @@ interface PrizesState {
 }
 
 export class Prizes extends React.Component<any, any> {
-    userStorageInterval: any;
+    _mounted:boolean;
     constructor() {
         super();
         this.state = {
@@ -32,7 +31,7 @@ export class Prizes extends React.Component<any, any> {
             purchaseModalState: 'closed',
             purchaseModalOpen: false,
             purchaseId: "",
-            purchasedItems: {},
+            purchasedItems: [],
 
             prizeModalData: {
                 id: 0,
@@ -40,10 +39,6 @@ export class Prizes extends React.Component<any, any> {
                 price: 0,
                 quantity: 0,
                 picture: ""
-            },
-
-            userInfo: {
-                isLoggedIn: false
             }
         };
 
@@ -59,26 +54,16 @@ export class Prizes extends React.Component<any, any> {
         fetch('api/User/purchases')
             .then(response => response.json() as Promise<any>)
             .then(data => {
-                this.setState({ purchasedItems: data });
+                if(this._mounted)
+                    this.setState({ purchasedItems: data });
             });
-
-        this.checkForUserData();
-        this.setState({ userInfo: UserStorage.getUser() });
+        this._mounted = true;
     }
-    checkForUserData() {
-        if (UserStorage.getUser().isLoggedIn === false) {
-            this.userStorageInterval = setInterval(() => {
-                const userData = UserStorage.getUser();
-                console.log('hello');
-                if (userData.isLoggedIn === true)
-                    clearInterval(this.userStorageInterval);
 
-                this.setState({
-                    userInfo: userData
-                })
-            }, 1000);
-        }
+    componentWillUnmount(){
+        this._mounted = false;
     }
+
     buy = (prize: Prize) => {
         fetch('api/Purchase/Purchase', {
             method: 'POST',
@@ -116,10 +101,11 @@ export class Prizes extends React.Component<any, any> {
             price: prize.price,
             isGivenAway: false,
             purchaseId: data.id,
-            userEmail: this.state.userInfo.email
+            userEmail: this.props.userInfo.email
         });
 
-        UserStorage.decrementBalance(prize.price);
+        //UserStorage.decrementBalance(prize.price);
+        this.props.onDecrementBalance(prize.price);
 
         this.setState({
             purchaseId: data.id,
@@ -212,7 +198,6 @@ export class Prizes extends React.Component<any, any> {
                         state={this.state.purchaseModalState}
                         purchaseId={this.state.purchaseId} />
                 </Container>
-
             </div>
         );
     }
@@ -225,9 +210,9 @@ export class Prizes extends React.Component<any, any> {
                             prize={prize}
                             onBuy={this.openPrizeModal}
                             onOpenPurchaseQR={this.openPurchasedQRModal}
-                            balance={this.state.userInfo.balance}
+                            balance={this.props.userInfo.balance}
                             purchased={this.isPurchased(prize.id)}
-                            userLogedIn={this.state.userInfo.isLoggedIn}
+                            userLogedIn={this.props.userInfo.isLoggedIn}
                         />
                     </div>
                 )}

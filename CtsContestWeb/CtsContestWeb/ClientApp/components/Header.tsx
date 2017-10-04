@@ -28,11 +28,11 @@ export type HeaderState = {
     collapsed: boolean;
 }
 
-export class Header extends React.Component<{}, HeaderState> {
+export class Header extends React.Component<any, HeaderState> {
 
     handleItemClick = (e: any, { name }: any) => this.setState({ activeItem: name })
-    constructor() {
-        super();
+    constructor(props:any) {
+        super(props);
 
         let collapsed = false;
         if (window.innerWidth <= 768)
@@ -78,7 +78,7 @@ export class Header extends React.Component<{}, HeaderState> {
                 {!this.state.collapsed
                     ?
                     <Menu.Menu position="right">
-                        <Login />
+                        <Login userInfo={this.props.userInfo}/>
                     </Menu.Menu>
                     : ""
                 }

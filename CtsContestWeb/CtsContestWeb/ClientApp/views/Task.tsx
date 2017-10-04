@@ -2,9 +2,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import AceEditor from 'react-ace';
 import { RouteComponentProps } from 'react-router-dom';
-import { Responsive, Grid, Segment, Divider, Header, Button } from 'semantic-ui-react';
+import { Responsive, Grid, Segment, Divider, Header, Button, Container, Loader } from 'semantic-ui-react';
 import * as brace from 'brace';
-import {UserStorage} from '../storage/UserStorage';
 
 import 'brace/mode/jsx';
 import 'brace/theme/monokai';
@@ -15,10 +14,10 @@ import 'brace/ext/searchbox';
 import 'brace/mode/javascript';
 
 export class TaskComponent extends React.Component<any, any> {
-    constructor(props: any){
+    constructor(props: any) {
         super(props);
 
-        this.state = { 
+        this.state = {
             taskId: this.props.match.params.id,
             theme: 'monokai',
             mode: 'javascript',
@@ -42,7 +41,7 @@ export class TaskComponent extends React.Component<any, any> {
                     delete data.codes[language];
                     delete data.names[language];
                 });
-                
+
                 this.setState({ languages: data, loadingLanguages: false });
 
                 for (let key in data.names) {
@@ -82,12 +81,12 @@ export class TaskComponent extends React.Component<any, any> {
             method: 'PUT',
             body: formData
         })
-        .then(response => response.json() as Promise<CompileResult>)
-        .then(data => {
+            .then(response => response.json() as Promise<CompileResult>)
+            .then(data => {
                 let task = this.state.task;
                 task.isSolved = data.resultCorrect && data.compiled;
-                if(task.isSolved)
-                    UserStorage.incrementBalance(task.value);
+                if (task.isSolved)
+                    this.props.onIncrementBalance(task.value);
                 this.setState({
                     compileResult: data,
                     task: task
@@ -101,35 +100,27 @@ export class TaskComponent extends React.Component<any, any> {
             .then(data => {
                 this.setState({ task: data, loadingTask: false });
             });
-
-        fetch('api/User', {
-            credentials: 'include'
-        })
-            .then(response => response.json() as Promise<UserInfo>)
-            .then(data => {
-                this.setState({ userInfo: data, loadingUserInfo: false });
-            });
     }
 
     getHighlighter(name: string) {
         switch (name) {
-            case 'c': 
+            case 'c':
                 return 'c_cpp';
-            case 'cpp': 
+            case 'cpp':
                 return 'c_cpp';
-            case 'go': 
+            case 'go':
                 return 'golang';
-            case 'sbcl': 
+            case 'sbcl':
                 return 'lisp';
-            case 'python3': 
+            case 'python3':
                 return 'python';
-            case 'visualbasic': 
+            case 'visualbasic':
                 return 'vbscript';
-            default: 
+            default:
                 return name;
         }
     }
-     
+
     setMode(e: any) {
         this.setState({
             mode: this.getHighlighter(e.target.value),
@@ -141,7 +132,7 @@ export class TaskComponent extends React.Component<any, any> {
         let disabledButton = true;
         if (newValue.length > 0)
             disabledButton = false;
-            
+
         this.setState({
             value: newValue,
             disabledButton: disabledButton
@@ -150,125 +141,140 @@ export class TaskComponent extends React.Component<any, any> {
 
     private static renderLanguages(languages: Languages, setMode: any, selectedLanguage: string) {
         return <select name="mode" onChange={setMode} value={selectedLanguage}>
-                    {Object.keys(languages.names).sort().map((lang) => <option  key={lang} value={lang}>{languages.names[lang]}</option>)}
-                </select>;
+            {Object.keys(languages.names).sort().map((lang) => <option key={lang} value={lang}>{languages.names[lang]}</option>)}
+        </select>;
     }
 
     private static renderTask(task: Task) {
         return <div>
-            <Header as='h2'>{ task.name }</Header>
-            <div className="content" dangerouslySetInnerHTML={{__html: task.description}}></div>
+            <div className="content" dangerouslySetInnerHTML={{ __html: task.description }}></div>
         </div>;
     }
 
     private static renderResult(compileResult: CompileResult) {
-        return  <span>
-                { compileResult.resultCorrect ?
-                    <p className="success-message">
-                        You successfully resolved this task. Congratulations!
+        return <span>
+            {compileResult.resultCorrect ?
+                <p className="success-message">
+                    You successfully resolved this task. Congratulations!
                     </p>
-                    :
-                    <p className="error-message">
-                        Failed {compileResult.failedInputs} out of {compileResult.totalInputs} inputs.
+                :
+                <p className="error-message">
+                    Failed {compileResult.failedInputs} out of {compileResult.totalInputs} inputs.
                     </p>
-                }
-            </span>;
+            }
+        </span>;
     }
 
     private static renderCompileResult(compileResult: CompileResult) {
         return <div>
-                { compileResult.message ?
-                    <p className="error-message">
-                        {compileResult.message}
-                    </p>
-                    :
-                    this.renderResult(compileResult)
-                }
-            </div>;
+            {compileResult.message ?
+                <p className="error-message">
+                    {compileResult.message}
+                </p>
+                :
+                this.renderResult(compileResult)
+            }
+        </div>;
     }
-
     render() {
+        const taskHeaderName = this.state.loadingTask
+            ? ''
+            : this.state.task.name;
         let selectOptions = this.state.loadingLanguages
             ? <em>Loading...</em>
             : TaskComponent.renderLanguages(this.state.languages, this.setMode, this.state.selectedLanguage);
-        
+
         let task = this.state.loadingTask
-            ? <em>Loading...</em>
+            ? <Loader active>Loading</Loader>
             : TaskComponent.renderTask(this.state.task);
 
-        let compileResult = this.state.compileResult 
+        let compileResult = this.state.compileResult
             ? TaskComponent.renderCompileResult(this.state.compileResult)
             : <em>Loading...</em>;
 
         if (!this.state.loadingTask && this.state.task.isSolved) {
             var submitButton = this.state.showResults ? <div></div> : <div className="success-message">You successfully resolved this task.</div>;
         } else {
-            var submitButton = !this.state.loadingUserInfo && this.state.userInfo.isLoggedIn ?
+            var submitButton = this.props.userInfo.isLoggedIn ?
                 <div><Button onClick={this.compileCode} disabled={this.state.disabledButton} primary>Submit</Button></div>
                 : <div className="error-message">Please login before solving tasks</div>;
         }
 
-        return <div>
-            <h1>Solve this task</h1>
+        return (
             <div>
-            
-                <Grid columns={2} relaxed>
-                    <Grid.Column mobile={16} tablet={8} computer={8}>
-                        <Segment basic>
+                <Container fluid>
+                    <div style={{ paddingTop: 20 }}>
+                        <Header as='h1' textAlign='left'>
+                            <Header.Content>
+                                {taskHeaderName}
+                            </Header.Content>
+                        </Header>
+                    </div>
+                </Container>
+
+                <Divider />
+
+                <Container fluid>
+
+                    <Grid columns={2} relaxed>
+                        <Grid.Column mobile={16} tablet={8} computer={8}>
+                            {/* <Segment basic> */}
                             {task}
-                        </Segment>
-                    </Grid.Column>
+                            {/* </Segment> */}
+                        </Grid.Column>
 
-                    <Grid.Column mobile={16} tablet={8} computer={8}>
-                    <Segment basic>
-                        <div className="field language-select">
-                            <label>
-                            Language:
-                            </label>
-                            <p className="control">
-                                <span className="select">
-                                    {selectOptions}
-                                </span>
-                            </p>
-                        </div>
-                        <Responsive onUpdate={this.handleResize}>
-                            <AceEditor 
-                                mode={this.state.mode}
-                                theme="monokai" 
-                                name="code" 
-                                fontSize={14} 
-                                showPrintMargin={true} 
-                                showGutter={true} 
-                                highlightActiveLine={true}
-                                value={this.state.value}
-                                onChange={this.onChange}
-                                width={this.state.editorWidth}
-                                setOptions={{
-                                    enableBasicAutocompletion: false,
-                                    enableLiveAutocompletion: true,
-                                    enableSnippets: false,
-                                    showLineNumbers: true,
-                                    tabSize: 4,
-                                }}
-                            />
-                            { submitButton }
+                        <Grid.Column mobile={16} tablet={8} computer={8}>
+                            {/* <Segment basic> */}
+                                <div className="field language-select">
+                                    <label>
+                                        Language:
+                                    </label>
+                                    <p className="control">
+                                        <span className="select">
+                                            {selectOptions}
+                                        </span>
+                                    </p>
+                                </div>
+                                <Responsive onUpdate={this.handleResize}>
+                                    <AceEditor
+                                        mode={this.state.mode}
+                                        theme="monokai"
+                                        name="code"
+                                        fontSize={14}
+                                        showPrintMargin={true}
+                                        showGutter={true}
+                                        highlightActiveLine={true}
+                                        value={this.state.value}
+                                        onChange={this.onChange}
+                                        width={this.state.editorWidth}
+                                        setOptions={{
+                                            enableBasicAutocompletion: false,
+                                            enableLiveAutocompletion: true,
+                                            enableSnippets: false,
+                                            showLineNumbers: true,
+                                            tabSize: 4,
+                                        }}
+                                    />
+                                    {submitButton}
 
-                            { this.state.showResults ?
-                                <Segment>
-                                    <Header as='h2'>Result</Header>
-                                    {compileResult}
-                                </Segment>
-                                : <div></div>
-                            }
-                        </Responsive>
-                        
-                    </Segment>
-                    </Grid.Column>
-                </Grid>
+                                    {this.state.showResults ?
+                                        <Segment>
+                                            <Header as='h2'>Result</Header>
+                                            {compileResult}
+                                        </Segment>
+                                        : <div></div>
+                                    }
+                                </Responsive>
 
+                            {/* </Segment> */}
+                        </Grid.Column>
+                    </Grid>
+
+                </Container>
+                <div style={{height: 20}}></div>
             </div>
-        </div>;
-    
+        )
+
     }
 }
 

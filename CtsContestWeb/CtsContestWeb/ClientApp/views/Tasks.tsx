@@ -10,7 +10,8 @@ interface TasksState {
     loading: boolean;
 }
 
-export class Tasks extends React.Component<RouteComponentProps<{}>, TasksState> {
+export class Tasks extends React.Component<any, TasksState> {
+    _mounted: boolean;
     constructor() {
         super();
         this.state = { tasks: [], loading: true };
@@ -18,10 +19,16 @@ export class Tasks extends React.Component<RouteComponentProps<{}>, TasksState> 
         fetch('api/Task')
             .then(response => response.json() as Promise<Task[]>)
             .then(data => {
-                this.setState({ tasks: data, loading: false });
+                if (this._mounted)
+                    this.setState({ tasks: data, loading: false });
             });
     }
-
+    componentDidMount() {
+        this._mounted = true;
+    }
+    componentWillUnmount() {
+        this._mounted = false;
+    }
     public render() {
         let contents = this.state.loading
             ? <Loader active>Loading</Loader>
@@ -34,7 +41,7 @@ export class Tasks extends React.Component<RouteComponentProps<{}>, TasksState> 
                         <Icon name='tasks' circular />
                         <Header.Content>
                             Tasks
-                            </Header.Content>
+                        </Header.Content>
                     </Header>
                 </div>
             </Container>
@@ -43,9 +50,9 @@ export class Tasks extends React.Component<RouteComponentProps<{}>, TasksState> 
                 <p>Solve coding tasks and earn points!</p>
                 <div style={{ height: 10 }} />
             </Container>
-             <Container fluid>
+            <Container fluid>
                 {contents}
-                <div style={{height: 10}}></div>
+                <div style={{ height: 10 }}></div>
             </Container>
         </div>;
     }
@@ -58,7 +65,7 @@ export class Tasks extends React.Component<RouteComponentProps<{}>, TasksState> 
                 content: this.createTasksSelectionTable(value)
             }))
             .value();
-        return <Accordion panels={panels} styled fluid/>;
+        return <Accordion panels={panels} styled fluid />;
     }
 
     private static createTasksSelectionTable(tasks: Task[]) {

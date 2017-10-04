@@ -2,41 +2,25 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Responsive, Label, Button, Header as Header, Image, Modal, Icon } from 'semantic-ui-react'
 import { Link, NavLink } from 'react-router-dom';
-import { UserStorage } from '../storage/UserStorage';
+
 interface LoginModalState {
     modalHeight: number;
-    userInfo: any;
     loading: boolean;
 }
 
-export class Login extends React.Component<{}, LoginModalState> {
-    constructor() {
-        super();
+export class Login extends React.Component<any, LoginModalState> {
+    constructor(props:any) {
+        super(props);
 
         let modalHeight = 200;
         if (window.innerWidth < 768)
             modalHeight = window.innerHeight - 200;
         this.state = {
             modalHeight: modalHeight,
-            userInfo: null,
             loading: true
         }
 
         this.handleResize = this.handleResize.bind(this);
-
-        UserStorage.onSaveUser(() => {
-            this.setState({ userInfo: UserStorage.getUser(), loading: false });
-        });
-    }
-
-    componentDidMount() {
-        fetch('api/User', {
-            credentials: 'include'
-        })
-            .then(response => response.json() as Promise<UserInfo>)
-            .then(data => {
-                UserStorage.saveUser(data);
-            });
     }
 
     handleResize = () => {
@@ -47,18 +31,18 @@ export class Login extends React.Component<{}, LoginModalState> {
     }
 
     public render() {
-        let contents = !this.state.loading && this.state.userInfo.isLoggedIn
-            ? this.renderLoggedInView(this.state.userInfo)
+        let contents = this.props.userInfo.isLoggedIn
+            ? this.renderLoggedInView(this.props.userInfo)
             : Login.renderLoginModal(this.state.modalHeight, this.handleResize)
 
         return contents;
     }
 
-    private renderLoggedInView(userInfo: UserInfo) {
+    private renderLoggedInView(userInfo: any) {
         return (
             <div className="right-menu">
                 <a className='item'>Hello, {userInfo.name}!</a>
-                <div className="item" style={{ fontWeight: 'bold' }}>{this.state.userInfo.balance} &nbsp;<Icon name='money' /></div> {/* Get balance from userinfo */}
+                <div className="item" style={{ fontWeight: 'bold' }}>{userInfo.balance} &nbsp;<Icon name='money' /></div>
                 <a className='item' href="https://cts-contest.azurewebsites.net/.auth/logout?post_logout_redirect_uri=/">Logout</a>
             </div>
         );
