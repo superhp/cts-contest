@@ -35,7 +35,7 @@ namespace CtsContestWeb.Communication
             });
 
             var prizes = await taskCompletion.Task;
-            var purchases = _purchaseRepository.GetAll().ToList();
+            var purchases = await _purchaseRepository.GetAll();
 
             foreach (var item in prizes)
             {
@@ -64,7 +64,8 @@ namespace CtsContestWeb.Communication
             });
 
             var prize = await taskCompletion.Task;
-            var purchasesCount = _purchaseRepository.GetAll().Count(p => p.PrizeId == prize.Id);
+            var purchases = await _purchaseRepository.GetAll();
+            var purchasesCount = purchases.Count(p => p.PrizeId == prize.Id);
 
             prize.Quantity -= purchasesCount;
             prize.Picture = pictureUrl + prize.Picture;
