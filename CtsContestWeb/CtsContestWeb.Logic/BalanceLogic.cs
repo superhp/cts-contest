@@ -31,14 +31,13 @@ namespace CtsContestWeb.Logic
 
         public async Task<int> GetCurrentBalance(string userEmail)
         {
-            return await GetTotalEarnedMoney(userEmail) - await GetTotalSpentMoney(userEmail);
+            return GetTotalEarnedMoney(userEmail) - await GetTotalSpentMoney(userEmail);
         }
 
-        private async Task<int> GetTotalEarnedMoney(string userEmail)
+        private int GetTotalEarnedMoney(string userEmail)
         {
-            var ids = _solRep.GetTaskIdsByUserEmail(userEmail);
-            var tasks = await System.Threading.Tasks.Task.WhenAll(ids.Select(x => _taskManager.GetTaskById(x)));
-            var sum = tasks.Select(x => x.Value).DefaultIfEmpty(0).Sum();
+            var solutions = _solRep.GetSolutionsByUserEmail(userEmail);
+            var sum = solutions.Select(x => x.Score).DefaultIfEmpty(0).Sum();
             return sum;
         }
 

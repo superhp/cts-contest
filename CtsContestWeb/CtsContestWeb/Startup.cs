@@ -16,6 +16,8 @@ using CtsContestWeb.Communication;
 using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Logic;
 using CtsContestWeb.Middleware;
+using CtsContestWeb.Logic;
+using CtsContestWeb.Middleware.Auth;
 
 namespace CtsContestWeb
 {
@@ -32,6 +34,14 @@ namespace CtsContestWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddAuthentication(options =>
+                {
+                    // the scheme name has to match the value we're going to use in AuthenticationBuilder.AddScheme(...)
+                    options.DefaultAuthenticateScheme = "Azure Login Scheme";
+                    options.DefaultChallengeScheme = "Azure Login Scheme";
+                })
+                .AddAzureLoginAuth(o => { });
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
@@ -52,6 +62,8 @@ namespace CtsContestWeb
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
@@ -122,6 +134,7 @@ namespace CtsContestWeb
                                 {
                                     claims.Add(new Claim(claim["typ"].ToString(), claim["val"].ToString()));
                                 }
+                                claims.Add(new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity"));
 
                                 // Set user in current context as claims principal
                                 var identity = new GenericIdentity(userId);

@@ -42,21 +42,25 @@ namespace CtsContestWeb.Controllers
             };
         }
 
-        [Authorize]
         [HttpGet("purchases")]
         public async Task<List<PurchaseDto>> GetUserPurchases()
         {
-            var userEmail = User.FindFirst(ClaimTypes.Email).Value;
-            var purchases = await _purchaseRepository.GetAllByUserEmail(userEmail);
-
-            return purchases.ToList().Select(p => new PurchaseDto
+            if (User.Identity.IsAuthenticated)
             {
-                PrizeId = p.PrizeId,
-                Price = p.Cost,
-                IsGivenAway = p.GivenPurchase != null,
-                PurchaseId = p.PurchaseId,
-                UserEmail = userEmail
-            }).ToList();
+                var userEmail = User.FindFirst(ClaimTypes.Email).Value;
+                var purchases = await _purchaseRepository.GetAllByUserEmail(userEmail);
+
+                return purchases.ToList().Select(p => new PurchaseDto
+                {
+                    PrizeId = p.PrizeId,
+                    Price = p.Cost,
+                    IsGivenAway = p.GivenPurchase != null,
+                    PurchaseId = p.PurchaseId,
+                    UserEmail = userEmail
+                }).ToList();
+            }
+
+            return new List<PurchaseDto>();
         }
     }
 }

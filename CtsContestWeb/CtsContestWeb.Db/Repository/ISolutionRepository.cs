@@ -7,5 +7,6 @@ namespace CtsContestWeb.Db.Repository
     {
         IEnumerable<int> GetTaskIdsByUserEmail(string userEmail);
         void Create(Solution solution);
+        IEnumerable<Solution> GetSolutionsByUserEmail(string userEmail);
     }
 }

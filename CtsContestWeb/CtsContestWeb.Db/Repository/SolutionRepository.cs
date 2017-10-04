@@ -25,5 +25,10 @@ namespace CtsContestWeb.Db.Repository
         {
             return _dbContext.Solutions.Where(x => x.UserEmail == userEmail).Select(x => x.TaskId);
         }
+
+        public IEnumerable<Solution> GetSolutionsByUserEmail(string userEmail)
+        {
+            return _dbContext.Solutions.Where(x => x.UserEmail == userEmail);
+        }
     }
 }
