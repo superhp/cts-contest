@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using CtsContestWeb.Db.Entities;
 using CtsContestWeb.Dto;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace CtsContestWeb.Db.Repository
 {
@@ -31,9 +33,12 @@ namespace CtsContestWeb.Db.Repository
             return purchase.PurchaseId;
         }
 
-        public IEnumerable<Purchase> GetAllByUserEmail(string userEmail)
+        public async Task<IEnumerable<Purchase>> GetAllByUserEmail(string userEmail)
         {
-            return _dbContext.Purchases.Where(x => x.UserEmail == userEmail);
+            var purchases = _dbContext.Purchases.Where(x => x.UserEmail == userEmail);
+            await purchases.ForEachAsync(p => p.GivenPurchase = _dbContext.GivenPurchases.Find(p.PurchaseId)); ;
+
+            return purchases;
         }
 
         public bool GiveAway(Guid id)
@@ -61,9 +66,12 @@ namespace CtsContestWeb.Db.Repository
             };
         }
 
-        public IEnumerable<Purchase> GetAll()
+        public async Task<IEnumerable<Purchase>> GetAll()
         {
-            return _dbContext.Purchases;
+            var purchases = _dbContext.Purchases;
+            await purchases.ForEachAsync(p => p.GivenPurchase = _dbContext.GivenPurchases.Find(p.PurchaseId));
+
+            return purchases;
         }
     }
 }

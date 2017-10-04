@@ -44,11 +44,12 @@ namespace CtsContestWeb.Controllers
 
         [Authorize]
         [HttpGet("purchases")]
-        public List<PurchaseDto> GetUserPurchases()
+        public async Task<List<PurchaseDto>> GetUserPurchases()
         {
             var userEmail = User.FindFirst(ClaimTypes.Email).Value;
+            var purchases = await _purchaseRepository.GetAllByUserEmail(userEmail);
 
-            return _purchaseRepository.GetAllByUserEmail(userEmail).ToList().Select(p => new PurchaseDto
+            return purchases.ToList().Select(p => new PurchaseDto
             {
                 PrizeId = p.PrizeId,
                 Price = p.Cost,
