@@ -7,7 +7,7 @@ class Board extends React.Component {
     constructor(props) {
         super(props);
         dotnetify.react.connect("BoardLoader", this);
-        this.state = { Board: "", Prizes: "", ShowLeaderboard: false }
+        this.state = { Board: [], Prizes: [], ShowLeaderboard: false }
     }
 
     render() {
@@ -17,7 +17,7 @@ class Board extends React.Component {
                     {
                         this.state.ShowLeaderboard ?
                             <LeaderBoard data={this.state.Board} /> :
-                            <PrizeBoard /> 
+                            <PrizeBoard prizes={this.state.Prizes} /> 
                     }
                 </div>
             </div>

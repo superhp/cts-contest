@@ -9,7 +9,7 @@ export default class LeaderBoard extends React.Component {
         console.log(props);
     }
     render() {
-        let userlist = this.props.data.map((Board, i) => <User username={Board.Name} score={Board.Score} rank={i}/>);
+        const userlist = this.props.data.map((Board, i) => <User username={Board.Name} score={Board.Score} rank={i+1} key={i} />);
         return (
             <div className="container">
                 <LeaderboardHeader />
