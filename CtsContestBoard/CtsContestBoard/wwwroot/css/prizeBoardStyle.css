@@ -1,0 +1,14 @@
+﻿body {
+    font-family: "Montserrat", sans-serif;
+    padding: 40px;
+}
+
+.cardHeader {
+    background-color: rgba(0, 94, 128, 0.9) !important;
+}
+
+.headerText  {
+    vertical-align: central;
+    color: whitesmoke !important;
+}
+
