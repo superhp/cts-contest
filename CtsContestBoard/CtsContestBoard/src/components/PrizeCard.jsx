@@ -13,7 +13,7 @@ export default class PrizeCard extends React.Component {
         if (this.props.prize.Quantity <= 3 && this.props.prize.Quantity > 0) label = <Label color='yellow' ribbon>ONLY {this.props.prize.Quantity} LEFT!</Label>;
         if (this.props.prize.Quantity === 0) label = <Label color='red' ribbon>SOLD OUT</Label>;
         return (
-            <Card>
+            <Card className="prizeCard">
                     
                     <Image src={this.props.prize.Picture} />
                     <Card.Content className="cardHeader">

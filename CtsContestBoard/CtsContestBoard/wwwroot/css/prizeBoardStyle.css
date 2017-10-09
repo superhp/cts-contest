@@ -3,8 +3,13 @@
     padding: 40px;
 }
 
+.card-row{
+    height: 100% !important;
+}
+
 .cardHeader {
     background-color: rgba(0, 94, 128, 0.9) !important;
+    overflow: hidden;
 }
 
 .headerText  {
@@ -12,3 +17,11 @@
     color: whitesmoke !important;
 }
 
+.prizeCard {
+    display: table-cell !important; /* Make elements inside the container behave like table cells */
+}
+
+.prizeCardRow {
+    display: table !important; /* Make the container element behave like a table */
+    width: 100% !important; /* Set full-width to expand the whole page */
+}

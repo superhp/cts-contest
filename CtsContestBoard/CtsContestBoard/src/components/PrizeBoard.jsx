@@ -9,7 +9,7 @@ export default class PrizeBoard extends React.Component {
     render() {
         return (
             <div>
-                <div className='row'>
+                <div className="row prizeCardRow">
                     {this.props.prizes.map((prize, index) =>
                         <div className='col-xs-6 col-sm-4 col-md-3 col-lg-2 col-centered' key={index} style={{ paddingBottom: 20 }}>
                             <PrizeCard
