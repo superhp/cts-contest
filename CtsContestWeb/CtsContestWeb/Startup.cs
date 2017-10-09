@@ -16,7 +16,6 @@ using CtsContestWeb.Communication;
 using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Logic;
 using CtsContestWeb.Middleware;
-using CtsContestWeb.Logic;
 using CtsContestWeb.Middleware.Auth;
 
 namespace CtsContestWeb
@@ -46,6 +45,7 @@ namespace CtsContestWeb
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
             services.AddScoped<ISolutionRepository, SolutionRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBalanceLogic, BalanceLogic>();
             services.AddScoped<IPurchaseLogic, PurchaseLogic>();
 
@@ -83,6 +83,7 @@ namespace CtsContestWeb
                         new Claim(ClaimTypes.Email, "LocalDev@local.com"),
                         new Claim(ClaimTypes.Surname, "Developer"),
                         new Claim(ClaimTypes.GivenName, "Test"),
+                        new Claim(ClaimTypes.Actor, "Test"),
                         new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity")
                     };
 
@@ -123,10 +124,11 @@ namespace CtsContestWeb
                             if (res.StatusCode == HttpStatusCode.OK)
                             {
                                 var jsonResult = await res.Content.ReadAsStringAsync();
-
+                         
                                 //parse json
                                 var obj = JArray.Parse(jsonResult);
                                 string userId = obj[0]["user_id"].Value<string>(); //user_id
+                                var provider = obj[0]["provider_name"].Value<string>(); 
 
                                 // Create claims id
                                 List<Claim> claims = new List<Claim>();
@@ -135,7 +137,7 @@ namespace CtsContestWeb
                                     claims.Add(new Claim(claim["typ"].ToString(), claim["val"].ToString()));
                                 }
                                 claims.Add(new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity"));
-
+                                claims.Add(new Claim(ClaimTypes.Actor, provider));
                                 // Set user in current context as claims principal
                                 var identity = new GenericIdentity(userId);
                                 identity.AddClaims(claims);

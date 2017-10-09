@@ -11,6 +11,7 @@ namespace CtsContestWeb.Db
         {
         }
 
+        public DbSet<User> Users { get; set; }
         public DbSet<Solution> Solutions { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
         public DbSet<GivenPurchase> GivenPurchases { get; set; }
@@ -23,6 +24,10 @@ namespace CtsContestWeb.Db
 
             modelBuilder.Entity<Solution>()
                 .HasIndex(p => new { p.UserEmail, p.TaskId })
+                .IsUnique(true);
+
+            modelBuilder.Entity<User>()
+                .HasIndex(p => new { p.Email })
                 .IsUnique(true);
         }
 

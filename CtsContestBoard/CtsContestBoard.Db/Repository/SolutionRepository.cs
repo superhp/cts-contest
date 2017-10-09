@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CtsContestBoard.Db.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace CtsContestBoard.Db.Repository
 {
@@ -26,7 +28,7 @@ namespace CtsContestBoard.Db.Repository
 
         public IEnumerable<Solution> GetAll()
         {
-            return _dbContext.Solutions;
+            return _dbContext.Solutions.Include(s => s.User);
         }
     }
 }

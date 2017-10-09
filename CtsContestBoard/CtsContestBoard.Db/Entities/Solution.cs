@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CtsContestBoard.Db.Entities
 {
@@ -6,6 +7,8 @@ namespace CtsContestBoard.Db.Entities
     {
         public int SolutionId { get; set; }
         public string UserEmail { get; set; }
+        [ForeignKey("UserEmail")]
+        public User User { get; set; }
         public int TaskId { get; set; }
         public string Source { get; set; }
         public int Score { get; set; }

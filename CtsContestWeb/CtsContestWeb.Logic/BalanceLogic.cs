@@ -25,13 +25,13 @@ namespace CtsContestWeb.Logic
         {
             var prize = await _prizeManager.GetPrizeById(prizeId);
             var price = prize.Price;
-            var balance = await GetCurrentBalance(userEmail); 
+            var balance = GetCurrentBalance(userEmail); 
             return balance >= price;
         }
 
-        public async Task<int> GetCurrentBalance(string userEmail)
+        public int GetCurrentBalance(string userEmail)
         {
-            return GetTotalEarnedMoney(userEmail) - await GetTotalSpentMoney(userEmail);
+            return GetTotalEarnedMoney(userEmail) - GetTotalSpentMoney(userEmail);
         }
 
         private int GetTotalEarnedMoney(string userEmail)
@@ -41,9 +41,9 @@ namespace CtsContestWeb.Logic
             return sum;
         }
 
-        private async Task<int> GetTotalSpentMoney(string userEmail)
+        private int GetTotalSpentMoney(string userEmail)
         {
-            var purchases = await _purRep.GetAllByUserEmail(userEmail);
+            var purchases = _purRep.GetAllByUserEmail(userEmail);
             var sum = purchases.Select(x => x.Cost).DefaultIfEmpty(0).Sum();
             return sum;
         }
