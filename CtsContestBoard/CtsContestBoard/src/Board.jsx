@@ -2,6 +2,7 @@
 import dotnetify from 'dotnetify';
 import LeaderBoard from './components/LeaderBoard.jsx';
 import PrizeBoard from './components/PrizeBoard.jsx';
+import SpecialPrizeBoard from './components/SpecialPrizeBoard.jsx';
 
 class Board extends React.Component {
     constructor(props) {
@@ -15,9 +16,8 @@ class Board extends React.Component {
             <div>
                 <div>
                     {
-                        this.state.ShowLeaderboard ?
-                            <LeaderBoard data={this.state.Board} /> :
-                            <PrizeBoard prizes={this.state.Prizes} /> 
+                        this.state.ShowLeaderboard&&false ?
+                            <SpecialPrizeBoard /> : <LeaderBoard data={this.state.Board} />
                     }
                 </div>
             </div>

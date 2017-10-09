@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import { Header, Image, Table, Card } from 'semantic-ui-react';
+import { Header, Image, Table, Card, Grid } from 'semantic-ui-react';
 //import '../css/leaderboardStyle.css';
 
 
@@ -32,32 +32,32 @@ const LeaderboardHeader = () => {
 }
 
 const ColumnHeader = () => (
-    <div className="row colheader">
-        <div className="col-xs-2">
+    <Grid textAlign="center">
+        <Grid.Column width={2}>
             <h4>#</h4>
-        </div>
-        <div className="col-xs-7">
+        </Grid.Column>
+        <Grid.Column width={10}>
             <h4>Name</h4>
-        </div>
-        <div className="col-xs-3 recent">
+        </Grid.Column>
+        <Grid.Column width={4} className="recent">
             <h4>Score</h4>
-        </div>
-    </div>
+        </Grid.Column>
+    </Grid>
     );
 
 const User = ({ username, score, rank}) => {
     return (
-        <div className="row users  vcenter">
-            <div className="col-xs-2 rank">
+        <Grid className="users vcenter">
+            <Grid.Column width={2} className="rank">
                 <h4>{rank}</h4>
-            </div>
-            <div className="col-xs-7 name">
+            </Grid.Column>
+            <Grid.Column width={10} className="name">
                 <h4>{username}</h4>
-            </div>
-            <div className="col-xs-3">
+            </Grid.Column>
+            <Grid.Column width={4} textAlign="center">
                 <h4>{score}</h4>
-            </div>
-        </div>
+            </Grid.Column>
+        </Grid>
     )
 }
 
