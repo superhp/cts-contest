@@ -4,10 +4,10 @@ import { Card, Feed } from 'semantic-ui-react'
 export default class UserCard extends React.Component {
     render() {
         return (
-            <Card>
+            <Card className="podium-user-info">
                 <Feed>
                     <Feed.Event>
-                        <Feed.Label image='https://react.semantic-ui.com/assets/images/avatar/small/jenny.jpg'/>
+                        <Feed.Label image='https://i.pinimg.com/236x/ba/f9/58/baf958abca0e1e917e8520ea2dab5726--nicholas-cage-face-nicholas-dagosto.jpg'/>
                         <Feed.Content>
                             <Feed.Summary>
                                 Jonas Melynas
@@ -16,9 +16,6 @@ export default class UserCard extends React.Component {
                         </Feed.Content>
                     </Feed.Event>
                 </Feed>
-                <Card.Content>
-                    
-                </Card.Content>
             </Card>
         );
     }

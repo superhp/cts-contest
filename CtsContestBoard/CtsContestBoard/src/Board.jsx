@@ -17,7 +17,8 @@ class Board extends React.Component {
                 <div>
                     {
                         this.state.ShowLeaderboard&&false ?
-                            <SpecialPrizeBoard /> : <LeaderBoard data={this.state.Board} />
+                            <LeaderBoard data={this.state.Board} /> :
+                            <SpecialPrizeBoard /> 
                     }
                 </div>
             </div>
