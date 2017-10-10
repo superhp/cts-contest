@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import UserCard from './UserCard.jsx';
-import { Grid } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react';
 
 export default class SpecialPrizeBoard extends React.Component {
     render() {

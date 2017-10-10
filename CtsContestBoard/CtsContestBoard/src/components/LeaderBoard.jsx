@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import { Header, Image, Table, Card, Grid } from 'semantic-ui-react';
-//import '../css/leaderboardStyle.css';
 
 
 export default class LeaderBoard extends React.Component {
