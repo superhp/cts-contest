@@ -57,7 +57,20 @@ export default class Prize extends React.Component {
                 purchase: data,
                 loading: false
             });
-        });
+        }).catch(error => this.goBackOnError(error));
+    }
+
+    goBackOnError(error) {
+        console.log(error);
+
+        Alert.alert(
+            'No purchase with given QR code',
+            'You will be redirected back to QR code scanner',
+            [
+                {text: 'OK', onPress: () => this.goBack() },
+            ],
+            { cancelable: false }
+        )
     }
 
     giveAway(purchaseId) {

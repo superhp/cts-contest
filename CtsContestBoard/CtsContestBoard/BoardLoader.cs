@@ -67,14 +67,24 @@ namespace CtsContestBoard
 
         private void UpdateBoard()
         {
-            var lastId = _solutions.Max(s => s.SolutionId);
-            var newSolutions = _solutionRepository.GetAll().Where(s => s.SolutionId > lastId);
+            int lastId = 0;
+            if (_solutions.Count > 0)
+                lastId = _solutions.Max(s => s.SolutionId);
+
+            var spentPoints = _purchases.GroupBy(p => p.UserEmail)
+                .Select(gp => new {UserEmail = gp.First().UserEmail, Points = gp.Sum(p => p.Cost)}).ToList();
+            var newSolutions = _solutionRepository.GetAll().Where(s => s.SolutionId > lastId).ToList();
             _solutions.AddRange(newSolutions);
 
-            _board = _solutions.GroupBy(s => s.UserEmail).Select(ss => new ParticipantDto
+            var groupedSolutions = _solutions.GroupBy(s => s.UserEmail).ToList();
+
+            _board = groupedSolutions.Select(ss => new ParticipantDto
             {
-                Name = ss.First().UserEmail,
-                Score = ss.Sum(sc => sc.Score)
+                Name = ss.First().User.FullName,
+                Picture = ss.First().User.Picture,
+                TotalEarnedPoints = ss.Sum(sc => sc.Score),
+                Balance = ss.Sum(sc => sc.Score) - spentPoints.Where(p => p.UserEmail.Equals(ss.First().User.Email)).Sum(p => p.Points),
+                TodayEarnedPoints = ss.Where(s => s.Created.Date == DateTime.Today).Sum(p => p.Score)
             }).ToList();
         }
 

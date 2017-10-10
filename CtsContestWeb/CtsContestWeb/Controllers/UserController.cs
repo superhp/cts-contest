@@ -15,23 +15,26 @@ namespace CtsContestWeb.Controllers
     {
         private readonly IBalanceLogic _balanceLogic;
         private readonly IPurchaseRepository _purchaseRepository;
+        private readonly IUserRepository _userRepository;
 
-        public UserController(IBalanceLogic balanceLogic, IPurchaseRepository purchaseRepository)
+        public UserController(IBalanceLogic balanceLogic, IPurchaseRepository purchaseRepository, IUserRepository userRepository)
         {
             _balanceLogic = balanceLogic;
             _purchaseRepository = purchaseRepository;
+            _userRepository = userRepository;
         }
 
         [HttpGet("")]
-        public async Task<UserInfoDto> GetUser()
+        public UserInfoDto GetUser()
         {
             if (User.Identity.IsAuthenticated)
             {
+                _userRepository.InsertIfNotExists(User);
                 return new UserInfoDto
                 {
                     Email = User.FindFirst(ClaimTypes.Email).Value,
                     Name = User.FindFirst(ClaimTypes.GivenName).Value,
-                    Balance = await _balanceLogic.GetCurrentBalance(User.FindFirst(ClaimTypes.Email).Value),
+                    Balance = _balanceLogic.GetCurrentBalance(User.FindFirst(ClaimTypes.Email).Value),
                     IsLoggedIn = true
                 };
             }
@@ -43,12 +46,12 @@ namespace CtsContestWeb.Controllers
         }
 
         [HttpGet("purchases")]
-        public async Task<List<PurchaseDto>> GetUserPurchases()
+        public List<PurchaseDto> GetUserPurchases()
         {
             if (User.Identity.IsAuthenticated)
             {
                 var userEmail = User.FindFirst(ClaimTypes.Email).Value;
-                var purchases = await _purchaseRepository.GetAllByUserEmail(userEmail);
+                var purchases = _purchaseRepository.GetAllByUserEmail(userEmail);
 
                 return purchases.ToList().Select(p => new PurchaseDto
                 {

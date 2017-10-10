@@ -33,12 +33,9 @@ namespace CtsContestWeb.Db.Repository
             return purchase.PurchaseId;
         }
 
-        public async Task<IEnumerable<Purchase>> GetAllByUserEmail(string userEmail)
+        public IEnumerable<Purchase> GetAllByUserEmail(string userEmail)
         {
-            var purchases = _dbContext.Purchases.Where(x => x.UserEmail == userEmail);
-            await purchases.ForEachAsync(p => p.GivenPurchase = _dbContext.GivenPurchases.Find(p.PurchaseId)); ;
-
-            return purchases;
+            return _dbContext.Purchases.Where(x => x.UserEmail == userEmail).Include(p => p.GivenPurchase);
         }
 
         public bool GiveAway(Guid id)
@@ -66,12 +63,9 @@ namespace CtsContestWeb.Db.Repository
             };
         }
 
-        public async Task<IEnumerable<Purchase>> GetAll()
+        public IEnumerable<Purchase> GetAll()
         {
-            var purchases = _dbContext.Purchases;
-            await purchases.ForEachAsync(p => p.GivenPurchase = _dbContext.GivenPurchases.Find(p.PurchaseId));
-
-            return purchases;
+            return _dbContext.Purchases.Include(p => p.GivenPurchase);
         }
     }
 }
