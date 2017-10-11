@@ -73,5 +73,11 @@ namespace CtsContestWeb.Controllers
         {
             return await _compiler.GetLanguages();
         }
+
+        [HttpGet("[action]/{language}")]
+        public async Task<CodeSkeletonDto> GetCodeSkeleton(string language)
+        {
+            return await _taskManager.GetCodeSkeleton(language);
+        }
     }
 }

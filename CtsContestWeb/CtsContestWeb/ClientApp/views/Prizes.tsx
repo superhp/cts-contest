@@ -51,7 +51,9 @@ export class Prizes extends React.Component<any, any> {
                 this.setState({ prizes: data, loading: false });
             });
 
-        fetch('api/User/purchases')
+        fetch('api/User/purchases', {
+            credentials: 'include'
+        })
             .then(response => response.json() as Promise<any>)
             .then(data => {
                 if (this._mounted)
@@ -73,7 +75,8 @@ export class Prizes extends React.Component<any, any> {
             },
             body: JSON.stringify({
                 prizeId: prize.id,
-            })
+            }),
+            credentials: 'include'
         })
             .then(response => response.json() as Promise<Purchase>)
             .then(data => {

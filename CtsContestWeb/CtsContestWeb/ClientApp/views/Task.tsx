@@ -79,7 +79,8 @@ export class TaskComponent extends React.Component<any, any> {
         formData.append('language', languageCode);
         fetch('api/Task/Solve', {
             method: 'PUT',
-            body: formData
+            body: formData,
+            credentials: 'include'
         })
             .then(response => response.json() as Promise<CompileResult>)
             .then(data => {
@@ -121,7 +122,19 @@ export class TaskComponent extends React.Component<any, any> {
         }
     }
 
+    setCodeSkeleton(language: string) {
+        fetch('api/Task/GetCodeSkeleton/' + language)
+            .then(response => response.json() as Promise<Skeleton>)
+            .then(data => {
+                console.log(data);
+                this.onChange(data.skeleton);
+            });
+    }
+
     setMode(e: any) {
+        let language = this.state.languages.names[e.target.value];
+        this.setCodeSkeleton(language);
+
         this.setState({
             mode: this.getHighlighter(e.target.value),
             selectedLanguage: e.target.value
@@ -291,6 +304,11 @@ interface NameToCodeMap {
 interface Languages {
     names: NameToDisplayNameMap;
     codes: NameToCodeMap;
+}
+
+interface Skeleton {
+    language: string;
+    skeleton: string;
 }
 
 interface CompileResult {
