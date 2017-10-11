@@ -6,6 +6,7 @@ using CtsContestWeb.Dto;
 using Microsoft.AspNetCore.Mvc;
 using CtsContestWeb.Logic;
 using System.Security.Claims;
+using CtsContestWeb.Filters;
 using Microsoft.AspNetCore.Authorization;
 
 namespace CtsContestWeb.Controllers
@@ -49,7 +50,7 @@ namespace CtsContestWeb.Controllers
             };
         }
 
-        [Authorize]
+        [LoggedIn]
         [HttpPost("[action]")]
         public async Task<PurchaseIdDto> Purchase([FromBody] PurchaseRequestDto req)
         {

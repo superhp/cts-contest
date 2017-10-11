@@ -16,7 +16,6 @@ using CtsContestWeb.Communication;
 using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Logic;
 using CtsContestWeb.Middleware;
-using CtsContestWeb.Middleware.Auth;
 
 namespace CtsContestWeb
 {
@@ -33,14 +32,6 @@ namespace CtsContestWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
-            services.AddAuthentication(options =>
-                {
-                    // the scheme name has to match the value we're going to use in AuthenticationBuilder.AddScheme(...)
-                    options.DefaultAuthenticateScheme = "Azure Login Scheme";
-                    options.DefaultChallengeScheme = "Azure Login Scheme";
-                })
-                .AddAzureLoginAuth(o => { });
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
