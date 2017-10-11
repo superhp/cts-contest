@@ -11,7 +11,7 @@ import { Responsive } from 'semantic-ui-react'
 export class Footer extends React.Component<any, {}> {
     public render() {
         return (
-            <Segment
+            <Segment className='cg-footer'
                 inverted
                 vertical
                 style={{
@@ -20,7 +20,7 @@ export class Footer extends React.Component<any, {}> {
                     marginTop: -this.props.height
                 }}
                 textAlign='center'
-                color='blue'>
+                >
                 <Container>
                     &copy; Copyright 2017
                 </Container>

@@ -21,7 +21,7 @@ interface PrizesState {
 }
 
 export class Prizes extends React.Component<any, any> {
-    _mounted:boolean;
+    _mounted: boolean;
     constructor() {
         super();
         this.state = {
@@ -30,7 +30,7 @@ export class Prizes extends React.Component<any, any> {
 
             purchaseModalState: 'closed',
             purchaseModalOpen: false,
-            purchaseId: "",
+            purchase: {},
             purchasedItems: [],
 
             prizeModalData: {
@@ -54,13 +54,13 @@ export class Prizes extends React.Component<any, any> {
         fetch('api/User/purchases')
             .then(response => response.json() as Promise<any>)
             .then(data => {
-                if(this._mounted)
+                if (this._mounted)
                     this.setState({ purchasedItems: data });
             });
         this._mounted = true;
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this._mounted = false;
     }
 
@@ -96,19 +96,20 @@ export class Prizes extends React.Component<any, any> {
         prize.quantity = prize.quantity - 1;
 
         const purchases = this.state.purchasedItems;
-        purchases.push({
+
+        const newPurchase = {
             prizeId: prize.id,
             price: prize.price,
             isGivenAway: false,
             purchaseId: data.id,
             userEmail: this.props.userInfo.email
-        });
+        }
+        purchases.push(newPurchase);
 
-        //UserStorage.decrementBalance(prize.price);
         this.props.onDecrementBalance(prize.price);
 
         this.setState({
-            purchaseId: data.id,
+            purchase: newPurchase,
             purchaseModalState: 'loaded',
             purchasedItems: purchases,
             prizes: [
@@ -126,6 +127,14 @@ export class Prizes extends React.Component<any, any> {
         if (index === -1) return false;
         return true;
     }
+    findPrizePurchase(id: number) {
+        const purchase = this.state.purchasedItems.find((element: any) => {
+            return element.prizeId === id;
+        });
+        if (purchase !== undefined)
+            return purchase;
+        return {}
+    }
     /*
      * QR modal
      */
@@ -133,10 +142,9 @@ export class Prizes extends React.Component<any, any> {
         this.setState({
             purchaseModalOpen: true,
             purchaseModalState: 'loaded',
-            purchaseId: this.state.purchasedItems
+            purchase: this.state.purchasedItems
                 .find((element: any) =>
-                    element.prizeId === prize.id)
-                .purchaseId,
+                    element.prizeId === prize.id),
             prizeModalData: prize
         });
     }
@@ -169,21 +177,17 @@ export class Prizes extends React.Component<any, any> {
 
         return (
             <div>
-                <Container fluid>
-                    <div style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: 225, paddingTop: 20 }}>
-                        <Header as='h1' textAlign='center'>
-                            <Icon name='gift' circular />
+                <div className='cg-page-header'>
+                    <Container fluid>
+                        <Header as='h1' textAlign='center' inverted>
+                            <Icon name='gift' />
                             <Header.Content>
                                 Prizes
                             </Header.Content>
                         </Header>
-                    </div>
-                </Container>
-                <Divider />
-                <Container fluid textAlign='center'>
-                    <p>Visit a stand to collect purchased items</p>
-                    <div style={{ height: 10 }} />
-                </Container>
+                    </Container>
+                </div>
+
                 <Container fluid>
                     {contents}
                     <PrizeModal
@@ -196,7 +200,7 @@ export class Prizes extends React.Component<any, any> {
                         onClose={this.closePurchaseModal}
                         prize={this.state.prizeModalData}
                         state={this.state.purchaseModalState}
-                        purchaseId={this.state.purchaseId} />
+                        purchase={this.state.purchase} />
                 </Container>
             </div>
         );
@@ -213,6 +217,7 @@ export class Prizes extends React.Component<any, any> {
                             balance={this.props.userInfo.balance}
                             purchased={this.isPurchased(prize.id)}
                             userLogedIn={this.props.userInfo.isLoggedIn}
+                            purchase={this.findPrizePurchase(prize.id)}
                         />
                     </div>
                 )}

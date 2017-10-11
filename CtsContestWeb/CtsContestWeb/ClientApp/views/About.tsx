@@ -26,32 +26,30 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
 
         return (
             <div>
-                <div style={{ backgroundColor: '#BBDEFB' }}>
+                <div className='cg-about-header'>
                     <Segment vertical textAlign='center'>
                         <Container text >
                             <Header
                                 as='h1'
-                                content='Programming contest' 
-                                //inverted
-                                style={{ fontSize: '3em', fontWeight: 'arial', marginBottom: 0, marginTop: '0.5em' }}
+                                content='PROGRAMMING CONTEST' 
+                                inverted
+                                style={{ fontSize: '3em', fontWeight: 'arial', marginBottom: 0 }}
                             />
                             <Header
                                 as='h2'
-                                content='Do whatever you want when you want to.'
-                                //inverted
+                                content='Compete and win prizes.'
+                                inverted
                                 style={{ fontSize: '1.7em', fontWeight: 'normal' }}
                             />
-                            <Button color='blue' size='huge'>
-                                Get Started
-                                <Icon name='right arrow' />
-                            </Button>
-                            <div style={{ height: 50}} />
                         </Container>
                     </Segment>
                 </div>
                 <Segment style={{ padding: '4em 0em' }} vertical>
                     <Container>
-                        <Header as='h3' textAlign='center' style={{ fontSize: '2em' }}>About</Header>
+                        <div className='cg-title'>
+                            <h2>About</h2>
+                        </div>
+                        
                         <p style={{ fontSize: '1.33em' }}>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -60,10 +58,12 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                         </p>
                     </Container>
                     <Divider
-                        style={{ margin: '3em 0em'}}
+                        style={{ margin: '2em 0em'}}
                     />
                     <Container>
-                        <Header as='h3' textAlign='center' style={{ fontSize: '2em' }}>Prizes</Header>
+                        <div className='cg-title'>
+                            <h2>Prizes</h2>
+                        </div>
                          <p style={{ fontSize: '1.33em' }}>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -72,10 +72,12 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                         </p>
                     </Container>
                     <Divider
-                        style={{ margin: '3em 0em'}}
+                        style={{ margin: '2em 0em'}}
                     />
                     <Container>
-                        <Header as='h3' textAlign='center' style={{ fontSize: '2em' }}>How to compete?</Header>
+                         <div className='cg-title'>
+                            <h2>How to compete?</h2>
+                        </div>
                         <div style={{ fontSize: '1.33em'}}>
                             <List bulleted>
                                 <List.Item>Log in</List.Item>
@@ -87,10 +89,12 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                     </Container>
 
                     <Divider
-                        style={{ margin: '3em 0em'}}
+                        style={{ margin: '2em 0em'}}
                     />
                     <Container>
-                        <Header as='h3' textAlign='center' style={{ fontSize: '2em' }}>Rules</Header>
+                         <div className='cg-title'>
+                            <h2>Rules</h2>
+                        </div>
                          <p style={{ fontSize: '1.33em' }}>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

@@ -1,5 +1,6 @@
 import 'semantic-ui-css/semantic.min.css';
 import './css/site.css';
+import './css/brand.css';
 import 'bootstrap';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';

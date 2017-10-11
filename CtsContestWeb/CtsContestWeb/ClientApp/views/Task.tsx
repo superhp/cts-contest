@@ -237,6 +237,7 @@ export class TaskComponent extends React.Component<any, any> {
                                 </div>
                                 <Responsive onUpdate={this.handleResize}>
                                     <AceEditor
+                                        className='cg-editor'
                                         mode={this.state.mode}
                                         theme="monokai"
                                         name="code"
@@ -246,7 +247,7 @@ export class TaskComponent extends React.Component<any, any> {
                                         highlightActiveLine={true}
                                         value={this.state.value}
                                         onChange={this.onChange}
-                                        width={this.state.editorWidth}
+                                        //width={this.state.editorWidth}
                                         setOptions={{
                                             enableBasicAutocompletion: false,
                                             enableLiveAutocompletion: true,
@@ -254,6 +255,7 @@ export class TaskComponent extends React.Component<any, any> {
                                             showLineNumbers: true,
                                             tabSize: 4,
                                         }}
+                                        
                                     />
                                     {submitButton}
 
