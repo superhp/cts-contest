@@ -65,10 +65,10 @@ export class PrizeModal extends React.Component<PrizeModalProps, PrizeModalState
     public renderActions() {
         return (
             <Modal.Actions>
-                <Button color='red' onClick={this.close}>
+                <Button className='cg-bg-danger' inverted onClick={this.close}>
                     <Icon name='remove' /> No
                 </Button>
-                <Button color='green' onClick={this.buy}>
+                <Button className='cg-bg-success' inverted onClick={this.buy}>
                     <Icon name='checkmark' /> Yes
                 </Button>
 

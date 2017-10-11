@@ -34,27 +34,22 @@ export class Tasks extends React.Component<any, TasksState> {
             ? <Loader active>Loading</Loader>
             : Tasks.renderTasksAccordion(this.state.tasks);
 
-        return <div>
-            <Container fluid>
-                <div style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: 225, paddingTop: 20 }}>
-                    <Header as='h1' textAlign='center'>
-                        <Icon name='tasks' circular />
-                        <Header.Content>
-                            Tasks
+        return (
+            <div>
+                <div className='cg-page-header'>
+                    <Container fluid>
+                        <Header as='h1' textAlign='center' inverted>
+                            <Icon name='tasks' />
+                            <Header.Content>
+                                Tasks
                         </Header.Content>
-                    </Header>
+                        </Header>
+                    </Container>
                 </div>
-            </Container>
-            <Divider />
-            <Container fluid textAlign='center'>
-                <p>Solve coding tasks and earn points!</p>
-                <div style={{ height: 10 }} />
-            </Container>
-            <Container fluid>
                 {contents}
                 <div style={{ height: 10 }}></div>
-            </Container>
-        </div>;
+            </div>
+        )
     }
 
     private static renderTasksAccordion(tasks: Task[]) {
@@ -65,7 +60,7 @@ export class Tasks extends React.Component<any, TasksState> {
                 content: this.createTasksSelectionTable(value)
             }))
             .value();
-        return <Accordion panels={panels} styled fluid />;
+        return <Accordion className='cg-accordion' panels={panels} fluid />;
     }
 
     private static createTasksSelectionTable(tasks: Task[]) {
@@ -74,15 +69,18 @@ export class Tasks extends React.Component<any, TasksState> {
             tableRows.push(
                 <Table.Row positive={t.isSolved} key={t.id}>
                     <Table.Cell selectable>
-                        <Link to={"/task/" + t.id}> {t.name}</Link>
+                        <Link to={"/task/" + t.id} style={{paddingLeft: 35}}> {t.name}</Link>
                     </Table.Cell>
-                </Table.Row>);
+                </Table.Row>
+            );
         });
-        return <Table celled>
-            <Table.Body>
-                {tableRows}
-            </Table.Body>
-        </Table>;
+        return (
+            <Table>
+                <Table.Body>
+                    {tableRows}
+                </Table.Body>
+            </Table>
+        )
     }
 }
 

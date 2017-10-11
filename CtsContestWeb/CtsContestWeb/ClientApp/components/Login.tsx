@@ -42,7 +42,7 @@ export class Login extends React.Component<any, LoginModalState> {
         return (
             <div className="right-menu">
                 <a className='item'>Hello, {userInfo.name}!</a>
-                <div className="item" style={{ fontWeight: 'bold' }}>{userInfo.balance} &nbsp;<Icon name='money' /></div>
+                <div className="item cg-balance" style={{ fontWeight: 'bold' }}>{userInfo.balance} &nbsp;<Icon name='money' /></div>
                 <a className='item' href="https://cts-contest.azurewebsites.net/.auth/logout?post_logout_redirect_uri=/">Logout</a>
             </div>
         );

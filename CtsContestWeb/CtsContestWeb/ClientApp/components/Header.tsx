@@ -10,7 +10,7 @@ import { Login } from './login';
 
 const links = [
     {
-        routeTo: '/tasks',
+        routeTo: '/',
         name: 'Tasks'
     },
     {
@@ -58,20 +58,30 @@ export class Header extends React.Component<any, HeaderState> {
     public render() {
         const activeItem = this.state.activeItem;
         return (
-            <Menu size='large' stackable className="header-nav" color='blue' inverted>
-                <Menu.Item header>
+            <Menu className="cg-nav" size='large' stackable color='blue' inverted>
+                <Menu.Item className='cg-nav-header' header>
                     <div style={{ width: '100%' }}>
+                    <div style={{ display: 'inline' }}><NavLink to='/' ><img className='cg-nav-logo' src="../logo.svg" alt="Cognizant logo"/></NavLink></div>
+                    <div style={{ position: 'absolute', right: 10, top: 15, display: 'inline', margin: 'auto' }}>
+                         <Responsive maxWidth={768} onUpdate={this.handleResize}>
+                                <div>
+                                    <Icon link name='content' onClick={this.handleCollapseMenuButton} size='big'/>
+                                </div>
+                        </Responsive>
+                    </div>
+                    {/* <div style={{ width: '100%' }}>
                         <div style={{ float: 'left' }}>CtsContestWeb</div>
                         <div style={{ float: 'right' }}>
                             <Responsive maxWidth={768} onUpdate={this.handleResize}>
                                 <Icon link name='content' onClick={this.handleCollapseMenuButton} />
                             </Responsive>
                         </div>
+                    </div> */}
                     </div>
                 </Menu.Item>
 
                 {!this.state.collapsed ? links.map((value, index) =>
-                    <NavLink key={index} className='item' to={value.routeTo} exact activeClassName='active' onClick={this.handleResize}>
+                    <NavLink key={index} className='item cg-nav-item' to={value.routeTo} exact activeClassName='active' onClick={this.handleResize}>
                         {value.name}
                     </NavLink>) : ''
                 }

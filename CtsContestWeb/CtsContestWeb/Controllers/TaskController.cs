@@ -2,10 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using CtsContestWeb.Communication;
 using CtsContestWeb.Dto;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using CtsContestWeb.Filters;
 using CtsContestWeb.Logic;
-using Microsoft.AspNetCore.Authorization;
 
 namespace CtsContestWeb.Controllers
 {
@@ -23,26 +24,43 @@ namespace CtsContestWeb.Controllers
             _solutionLogic = solutionLogic;
         }
 
-        public async Task<IEnumerable<TaskDto>> Get()
+        public async Task<IEnumerable<TaskDisplayDto>> Get()
         {
             string userEmail = null;
             if (User.Identity.IsAuthenticated)
                 userEmail = User.FindFirst(ClaimTypes.Email).Value;
 
-            return await _taskManager.GetAllTasks(userEmail);
+            var tasks = await _taskManager.GetAllTasks(userEmail);
+            return tasks.Select(t => new TaskDisplayDto
+            {
+                Id = t.Id,
+                Name = t.Name,
+                Value = t.Value,
+                IsSolved = t.IsSolved
+            });
         }
 
         [HttpGet("{id}")]
-        public async Task<TaskDto> Get(int id)
+        public async Task<TaskDisplayDto> Get(int id)
         {
             string userEmail = null;
             if (User.Identity.IsAuthenticated) 
                 userEmail = User.FindFirst(ClaimTypes.Email).Value;
 
-            return await _taskManager.GetTaskById(id, userEmail);
+            var task = await _taskManager.GetTaskById(id, userEmail);
+
+            return new TaskDisplayDto
+            {
+                Id = task.Id,
+                Name = task.Name,
+                Value = task.Value,
+                Description = task.Description,
+                IsSolved = task.IsSolved
+            };
         }
 
-        [Authorize]
+
+        [LoggedIn]
         [HttpPut("[action]")]
         public async Task<CompileDto> Solve(int taskId, string source, int language)
         {
@@ -54,6 +72,12 @@ namespace CtsContestWeb.Controllers
         public async Task<LanguageDto> GetLanguages()
         {
             return await _compiler.GetLanguages();
+        }
+
+        [HttpGet("[action]/{language}")]
+        public async Task<CodeSkeletonDto> GetCodeSkeleton(string language)
+        {
+            return await _taskManager.GetCodeSkeleton(language);
         }
     }
 }

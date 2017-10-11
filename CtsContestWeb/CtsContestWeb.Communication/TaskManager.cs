@@ -45,7 +45,6 @@ namespace CtsContestWeb.Communication
                     if (solvedTasks.Any(t => t == task.Id))
                         task.IsSolved = true;
                 }
-                task.Description = PrependRootUrlToImageLinks(task.Description, pictureUrl);
             }
 
             return tasks;
@@ -80,7 +79,28 @@ namespace CtsContestWeb.Communication
             return task;
         }
 
-        private String PrependRootUrlToImageLinks(string description, string url)
+        public async Task<CodeSkeletonDto> GetCodeSkeleton(string language)
+        {
+            var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
+            var client = new RestClient(umbracoApiUrl);
+
+            var request = new RestRequest("codeskeleton/get/{language}", Method.GET);
+            request.AddUrlSegment("language", language);
+
+            TaskCompletionSource<CodeSkeletonDto> taskCompletion = new TaskCompletionSource<CodeSkeletonDto>();
+            client.ExecuteAsync<CodeSkeletonDto>(request, response =>
+            {
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                    throw new ArgumentException("Error getting code skeleton");
+                taskCompletion.SetResult(response.Data);
+            });
+
+            var skeleton = await taskCompletion.Task;
+
+            return skeleton;
+        }
+
+        private string PrependRootUrlToImageLinks(string description, string url)
         {
             var htmlPattern = @"(src="")(/media/(.+?)"")";
             var newDescription = Regex.Replace(description, htmlPattern, "$1" + url + "$2");

@@ -10,6 +10,5 @@ namespace CtsContestCms.Models
         public int Value { get; set; }
         public IEnumerable<string> Inputs { get; set; }
         public IEnumerable<string> Outputs { get; set; }
-         
     }
 }

@@ -19,8 +19,8 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "ad779f20a450b006")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "d667891194d040a3")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.4")]
 
 namespace Umbraco.Web.PublishedContentModels
 {
@@ -971,6 +971,15 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// setsw
+		///</summary>
+		[ImplementPropertyType("setsw")]
+		public string Setsw
+		{
+			get { return this.GetPropertyValue<string>("setsw"); }
+		}
+
+		///<summary>
 		/// Value: Task's value in virtual wallet points.
 		///</summary>
 		[ImplementPropertyType("value")]
@@ -1032,6 +1041,15 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// Category
+		///</summary>
+		[ImplementPropertyType("category")]
+		public string Category
+		{
+			get { return this.GetPropertyValue<string>("category"); }
+		}
+
+		///<summary>
 		/// Picture: Picture of the prize
 		///</summary>
 		[ImplementPropertyType("picture")]
@@ -1080,6 +1098,67 @@ namespace Umbraco.Web.PublishedContentModels
 #pragma warning restore 0109
 
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Prizes, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+	}
+
+	/// <summary>Code skeleton</summary>
+	[PublishedContentModel("codeSkeleton")]
+	public partial class CodeSkeleton : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "codeSkeleton";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public CodeSkeleton(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<CodeSkeleton, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Skeleton
+		///</summary>
+		[ImplementPropertyType("skeleton")]
+		public string Skeleton
+		{
+			get { return this.GetPropertyValue<string>("skeleton"); }
+		}
+	}
+
+	/// <summary>Code skeletons</summary>
+	[PublishedContentModel("codeSkeletons")]
+	public partial class CodeSkeletons : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "codeSkeletons";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public CodeSkeletons(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<CodeSkeletons, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}

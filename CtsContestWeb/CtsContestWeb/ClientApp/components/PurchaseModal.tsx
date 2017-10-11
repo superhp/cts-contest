@@ -11,7 +11,7 @@ interface PurchaseModalProps {
     onClose: any;
     prize: Prize;
     state: string;
-    purchaseId: any;
+    purchase: any;
 }
 
 interface PurchaseModalState {
@@ -41,7 +41,7 @@ export class PurchaseModal extends React.Component<PurchaseModalProps, PurchaseM
             if (this.counter <= 2) {
                 this.setState({});
                 const body = document.getElementsByTagName('body')[0];
-                if(this.state !== 'loading')
+                if (this.state !== 'loading')
                     body.classList.add('scrolling');
                 this.counter++;
             }
@@ -84,7 +84,7 @@ export class PurchaseModal extends React.Component<PurchaseModalProps, PurchaseM
                     fgColor="#000000"
                     level="Q"
                     style={{ width: '100%' }}
-                    value={this.props.purchaseId !== undefined ? this.props.purchaseId.toString() : ''}
+                    value={this.props.purchase.purchaseId !== undefined ? this.props.purchase.purchaseId.toString() : ''}
                 />
             </Modal.Content>
         )
@@ -93,9 +93,15 @@ export class PurchaseModal extends React.Component<PurchaseModalProps, PurchaseM
         return (
             <Modal.Content>
                 <Container textAlign='center'>
-                    <Header>Your item has been purchased</Header>
+                    <Header>
+                        {this.props.purchase.isGivenAway
+                            ? 'You have received this item'
+                            : 'Your item has been purchased'}
+                    </Header>
+
                 </Container>
             </Modal.Content>
+            
         )
     }
     public renderActions() {
@@ -106,7 +112,7 @@ export class PurchaseModal extends React.Component<PurchaseModalProps, PurchaseM
         )
     }
     public render() {
-        if(this.props.state === 'loading')
+        if (this.props.state === 'loading')
             return this.renderLoading();
         return (
             <Responsive onUpdate={this.handleResize}>
@@ -119,7 +125,7 @@ export class PurchaseModal extends React.Component<PurchaseModalProps, PurchaseM
                     ref={(content: any) => this.modal = content}
                 >
                     {this.renderHeader()}
-                    
+
                     {this.props.state === 'loaded'
                         ? this.renderQRImage()
                         : ''
@@ -135,7 +141,7 @@ export class PurchaseModal extends React.Component<PurchaseModalProps, PurchaseM
                     {this.props.state !== 'loading'
                         ? this.renderActions()
                         : ''
-                    } 
+                    }
                 </Modal>
             </Responsive>
         )

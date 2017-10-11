@@ -79,7 +79,8 @@ export class TaskComponent extends React.Component<any, any> {
         formData.append('language', languageCode);
         fetch('api/Task/Solve', {
             method: 'PUT',
-            body: formData
+            body: formData,
+            credentials: 'include'
         })
             .then(response => response.json() as Promise<CompileResult>)
             .then(data => {
@@ -121,7 +122,19 @@ export class TaskComponent extends React.Component<any, any> {
         }
     }
 
+    setCodeSkeleton(language: string) {
+        fetch('api/Task/GetCodeSkeleton/' + language)
+            .then(response => response.json() as Promise<Skeleton>)
+            .then(data => {
+                console.log(data);
+                this.onChange(data.skeleton);
+            });
+    }
+
     setMode(e: any) {
+        let language = this.state.languages.names[e.target.value];
+        this.setCodeSkeleton(language);
+
         this.setState({
             mode: this.getHighlighter(e.target.value),
             selectedLanguage: e.target.value
@@ -237,6 +250,7 @@ export class TaskComponent extends React.Component<any, any> {
                                 </div>
                                 <Responsive onUpdate={this.handleResize}>
                                     <AceEditor
+                                        className='cg-editor'
                                         mode={this.state.mode}
                                         theme="monokai"
                                         name="code"
@@ -246,7 +260,7 @@ export class TaskComponent extends React.Component<any, any> {
                                         highlightActiveLine={true}
                                         value={this.state.value}
                                         onChange={this.onChange}
-                                        width={this.state.editorWidth}
+                                        //width={this.state.editorWidth}
                                         setOptions={{
                                             enableBasicAutocompletion: false,
                                             enableLiveAutocompletion: true,
@@ -254,6 +268,7 @@ export class TaskComponent extends React.Component<any, any> {
                                             showLineNumbers: true,
                                             tabSize: 4,
                                         }}
+                                        
                                     />
                                     {submitButton}
 
@@ -289,6 +304,11 @@ interface NameToCodeMap {
 interface Languages {
     names: NameToDisplayNameMap;
     codes: NameToCodeMap;
+}
+
+interface Skeleton {
+    language: string;
+    skeleton: string;
 }
 
 interface CompileResult {
