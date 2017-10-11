@@ -4,14 +4,14 @@ import { Image } from 'semantic-ui-react';
 const FinalistInfo = ({ image, name, points }) => (
     <div className="podium-step-header">
         <div className="podium-step-header-image">
-            <Image src={this.props.image} centered={true} shape="circular" />
+            <Image src={image} centered={true} shape="circular" />
         </div>
         <div className="podium-step-header-info">
             <div className="podium-step-header-info-name">
-                {this.props.name}
+                {name}
             </div>
             <div className="podium-step-header-info-points">
-                {this.props.points}
+                {points}
             </div>
         </div>
     </div>

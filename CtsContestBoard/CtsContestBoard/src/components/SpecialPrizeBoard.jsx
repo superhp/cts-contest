@@ -13,7 +13,7 @@ export default class SpecialPrizeBoard extends React.Component {
                 </Grid.Row>
                 <Grid.Row columns={1}>
                     <Grid.Column>
-                        <Podium first={this.props.WeekPrizes[0]} second={this.props.WeekPrizes[1]} third={this.props.WeekPrizes[2]} />
+                        <Podium first={this.props.data[0]} second={this.props.data[1]} third={this.props.data[2]} />
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
