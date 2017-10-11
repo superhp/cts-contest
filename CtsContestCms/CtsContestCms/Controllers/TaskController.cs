@@ -19,8 +19,12 @@ namespace CtsContestCms.Controllers
 
             foreach (var task in tasks)
             {
-                var taskDto = GetTaskDto(task);
-                taskDtos.Add(taskDto);
+                taskDtos.Add(new TaskDto
+                {
+                    Id = task.Id,
+                    Name = task.Name,
+                    Value = task.GetPropertyValue("value"),
+                });
             }
 
             return taskDtos;

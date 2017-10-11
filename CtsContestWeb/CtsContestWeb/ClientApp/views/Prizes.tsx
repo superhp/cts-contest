@@ -228,6 +228,7 @@ interface Prize {
     quantity: number;
     name: string;
     picture: string;
+    category: string;
 }
 
 interface Purchase {

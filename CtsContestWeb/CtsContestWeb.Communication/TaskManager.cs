@@ -45,7 +45,6 @@ namespace CtsContestWeb.Communication
                     if (solvedTasks.Any(t => t == task.Id))
                         task.IsSolved = true;
                 }
-                task.Description = PrependRootUrlToImageLinks(task.Description, pictureUrl);
             }
 
             return tasks;

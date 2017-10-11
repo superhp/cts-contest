@@ -21,7 +21,7 @@ namespace CtsContestCms.Controllers
 
             foreach (var prize in prizes)
             {
-                var prizeDto = GePrizeDto(prize);
+                var prizeDto = GetPrizeDto(prize);
                 prizeDtos.Add(prizeDto);
             }
 
@@ -37,12 +37,12 @@ namespace CtsContestCms.Controllers
             if (prize.Id == 0 || !prize.DocumentTypeAlias.Equals("prize"))
                 throw new ArgumentException("No prize found with given ID");
 
-            var prizeDto = GePrizeDto(prize);
+            var prizeDto = GetPrizeDto(prize);
 
             return prizeDto;
         }
 
-        private PrizeDto GePrizeDto(dynamic prize)
+        private PrizeDto GetPrizeDto(dynamic prize)
         {
             return new PrizeDto
             {
@@ -50,7 +50,8 @@ namespace CtsContestCms.Controllers
                 Name = prize.Name,
                 Price = prize.GetPropertyValue("price"),
                 Quantity = prize.GetPropertyValue("quantity"),
-                Picture = prize.GetPropertyValue("picture").Url
+                Picture = prize.GetPropertyValue("picture").Url,
+                Category = prize.GetPropertyValue("category")
             };
         }
     }
