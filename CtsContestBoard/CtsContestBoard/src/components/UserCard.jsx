@@ -17,7 +17,7 @@ export default class UserCard extends React.Component {
                         </Feed.Content>
                     </Feed.Event>
                 </Feed>*/}
-                <FinalistInfo name="Jonas Blue" image='https://i.pinimg.com/236x/ba/f9/58/baf958abca0e1e917e8520ea2dab5726--nicholas-cage-face-nicholas-dagosto.jpg' points={16}/>
+                <FinalistInfo name={this.props.username} image={this.props.image} points={this.props.points} />
                 <div className="podium-step-content">
                     <WinnerTrophy />
                 </div>

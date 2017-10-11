@@ -1,13 +1,15 @@
-﻿#podiumDiv {
-    bottom: 3%;
-    width: 100%;
-    position: fixed;
+﻿body {
+    padding: 0;
 }
-
+#special-prize-board .row {
+    height: 50vh;
+    padding: 0;
+}
 .podium {
     height: 50vh;
     display: flex !important;
     align-items: flex-end !important;
+    margin: 0!important;
 }
 
 .podium-step {
@@ -93,18 +95,33 @@
     position: relative;
 }
 
-    .podium-step-header-image img {
-        max-width: 95% !important;
-        align-self: center;
-        height: auto;
-        margin: auto;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-    }
+.podium-step-header-image img {
+    max-width: 95% !important;
+    align-self: center;
+    height: auto;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
 
 .podium-step-header-info {
     display: flex;
     flex-direction: column;
     flex: 1 100%;
+}
+
+.podium-step-header-info div {
+    flex: 1 100%;
+    display: flex;
+    align-items: center;
+}
+
+.podium-step-header-info-name {
+    font-size: 4vh;
+}
+
+.podium-step-header-info-points {
+    flex: 1 35% !important;
+    font-size: 2vh;
 }
