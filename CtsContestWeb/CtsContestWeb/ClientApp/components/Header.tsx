@@ -51,7 +51,7 @@ export class Header extends React.Component<any, HeaderState> {
             this.setState({ collapsed: true });
     }
 
-    handleCollapseMenuButton = (e: any, { name }: any) => {
+    handleCollapseMenuButton = () => {
         this.setState({ collapsed: !this.state.collapsed });
     }
 
