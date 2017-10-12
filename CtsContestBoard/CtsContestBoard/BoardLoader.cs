@@ -97,7 +97,7 @@ namespace CtsContestBoard
                 Changed(nameof(LastUpdate));
 
                 PushUpdates();
-            }, null, 0, 5000);
+            }, null, 0, 605000);
         }
 
         private void UpdateTodayPrizes()

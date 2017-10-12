@@ -1,18 +1,30 @@
 ﻿import React from 'react';
-import UserCard from './UserCard.jsx';
 import { Grid } from 'semantic-ui-react';
+import ReactCountdownClock from 'react-countdown-clock';
+
+import UserCard from './UserCard.jsx';
+import WeekPrizeCard from './WeekPrizeCard.jsx';
 
 export default class SpecialPrizeBoard extends React.Component {
     render() {
         return (
             <Grid id="special-prize-board">
-                <Grid.Row columns={1}>
-                    <Grid.Column>
-                        
+                <Grid.Row columns={2} className="first-week-prize-row">
+                    <Grid.Column width={12}>
+                    </Grid.Column>
+                    <Grid.Column width={4}>
+                        <ReactCountdownClock seconds={60}
+                            color="#000"
+                            alpha={0.9}
+                            size={300}
+                            onComplete={() => { }} />
                     </Grid.Column>
                 </Grid.Row>
-                <Grid.Row columns={1}>
-                    <Grid.Column>
+                <Grid.Row columns={2} className="second-week-prize-row">
+                    <Grid.Column width={5}>
+                        <WeekPrizeCard name="IPhone X" picture="http://drop.ndtv.com/TECH/product_database/images/913201720152AM_635_iphone_x.jpeg" />
+                    </Grid.Column>
+                    <Grid.Column width={11}>
                         <Podium first={this.props.data[0]} second={this.props.data[1]} third={this.props.data[2]} />
                     </Grid.Column>
                 </Grid.Row>
