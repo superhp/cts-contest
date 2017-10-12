@@ -50,7 +50,7 @@ export class Login extends React.Component<any, LoginModalState> {
 
     private static renderLoginModal(height: number, handleResize: any) {
         return <Responsive onUpdate={handleResize}>
-            <Modal size="tiny" className="login-modal" trigger={<NavLink className='item' to="#" exact> Login </NavLink>} style={{ height: 'auto', maxHeight: height }} closeIcon>
+            <Modal size="tiny" className="login-modal" trigger={<NavLink style={{height: '100%'}} className='item cg-nav-item' to="#" exact> Login </NavLink>} style={{ height: 'auto', maxHeight: height }} closeIcon>
                 <Modal.Header>Choose login method</Modal.Header>
                 <Modal.Content>
                     <Modal.Description>
