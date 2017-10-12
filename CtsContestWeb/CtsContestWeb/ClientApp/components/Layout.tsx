@@ -22,7 +22,7 @@ export class Layout extends React.Component<any, any> {
                 <Header userInfo={this.props.userInfo}/>
                 {this.props.children}
             </div>
-            <Footer height={footerHeight}/>
+            {/* <Footer height={footerHeight}/> */}
         </div>;
     }
 }

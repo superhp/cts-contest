@@ -191,7 +191,7 @@ export class Prizes extends React.Component<any, any> {
                     </Container>
                 </div>
 
-                <Container fluid>
+                <Container>
                     {contents}
                     <PrizeModal
                         open={this.state.prizeModalOpen}

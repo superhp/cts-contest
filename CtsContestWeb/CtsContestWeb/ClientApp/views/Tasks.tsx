@@ -46,7 +46,10 @@ export class Tasks extends React.Component<any, TasksState> {
                         </Header>
                     </Container>
                 </div>
-                {contents}
+                <Container>
+                    {contents}
+                </Container>
+
                 <div style={{ height: 10 }}></div>
             </div>
         )
@@ -60,7 +63,7 @@ export class Tasks extends React.Component<any, TasksState> {
                 content: this.createTasksSelectionTable(value)
             }))
             .value();
-        return <Accordion className='cg-accordion' panels={panels} fluid />;
+        return <Accordion className='cg-accordion' panels={panels} styled fluid />;
     }
 
     private static createTasksSelectionTable(tasks: Task[]) {
@@ -69,7 +72,7 @@ export class Tasks extends React.Component<any, TasksState> {
             tableRows.push(
                 <Table.Row positive={t.isSolved} key={t.id}>
                     <Table.Cell selectable>
-                        <Link to={"/task/" + t.id} style={{paddingLeft: 35}}> {t.name}</Link>
+                        <Link to={"/task/" + t.id} style={{ paddingLeft: 35 }}> {t.name}</Link>
                     </Table.Cell>
                 </Table.Row>
             );

@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import AceEditor from 'react-ace';
 import { RouteComponentProps } from 'react-router-dom';
-import { Responsive, Grid, Segment, Divider, Header, Button, Container, Loader } from 'semantic-ui-react';
+import { Responsive, Grid, Segment, Divider, Header, Button, Container, Loader, Form } from 'semantic-ui-react';
 import * as brace from 'brace';
 
 import 'brace/mode/jsx';
@@ -159,9 +159,7 @@ export class TaskComponent extends React.Component<any, any> {
     }
 
     private static renderTask(task: Task) {
-        return <div>
-            <div className="content" dangerouslySetInnerHTML={{ __html: task.description }}></div>
-        </div>;
+        return <div className="cg-task-content" dangerouslySetInnerHTML={{ __html: task.description }}></div>;
     }
 
     private static renderResult(compileResult: CompileResult) {
