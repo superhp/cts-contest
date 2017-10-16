@@ -6,6 +6,6 @@ namespace CtsContestBoard.Dto
 {
     public class PrizeAndApplicantDto : PrizeDto
     {
-        public ParticipantDto Applicant { get; set; }
+        public IEnumerable<ParticipantDto> Applicants { get; set; }
     }
 }

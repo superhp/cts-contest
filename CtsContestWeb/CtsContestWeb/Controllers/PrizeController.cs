@@ -20,7 +20,7 @@ namespace CtsContestWeb.Controllers
         [HttpGet("")]
         public async Task<List<PrizeDto>> Get()
         {
-           return await _prizeManager.GetAllPrizes();
+           return await _prizeManager.GetAllPrizesForPoints();
         }
 
         [HttpGet("{id}")]
