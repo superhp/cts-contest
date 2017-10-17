@@ -84,20 +84,20 @@ namespace CtsContestBoard
                             Changed(nameof(TodayPrizes));
                             break;
                         }
-                    case BoardEnum.WeekPrizes:
-                        {
-                            GetNewPurchases();
-                            UpdateWeekPrizes();
-                            Changed(nameof(WeekPrizes));
-                            break;
-                        }
+                        //case BoardEnum.WeekPrizes:
+                        //    {
+                        //        GetNewPurchases();
+                        //        UpdateWeekPrizes();
+                        //        Changed(nameof(WeekPrizes));
+                        //        break;
+                        //    }
                 }
 
                 Changed(nameof(Board));
                 Changed(nameof(LastUpdate));
 
                 PushUpdates();
-            }, null, 0, 605000);
+            }, null, 0, 5000);
         }
 
         private void UpdateTodayPrizes()
@@ -120,10 +120,11 @@ namespace CtsContestBoard
             else
                 participants = _leaderBoard.OrderBy(p => p.TodayEarnedPoints).ToList();
 
-            var prizesCount = _prizes.Count(p => p.Category.Equals(category));
-            participants = participants.Take(prizesCount).ToList();
-            if (prizesCount > participants.Count)
-                while (prizesCount > participants.Count)
+            var applicantsForPrize = 3;
+            var participantsNeeded = applicantsForPrize + _prizes.Count(p => p.Category.Equals(category));
+            participants = participants.Take(participantsNeeded).ToList();
+            if (participantsNeeded > participants.Count)
+                while (participantsNeeded > participants.Count)
                     participants.Add(new ParticipantDto());
 
             var i = 0;
@@ -135,7 +136,7 @@ namespace CtsContestBoard
                 Price = p.Price,
                 Quantity = p.Quantity - _purchases.Count(np => np.PrizeId == p.Id),
                 Category = p.Category,
-                Applicant = participants[i++]
+                Applicants = participants.Skip(i++).Take(applicantsForPrize)
             }).ToList();
         }
 
@@ -168,7 +169,6 @@ namespace CtsContestBoard
 
             if (_purchases.Count > 0)
                 lastDate = _purchases.Max(s => s.Created);
-
             var newPurchases = _purchaseRepository.GetAll().Where(s => s.Created > lastDate).ToList();
             _purchases.AddRange(newPurchases);
         }
@@ -188,7 +188,7 @@ namespace CtsContestBoard
 
         private void SwitchBoard()
         {
-            if (Board < BoardEnum.WeekPrizes)
+            if (Board < BoardEnum.TodayPrizes)
                 Board++;
             else
                 Board = BoardEnum.LeaderBoard;
@@ -196,6 +196,4 @@ namespace CtsContestBoard
 
         public override void Dispose() => _timer.Dispose();
     }
-
-
 }
