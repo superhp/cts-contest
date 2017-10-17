@@ -49,9 +49,12 @@ export class TaskComponent extends React.Component<any, any> {
                     let compiler = this.getHighlighter(key);
                     require(`brace/mode/${compiler}`)
                 }
+
+                this.setCodeSkeleton(this.state.mode);
             });
 
         this.compileCode = this.compileCode.bind(this);
+        this.saveForLater = this.saveForLater.bind(this);
     }
 
     calculateEditorWidth() {
@@ -96,6 +99,22 @@ export class TaskComponent extends React.Component<any, any> {
             });
     }
 
+    saveForLater() {
+        let languageCode = this.state.languages.codes[this.state.mode];
+
+        const formData = new FormData();
+        formData.append('taskId', this.state.taskId);
+        formData.append('source', this.state.value);
+        formData.append('language', languageCode);
+        fetch('api/Task/SaveCode', {
+            method: 'PUT',
+            body: formData,
+            credentials: 'include'
+        })
+            .then(response => response.json() as Promise<boolean>)
+            .then(data => {});
+    }
+
     componentDidMount() {
         fetch('api/Task/' + this.state.taskId)
             .then(response => response.json() as Promise<Task>)
@@ -124,18 +143,28 @@ export class TaskComponent extends React.Component<any, any> {
     }
 
     setCodeSkeleton(language: string) {
-        fetch('api/Task/GetCodeSkeleton/' + language)
+        if (language == "C#")
+            language = "Csharp";
+        else if (language == "C++")
+            language = "Cpp";
+            
+        fetch('api/Task/GetCodeSkeleton/' + language + '/' + this.state.taskId)
             .then(response => response.json() as Promise<Skeleton>)
             .then(data => {
-                console.log(data);
                 this.onChange(data.skeleton);
+
+                this.setState({
+                    mode: this.getHighlighter(data.language),
+                    selectedLanguage: data.language
+                })
             });
     }
 
     setMode(e: any, data: any) {
-        let language = this.state.languages.names[data.value];
-        if (this.state.value.length == 0)
+        if (this.state.value.length == 0) {
+            let language = this.state.languages.names[data.value];
             this.setCodeSkeleton(language);
+        }
 
         this.setState({
             mode: this.getHighlighter(data.value),
@@ -215,7 +244,10 @@ export class TaskComponent extends React.Component<any, any> {
             var submitButton = this.state.showResults ? <div></div> : <div className="success-message">You successfully resolved this task.</div>;
         } else {
             var submitButton = this.props.userInfo.isLoggedIn ?
-                <Button className='cg-button cg-button-submit' onClick={this.compileCode} disabled={this.state.disabledButton} primary>Submit</Button>
+                <div>
+                    <Button onClick={this.compileCode} disabled={this.state.disabledButton} primary>Submit</Button>
+                    <Button onClick={this.saveForLater} disabled={this.state.disabledButton} primary>Save for later</Button>
+                </div>
                 : <div className="error-message">Please login before solving tasks</div>;
         }
 
