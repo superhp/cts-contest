@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CtsContestWeb.Db.Repository;
 using System.Linq;
 using CtsContestWeb.Db.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace CtsContestWeb.Db.Repository
 {
@@ -15,20 +16,27 @@ namespace CtsContestWeb.Db.Repository
             _dbContext = dbContext;
         }
 
-        public void Create(Solution solution)
+        public void Upsert(Solution solution)
         {
-            _dbContext.Add(solution);
+            _dbContext.Entry(solution).State = solution.SolutionId == 0 ?
+                EntityState.Added :
+                EntityState.Modified;
             _dbContext.SaveChanges();
         }
 
-        public IEnumerable<int> GetTaskIdsByUserEmail(string userEmail)
+        public IEnumerable<int> GetSolvedTasksIdsByUserEmail(string userEmail)
         {
-            return _dbContext.Solutions.Where(x => x.UserEmail == userEmail).Select(x => x.TaskId);
+            return _dbContext.Solutions.Where(x => x.UserEmail == userEmail && x.IsCorrect).Select(x => x.TaskId);
         }
 
         public IEnumerable<Solution> GetSolutionsByUserEmail(string userEmail)
         {
             return _dbContext.Solutions.Where(x => x.UserEmail == userEmail);
+        }
+
+        public Solution GetSolution(string email, int taskId)
+        {
+            return _dbContext.Solutions.FirstOrDefault(s => s.UserEmail.Equals(email) && s.TaskId == taskId);
         }
     }
 }

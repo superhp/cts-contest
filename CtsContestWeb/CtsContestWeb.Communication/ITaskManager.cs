@@ -8,6 +8,6 @@ namespace CtsContestWeb.Communication
     {
         Task<List<TaskDto>> GetAllTasks(string userEmail = null);
         Task<TaskDto> GetTaskById(int id, string userEmail = null);
-        Task<CodeSkeletonDto> GetCodeSkeleton(string language);
+        Task<CodeSkeletonDto> GetCodeSkeleton(string userEmail, int taskId, string language);
     }
 }

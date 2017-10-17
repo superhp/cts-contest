@@ -3,6 +3,7 @@ import dotnetify from 'dotnetify';
 import LeaderBoard from './components/LeaderBoard.jsx';
 import PrizeBoard from './components/PrizeBoard.jsx';
 import SpecialPrizeBoard from './components/SpecialPrizeBoard.jsx';
+import Header from './components/Header.jsx';
 
 class Board extends React.Component {
     constructor(props) {
@@ -19,11 +20,12 @@ class Board extends React.Component {
         modifiedWeekPrizes.push({ username: undefined, points: -1, picture: undefined });
         return (
             <div>
+                <Header />
                 <div>
                     {
                         this.state.Board === 0 ?
                             <LeaderBoard data={this.state.LeaderBoard} /> :
-                            <SpecialPrizeBoard data={modifiedWeekPrizes}/>
+                            <SpecialPrizeBoard data={modifiedWeekPrizes} />
                     }
                 </div>
             </div>

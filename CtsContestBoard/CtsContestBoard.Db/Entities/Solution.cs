@@ -12,6 +12,8 @@ namespace CtsContestBoard.Db.Entities
         public int TaskId { get; set; }
         public string Source { get; set; }
         public int Score { get; set; }
+        public bool IsCorrect { get; set; }
+        public int Language { get; set; }
         public DateTime Created { get; set; }
     }
 }

@@ -175,7 +175,7 @@ export class Prizes extends React.Component<any, any> {
 
     public render() {
         let contents = this.state.loading
-            ? <Loader active>Loading</Loader>
+            ? <Loader active inline='centered'>Loading</Loader>
             : this.renderPrizeList(this.state.prizes);
 
         return (

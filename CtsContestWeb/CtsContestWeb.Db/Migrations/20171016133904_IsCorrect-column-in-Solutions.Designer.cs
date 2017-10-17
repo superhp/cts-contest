@@ -11,9 +11,10 @@ using System;
 namespace CtsContestWeb.Db.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171016133904_IsCorrect-column-in-Solutions")]
+    partial class IsCorrectcolumninSolutions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

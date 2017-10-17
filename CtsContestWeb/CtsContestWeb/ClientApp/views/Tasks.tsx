@@ -31,7 +31,7 @@ export class Tasks extends React.Component<any, TasksState> {
     }
     public render() {
         let contents = this.state.loading
-            ? <Loader active>Loading</Loader>
+            ? <Loader active inline='centered'>Loading</Loader>
             : Tasks.renderTasksAccordion(this.state.tasks);
 
         return (

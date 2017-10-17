@@ -54,7 +54,7 @@ namespace CtsContestBoard
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
-            _solutions = _solutionRepository.GetAll().ToList();
+            _solutions = _solutionRepository.GetAll().Where(s => s.IsCorrect).ToList();
 
             _prizes = _prizeManager.GetAllPrizes().Result;
             _purchases = _purchaseRepository.GetAll().ToList();
@@ -148,7 +148,7 @@ namespace CtsContestBoard
 
             var spentPoints = _purchases.GroupBy(p => p.UserEmail)
                 .Select(gp => new { UserEmail = gp.First().UserEmail, Points = gp.Sum(p => p.Cost) }).ToList();
-            var newSolutions = _solutionRepository.GetAll().Where(s => s.SolutionId > lastId).ToList();
+            var newSolutions = _solutionRepository.GetAll().Where(s => s.SolutionId > lastId && s.IsCorrect).ToList();
             _solutions.AddRange(newSolutions);
 
             var groupedSolutions = _solutions.GroupBy(s => s.UserEmail).ToList();

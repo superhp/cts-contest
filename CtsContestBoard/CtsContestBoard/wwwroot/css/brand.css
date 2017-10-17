@@ -1,7 +1,3 @@
-@font-face {
-    font-family: 'Interstate-Regular';
-    src: url('../Interstate-Regular.ttf')
-}
 :root {
     --primary-color: #4298b5;
     --secondary-color:  #64a70b;
@@ -18,8 +14,8 @@
     --color-red: #e1523d;
     /* Font familty: Interstate-Regular*/
 }
-.body{
-    font-family: 'Interstate-Regular' !important;
+.body {
+    height: 100%;
 }
 .cg-gradient {
     background: var(--gradient) !important;
@@ -33,7 +29,6 @@
 }
 .cg-nav {
     position: relative !important; 
-    /* height: 50px !important; */
     width: 100% !important;
     margin: 0 !important;
     background: var(--gradient) !important;
@@ -43,7 +38,6 @@
 }
 
 .cg-nav .cg-nav-header{
-    height: 100% !important; 
     padding: 0 !important;
     margin: 0 !important;
 }
@@ -233,21 +227,4 @@
 .cg-task-content td {
     padding: 10px;
     width: auto !important;
-}
-
-.cg-language{
-    /* padding-top: 10px; */
-    padding-bottom: 20px;
-}
-.cg-language .cg-label{
-    padding-bottom: 10px;
-}
-.cg-padding-submit {
-    padding-top: 25px
-}
-
-@media screen and (max-width: 958px) {
-    .cg-nav .cg-nav-item {
-        padding: 15px 20px !important; 
-    }
 }

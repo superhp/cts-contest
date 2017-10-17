@@ -59,7 +59,6 @@ namespace CtsContestWeb.Controllers
             };
         }
 
-
         [LoggedIn]
         [HttpPut("[action]")]
         public async Task<CompileDto> Solve(int taskId, string source, int language)
@@ -68,16 +67,28 @@ namespace CtsContestWeb.Controllers
             return await _solutionLogic.CheckSolution(taskId, source, language, userEmail);
         }
 
+        [LoggedIn]
+        [HttpPut("[action]")]
+        public async Task<bool> SaveCode(int taskId, string source, int language)
+        {
+            var userEmail = User.FindFirst(ClaimTypes.Email).Value;
+            var task = await _taskManager.GetTaskById(taskId);
+            _solutionLogic.SaveSolution(task, source, userEmail, language, false);
+
+            return true;
+        }
+
         [HttpGet("[action]")]
         public async Task<LanguageDto> GetLanguages()
         {
             return await _compiler.GetLanguages();
         }
 
-        [HttpGet("[action]/{language}")]
-        public async Task<CodeSkeletonDto> GetCodeSkeleton(string language)
+        [HttpGet("[action]/{language}/{taskId}")]
+        public async Task<CodeSkeletonDto> GetCodeSkeleton(string language, int taskId)
         {
-            return await _taskManager.GetCodeSkeleton(language);
+            var userEmail = User.FindFirst(ClaimTypes.Email).Value;
+            return await _taskManager.GetCodeSkeleton(userEmail, taskId, language);
         }
     }
 }

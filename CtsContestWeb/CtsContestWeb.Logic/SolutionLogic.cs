@@ -24,30 +24,42 @@ namespace CtsContestWeb.Logic
 
         public async Task<CompileDto> CheckSolution(int taskId, string source, int language, string userEmail)
         {
-            var compileResult = await _compiler.Compile(taskId, source, language);
+            var task = await _taskManager.GetTaskById(taskId);
+            var compileResult = await _compiler.Compile(task, source, language);
 
             if (compileResult.Compiled && compileResult.ResultCorrect)
             {
-                await SaveSolution(taskId, source, userEmail);
+                SaveSolution(task, source, userEmail, language);
             }
 
             return compileResult;
         }
 
-        public async Task SaveSolution(int taskId, string source, string userEmail)
+        public void SaveSolution(TaskDto task, string source, string userEmail, int language, bool isCorrect = true)
         {
-            var task = await _taskManager.GetTaskById(taskId);
+            var solution = _solutionRepository.GetSolution(userEmail, task.Id);
 
-            var solution = new Solution
+            if (solution == null)
             {
-                UserEmail = userEmail,
-                Created = DateTime.Now,
-                Score = task.Value,
-                Source = source,
-                TaskId = taskId
-            };
+                solution = new Solution
+                {
+                    UserEmail = userEmail,
+                    Created = DateTime.Now,
+                    Score = task.Value,
+                    Source = source,
+                    TaskId = task.Id,
+                    Language = language,
+                    IsCorrect = isCorrect
+                };
+            }
+            else
+            {
+                solution.Language = language;
+                solution.Source = source;
+                solution.IsCorrect = isCorrect;
+            }
 
-            _solutionRepository.Create(solution);
+            _solutionRepository.Upsert(solution);
         }
     }
 }
