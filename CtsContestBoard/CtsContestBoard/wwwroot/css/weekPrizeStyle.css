@@ -11,12 +11,20 @@
 }
 
 .weekPrizeCard {
-    height: 80%;
-    width: 70% !important;
-    position: relative;
+    height: 85% !important;
+    position: relative !important;
     left: 15%;
-    top: 10%;
+    top: 5%;
 }
+
+.singleWeekPrizeCard {
+    height: 90% ;
+    width: 80% !important;
+    position: relative !important;
+    left: 15%;
+    top: 6%;
+}
+
 .first-prize-card-row{
     height: 50%;
 }
@@ -27,3 +35,4 @@
 .card-ribbon{
     width: 50%;
 }
+

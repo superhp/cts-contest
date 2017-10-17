@@ -9,7 +9,7 @@ export default class SpecialPrizeBoard extends React.Component {
     render() {
         console.log(this.props.data)
         return (
-            <TwoPrizeBoard data={this.props.data} />
+            <OnePrizeBoard data={this.props.data} />
         );
     }
 
@@ -20,10 +20,10 @@ const TwoPrizeBoard = ({ data }) => (
         <Grid.Row columns={3} className="first-week-prize-row">
             <Grid.Column width={5} className="full-space">
                 <Grid.Row className="first-prize-card-row">
-                    <WeekPrizeCard name="IPhone X" picture="http://drop.ndtv.com/TECH/product_database/images/913201720152AM_635_iphone_x.jpeg" />
+                    <WeekPrizeCard className="weekPrizeCard" name="IPhone X" picture="https://www.telia.lt/documents/20184/5622585/Nokia_3310_BU_2_624x750/595c7466-8cf0-3699-d72f-1554ce26cce2?t=1499753422524" />
                 </Grid.Row>
                 <Grid.Row className="second-prize-card-row">
-                    <WeekPrizeCard name="IPhone X" picture="http://drop.ndtv.com/TECH/product_database/images/913201720152AM_635_iphone_x.jpeg" />
+                    <WeekPrizeCard className="weekPrizeCard" name="IPhone X" picture="https://www.telia.lt/documents/20184/5622585/Nokia_3310_BU_2_624x750/595c7466-8cf0-3699-d72f-1554ce26cce2?t=1499753422524" />
                 </Grid.Row>
             </Grid.Column>
             <Grid.Column width={7}>
@@ -62,8 +62,8 @@ const OnePrizeBoard = ({ data }) => (
             </Grid.Column>
         </Grid.Row>
         <Grid.Row columns={2} className="second-week-prize-row">
-            <Grid.Column width={5}>
-                <WeekPrizeCard name="IPhone X" picture="http://drop.ndtv.com/TECH/product_database/images/913201720152AM_635_iphone_x.jpeg" />
+            <Grid.Column width={5} >
+                <WeekPrizeCard className="singleWeekPrizeCard" name="IPhone X" picture="https://www.telia.lt/documents/20184/5622585/Nokia_3310_BU_2_624x750/595c7466-8cf0-3699-d72f-1554ce26cce2?t=1499753422524" />
             </Grid.Column>
             <Grid.Column width={11}>
                 <Podium first={data[0]} second={data[1]} third={data[2]} />
