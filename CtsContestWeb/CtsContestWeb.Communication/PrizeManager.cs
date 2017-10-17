@@ -20,7 +20,7 @@ namespace CtsContestWeb.Communication
             _purchaseRepository = purchaseRepository;
         }
 
-        public async Task<List<PrizeDto>> GetAllPrizes()
+        public async Task<List<PrizeDto>> GetAllPrizesForPoints()
         {
             var umbracoApiUrl = _configuration["UmbracoApiUrl"];
             var pictureUrl = _configuration["UmbracoPictureUrl"];
@@ -35,15 +35,16 @@ namespace CtsContestWeb.Communication
             });
 
             var prizes = await taskCompletion.Task;
+            var prizesForPoints = prizes.Where(p => p.Category.Equals("Prize for points")).ToList();
             var purchases = _purchaseRepository.GetAll().ToList();
 
-            foreach (var item in prizes)
+            foreach (var item in prizesForPoints)
             {
                 item.Picture = pictureUrl + item.Picture;
                 item.Quantity -= purchases.Count(np => np.PrizeId == item.Id);
             }
 
-            return prizes;
+            return prizesForPoints;
         }
 
         public async Task<PrizeDto> GetPrizeById(int id)

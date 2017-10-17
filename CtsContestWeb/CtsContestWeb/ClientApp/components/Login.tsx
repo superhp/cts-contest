@@ -55,7 +55,7 @@ export class Login extends React.Component<any, LoginModalState> {
                 <Modal.Content>
                     <Modal.Description>
                         <a href="https://cts-contest.azurewebsites.net/.auth/login/facebook?post_login_redirect_url=/"><Button color='facebook'><Icon name='facebook' /> Login with Facebook</Button></a>
-                        <a href="https://cts-contest.azurewebsites.net/.auth/login/google?post_login_redirect_url=/"><Button color='google plus'><Icon name='google plus' /> Login with Google Plus</Button></a>
+                        <a href="https://cts-contest.azurewebsites.net/.auth/login/google?post_login_redirect_url=/"><Button color='google plus'><Icon name='google' /> Login with Google</Button></a>
                     </Modal.Description>
                 </Modal.Content>
             </Modal>

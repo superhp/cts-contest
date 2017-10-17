@@ -27,7 +27,8 @@ export class TaskComponent extends React.Component<any, any> {
             editorWidth: this.calculateEditorWidth(),
             showResults: false,
             loadingUserInfo: true,
-            disabledButton: true
+            disabledButton: true,
+            value: ""
         };
 
         this.setMode = this.setMode.bind(this);
@@ -133,7 +134,8 @@ export class TaskComponent extends React.Component<any, any> {
 
     setMode(e: any, data: any) {
         let language = this.state.languages.names[data.value];
-        this.setCodeSkeleton(language);
+        if (this.state.value.length == 0)
+            this.setCodeSkeleton(language);
 
         this.setState({
             mode: this.getHighlighter(data.value),
