@@ -164,7 +164,11 @@ namespace CtsContestBoard
 
         private void GetNewPurchases()
         {
-            var lastDate = _purchases.Max(s => s.Created);
+            DateTime lastDate = DateTime.MinValue;
+
+            if (_purchases.Count > 0)
+                lastDate = _purchases.Max(s => s.Created);
+
             var newPurchases = _purchaseRepository.GetAll().Where(s => s.Created > lastDate).ToList();
             _purchases.AddRange(newPurchases);
         }

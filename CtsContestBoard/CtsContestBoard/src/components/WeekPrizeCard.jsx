@@ -6,7 +6,7 @@ export default class PrizeCard extends React.Component {
         
         return (
             <Card className="weekPrizeCard">
-                <Label color='green' ribbon>SPECIAL PRIZE!</Label>
+                <Label className="card-ribbon" color='green' ribbon>SPECIAL PRIZE!</Label>
                 <Image src={this.props.picture} />
                 <Card.Content className="cardHeader">
                     <Card.Header className="headerText">

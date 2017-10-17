@@ -2,12 +2,7 @@
 import { Card, Image, Segment, Label } from 'semantic-ui-react';
 
 export default class PrizeCard extends React.Component {
-    constructor(props) {
-        super(props);
-        console.log(props);
-    }
-
-    
+ 
     render() {
         let label = label = <h3><p >{this.props.prize.Quantity} left</p></h3>; 
         if (this.props.prize.Quantity <= 3 && this.props.prize.Quantity > 0) label = <Label color='yellow' ribbon>ONLY {this.props.prize.Quantity} LEFT!</Label>;

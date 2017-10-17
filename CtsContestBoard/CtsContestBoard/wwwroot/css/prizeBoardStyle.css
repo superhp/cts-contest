@@ -25,3 +25,11 @@
     display: table !important; /* Make the container element behave like a table */
     width: 100% !important; /* Set full-width to expand the whole page */
 }
+
+.white-space{
+    height: 0vh !important;
+}
+
+.full-space{
+    height: 100vh !important;
+}
