@@ -1,6 +1,13 @@
 ﻿body {
     padding: 0;
 }
+#podiumDiv {
+    position: absolute;
+    bottom: 30px;
+    display: flex !important;
+    flex: 1 100%;
+    width: 100%;
+}
 
 .podium {
     height: 50vh;

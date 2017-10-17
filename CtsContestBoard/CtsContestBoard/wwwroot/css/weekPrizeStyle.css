@@ -9,3 +9,21 @@
 .second-week-prize-row {
     height: 70vh;
 }
+
+.weekPrizeCard {
+    height: 80%;
+    width: 70% !important;
+    position: relative;
+    left: 15%;
+    top: 10%;
+}
+.first-prize-card-row{
+    height: 50%;
+}
+.second-prize-card-row {
+    height: 50%;
+}
+
+.card-ribbon{
+    width: 50%;
+}
