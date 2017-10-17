@@ -31,7 +31,7 @@ export type HeaderState = {
 export class Header extends React.Component<any, HeaderState> {
 
     handleItemClick = (e: any, { name }: any) => this.setState({ activeItem: name })
-    constructor(props:any) {
+    constructor(props: any) {
         super(props);
 
         let collapsed = false;
@@ -43,7 +43,7 @@ export class Header extends React.Component<any, HeaderState> {
             collapsed: collapsed
         }
     }
-    
+
     handleResize = () => {
         if (window.innerWidth >= 768)
             this.setState({ collapsed: false });
@@ -61,15 +61,20 @@ export class Header extends React.Component<any, HeaderState> {
             <Menu className="cg-nav" size='large' stackable color='blue' inverted>
                 <Menu.Item className='cg-nav-header' header>
                     <div style={{ width: '100%' }}>
-                    <div style={{ display: 'inline' }}><NavLink to='/' ><img className='cg-nav-logo' src="../logo.svg" alt="Cognizant logo"/></NavLink></div>
-                    <div style={{ position: 'absolute', right: 10, top: 15, display: 'inline', margin: 'auto' }}>
-                         <Responsive maxWidth={768} onUpdate={this.handleResize}>
-                                <div>
-                                    <Icon link name='content' onClick={this.handleCollapseMenuButton} size='big'/>
+                        <div style={{ display: 'inline' }}><NavLink to='/' ><img className='cg-nav-logo' src="../logo.svg" alt="Cognizant logo" /></NavLink></div>
+                        <div style={{ position: 'absolute', height: '100%', right: 0, top: 0, display: 'inline', margin: 'auto' }}>
+                            <Responsive className='cg-mobile-menu' maxWidth={768} onUpdate={this.handleResize}>
+                                {this.props.userInfo.isLoggedIn
+                                    ? <div style={{ fontWeight: 'bold', fontSize: '1.5em', position: 'absolute', top: '38%', right: 50, width: 100 }}>
+                                        {this.props.userInfo.balance} &nbsp;<Icon name='money' />
+                                    </div>
+                                    : ''}
+                                <div style={{ position: 'absolute', top: '34%', right: 10 }}>
+                                    <Icon link name='content' onClick={this.handleCollapseMenuButton} size='big' />
                                 </div>
-                        </Responsive>
-                    </div>
-                    {/* <div style={{ width: '100%' }}>
+                            </Responsive>
+                        </div>
+                        {/* <div style={{ width: '100%' }}>
                         <div style={{ float: 'left' }}>CtsContestWeb</div>
                         <div style={{ float: 'right' }}>
                             <Responsive maxWidth={768} onUpdate={this.handleResize}>
@@ -88,7 +93,7 @@ export class Header extends React.Component<any, HeaderState> {
                 {!this.state.collapsed
                     ?
                     <Menu.Menu position="right">
-                        <Login userInfo={this.props.userInfo}/>
+                        <Login userInfo={this.props.userInfo} />
                     </Menu.Menu>
                     : ""
                 }

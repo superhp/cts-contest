@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import AceEditor from 'react-ace';
 import { RouteComponentProps } from 'react-router-dom';
-import { Responsive, Grid, Segment, Divider, Header, Button, Container, Loader, Form } from 'semantic-ui-react';
+import { Responsive, Grid, Segment, Divider, Header, Button, Container, Loader, Dropdown } from 'semantic-ui-react';
 import * as brace from 'brace';
 
 import 'brace/mode/jsx';
@@ -131,13 +131,13 @@ export class TaskComponent extends React.Component<any, any> {
             });
     }
 
-    setMode(e: any) {
-        let language = this.state.languages.names[e.target.value];
+    setMode(e: any, data: any) {
+        let language = this.state.languages.names[data.value];
         this.setCodeSkeleton(language);
 
         this.setState({
-            mode: this.getHighlighter(e.target.value),
-            selectedLanguage: e.target.value
+            mode: this.getHighlighter(data.value),
+            selectedLanguage: data.value
         })
     }
 
@@ -153,9 +153,15 @@ export class TaskComponent extends React.Component<any, any> {
     }
 
     private static renderLanguages(languages: Languages, setMode: any, selectedLanguage: string) {
-        return <select name="mode" onChange={setMode} value={selectedLanguage}>
-            {Object.keys(languages.names).sort().map((lang) => <option key={lang} value={lang}>{languages.names[lang]}</option>)}
-        </select>;
+        const languageOptions: any = [];
+
+        Object.keys(languages.names).sort().map((lang) => {
+            languageOptions.push({ key: lang, value: lang, text: languages.names[lang] });
+        })
+        return <Dropdown value={selectedLanguage} onChange={setMode} fluid search selection options={languageOptions} />
+        // return <select name="mode" onChange={setMode} value={selectedLanguage}>
+        //         {Object.keys(languages.names).sort().map((lang) => <option key={lang} value={lang}>{languages.names[lang]}</option>)}
+        //     </select>;
     }
 
     private static renderTask(task: Task) {
@@ -192,11 +198,11 @@ export class TaskComponent extends React.Component<any, any> {
             ? ''
             : this.state.task.name;
         let selectOptions = this.state.loadingLanguages
-            ? <em>Loading...</em>
+            ? <Loader active inline='centered'>Loading</Loader>
             : TaskComponent.renderLanguages(this.state.languages, this.setMode, this.state.selectedLanguage);
 
         let task = this.state.loadingTask
-            ? <Loader active>Loading</Loader>
+            ? <Loader active inline='centered'>Loading</Loader>
             : TaskComponent.renderTask(this.state.task);
 
         let compileResult = this.state.compileResult
@@ -207,7 +213,7 @@ export class TaskComponent extends React.Component<any, any> {
             var submitButton = this.state.showResults ? <div></div> : <div className="success-message">You successfully resolved this task.</div>;
         } else {
             var submitButton = this.props.userInfo.isLoggedIn ?
-                <div><Button onClick={this.compileCode} disabled={this.state.disabledButton} primary>Submit</Button></div>
+                <Button className='cg-button cg-button-submit' onClick={this.compileCode} disabled={this.state.disabledButton} primary>Submit</Button>
                 : <div className="error-message">Please login before solving tasks</div>;
         }
 
@@ -236,55 +242,56 @@ export class TaskComponent extends React.Component<any, any> {
 
                         <Grid.Column mobile={16} tablet={8} computer={8}>
                             {/* <Segment basic> */}
-                                <div className="field language-select">
-                                    <label>
-                                        Language:
-                                    </label>
-                                    <p className="control">
-                                        <span className="select">
-                                            {selectOptions}
-                                        </span>
-                                    </p>
+                            <div className='cg-language'>
+                                <label className='cg-label'>
+                                    Language
+                                </label>
+                                <div className='cg-dropdown' >
+                                    {selectOptions}
                                 </div>
-                                <Responsive onUpdate={this.handleResize}>
-                                    <AceEditor
-                                        className='cg-editor'
-                                        mode={this.state.mode}
-                                        theme="monokai"
-                                        name="code"
-                                        fontSize={14}
-                                        showPrintMargin={true}
-                                        showGutter={true}
-                                        highlightActiveLine={true}
-                                        value={this.state.value}
-                                        onChange={this.onChange}
-                                        //width={this.state.editorWidth}
-                                        setOptions={{
-                                            enableBasicAutocompletion: false,
-                                            enableLiveAutocompletion: true,
-                                            enableSnippets: false,
-                                            showLineNumbers: true,
-                                            tabSize: 4,
-                                        }}
-                                        
-                                    />
-                                    {submitButton}
+                            </div>
+                            <Responsive onUpdate={this.handleResize}>
+                                <AceEditor
+                                    className='cg-editor'
+                                    mode={this.state.mode}
+                                    theme="monokai"
+                                    name="code"
+                                    fontSize={14}
+                                    showPrintMargin={true}
+                                    showGutter={true}
+                                    highlightActiveLine={true}
+                                    value={this.state.value}
+                                    onChange={this.onChange}
+                                    //width={this.state.editorWidth}
+                                    setOptions={{
+                                        enableBasicAutocompletion: false,
+                                        enableLiveAutocompletion: true,
+                                        enableSnippets: false,
+                                        showLineNumbers: true,
+                                        tabSize: 4,
+                                    }}
 
-                                    {this.state.showResults ?
-                                        <Segment>
-                                            <Header as='h2'>Result</Header>
-                                            {compileResult}
-                                        </Segment>
-                                        : <div></div>
-                                    }
-                                </Responsive>
+                                />
+                                <div className='cg-padding-submit'>
+                                    {submitButton}
+                                </div>
+                                
+
+                                {this.state.showResults ?
+                                    <Segment>
+                                        <Header as='h2'>Result</Header>
+                                        {compileResult}
+                                    </Segment>
+                                    : <div></div>
+                                }
+                            </Responsive>
 
                             {/* </Segment> */}
                         </Grid.Column>
                     </Grid>
 
                 </Container>
-                <div style={{height: 20}}></div>
+                <div style={{ height: 20 }}></div>
             </div>
         )
 
