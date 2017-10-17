@@ -14,17 +14,18 @@ namespace CtsContestWeb.Communication
     {
         private readonly IConfiguration _iconfiguration;
         private readonly ISolutionRepository _solutionRepository;
+        private readonly ICompiler _compiler;
 
-        public TaskManager(IConfiguration iconfiguration, ISolutionRepository solutionRepository)
+        public TaskManager(IConfiguration iconfiguration, ISolutionRepository solutionRepository, ICompiler compiler)
         {
             _iconfiguration = iconfiguration;
             _solutionRepository = solutionRepository;
+            _compiler = compiler;
         }
 
         public async Task<List<TaskDto>> GetAllTasks(string userEmail = null)
         {
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
-            var pictureUrl = _iconfiguration["UmbracoPictureUrl"];
             var client = new RestClient(umbracoApiUrl);
 
             var request = new RestRequest("task/getAll", Method.GET);
@@ -36,7 +37,7 @@ namespace CtsContestWeb.Communication
             });
 
             var tasks = await taskCompletion.Task;
-            var solvedTasks = _solutionRepository.GetTaskIdsByUserEmail(userEmail).ToList();
+            var solvedTasks = _solutionRepository.GetSolvedTasksIdsByUserEmail(userEmail).ToList();
 
             foreach (var task in tasks)
             {
@@ -70,7 +71,7 @@ namespace CtsContestWeb.Communication
             var task = await taskCompletion.Task;
             if (userEmail != null)
             {
-                var solvedTasks = _solutionRepository.GetTaskIdsByUserEmail(userEmail);
+                var solvedTasks = _solutionRepository.GetSolvedTasksIdsByUserEmail(userEmail);
                 if (solvedTasks.Any(t => t == task.Id))
                     task.IsSolved = true;
             }
@@ -79,8 +80,21 @@ namespace CtsContestWeb.Communication
             return task;
         }
 
-        public async Task<CodeSkeletonDto> GetCodeSkeleton(string language)
+        public async Task<CodeSkeletonDto> GetCodeSkeleton(string userEmail, int taskId, string language)
         {
+            var solution = _solutionRepository.GetSolution(userEmail, taskId);
+            
+            if (solution != null)
+            {
+                var languages = await _compiler.GetLanguages();
+                var languageCode = languages.Codes.FirstOrDefault(c => c.Value == solution.Language).Key;
+                return new CodeSkeletonDto
+                {
+                    Language = languageCode,
+                    Skeleton = solution.Source
+                };
+            }
+
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
             var client = new RestClient(umbracoApiUrl);
 

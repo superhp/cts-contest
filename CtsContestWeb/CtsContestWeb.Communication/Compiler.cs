@@ -9,18 +9,15 @@ namespace CtsContestWeb.Communication
 {
     public class Compiler : ICompiler
     {
-        IConfiguration _configuration;
-        private ITaskManager _taskManager;
-        public Compiler(IConfiguration configuration, ITaskManager taskManger)
+        readonly IConfiguration _configuration;
+
+        public Compiler(IConfiguration configuration)
         {
             _configuration = configuration;
-            _taskManager = taskManger;
         }
 
-        public async Task<CompileDto> Compile(int taskId, string source, int language)
+        public async Task<CompileDto> Compile(TaskDto task, string source, int language)
         {
-            var task = await _taskManager.GetTaskById(taskId);
-
             var hackerRankUrl = _configuration["HackerRankUrl"];
 
             var client = new RestClient(hackerRankUrl);

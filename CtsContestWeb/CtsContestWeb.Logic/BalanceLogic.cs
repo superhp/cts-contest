@@ -37,7 +37,7 @@ namespace CtsContestWeb.Logic
         private int GetTotalEarnedMoney(string userEmail)
         {
             var solutions = _solRep.GetSolutionsByUserEmail(userEmail);
-            var sum = solutions.Select(x => x.Score).DefaultIfEmpty(0).Sum();
+            var sum = solutions.Where(s => s.IsCorrect).Select(x => x.Score).DefaultIfEmpty(0).Sum();
             return sum;
         }
 
