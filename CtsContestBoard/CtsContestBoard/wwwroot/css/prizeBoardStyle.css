@@ -13,6 +13,7 @@
 }
 
 .headerText  {
+    font-size: 3em !important;
     vertical-align: central;
     color: whitesmoke !important;
 }

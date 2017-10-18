@@ -3,11 +3,11 @@
 }
 
 .first-week-prize-row {
-    height: 30vh;
+    height: 20vh;
 }
 
 .second-week-prize-row {
-    height: 70vh;
+    height: 72vh;
 }
 
 .weekPrizeCard {
@@ -18,11 +18,20 @@
 }
 
 .singleWeekPrizeCard {
-    height: 90% ;
+    
+    margin-left: 50px !important;
+    border: solid !important;
+    border-width: 1px !important;
+    border-color: #eee !important;
+    
+    box-shadow: 2px 2px 10px #ccc !important; 
+    /*
+    height: 90%;
     width: 80% !important;
+    
     position: relative !important;
     left: 15%;
-    top: 6%;
+    top: 6%;*/
 }
 
 .first-prize-card-row{
@@ -33,6 +42,8 @@
 }
 
 .card-ribbon{
+    font-size: 1.5em !important;
+    left: -15px !important;
     width: 50%;
 }
 
