@@ -23,9 +23,10 @@ class Board extends React.Component {
                 <Header />
                 <div>
                     {
-                        this.state.Board === 0 ?
+                        true ?
                             <LeaderBoard data={this.state.LeaderBoard} /> :
                             <SpecialPrizeBoard data={modifiedWeekPrizes} />
+                            
                     }
                 </div>
             </div>

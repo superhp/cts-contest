@@ -5,12 +5,17 @@ body {
 }
 
 .container {
-    width: 550px;
     margin: 80px auto;
+    position: relative;
+    left: 5%;
+}
+
+.board-row {
+    width: 90% ;
 }
 
 .leadheader {
-    width: 100%;
+    width: 90%;
     height: 70px;
     background: rgba(54, 195, 105, 0.9);
     text-align: center;
@@ -25,10 +30,11 @@ body {
 
 .colheader {
     background: rgba(254, 254, 254, 0.9);
-    width: 100%;
+    width: 90%;
     margin-left: 0;
     text-align: left;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    margin: 0 !important;
 }
 
 
@@ -68,9 +74,9 @@ body {
     align-items: center;
     background: #fefefe;
     height: 5%;
-    margin: 0;
-    padding: 5px;
+    margin: 0 !important;
     text-align: center;
+    width: 90%;
 }
 
     .users .name {
@@ -96,11 +102,11 @@ body {
     }
 
     .users:nth-of-type(odd) {
-        background: rgba(254, 254, 254, 0.9);
+        background: rgba(218, 245, 255, 0.9);
     }
 
     .users:nth-of-type(even) {
-        background: rgba(218, 245, 255, 0.9);
+        background: rgba(254, 254, 254, 0.9);
     }
 
     .users:last-child {
