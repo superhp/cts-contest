@@ -16,12 +16,14 @@ namespace CtsContestWeb.Controllers
         private readonly ITaskManager _taskManager;
         private readonly ICompiler _compiler;
         private readonly ISolutionLogic _solutionLogic;
+        private readonly ICodeSkeletonManager _codeSkeletonManager;
 
-        public TaskController(ITaskManager taskManager, ICompiler compiler, ISolutionLogic solutionLogic)
+        public TaskController(ITaskManager taskManager, ICompiler compiler, ISolutionLogic solutionLogic, ICodeSkeletonManager codeSkeletonManager)
         {
             _taskManager = taskManager;
             _compiler = compiler;
             _solutionLogic = solutionLogic;
+            _codeSkeletonManager = codeSkeletonManager;
         }
 
         public async Task<IEnumerable<TaskDisplayDto>> Get()
@@ -88,7 +90,7 @@ namespace CtsContestWeb.Controllers
         public async Task<CodeSkeletonDto> GetCodeSkeleton(string language, int taskId)
         {
             var userEmail = User.FindFirst(ClaimTypes.Email).Value;
-            return await _taskManager.GetCodeSkeleton(userEmail, taskId, language);
+            return await _codeSkeletonManager.GetCodeSkeleton(userEmail, taskId, language);
         }
     }
 }

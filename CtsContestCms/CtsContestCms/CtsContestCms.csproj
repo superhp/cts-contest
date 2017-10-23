@@ -377,7 +377,7 @@
     <Compile Include="Controllers\CodeSkeletonController.cs" />
     <Compile Include="Controllers\PrizeController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
-    <Compile Include="Models\CodeSkeletonDto.cs" />
+    <Compile Include="Models\GenericCodeSkeletonDto.cs" />
     <Compile Include="Models\PrizeDto.cs" />
     <Compile Include="Models\TaskDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -28,7 +28,8 @@ export class TaskComponent extends React.Component<any, any> {
             showResults: false,
             loadingUserInfo: true,
             disabledButton: true,
-            value: ""
+            value: "",
+            showSaved: false
         };
 
         this.setMode = this.setMode.bind(this);
@@ -72,7 +73,8 @@ export class TaskComponent extends React.Component<any, any> {
     compileCode() {
         this.setState({
             compileResult: null,
-            showResults: true
+            showResults: true,
+            showSaved: false
         })
 
         let languageCode = this.state.languages.codes[this.state.mode];
@@ -100,6 +102,10 @@ export class TaskComponent extends React.Component<any, any> {
     }
 
     saveForLater() {
+        this.setState({
+            showSaved: false
+        });
+
         let languageCode = this.state.languages.codes[this.state.mode];
 
         const formData = new FormData();
@@ -112,7 +118,11 @@ export class TaskComponent extends React.Component<any, any> {
             credentials: 'include'
         })
             .then(response => response.json() as Promise<boolean>)
-            .then(data => {});
+            .then(data => {
+                this.setState({
+                    showSaved: true
+                });
+            });
     }
 
     componentDidMount() {
@@ -310,7 +320,14 @@ export class TaskComponent extends React.Component<any, any> {
                                     {submitButton}
                                 </div>
                                 
-
+                                {this.state.showSaved ?
+                                    <p className="success-message">
+                                        Solution saved
+                                        </p>
+                                    :
+                                    <p></p>
+                                }
+                                
                                 {this.state.showResults ?
                                     <Segment>
                                         <Header as='h2'>Result</Header>

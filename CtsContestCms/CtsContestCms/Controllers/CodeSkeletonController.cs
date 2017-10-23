@@ -13,25 +13,30 @@ namespace CtsContestCms.Controllers
     public class CodeSkeletonController : UmbracoApiController
     {
         // GET api/codeskeleton/get/{id}
-        public CodeSkeletonDto Get(string id)
+        public GenericCodeSkeletonDto Get(string id)
         {
-            var skeletonDtos = new List<CodeSkeletonDto>();
+            var skeletonDtos = new List<GenericCodeSkeletonDto>();
             var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
 
             var skeletons = umbracoHelper.Content(1518).Children;
 
             foreach (var skeleton in skeletons)
             {
-                skeletonDtos.Add(new CodeSkeletonDto
+                skeletonDtos.Add(new GenericCodeSkeletonDto
                 {
                     Language = skeleton.Name,
-                    Skeleton = skeleton.GetPropertyValue("skeleton")
+                    Skeleton = skeleton.GetPropertyValue("skeleton"),
+                    ReadLine = skeleton.GetPropertyValue("inputReadLine"),
+                    WriteLine = skeleton.GetPropertyValue("outputWriteLine"),
+                    ReadInteger = skeleton.GetPropertyValue("inputReadInteger").Replace("\\n", "\n"),
+                    ReadLineOfIntegers = skeleton.GetPropertyValue("inputReadLineOfIntegers").Replace("\\n", "\n"),
+                    ReadInputIntegerNumberOfLinesOfIntegers = skeleton.GetPropertyValue("inputReadInputIntegerNumberOfLinesOfIntegers").Replace("\\n", "\n")
                 });
             }
             var skeletonDto = skeletonDtos.FirstOrDefault(s => s.Language.Equals(id));
 
             if (skeletonDto == null)
-                return new CodeSkeletonDto
+                return new GenericCodeSkeletonDto
                 {
                     Language = id,
                     Skeleton = string.Empty

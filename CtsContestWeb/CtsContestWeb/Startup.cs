@@ -42,6 +42,7 @@ namespace CtsContestWeb
 
             services.AddTransient<ITaskManager, TaskManager>();
             services.AddTransient<IPrizeManager, PrizeManager>();
+            services.AddTransient<ICodeSkeletonManager, CodeSkeletonManager>();
 
             services.AddScoped<ISolutionLogic, SolutionLogic>();
 

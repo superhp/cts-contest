@@ -8,7 +8,7 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "d667891194d040a3")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "2035815c9b0f2309")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 
@@ -969,6 +969,15 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// Enabled
+		///</summary>
+		[ImplementPropertyType("enabled")]
+		public bool Enabled
+		{
+			get { return this.GetPropertyValue<bool>("enabled"); }
+		}
+
+		///<summary>
 		/// Input: Input (list of strings) sent to the API.
 		///</summary>
 		[ImplementPropertyType("input")]
@@ -978,21 +987,21 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// Input type
+		///</summary>
+		[ImplementPropertyType("inputType")]
+		public string InputType
+		{
+			get { return this.GetPropertyValue<string>("inputType"); }
+		}
+
+		///<summary>
 		/// Output: Outputs for each of the sent input strings.
 		///</summary>
 		[ImplementPropertyType("output")]
 		public IEnumerable<string> Output
 		{
 			get { return this.GetPropertyValue<IEnumerable<string>>("output"); }
-		}
-
-		///<summary>
-		/// setsw
-		///</summary>
-		[ImplementPropertyType("setsw")]
-		public string Setsw
-		{
-			get { return this.GetPropertyValue<string>("setsw"); }
 		}
 
 		///<summary>
@@ -1142,6 +1151,60 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<CodeSkeleton, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Input read inputInteger number of lines of integers
+		///</summary>
+		[ImplementPropertyType("inputReadInputIntegerNumberOfLinesOfIntegers")]
+		public string InputReadInputIntegerNumberOfLinesOfIntegers
+		{
+			get { return this.GetPropertyValue<string>("inputReadInputIntegerNumberOfLinesOfIntegers"); }
+		}
+
+		///<summary>
+		/// Input read integer
+		///</summary>
+		[ImplementPropertyType("inputReadInteger")]
+		public string InputReadInteger
+		{
+			get { return this.GetPropertyValue<string>("inputReadInteger"); }
+		}
+
+		///<summary>
+		/// Input read line
+		///</summary>
+		[ImplementPropertyType("inputReadLine")]
+		public string InputReadLine
+		{
+			get { return this.GetPropertyValue<string>("inputReadLine"); }
+		}
+
+		///<summary>
+		/// Input read line of integers
+		///</summary>
+		[ImplementPropertyType("inputReadLineOfIntegers")]
+		public string InputReadLineOfIntegers
+		{
+			get { return this.GetPropertyValue<string>("inputReadLineOfIntegers"); }
+		}
+
+		///<summary>
+		/// Output write
+		///</summary>
+		[ImplementPropertyType("outputWrite")]
+		public string OutputWrite
+		{
+			get { return this.GetPropertyValue<string>("outputWrite"); }
+		}
+
+		///<summary>
+		/// Output write line
+		///</summary>
+		[ImplementPropertyType("outputWriteLine")]
+		public string OutputWriteLine
+		{
+			get { return this.GetPropertyValue<string>("outputWriteLine"); }
 		}
 
 		///<summary>

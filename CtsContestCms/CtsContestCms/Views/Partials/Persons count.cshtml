@@ -1,11 +1,3 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 
 
-@{
-	var selection = Model.Content.Site().FirstChild("people").Children("person")
-						.Where(x => x.IsVisible());
-}
-<ul>
-	There are @selection.Sum(x => (int)x.GetPropertyValue("points")) persons
-</ul>
-
