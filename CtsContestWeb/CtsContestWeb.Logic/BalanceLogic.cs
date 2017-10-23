@@ -37,14 +37,16 @@ namespace CtsContestWeb.Logic
         private int GetTotalEarnedMoney(string userEmail)
         {
             var solutions = _solRep.GetSolutionsByUserEmail(userEmail);
-            var sum = solutions.Where(s => s.IsCorrect).Select(x => x.Score).DefaultIfEmpty(0).Sum();
+            //var sum = solutions.Where(s => s.IsCorrect).Select(x => x.Score).DefaultIfEmpty(0).Sum();
+            var sum = solutions.Where(s => s.IsCorrect && s.Created.Date == DateTime.Today).Select(x => x.Score).DefaultIfEmpty(0).Sum();
             return sum;
         }
 
         private int GetTotalSpentMoney(string userEmail)
         {
             var purchases = _purRep.GetAllByUserEmail(userEmail);
-            var sum = purchases.Select(x => x.Cost).DefaultIfEmpty(0).Sum();
+            //var sum = purchases.Select(x => x.Cost).DefaultIfEmpty(0).Sum();
+            var sum = purchases.Where(p => p.Created.Date == DateTime.Today).Select(x => x.Cost).DefaultIfEmpty(0).Sum();
             return sum;
         }
 

@@ -39,7 +39,7 @@ namespace CtsContestWeb.Db
 
         private void SetMetadata()
         {
-            foreach (var entity in ChangeTracker.Entries().Where(e => e.State == EntityState.Added))
+            foreach (var entity in ChangeTracker.Entries().Where(e => e.State == EntityState.Added || e.State == EntityState.Modified))
             {
                 var auditable = entity.Entity as IAuditable;
                 if (auditable != null)

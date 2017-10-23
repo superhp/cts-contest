@@ -31,6 +31,7 @@ namespace CtsContestBoard
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
             services.AddScoped<ISolutionRepository, SolutionRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddTransient<IPrizeManager, PrizeManager>();
 

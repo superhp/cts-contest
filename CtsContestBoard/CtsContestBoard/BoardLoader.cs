@@ -16,6 +16,7 @@ namespace CtsContestBoard
         private readonly IPrizeManager _prizeManager;
         private readonly ISolutionRepository _solutionRepository;
         private readonly IPurchaseRepository _purchaseRepository;
+        private readonly IUserRepository _userRepository;
 
         public string LastUpdate => DateTime.Now.ToString();
         private List<PrizeDto> _prizes = new List<PrizeDto>();
@@ -26,17 +27,18 @@ namespace CtsContestBoard
         private List<PrizeDto> _prizesForPoints = new List<PrizeDto>();
         public List<PrizeDto> PrizesForPoints => _prizesForPoints;
 
-        private List<PrizeAndApplicantDto> _todayPrizes = new List<PrizeAndApplicantDto>(); // prize and applicant dto
-        public List<PrizeAndApplicantDto> TodayPrizes => _todayPrizes;
+        private PrizeAndApplicantDto _todaysPrize = new PrizeAndApplicantDto();
+        public PrizeAndApplicantDto TodaysPrize => _todaysPrize;
 
-        private List<PrizeAndApplicantDto> _weekPrizes = new List<PrizeAndApplicantDto>();
-        public List<PrizeAndApplicantDto> WeekPrizes => _weekPrizes;
+        private PrizeAndApplicantDto _weeksPrize = new PrizeAndApplicantDto();
+        public PrizeAndApplicantDto WeeksPrize => _weeksPrize;
 
         public BoardEnum Board { get; set; }
 
         private Timer _timer;
         private List<Solution> _solutions;
         private List<Purchase> _purchases;
+        private List<User> _users;
 
         public enum BoardEnum
         {
@@ -46,11 +48,12 @@ namespace CtsContestBoard
             WeekPrizes
         }
 
-        public BoardLoader(IPrizeManager prizeManager, ISolutionRepository solutionRepository, IPurchaseRepository purchaseRepository)
+        public BoardLoader(IPrizeManager prizeManager, ISolutionRepository solutionRepository, IPurchaseRepository purchaseRepository, IUserRepository userRepository)
         {
             _prizeManager = prizeManager;
             _solutionRepository = solutionRepository;
             _purchaseRepository = purchaseRepository;
+            _userRepository = userRepository;
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
@@ -58,7 +61,9 @@ namespace CtsContestBoard
 
             _prizes = _prizeManager.GetAllPrizes().Result;
             _purchases = _purchaseRepository.GetAll().ToList();
-            UpdatePrizes();
+            _users = _userRepository.GetAll().ToList();
+
+            UpdateLeaderBoard();
 
             _timer = new Timer(state =>
             {
@@ -81,44 +86,44 @@ namespace CtsContestBoard
                         {
                             GetNewPurchases();
                             UpdateTodayPrizes();
-                            Changed(nameof(TodayPrizes));
+                            Changed(nameof(TodaysPrize));
                             break;
                         }
-                        //case BoardEnum.WeekPrizes:
-                        //    {
-                        //        GetNewPurchases();
-                        //        UpdateWeekPrizes();
-                        //        Changed(nameof(WeekPrizes));
-                        //        break;
-                        //    }
+                    case BoardEnum.WeekPrizes:
+                        {
+                            GetNewPurchases();
+                            UpdateWeekPrizes();
+                            Changed(nameof(WeeksPrize));
+                            break;
+                        }
                 }
 
                 Changed(nameof(Board));
                 Changed(nameof(LastUpdate));
 
                 PushUpdates();
-            }, null, 0, 5000);
+            }, null, 0, 15000);
         }
 
         private void UpdateTodayPrizes()
         {
             var weekday = DateTime.Today.ToString("dddd");
-            _todayPrizes = UpdatePrizesByCategory($"{weekday} prize");
+            _todaysPrize = UpdatePrizesByCategory($"{weekday} prize");
         }
 
         private void UpdateWeekPrizes()
         {
-            _weekPrizes = UpdatePrizesByCategory("Week prize");
+            _weeksPrize = UpdatePrizesByCategory("Week prize");
         }
 
-        private List<PrizeAndApplicantDto> UpdatePrizesByCategory(string category)
+        private PrizeAndApplicantDto UpdatePrizesByCategory(string category)
         {
             List<ParticipantDto> participants;
 
             if (category.Equals("Week prize"))
-                participants = _leaderBoard.OrderBy(p => p.Balance).ToList();
+                participants = _leaderBoard.OrderByDescending(p => p.TotalBalance).ToList();
             else
-                participants = _leaderBoard.OrderBy(p => p.TodayEarnedPoints).ToList();
+                participants = _leaderBoard.OrderByDescending(p => p.TodaysBalance).ToList();
 
             var applicantsForPrize = 3;
             var participantsNeeded = applicantsForPrize + _prizes.Count(p => p.Category.Equals(category));
@@ -128,39 +133,70 @@ namespace CtsContestBoard
                     participants.Add(new ParticipantDto());
 
             var i = 0;
-            return _prizes.Where(p => p.Category.Equals(category)).Select(p => new PrizeAndApplicantDto
+            var prize = _prizes.FirstOrDefault(p => p.Category.Equals(category));
+
+            if (prize == null)
+                return new PrizeAndApplicantDto();
+
+            return new PrizeAndApplicantDto
             {
-                Id = p.Id,
-                Name = p.Name,
-                Picture = p.Picture,
-                Price = p.Price,
-                Quantity = p.Quantity - _purchases.Count(np => np.PrizeId == p.Id),
-                Category = p.Category,
+                Id = prize.Id,
+                Name = prize.Name,
+                Picture = prize.Picture,
+                Price = prize.Price,
+                Quantity = prize.Quantity - _purchases.Count(np => np.PrizeId == prize.Id),
+                Category = prize.Category,
                 Applicants = participants.Skip(i++).Take(applicantsForPrize)
-            }).ToList();
+            };
         }
 
         private void UpdateLeaderBoard()
+        {
+            UpdateSolutions();
+            UpdateUsers();
+
+            /*var spentPoints = _purchases.GroupBy(p => p.UserEmail)
+                .Select(gp => new { UserEmail = gp.First().UserEmail, Points = gp.Sum(p => p.Cost) }).ToList();
+
+            var todaySpentPoints = _purchases.Where(p => p.Created == DateTime.Today).GroupBy(p => p.UserEmail)
+                .Select(gp => new { UserEmail = gp.First().UserEmail, Points = gp.Sum(p => p.Cost) }).ToList();*/
+
+            /*var groupedSolutions = _solutions.GroupBy(s => s.UserEmail).ToList();
+
+            var todaysGroupedSolutions = _solutions.Where(s => s.Created == DateTime.Today).GroupBy(s => s.UserEmail).ToList()
+                .Select(gp => new { UserEmail = gp.First().UserEmail, Points = gp.Sum(p => p.Score) }).ToList(); ;*/
+
+            _leaderBoard = _users.Select(u => new ParticipantDto
+            {
+                Name = u.FullName,
+                Picture = u.Picture,
+                TotalBalance = _solutions.Where(s => s.UserEmail.Equals(u.Email)).Sum(s => s.Score) - _purchases.Where(s => s.UserEmail.Equals(u.Email)).Sum(s => s.Cost),
+                TodaysBalance = _solutions.Where(s => s.UserEmail.Equals(u.Email) && s.Created.Date == DateTime.Today).Sum(s => s.Score) - _purchases.Where(s => s.UserEmail.Equals(u.Email) && s.Created.Date == DateTime.Today).Sum(s => s.Cost)
+            }).ToList();
+
+            /*_leaderBoard = groupedSolutions.Select(ss => new ParticipantDto
+            {
+                Name = ss.First().User.FullName,
+                Picture = ss.First().User.Picture,
+                TotalBalance = ss.Sum(sc => sc.Score) - spentPoints.Where(p => p.UserEmail.Equals(ss.First().User.Email)).Sum(p => p.Points),
+                TodaysBalance = todaysGroupedSolutions.First(tgs => tgs.UserEmail.Equals(ss.First().UserEmail)).Points - todaySpentPoints.Where(p => p.UserEmail.Equals(ss.First().User.Email)).Sum(p => p.Points),
+                //TodayEarnedPoints = ss.Where(s => s.Created.Date == DateTime.Today).Sum(p => p.Score)
+            }).ToList();*/
+        }
+
+        private void UpdateUsers()
+        {
+            _users = _userRepository.GetAll().ToList();
+        }
+
+        private void UpdateSolutions()
         {
             int lastId = 0;
             if (_solutions.Count > 0)
                 lastId = _solutions.Max(s => s.SolutionId);
 
-            var spentPoints = _purchases.GroupBy(p => p.UserEmail)
-                .Select(gp => new { UserEmail = gp.First().UserEmail, Points = gp.Sum(p => p.Cost) }).ToList();
             var newSolutions = _solutionRepository.GetAll().Where(s => s.SolutionId > lastId && s.IsCorrect).ToList();
             _solutions.AddRange(newSolutions);
-
-            var groupedSolutions = _solutions.GroupBy(s => s.UserEmail).ToList();
-
-            _leaderBoard = groupedSolutions.Select(ss => new ParticipantDto
-            {
-                Name = ss.First().User.FullName,
-                Picture = ss.First().User.Picture,
-                TotalEarnedPoints = ss.Sum(sc => sc.Score),
-                Balance = ss.Sum(sc => sc.Score) - spentPoints.Where(p => p.UserEmail.Equals(ss.First().User.Email)).Sum(p => p.Points),
-                TodayEarnedPoints = ss.Where(s => s.Created.Date == DateTime.Today).Sum(p => p.Score)
-            }).ToList();
         }
 
         private void GetNewPurchases()
@@ -188,7 +224,7 @@ namespace CtsContestBoard
 
         private void SwitchBoard()
         {
-            if (Board < BoardEnum.TodayPrizes)
+            if (Board < BoardEnum.WeekPrizes)
                 Board++;
             else
                 Board = BoardEnum.LeaderBoard;

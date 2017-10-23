@@ -31,12 +31,17 @@ namespace CtsContestWeb.Communication
             {
                 var languages = await _compiler.GetLanguages();
                 var languageCode = languages.Codes.FirstOrDefault(c => c.Value == solution.Language).Key;
-                return new CodeSkeletonDto
-                {
-                    Language = languageCode,
-                    Skeleton = solution.Source
-                };
+
+                if (languageCode.Equals(language.ToLower()) || language.Equals("undefined"))
+                    return new CodeSkeletonDto
+                    {
+                        Language = languageCode,
+                        Skeleton = solution.Source
+                    };
             }
+
+            if (language.Equals("undefined"))
+                language = "javascript";
 
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
             var client = new RestClient(umbracoApiUrl);

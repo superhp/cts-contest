@@ -44,14 +44,14 @@ export class TaskComponent extends React.Component<any, any> {
                     delete data.names[language];
                 });
 
-                this.setState({ languages: data, loadingLanguages: false });
+                this.setState({ languages: data });
 
                 for (let key in data.names) {
                     let compiler = this.getHighlighter(key);
                     require(`brace/mode/${compiler}`)
                 }
 
-                this.setCodeSkeleton(this.state.mode);
+                this.setCodeSkeleton("undefined");
             });
 
         this.compileCode = this.compileCode.bind(this);
@@ -165,16 +165,17 @@ export class TaskComponent extends React.Component<any, any> {
 
                 this.setState({
                     mode: this.getHighlighter(data.language),
-                    selectedLanguage: data.language
+                    selectedLanguage: data.language,
+                    loadingLanguages: false
                 })
             });
     }
 
     setMode(e: any, data: any) {
-        if (this.state.value.length == 0) {
-            let language = this.state.languages.names[data.value];
-            this.setCodeSkeleton(language);
-        }
+        //if (this.state.value.length == 0) {
+        let language = this.state.languages.names[data.value];
+        this.setCodeSkeleton(language);
+        //}
 
         this.setState({
             mode: this.getHighlighter(data.value),

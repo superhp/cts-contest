@@ -33,7 +33,7 @@ namespace CtsContestCms.Controllers
                         Id = task.Id,
                         Input = inputs[i],
                         Output = outputs[i],
-                        InputType = task.GetPropertyValue("inputType")
+                        InputType = task.GetPropertyValue("inputType"),
                     });
                 }
 
@@ -57,10 +57,11 @@ namespace CtsContestCms.Controllers
                     Id = task.Id,
                     Name = task.Name,
                     Value = task.GetPropertyValue("value"),
+                    IsEnabled = task.GetPropertyValue("enabled")
                 });
             }
 
-            return taskDtos;
+            return taskDtos.Where(t => t.IsEnabled).ToList();
         }
 
         // GET api/task/get/{id}
