@@ -1,10 +1,10 @@
 ﻿import React from 'react';
-import PrizeCard from './PrizeCard.jsx';
+import PrizeCard from '../components/PrizeCard.jsx';
 
 export default class PrizeBoard extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props);
+        //console.log(props);
     }
     render() {
         return (

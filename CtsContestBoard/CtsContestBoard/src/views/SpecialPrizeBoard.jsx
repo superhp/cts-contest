@@ -2,8 +2,8 @@
 import { Grid } from 'semantic-ui-react';
 import ReactCountdownClock from 'react-countdown-clock';
 
-import UserCard from './UserCard.jsx';
-import WeekPrizeCard from './WeekPrizeCard.jsx';
+import UserCard from '../components/UserCard.jsx';
+import WeekPrizeCard from '../components/WeekPrizeCard.jsx';
 
 export default class SpecialPrizeBoard extends React.Component {
     constructor(props) {
@@ -13,7 +13,16 @@ export default class SpecialPrizeBoard extends React.Component {
 
     render() {
         return (
-            <OnePrizeBoard data={this.props.data} state={this.state} />
+            <div>
+                <h1 className='prize-board-header'>
+                    {
+                        this.props.board === 'today'
+                        ? 'Today\'s prize'
+                        : 'Conference prize'
+                    }    
+                </h1>
+                <OnePrizeBoard data={this.props.data} prize={this.props.prize} state={this.state} />
+            </div>
         );
     }
 
@@ -52,20 +61,12 @@ const TwoPrizeBoard = ({ data }) => (
     </Grid>
 )
 
-const OnePrizeBoard = ({ data, state }) => (
+const OnePrizeBoard = ({ data, prize, state }) => (
     <Grid id="special-prize-board">
-        <Grid.Row columns={2} className="first-week-prize-row">
-            <Grid.Column width={12}>
-
-            </Grid.Column>
-            <Grid.Column width={4}>
-
-            </Grid.Column>
-        </Grid.Row>
         <Grid.Row columns={2} className="second-week-prize-row">
             <Grid.Column width={5} >
-                <div style={{width: '75%'}}>
-                    <WeekPrizeCard className="singleWeekPrizeCard" name="IPhone X" picture="https://www.telia.lt/documents/20184/5622585/Nokia_3310_BU_2_624x750/595c7466-8cf0-3699-d72f-1554ce26cce2?t=1499753422524" />
+                <div style={{ width: '75%' }}>
+                    <WeekPrizeCard className="singleWeekPrizeCard" name={prize.Name} picture={prize.Picture} />
                 </div>
             </Grid.Column>
             <Grid.Column width={11}>

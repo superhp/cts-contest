@@ -39,10 +39,10 @@ const ColumnHeader = () => (
         <Grid.Column width={7}>
             <h4>Name</h4>
         </Grid.Column>
-        <Grid.Column width={2}>
+        <Grid.Column width={3}>
             <h4>Total balance</h4>
         </Grid.Column>
-        <Grid.Column width={2} className="recent">
+        <Grid.Column width={3} className="recent">
             <h4>Today's points</h4>
         </Grid.Column>
     </Grid>
@@ -55,15 +55,15 @@ const User = ({ picture, name, totalBalance, todaysBalance, rank}) => {
                 <h4>{rank}</h4>
             </Grid.Column>
             <Grid.Column width={2} className="picture">
-                <Image className="picture-leaderboard" src={picture} />
+                <Image className="picture-leaderboard" src={picture ? picture : 'img/186382-128.png'} />
             </Grid.Column>
             <Grid.Column width={7} className="name">
                 <h4>{name}</h4>
             </Grid.Column>
-            <Grid.Column width={2} textAlign="center">
+            <Grid.Column width={3} textAlign="center">
                 <h4>{totalBalance}</h4>
             </Grid.Column>
-            <Grid.Column width={2} textAlign="center">
+            <Grid.Column width={3} textAlign="center">
                 <h4>{todaysBalance}</h4>
             </Grid.Column>
         </Grid>

@@ -43,7 +43,7 @@
     height: 70%;
     background-color: rgba(66, 152, 181, 0.95);
     border-color: rgba(66, 152, 181, 0.95) !important;
-    z-index: -120;
+    z-index: 2;
 }
 
 .secondPlace .podium-trophy {
@@ -55,7 +55,7 @@
     background-color: rgba(66, 152, 181, 0.9);
     border-color: rgba(66, 152, 181, 0.9) !important;
     height: 50%;
-    z-index: -9999;
+    z-index: 1;
 }
 
 .thirdPlace .podium-trophy {
@@ -122,10 +122,11 @@
 }
 
 .podium-step-header-info-name {
-    font-size: 4vh;
+    font-size: 32px;
 }
 
 .podium-step-header-info-points {
     flex: 1 35% !important;
     font-size: 2vh;
+    text-align: center;
 }

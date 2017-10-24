@@ -45,16 +45,18 @@
     padding: 0 !important;
     margin: 0 !important;
 }
+.cg-nav .cg-nav-header::before {
+    width: 0px !important;
+}
 .cg-nav .cg-nav-header a{
     height: 100% !important;
 }
 .cg-nav .cg-nav-logo{
     padding: 0px 0px !important;
     width: auto !important;
-    height: 50px !important; 
-    margin: 22px 25px !important;
+    height: 80px !important; /*50px*/
+    margin: 35px 80px !important; /*23*/
 }
-
 .cg-nav .cg-nav-item {
     position: static !important;
     min-width: 50px !important;
@@ -66,9 +68,9 @@
 
 .cg-timeleft {
     display: block;
-    font-size: 2em;
+    font-size: 3em;
     text-transform: uppercase;
     color: #fff;
     padding: 0px 20px;
-    margin: auto;
+    margin: auto 80px;
 }
