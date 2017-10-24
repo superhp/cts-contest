@@ -2,24 +2,42 @@
     font-family: "Montserrat", sans-serif;
     padding: 40px;
 }
-
+.col-prize {
+    float: left;
+    width: 25%;
+    padding: 20px;
+    padding-bottom: 0px;
+}
 .card-row{
     height: 100% !important;
+    
 }
 
 .cardHeader {
+    padding: 0!important;
     background-color: rgba(0, 94, 128, 0.9) !important;
-    overflow: hidden;
+    height: 150px !important;
+    z-index: 10;
+    /*overflow: hidden;*/
 }
 
 .headerText  {
-    font-size: 3em !important;
-    vertical-align: central;
-    color: whitesmoke !important;
+    text-align: center;
+    padding: 5px;
+    font-size: 36px;
+    /*vertical-align: central;*/
+    color: whitesmoke;
 }
 
 .prizeCard {
-    display: table-cell !important; /* Make elements inside the container behave like table cells */
+    width: auto !important;
+    overflow: hidden !important;
+    /*display: table-cell !important;*/ /* Make elements inside the container behave like table cells */
+}
+.prizeCard img {
+    max-height: 500px !important;
+    margin: -100px auto !important;
+    z-index: 0;
 }
 
 .prizeCardRow {
@@ -34,3 +52,20 @@
 .full-space{
     height: 100vh !important;
 }
+.cardFooter {
+    font-size: 36px;
+    /*color: white;*/
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+}
+    .cardFooter.yellow {
+        background-color: rgb(237,139,0);
+        color: white;
+        font-weight: bold;
+    }
+    .cardFooter.sold-out {
+        background-color: rgb(225,82,61);
+        color: white;
+        font-weight: bold;
+    }

@@ -9,9 +9,9 @@ export default class PrizeCard extends React.Component {
                 <Label className="card-ribbon" color='green' ribbon>SPECIAL PRIZE!</Label>
                 <Image src={this.props.picture} alt='Special prize'/>
                 <Card.Content className="cardHeader">
-                    <Card.Header className="headerText">
+                    <div className="prizeHeader">
                         {this.props.name}
-                    </Card.Header>
+                    </div>
                 </Card.Content>
             </Card>
         )

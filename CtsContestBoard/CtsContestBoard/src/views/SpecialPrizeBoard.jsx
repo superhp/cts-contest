@@ -66,7 +66,11 @@ const OnePrizeBoard = ({ data, prize, state }) => (
         <Grid.Row columns={2} className="second-week-prize-row">
             <Grid.Column width={5} >
                 <div style={{ width: '75%' }}>
-                    <WeekPrizeCard className="singleWeekPrizeCard" name={prize.Name} picture={prize.Picture} />
+                    {
+                        prize.Name 
+                        ? <WeekPrizeCard className="singleWeekPrizeCard" name={prize.Name} picture={prize.Picture} />
+                        : ''
+                    } 
                 </div>
             </Grid.Column>
             <Grid.Column width={11}>
@@ -82,13 +86,13 @@ const Podium = ({ first, second, third }) => (
         <Grid.Column width={14}>
             <Grid className="podium">
                 <Grid.Column width={5} className="secondPlace podium-step">
-                    <UserCard username={second.username} points={second.points} picture={second.picture} />
+                    <UserCard place="second" username={second.username} points={second.points} picture={second.picture}/>
                 </Grid.Column>
                 <Grid.Column width={6} className="firstPlace podium-step">
-                    <UserCard username={first.username} points={first.points} picture={first.picture} />
+                    <UserCard place="first" username={first.username} points={first.points} picture={first.picture} />
                 </Grid.Column>
                 <Grid.Column width={5} className="thirdPlace podium-step">
-                    <UserCard username={third.username} points={third.points} picture={third.picture} />
+                    <UserCard place="third" username={third.username} points={third.points} picture={third.picture} />
                 </Grid.Column>
             </Grid>
         </Grid.Column>

@@ -20,47 +20,42 @@
     padding: 0 !important;
     display: flex !important;
     flex-direction: column;
-    border-radius: 5px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border: 1px solid black !important;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
 }
 
 .firstPlace {
     height: 100%;
-    background-color: rgba(66, 152, 181, 1);
-    border-color: rgba(66, 152, 181, 1) !important;
+   
     z-index: 9999;
 }
 
 .firstPlace .podium-trophy {
     color: gold;
-    font-size: 13em !important;
+    font-size: 256px !important;
 }
-
+.podium-trophy {
+    position: absolute;
+    bottom: 20px;
+    box-shadow: 0 0 0 0 !important;
+}
 .secondPlace {
     height: 70%;
-    background-color: rgba(66, 152, 181, 0.95);
-    border-color: rgba(66, 152, 181, 0.95) !important;
     z-index: 2;
 }
 
 .secondPlace .podium-trophy {
     color: silver;
-    font-size: 8em !important;
+    font-size: 160px !important;
 }
 
 .thirdPlace {
-    background-color: rgba(66, 152, 181, 0.9);
-    border-color: rgba(66, 152, 181, 0.9) !important;
     height: 50%;
     z-index: 1;
 }
 
 .thirdPlace .podium-trophy {
     color: #cd7f32;
-    font-size: 5em !important;
+    font-size: 100px !important;
 }
 
 .event {
@@ -82,10 +77,67 @@
     align-items: center;
     display: flex;
     justify-content: space-around;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+    .podium-step-content.first {
+        background-color: rgba(66, 152, 181, 1);
+        border-color: rgba(66, 152, 181, 1) !important;
+    }
+        .podium-step-content.first .podium-step-header-image {
+            height: 120px;
+        }
+    .podium-step-content.second {
+        background-color: rgba(66, 152, 181, 0.95);
+        border-color: rgba(66, 152, 181, 0.95) !important;
+    }
+    .podium-step-content.third {
+        background-color: rgba(66, 152, 181, 0.9);
+        border-color: rgba(66, 152, 181, 0.9) !important;
+    }
 .podium-step-header {
-    background-color: white;
+    position: absolute;
+    height: 0px;
+    top: 0px;
+    width: 100%;
+    padding: 0px;
+}
+.podium-step-header-info {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+}
+.podium-step-header-image {
+    height: 80px;
+}
+.podium-step-header-image img {
+    height: 100%;
+}
+
+.podium-step-header-info-name {
+    margin: 0px;
+    overflow: auto;
+    clear: both;
+    display: block;
+    font-size: 48px;
+    text-align: center;
+    padding: 0px 0px;
+}
+.podium-step-header-info-points {
+    
+    margin: 0 auto;
+    color: white;
+    font-size: 64px;
+    text-align: center;
+    font-weight: bold;
+}
+    /*.podium-step-header {
+    position: absolute;
+    top: -86px;
+    background-color: transparent;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     display: flex;
@@ -129,4 +181,11 @@
     flex: 1 35% !important;
     font-size: 2vh;
     text-align: center;
-}
+}*/
+    .prizeHeader {
+        text-align: center;
+        padding: 20px 0px;
+        font-size: 48px;
+        /*vertical-align: central;*/
+        color: whitesmoke;
+    }

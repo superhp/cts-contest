@@ -8,7 +8,7 @@ export default class LeaderBoard extends React.Component {
     }
     render() {
         const displayData = [...this.props.data];
-        for(let i = 0; i < 10; i++)
+        for(let i = displayData.length; i < 10; i++)
             displayData.push({Name: '', Picture: '', TotalBalance: '', TodaysBalance: ''});
         const userlist = displayData.map((Board, i) => <User className="board-row" name={Board.Name} picture={Board.Picture} todaysBalance={Board.TodaysBalance} totalBalance={Board.TotalBalance} rank={i + 1} key={i} />);
         return (
