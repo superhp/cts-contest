@@ -20,7 +20,7 @@ class Board extends React.Component {
 
     renderSlide() {
         console.log(this.state);
-        //switch (BoardEnum.WeekPrizes) {
+        //switch (BoardEnum.LeaderBoard) {
         switch(this.state.Board){
             case BoardEnum.LeaderBoard:
                 const sortedLeaderboard = this.state.LeaderBoard;
@@ -31,25 +31,22 @@ class Board extends React.Component {
                         return -1
                     else return 0;
                 });
-                return <LeaderBoard data={this.state.LeaderBoard} />
+                return <LeaderBoard data={sortedLeaderboard} />
             case BoardEnum.Prizes:
                 return <PrizeBoard prizes={this.state.PrizesForPoints} />
             case BoardEnum.TodayPrizes:
                 var leaders = [];
                 if (this.state.TodaysPrize.Applicants !== null && this.state.TodaysPrize.Applicants !== undefined)
                     leaders = this.state.TodaysPrize.Applicants.map(user => ({ username: user.Name, points: user.TodaysBalance, picture: user.Picture }));
-                
-                leaders.push({ username: undefined, points: -1, picture: undefined });
-                leaders.push({ username: undefined, points: -1, picture: undefined });
-                leaders.push({ username: undefined, points: -1, picture: undefined });
+                for(let i = 0; i < 3; i++)
+                    leaders.push({ username: undefined, points: -1, picture: undefined });
                 return <SpecialPrizeBoard data={leaders} prize={this.state.TodaysPrize} board='today'/>
             case BoardEnum.WeekPrizes:
                 leaders = [];
                 if(this.state.WeeksPrize.Applicants !== null && this.state.WeeksPrize.Applicants !== undefined)
                     leaders = this.state.WeeksPrize.Applicants.map(user => ({ username: user.Name, points: user.TotalBalance, picture: user.Picture }));
-                leaders.push({ username: 'Žmogus žmogenis', points: -1, picture: 'img/186382-128.png' });
-                leaders.push({ username: 'Labas rytas', points: -1, picture: 'img/186382-128.png' });
-                leaders.push({ username: undefined, points: -1, picture: undefined });
+                for(let i = 0; i < 3; i++)
+                    leaders.push({ username: 'Žmogus žmogenis', points: -1, picture: 'img/186382-128.png' });;
                 return <SpecialPrizeBoard data={leaders} prize={this.state.WeeksPrize} board='week'/>
         }
 
