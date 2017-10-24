@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using CtsContestWeb.Dto;
 using Microsoft.Extensions.Configuration;
@@ -24,10 +26,14 @@ namespace CtsContestWeb.Communication
 
             var request = new RestRequest("/checker/submission.json", Method.POST);
 
+            var keysList = _configuration.GetSection("HackerRankApiKeys").GetChildren().Select(c => c.Value).ToList();
+            var random = new Random();
+            var element = random.Next(keysList.Count);
+
             request.AddParameter("source", source);
             request.AddParameter("lang", language);
             request.AddParameter("testcases", JsonConvert.SerializeObject(task.Inputs));
-            request.AddParameter("api_key", _configuration["HackerRankApiKey"]);
+            request.AddParameter("api_key", keysList[element]);
             request.AddParameter("wait", "true");
             request.AddParameter("format", "json");
 

@@ -37,6 +37,9 @@ export default class Prize extends React.Component {
                 <Text>Prize name: {this.state.purchase.name}</Text>
                 <Text>Price: {this.state.purchase.price}</Text>
                 <Text>User: {this.state.purchase.userEmail}</Text>
+
+                { this.state.purchase.balanceLeft < 0 ? <Text style={styles.balanceLeftText}>User's points balance: {this.state.purchase.balanceLeft}</Text> : <Text></Text> }
+                
                 <Image style={{height: 250}} source={{uri: this.state.purchase.picture }} />
 
                 { this.state.loading ? <Text>Loading...</Text> :
@@ -120,6 +123,9 @@ export default class Prize extends React.Component {
 
 
 const styles = StyleSheet.create({
+  balanceLeftText: {
+    color: '#ff0000',
+  },
   container: {
     flex: 1,
 

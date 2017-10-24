@@ -8,6 +8,7 @@ namespace CtsContestWeb.Dto
     {
         public Guid PurchaseId { get; set; }
         public string UserEmail { get; set; }
+        public int BalanceLeft { get; set; }
         public int PrizeId { get; set; }
         public bool IsGivenAway { get; set; }
         public string Name { get; set; }

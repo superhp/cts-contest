@@ -17,12 +17,14 @@ namespace CtsContestWeb.Controllers
         private readonly IPrizeManager _prizeManager;
         private readonly IPurchaseRepository _purchaseRepository;
         private readonly IPurchaseLogic _purchaseLogic;
+        private readonly IBalanceLogic _balanceLogic;
 
-        public PurchaseController(IPurchaseRepository purchaseRepository, IPrizeManager prizeManager, IPurchaseLogic purchaseLogic)
+        public PurchaseController(IPurchaseRepository purchaseRepository, IPrizeManager prizeManager, IPurchaseLogic purchaseLogic, IBalanceLogic balanceLogic)
         {
             _purchaseRepository = purchaseRepository;
             _prizeManager = prizeManager;
             _purchaseLogic = purchaseLogic;
+            _balanceLogic = balanceLogic;
         }
 
         [HttpGet("[action]/{id}")]
@@ -35,6 +37,8 @@ namespace CtsContestWeb.Controllers
             purchase.Price = prizeDto.Price;
             purchase.Name = prizeDto.Name;
             purchase.Picture = prizeDto.Picture;
+
+            purchase.BalanceLeft = _balanceLogic.GetCurrentBalance(purchase.UserEmail);
 
             return purchase;
         }
