@@ -20,7 +20,11 @@
     z-index: 10;
     /*overflow: hidden;*/
 }
-
+.card-daily-prize-header {
+    padding: 0 !important;
+    background-color: rgba(0, 94, 128, 0.9) !important;
+    z-index: 10;
+}
 .headerText  {
     text-align: center;
     padding: 5px;

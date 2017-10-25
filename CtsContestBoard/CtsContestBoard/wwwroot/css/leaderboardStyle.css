@@ -84,7 +84,9 @@ body {
     text-align: center;
     width: 100%;
 }
-
+    .users .column {
+        padding: 5px !important;
+    }
     .users .name {
         /*text-align: center;*/
     }
@@ -94,11 +96,14 @@ body {
             vertical-align: middle;
         }
     .users h4 {
-        font-size: 40px;
+        text-overflow: ellipsis;
+        font-size: 4.5vh;
+        white-space: nowrap;
+        overflow: hidden;
     }
     .users img {
         /*width: 64px;*/
-        height: 48px;
+        height: 5vh;
         border-radius: 50%;
         border: 2px solid rgba(0, 168, 232, 0.79);
         margin-right: 10px;

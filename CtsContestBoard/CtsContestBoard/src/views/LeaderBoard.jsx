@@ -15,7 +15,7 @@ export default class LeaderBoard extends React.Component {
             <div className="container">
                 <LeaderboardHeader />
                 <ColumnHeader />
-                <div>
+                <div className='user-list'>
                     {userlist}
                 </div>
             </div>
