@@ -25,19 +25,22 @@ namespace CtsContestWeb.Communication
 
         public async Task<CodeSkeletonDto> GetCodeSkeleton(string userEmail, int taskId, string language)
         {
-            var solution = _solutionRepository.GetSolution(userEmail, taskId);
-
-            if (solution != null)
+            if (userEmail != null)
             {
-                var languages = await _compiler.GetLanguages();
-                var languageCode = languages.Codes.FirstOrDefault(c => c.Value == solution.Language).Key;
+                var solution = _solutionRepository.GetSolution(userEmail, taskId);
 
-                if (languageCode.Equals(language.ToLower()) || language.Equals("undefined"))
-                    return new CodeSkeletonDto
-                    {
-                        Language = languageCode,
-                        Skeleton = solution.Source
-                    };
+                if (solution != null)
+                {
+                    var languages = await _compiler.GetLanguages();
+                    var languageCode = languages.Codes.FirstOrDefault(c => c.Value == solution.Language).Key;
+
+                    if (languageCode.Equals(language.ToLower()) || language.Equals("undefined"))
+                        return new CodeSkeletonDto
+                        {
+                            Language = languageCode,
+                            Skeleton = solution.Source
+                        };
+                }
             }
 
             if (language.Equals("undefined"))

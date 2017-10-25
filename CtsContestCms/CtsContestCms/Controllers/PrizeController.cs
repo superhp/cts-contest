@@ -48,6 +48,7 @@ namespace CtsContestCms.Controllers
             {
                 Id = prize.Id,
                 Name = prize.Name,
+                Description = prize.GetPropertyValue("description").ToString(),
                 Price = prize.GetPropertyValue("price"),
                 Quantity = prize.GetPropertyValue("quantity"),
                 Picture = prize.GetPropertyValue("picture").Url,

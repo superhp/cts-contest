@@ -89,7 +89,11 @@ namespace CtsContestWeb.Controllers
         [HttpGet("[action]/{language}/{taskId}")]
         public async Task<CodeSkeletonDto> GetCodeSkeleton(string language, int taskId)
         {
-            var userEmail = User.FindFirst(ClaimTypes.Email).Value;
+            string userEmail;
+            if (User.FindFirst(ClaimTypes.Email) != null)
+                userEmail = User.FindFirst(ClaimTypes.Email).Value;
+            else
+                userEmail = null;
             return await _codeSkeletonManager.GetCodeSkeleton(userEmail, taskId, language);
         }
     }

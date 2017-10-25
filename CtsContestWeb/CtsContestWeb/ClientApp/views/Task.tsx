@@ -158,7 +158,9 @@ export class TaskComponent extends React.Component<any, any> {
         else if (language == "C++")
             language = "Cpp";
             
-        fetch('api/Task/GetCodeSkeleton/' + language + '/' + this.state.taskId)
+        fetch('api/Task/GetCodeSkeleton/' + language + '/' + this.state.taskId, {
+            credentials: 'include'
+        })
             .then(response => response.json() as Promise<Skeleton>)
             .then(data => {
                 this.onChange(data.skeleton);

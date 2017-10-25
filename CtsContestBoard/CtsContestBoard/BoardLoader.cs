@@ -19,7 +19,7 @@ namespace CtsContestBoard
         private readonly IUserRepository _userRepository;
 
         public string LastUpdate => DateTime.Now.ToString();
-        private List<PrizeDto> _prizes = new List<PrizeDto>();
+        private readonly List<PrizeDto> _prizes;
 
         private List<ParticipantDto> _leaderBoard = new List<ParticipantDto>();
         public List<ParticipantDto> LeaderBoard => _leaderBoard;
@@ -35,9 +35,9 @@ namespace CtsContestBoard
 
         public BoardEnum Board { get; set; }
 
-        private Timer _timer;
-        private List<Solution> _solutions;
-        private List<Purchase> _purchases;
+        private readonly Timer _timer;
+        private readonly List<Solution> _solutions;
+        private readonly List<Purchase> _purchases;
         private List<User> _users;
 
         public enum BoardEnum
@@ -121,9 +121,9 @@ namespace CtsContestBoard
             List<ParticipantDto> participants;
 
             if (category.Equals("Week prize"))
-                participants = _leaderBoard.OrderByDescending(p => p.TotalBalance).ToList();
+                participants = _leaderBoard.OrderByDescending(p => p.TotalBalance).ThenByDescending(p => p.LastSolved).ToList();
             else
-                participants = _leaderBoard.OrderByDescending(p => p.TodaysBalance).ToList();
+                participants = _leaderBoard.OrderByDescending(p => p.TodaysBalance).ThenByDescending(p => p.LastSolved).ToList();
 
             var applicantsForPrize = 3;
             var participantsNeeded = applicantsForPrize + _prizes.Count(p => p.Category.Equals(category));
@@ -155,33 +155,22 @@ namespace CtsContestBoard
             UpdateSolutions();
             UpdateUsers();
 
-            /*var spentPoints = _purchases.GroupBy(p => p.UserEmail)
-                .Select(gp => new { UserEmail = gp.First().UserEmail, Points = gp.Sum(p => p.Cost) }).ToList();
-
-            var todaySpentPoints = _purchases.Where(p => p.Created == DateTime.Today).GroupBy(p => p.UserEmail)
-                .Select(gp => new { UserEmail = gp.First().UserEmail, Points = gp.Sum(p => p.Cost) }).ToList();*/
-
-            /*var groupedSolutions = _solutions.GroupBy(s => s.UserEmail).ToList();
-
-            var todaysGroupedSolutions = _solutions.Where(s => s.Created == DateTime.Today).GroupBy(s => s.UserEmail).ToList()
-                .Select(gp => new { UserEmail = gp.First().UserEmail, Points = gp.Sum(p => p.Score) }).ToList(); ;*/
-
             _leaderBoard = _users.Select(u => new ParticipantDto
-            {
-                Name = u.FullName,
-                Picture = u.Picture,
-                TotalBalance = _solutions.Where(s => s.UserEmail.Equals(u.Email)).Sum(s => s.Score) - _purchases.Where(s => s.UserEmail.Equals(u.Email)).Sum(s => s.Cost),
-                TodaysBalance = _solutions.Where(s => s.UserEmail.Equals(u.Email) && s.Created.Date == DateTime.Today).Sum(s => s.Score) - _purchases.Where(s => s.UserEmail.Equals(u.Email) && s.Created.Date == DateTime.Today).Sum(s => s.Cost)
-            }).ToList();
-
-            /*_leaderBoard = groupedSolutions.Select(ss => new ParticipantDto
-            {
-                Name = ss.First().User.FullName,
-                Picture = ss.First().User.Picture,
-                TotalBalance = ss.Sum(sc => sc.Score) - spentPoints.Where(p => p.UserEmail.Equals(ss.First().User.Email)).Sum(p => p.Points),
-                TodaysBalance = todaysGroupedSolutions.First(tgs => tgs.UserEmail.Equals(ss.First().UserEmail)).Points - todaySpentPoints.Where(p => p.UserEmail.Equals(ss.First().User.Email)).Sum(p => p.Points),
-                //TodayEarnedPoints = ss.Where(s => s.Created.Date == DateTime.Today).Sum(p => p.Score)
-            }).ToList();*/
+                {
+                    Name = u.FullName,
+                    Picture = u.Picture,
+                    LastSolved = _solutions.Where(s => s.UserEmail.Equals(u.Email) && s.IsCorrect)
+                        .DefaultIfEmpty(new Solution()).Max(s => s.Created),
+                    TotalBalance = _solutions.Where(s => s.UserEmail.Equals(u.Email) && s.IsCorrect).Sum(s => s.Score) -
+                                   _purchases.Where(s => s.UserEmail.Equals(u.Email)).Sum(s => s.Cost),
+                    TodaysBalance =
+                        _solutions.Where(
+                                s => s.UserEmail.Equals(u.Email) && s.Created.Date == DateTime.Today && s.IsCorrect)
+                            .Sum(s => s.Score) -
+                        _purchases.Where(s => s.UserEmail.Equals(u.Email) && s.Created.Date == DateTime.Today)
+                            .Sum(s => s.Cost)
+                }).OrderByDescending(l => l.TotalBalance).ThenByDescending(l => l.TodaysBalance)
+                .ThenByDescending(l => l.LastSolved).ToList();
         }
 
         private void UpdateUsers()
