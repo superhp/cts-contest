@@ -11,7 +11,7 @@ import 'brace/theme/monokai';
 /*eslint-disable no-alert, no-console */
 import 'brace/ext/language_tools';
 import 'brace/ext/searchbox';
-import 'brace/mode/javascript';
+import 'brace/mode/java';
 
 export class TaskComponent extends React.Component<any, any> {
     constructor(props: any) {
@@ -20,8 +20,8 @@ export class TaskComponent extends React.Component<any, any> {
         this.state = {
             taskId: this.props.match.params.id,
             theme: 'monokai',
-            mode: 'javascript',
-            selectedLanguage: 'javascript',
+            mode: 'java',
+            selectedLanguage: 'java',
             loadingLanguages: true,
             loadingTask: true,
             editorWidth: this.calculateEditorWidth(),

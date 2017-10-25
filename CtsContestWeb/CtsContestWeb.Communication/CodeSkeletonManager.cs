@@ -44,7 +44,7 @@ namespace CtsContestWeb.Communication
             }
 
             if (language.Equals("undefined"))
-                language = "javascript";
+                language = "Java";
 
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
             var client = new RestClient(umbracoApiUrl);
