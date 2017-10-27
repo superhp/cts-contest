@@ -14,6 +14,7 @@ body {
 }
 
 .leadheader {
+    font-family: "Montserrat", sans-serif;
     width: 100%;
     height: auto;
     background: rgba(66, 152, 181, 1); /*rgba(54, 195, 105, 0.9)*/
@@ -42,6 +43,7 @@ body {
         padding: 0px !important;
     }
     .colheader h4 {
+        font-family: "Montserrat", sans-serif;
         color: rgba(66, 152, 181, 1);
         text-align: center !important;
         font-size: 44px;
@@ -96,6 +98,7 @@ body {
             vertical-align: middle;
         }
     .users h4 {
+        font-family: "Montserrat", sans-serif;
         text-overflow: ellipsis;
         font-size: 4.5vh;
         white-space: nowrap;

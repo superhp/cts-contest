@@ -21,6 +21,9 @@
 .body {
     height: 100%;
 }
+h1 {
+    font-family: "Montserrat", sans-serif;
+}
 .cg-gradient {
     background: var(--gradient) !important;
 }

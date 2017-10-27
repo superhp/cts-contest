@@ -50,27 +50,20 @@ namespace CtsContestBoard
 
         public BoardLoader(IPrizeManager prizeManager, ISolutionRepository solutionRepository, IPurchaseRepository purchaseRepository, IUserRepository userRepository)
         {
-            try
-            {
+            _prizeManager = prizeManager;
+            _solutionRepository = solutionRepository;
+            _purchaseRepository = purchaseRepository;
+            _userRepository = userRepository;
 
-                _prizeManager = prizeManager;
-                _solutionRepository = solutionRepository;
-                _purchaseRepository = purchaseRepository;
-                _userRepository = userRepository;
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            _solutions = _solutionRepository.GetAll().Where(s => s.IsCorrect).ToList();
 
-                _solutions = _solutionRepository.GetAll().Where(s => s.IsCorrect).ToList();
+            _prizes = _prizeManager.GetAllPrizes().Result;
+            _purchases = _purchaseRepository.GetAll().ToList();
+            _users = _userRepository.GetAll().ToList();
 
-                _prizes = _prizeManager.GetAllPrizes().Result;
-                _purchases = _purchaseRepository.GetAll().ToList();
-                _users = _userRepository.GetAll().ToList();
-
-                UpdateLeaderBoard();
-            }catch(Exception e)
-            {
-
-            }
+            UpdateLeaderBoard();
             _timer = new Timer(state =>
             {
                 SwitchBoard();
@@ -162,20 +155,20 @@ namespace CtsContestBoard
             UpdateUsers();
 
             _leaderBoard = _users.Select(u => new ParticipantDto
-                {
-                    Name = u.FullName,
-                    Picture = u.Picture,
-                    LastSolved = _solutions.Where(s => s.UserEmail.Equals(u.Email) && s.IsCorrect)
+            {
+                Name = u.FullName,
+                Picture = u.Picture,
+                LastSolved = _solutions.Where(s => s.UserEmail.Equals(u.Email) && s.IsCorrect)
                         .DefaultIfEmpty(new Solution()).Max(s => s.Created),
-                    TotalBalance = _solutions.Where(s => s.UserEmail.Equals(u.Email) && s.IsCorrect).Sum(s => s.Score) -
+                TotalBalance = _solutions.Where(s => s.UserEmail.Equals(u.Email) && s.IsCorrect).Sum(s => s.Score) -
                                    _purchases.Where(s => s.UserEmail.Equals(u.Email)).Sum(s => s.Cost),
-                    TodaysBalance =
+                TodaysBalance =
                         _solutions.Where(
                                 s => s.UserEmail.Equals(u.Email) && s.Created.Date == DateTime.Today && s.IsCorrect)
                             .Sum(s => s.Score) -
                         _purchases.Where(s => s.UserEmail.Equals(u.Email) && s.Created.Date == DateTime.Today)
                             .Sum(s => s.Cost)
-                }).OrderByDescending(l => l.TotalBalance).ThenByDescending(l => l.TodaysBalance)
+            }).OrderByDescending(l => l.TotalBalance).ThenByDescending(l => l.TodaysBalance)
                 .ThenByDescending(l => l.LastSolved).ToList();
         }
 
