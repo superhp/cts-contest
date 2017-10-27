@@ -2,24 +2,77 @@
     font-family: "Montserrat", sans-serif;
     padding: 40px;
 }
-.col-prize {
-    float: left;
-    width: 25%;
-    padding: 20px;
-    padding-bottom: 0px;
+.prize-list {
+    margin-top: 0px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
-.card-row{
-    height: 100% !important;
-    
+.col {
+    padding: 10px;
+    width: 25%;
+}
+.prize-card {
+    border-radius: 5px;
+    /*border-style: solid;
+    border-color: lightgrey;*/
+    height: 39vh;
+    width: 100%;
+    box-shadow: 3px 3px 10px lightgrey;
+    overflow: hidden;
 }
 
-.cardHeader {
-    padding: 0!important;
-    background-color: rgba(0, 94, 128, 0.9) !important;
-    height: 150px !important;
-    z-index: 10;
-    /*overflow: hidden;*/
+    .prize-card .img-container {
+        overflow: hidden;
+        width: 25vh;
+        margin: 0 auto;
+        height: 60%;
+    }
+        .prize-card .img-container img {
+            width: 100%;
+            margin: -8vh 0px;
+        }
+    .prize-card .prize-card-header {
+        margin: 0;
+        height: 30%;
+        padding: 0;
+        background-color: rgba(0, 94, 128, 0.9) !important;
+        text-align: center;
+        font-size: 36px;
+        color: whitesmoke;
+    }
+
+.cardFooter {
+    height: 10%;
+    text-transform: uppercase;
+    font-size: 36px;
+    /*color: white;*/
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+    color: rgb(100,167,11);
 }
+
+    .cardFooter.yellow {
+        background-color: rgb(237,139,0);
+        color: white;
+        font-weight: bold;
+    }
+
+    .cardFooter.sold-out {
+        background-color: rgb(225,82,61);
+        color: white;
+        font-weight: bold;
+    }
+
+.cardHeader {
+        padding: 0 !important;
+        background-color: rgba(0, 94, 128, 0.9) !important;
+        /*height: 150px !important;*/
+        z-index: 10;
+        /*overflow: hidden;*/
+    }
 .card-daily-prize-header {
     padding: 0 !important;
     background-color: rgba(0, 94, 128, 0.9) !important;
@@ -31,17 +84,6 @@
     font-size: 36px;
     /*vertical-align: central;*/
     color: whitesmoke;
-}
-
-.prizeCard {
-    width: auto !important;
-    overflow: hidden !important;
-    /*display: table-cell !important;*/ /* Make elements inside the container behave like table cells */
-}
-.prizeCard img {
-    max-height: 500px !important;
-    margin: -100px auto !important;
-    z-index: 0;
 }
 
 .prizeCardRow {
@@ -56,20 +98,3 @@
 .full-space{
     height: 100vh !important;
 }
-.cardFooter {
-    font-size: 36px;
-    /*color: white;*/
-    text-align: center;
-    background-color: white;
-    padding: 10px;
-}
-    .cardFooter.yellow {
-        background-color: rgb(237,139,0);
-        color: white;
-        font-weight: bold;
-    }
-    .cardFooter.sold-out {
-        background-color: rgb(225,82,61);
-        color: white;
-        font-weight: bold;
-    }

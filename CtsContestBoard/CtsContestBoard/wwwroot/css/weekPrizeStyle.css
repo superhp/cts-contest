@@ -8,7 +8,8 @@
     text-transform: uppercase;
     font-size: 64px;
     font-weight: bolder;
-    margin: 20px auto !important;
+    margin-top: 150px !important;
+    margin-bottom: 0px !important;
 }
 
 .first-week-prize-row {
@@ -16,8 +17,9 @@
 }
 
 .second-week-prize-row {
-    position: fixed !important;
+    position: absolute !important;
     bottom: 0px;
+    height: 100%;
     /*height: 75vh;*/
 }
 

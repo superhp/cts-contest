@@ -7,7 +7,7 @@ export default class PrizeCard extends React.Component {
         return (
             <Card className={this.props.className} fluid>
                 {/* <Label className="card-ribbon" color='green' ribbon>SPECIAL PRIZE!</Label> */}
-                <Image src={this.props.picture}/>
+                <Image src={this.props.picture} alt='asdfggsdfdssfdsdff'/>
                 <Card.Content className="card-daily-prize-header">
                     <h2 className="prizeHeader">
                         {this.props.name}

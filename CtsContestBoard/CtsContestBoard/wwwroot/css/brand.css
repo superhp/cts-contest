@@ -74,3 +74,22 @@
     padding: 0px 20px;
     margin: auto 80px;
 }
+.cg-timer{
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    margin: 0px;
+    color: var(--secondary-color);
+}
+
+.cg-timer.warning{
+    color: var(--color-red);
+}
+    .cg-timer.warning.shop {
+        font-size: 36px;
+        min-height: 36px;
+    } 
+
+.cg-font-interstate h4 {
+    font-family: Interstate-Regular;
+}

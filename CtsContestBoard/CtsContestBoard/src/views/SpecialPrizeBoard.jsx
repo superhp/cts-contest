@@ -4,6 +4,7 @@ import ReactCountdownClock from 'react-countdown-clock';
 
 import UserCard from '../components/UserCard.jsx';
 import WeekPrizeCard from '../components/WeekPrizeCard.jsx';
+import Timer from '../components/Timer.jsx';
 
 export default class SpecialPrizeBoard extends React.Component {
     constructor(props) {
@@ -12,22 +13,33 @@ export default class SpecialPrizeBoard extends React.Component {
     }
 
     render() {
+        // return (
+        //     <div className='prize-board'>
+        //         <div className='prize'>
+        //             <WeekPrizeCard className="prize-card" name={this.props.prize.Name} picture={this.props.prize.Picture} />
+        //         </div>
+        //         <div className='podium'>
+
+        //         </div>
+        //     </div>
+        // )
         return (
             <div>
-                <h1 className='prize-board-header'>
-                    {
-                        this.props.board === 'today'
-                        ? 'Today\'s prize'
-                        : 'Conference prize'
-                    }    
-                </h1>
-                <OnePrizeBoard data={this.props.data} prize={this.props.prize} state={this.state} />
+                <OnePrizeBoard data={this.props.data} prize={this.props.prize} props={this.props} />
             </div>
         );
     }
 
 }
-
+const PrizeWindow = ({ prize }) => (
+    <div style={{ width: '75%' }}>
+        {
+            prize.Name
+                ? <WeekPrizeCard className="singleWeekPrizeCard" name={prize.Name} picture={prize.Picture} />
+                : ''
+        }
+    </div>
+)
 const TwoPrizeBoard = ({ data }) => (
     <Grid id="special-prize-board">
         <Grid.Row columns={3} className="first-week-prize-row">
@@ -61,19 +73,35 @@ const TwoPrizeBoard = ({ data }) => (
     </Grid>
 )
 
-const OnePrizeBoard = ({ data, prize, state }) => (
+const OnePrizeBoard = ({ data, prize, props }) => (
     <Grid id="special-prize-board">
         <Grid.Row columns={2} className="second-week-prize-row">
             <Grid.Column width={5} >
                 <div style={{ width: '75%' }}>
                     {
-                        prize.Name 
-                        ? <WeekPrizeCard className="singleWeekPrizeCard" name={prize.Name} picture={prize.Picture} />
-                        : ''
-                    } 
+                        prize.Name
+                            ? <WeekPrizeCard className="singleWeekPrizeCard" name={prize.Name} picture={prize.Picture} />
+                            : ''
+                    }
                 </div>
             </Grid.Column>
             <Grid.Column width={11}>
+                <h1 className='prize-board-header'>
+                    {
+                        props.board === 'today'
+                            ? 'Today\'s prize'
+                            : 'Conference prize'
+                    }
+                </h1>
+                <div>
+                    {
+                        
+                        props.board === 'today'
+                            ?  <Timer day={new Date().getDate()} hour={17} minutes={0} />
+                            :  <Timer day={28} hour={17} minutes={0} />
+                    }
+                   
+                </div>
                 <Podium first={data[0]} second={data[1]} third={data[2]} />
             </Grid.Column>
         </Grid.Row>
@@ -86,7 +114,7 @@ const Podium = ({ first, second, third }) => (
         <Grid.Column width={14}>
             <Grid className="podium">
                 <Grid.Column width={5} className="secondPlace podium-step">
-                    <UserCard place="second" username={second.username} points={second.points} picture={second.picture}/>
+                    <UserCard place="second" username={second.username} points={second.points} picture={second.picture} />
                 </Grid.Column>
                 <Grid.Column width={6} className="firstPlace podium-step">
                     <UserCard place="first" username={first.username} points={first.points} picture={first.picture} />

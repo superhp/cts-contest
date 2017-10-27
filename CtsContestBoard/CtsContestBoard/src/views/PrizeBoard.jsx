@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import PrizeCard from '../components/PrizeCard.jsx';
-
+import Timer from '../components/Timer.jsx';
 export default class PrizeBoard extends React.Component {
     constructor(props) {
         super(props);
@@ -13,13 +13,16 @@ export default class PrizeBoard extends React.Component {
         // }
         return (
             <div className="container">
-                {prizes.map((prize, index) =>
-                    <div className='col-prize' key={index} style={{ paddingBottom: 20 }}>
-                        <PrizeCard
-                            prize={prize}
-                        />
-                    </div>
-                )}
+                <Timer day={new Date().getDate()} hour={17} minutes={0} onlyWarning />
+                <div className='prize-list'>
+                    {prizes.map((prize, index) =>
+                        <div className='col' key={index}>
+                            <PrizeCard
+                                prize={prize}
+                            />
+                        </div>
+                    )}
+                </div>
             </div>
         );
     }

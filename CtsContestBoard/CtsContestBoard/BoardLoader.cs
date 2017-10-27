@@ -50,21 +50,27 @@ namespace CtsContestBoard
 
         public BoardLoader(IPrizeManager prizeManager, ISolutionRepository solutionRepository, IPurchaseRepository purchaseRepository, IUserRepository userRepository)
         {
-            _prizeManager = prizeManager;
-            _solutionRepository = solutionRepository;
-            _purchaseRepository = purchaseRepository;
-            _userRepository = userRepository;
+            try
+            {
 
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+                _prizeManager = prizeManager;
+                _solutionRepository = solutionRepository;
+                _purchaseRepository = purchaseRepository;
+                _userRepository = userRepository;
 
-            _solutions = _solutionRepository.GetAll().Where(s => s.IsCorrect).ToList();
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
-            _prizes = _prizeManager.GetAllPrizes().Result;
-            _purchases = _purchaseRepository.GetAll().ToList();
-            _users = _userRepository.GetAll().ToList();
+                _solutions = _solutionRepository.GetAll().Where(s => s.IsCorrect).ToList();
 
-            UpdateLeaderBoard();
+                _prizes = _prizeManager.GetAllPrizes().Result;
+                _purchases = _purchaseRepository.GetAll().ToList();
+                _users = _userRepository.GetAll().ToList();
 
+                UpdateLeaderBoard();
+            }catch(Exception e)
+            {
+
+            }
             _timer = new Timer(state =>
             {
                 SwitchBoard();
