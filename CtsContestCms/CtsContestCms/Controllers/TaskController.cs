@@ -82,7 +82,6 @@ namespace CtsContestCms.Controllers
         private TaskDto GetNewTaskDto (dynamic task)
         {
             List<TestcaseDto> testCases = task.GetPropertyValue("testCases").ToObject<List<TestcaseDto>>();
-            string testsTable = GenerateTestsTable(testCases);
             
             IEnumerable<string> inputs = testCases.Select(x => x.Input);
             IEnumerable<string> outputs = testCases.Select(x => x.Output);
@@ -91,7 +90,7 @@ namespace CtsContestCms.Controllers
             {
                 Id = task.Id,
                 Name = task.Name,
-                Description = task.GetPropertyValue("description").ToString() + "<p><strong>Example:</strong></p>" + testsTable,
+                Description = ConstructDescription(task, testCases),
                 Value = task.GetPropertyValue("value"),
                 Inputs = inputs,
                 Outputs = outputs,
@@ -117,6 +116,20 @@ namespace CtsContestCms.Controllers
                 Outputs = outputs,
                 InputType = task.GetPropertyValue("inputType")
             };
+        }
+
+        private string ConstructDescription(dynamic task, IEnumerable<TestcaseDto> testcases)
+        {
+            var sb = new StringBuilder();
+            sb.Append(task.GetPropertyValue("description"));
+            sb.Append("<p><strong>Input:</strong></p>");
+            sb.Append(task.GetPropertyValue("inputFormat"));
+            sb.Append("<p><strong>Output:</strong></p>");
+            sb.Append(task.GetPropertyValue("outputFormat"));
+            sb.Append("<p><strong>Example:</strong></p>");
+            sb.Append(GenerateTestsTable(testcases));
+
+            return sb.ToString();
         }
 
         private string GenerateTestsTable (IEnumerable<TestcaseDto> tests)
