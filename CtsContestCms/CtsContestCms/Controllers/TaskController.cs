@@ -4,6 +4,7 @@ using System.Linq;
 using CtsContestCms.Models;
 using Umbraco.Web;
 using Umbraco.Web.WebApi;
+using System.Text;
 
 namespace CtsContestCms.Controllers
 {
@@ -70,12 +71,31 @@ namespace CtsContestCms.Controllers
             var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
 
             var task = umbracoHelper.Content(id);
-            if (task.Id == 0 || !task.DocumentTypeAlias.Equals("task"))
+            if (task.Id == 0 || (!task.DocumentTypeAlias.Equals("task") && !task.DocumentTypeAlias.Equals("taskNew")))
                 throw new ArgumentException("No task found with given ID");
 
-            var taskDto = GetTaskDto(task);
+            var taskDto = task.DocumentTypeAlias.Equals("task") ? GetTaskDto(task) : GetNewTaskDto(task);
 
             return taskDto;
+        }
+
+        private TaskDto GetNewTaskDto (dynamic task)
+        {
+            List<TestcaseDto> testCases = task.GetPropertyValue("testCases").ToObject<List<TestcaseDto>>();
+            
+            IEnumerable<string> inputs = testCases.Select(x => x.Input);
+            IEnumerable<string> outputs = testCases.Select(x => x.Output);
+
+            return new TaskDto
+            {
+                Id = task.Id,
+                Name = task.Name,
+                Description = ConstructDescription(task, testCases),
+                Value = task.GetPropertyValue("value"),
+                Inputs = inputs,
+                Outputs = outputs,
+                InputType = task.GetPropertyValue("inputType")
+            };
         }
 
         private TaskDto GetTaskDto(dynamic task)
@@ -96,6 +116,36 @@ namespace CtsContestCms.Controllers
                 Outputs = outputs,
                 InputType = task.GetPropertyValue("inputType")
             };
+        }
+
+        private string ConstructDescription(dynamic task, IEnumerable<TestcaseDto> testcases)
+        {
+            var sb = new StringBuilder();
+            sb.Append(task.GetPropertyValue("description"));
+            sb.Append("<p><strong>Input:</strong></p>");
+            sb.Append(task.GetPropertyValue("inputFormat"));
+            sb.Append("<p><strong>Output:</strong></p>");
+            sb.Append(task.GetPropertyValue("outputFormat"));
+            sb.Append("<p><strong>Example:</strong></p>");
+            sb.Append(GenerateTestsTable(testcases));
+
+            return sb.ToString();
+        }
+
+        private string GenerateTestsTable (IEnumerable<TestcaseDto> tests)
+        {
+            var sb = new StringBuilder();
+            sb.Append("<table>");
+            sb.Append("<thead><tr><th>Input</th><th>Output</th></tr></thead>");
+            sb.Append("<tbody>");
+            var samples = tests.Where(t => t.IsSample);
+            samples.ToList().ForEach(s => sb.Append("<tr><td>")
+                                            .Append(s.Input.Replace("\n", "<br/>"))
+                                            .Append("</td><td>")
+                                            .Append(s.Output.Replace("\n", "<br/>"))
+                                            .Append("</td></tr>"));
+            sb.Append("</tbody></table>");
+            return sb.ToString();
         }
     }
 }
