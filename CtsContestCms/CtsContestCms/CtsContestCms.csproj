@@ -380,6 +380,7 @@
     <Compile Include="Models\GenericCodeSkeletonDto.cs" />
     <Compile Include="Models\PrizeDto.cs" />
     <Compile Include="Models\TaskDto.cs" />
+    <Compile Include="Models\TestcaseDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
