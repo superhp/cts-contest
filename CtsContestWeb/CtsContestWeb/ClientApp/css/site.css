@@ -37,3 +37,144 @@ button.google, button.facebook {
 .success-message {
     color: green;
 }
+
+.cg-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.cg-col {
+    display: flex;
+    flex-grow: 1;
+    min-width: 300px;
+    width: 33%;
+    padding: 10px;
+}
+
+.cg-card {
+    border: 1px solid #eeeeee;
+    box-shadow: 2px 2px 5px #e1e1e1;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+    .cg-card .cg-card-image {
+        position: relative;
+        height: 300px;
+        /* flex-grow: 1; */
+        overflow: hidden;
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+        .cg-card .cg-card-image img{
+            display: block;
+            height: 100%;
+            margin: 0 auto;
+        }
+
+.cg-card-content{
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: 10px;
+}
+.cg-card-title {
+    /* height: 20%; */
+    display: flex;
+    flex: 1 1 auto; 
+    overflow: hidden;
+}
+
+.cg-card-actions {
+    display: flex;
+    flex: 0 1 auto;
+}
+.cg-card-actions .cg-action-item {
+    padding: 5px;
+    width: 50%;
+}
+.cg-card-button {
+    padding: 5px;
+    width: 100%;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    transition-duration: 0.4s;
+    color: #aaaaaa;
+    background-color: white;
+    border: 2px solid #aaaaaa;
+}
+
+.cg-card-button:hover:not([disabled]){
+    color: white;
+    background-color: #aaaaaa;
+}
+.cg-card-button:disabled {
+    opacity: 0.5;
+}
+.cg-card-button.cyan {
+    color: #71c5e8;
+    border-color: #71c5e8;
+}
+.cg-card-button.cyan:hover:not([disabled]) {
+    color: white;
+    background-color: #71c5e8;
+}
+
+.cg-card-button.secondary {
+    color: #64a70b;
+    border-color: #64a70b;
+}
+.cg-card-button.secondary:hover:not([disabled]) {
+    color: white;
+    background-color: #64a70b;
+}
+
+.cg-card-label {
+    z-index: 10;
+    display: block;
+    padding: 5px;
+    height: 0px;
+    color: #4298b5;
+}
+
+.cg-card-label .left{
+    float: left;  
+    font-size: 2em;
+    padding: 5px;
+    padding-top: 10px;
+    text-transform: uppercase;
+}
+
+.cg-card-label .right{
+    float: right;  
+    padding-right: 5px;
+}
+.cg-prize-quantity {
+    margin: 0;
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+}
+.cg-prize-quantity-after{
+    text-align: center;
+    margin-top: -10px;
+}
+
+.cg-modal{
+    overflow-y: scroll;
+    margin: 100px auto !important; 
+    /* margin-top: 0; */
+    top: 0 !important;
+    left: 0 !important; 
+}
+
+.cg-modal-image {
+    width: 100% !important;
+    height: 350px !important;
+    overflow: hidden;
+}
+
+.cg-modal-image img{
+    height: 150% !important;
+    margin: -13% auto;
+}

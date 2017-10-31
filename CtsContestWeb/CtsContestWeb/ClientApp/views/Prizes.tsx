@@ -2,6 +2,7 @@
 import { RouteComponentProps } from 'react-router';
 import { Grid, Container, Header, Icon, Loader, Divider } from 'semantic-ui-react';
 //https://react.semantic-ui.com/usage stylesheet missing
+import { PrizeDescription } from '../components/PrizeDescription';
 import { PrizeModal } from '../components/PrizeModal';
 import { PurchaseModal } from '../components/PurchaseModal';
 import { PrizeCard } from '../components/PrizeCard';
@@ -39,7 +40,10 @@ export class Prizes extends React.Component<any, any> {
                 price: 0,
                 quantity: 0,
                 picture: ""
-            }
+            },
+
+            prizeDescription: {},
+            prizeDescriptionOpen: false
         };
 
     }
@@ -172,7 +176,18 @@ export class Prizes extends React.Component<any, any> {
             prizeModalOpen: false,
         });
     }
+    /*
+     * Description modal
+    */
 
+    openDescriptionModal = (prize: any) => {
+        console.log(prize);
+        this.setState({ prizeDescriptionOpen: true, prizeDescription: prize });
+    }
+
+    closeDescriptionModal = () => {
+        this.setState({prizeDescriptionOpen: false});
+    }
     public render() {
         let contents = this.state.loading
             ? <Loader active inline='centered'>Loading</Loader>
@@ -185,7 +200,7 @@ export class Prizes extends React.Component<any, any> {
                         <Header as='h1' textAlign='center' inverted>
                             <Icon name='gift' />
                             <Header.Content>
-                                Prizes
+                                Shop
                             </Header.Content>
                         </Header>
                     </Container>
@@ -204,19 +219,25 @@ export class Prizes extends React.Component<any, any> {
                         prize={this.state.prizeModalData}
                         state={this.state.purchaseModalState}
                         purchase={this.state.purchase} />
+                    <PrizeDescription 
+                        open={this.state.prizeDescriptionOpen} 
+                        onClose={this.closeDescriptionModal}
+                        prize={this.state.prizeDescription} />
                 </Container>
+                
             </div>
         );
     }
     private renderPrizeList(prizes: Prize[]) {
         return <div>
-            <div className='row'>
+            <div className='cg-row'>
                 {prizes.map((prize, index) =>
-                    <div className='col-xs-6 col-sm-4 col-md-3 col-lg-2 col-centered' key={index} style={{ paddingBottom: 20 }}>
+                    <div className='cg-col' key={index} style={{ paddingBottom: 20 }}>  
                         <PrizeCard
                             prize={prize}
                             onBuy={this.openPrizeModal}
                             onOpenPurchaseQR={this.openPurchasedQRModal}
+                            onOpenDescription={this.openDescriptionModal}
                             balance={this.props.userInfo.balance}
                             purchased={this.isPurchased(prize.id)}
                             userLogedIn={this.props.userInfo.isLoggedIn}

@@ -39,7 +39,7 @@
     background: var(--gradient) !important;
     border-radius: 0 !important;
     box-shadow: 0 1px 4px var(--color-grey) !important;
-    z-index: 1000;
+    z-index: 50;
 }
 
 .cg-nav .cg-nav-header{
@@ -161,9 +161,9 @@
     color: white !important;
     background-color: var(--color-cyan) !important;
 }
-.cg-card {
+/* .cg-card {
      box-shadow: 5px 5px 10px #e1e1e1 !important;  
-}
+} */
 .cg-accordion .title{
     font-family: 'Interstate-Regular' !important;
     color: var(--primary-color) !important;
