@@ -81,9 +81,9 @@ namespace CtsContestWeb.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<LanguageDto> GetLanguages()
+        public LanguageDto GetLanguages()
         {
-            return await _compiler.GetLanguages();
+            return _compiler.GetLanguages();
         }
 
         [HttpGet("[action]/{language}/{taskId}")]

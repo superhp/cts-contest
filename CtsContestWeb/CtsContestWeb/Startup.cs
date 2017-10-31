@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Newtonsoft.Json.Linq;
 using CtsContestWeb.Communication;
 using CtsContestWeb.Db.Repository;
@@ -21,6 +23,8 @@ namespace CtsContestWeb
 {
     public class Startup
     {
+        public IContainer ApplicationContainer { get; private set; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,7 +33,7 @@ namespace CtsContestWeb
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
 
@@ -46,9 +50,27 @@ namespace CtsContestWeb
 
             services.AddScoped<ISolutionLogic, SolutionLogic>();
 
-            services.AddTransient<ICompiler, Compiler>();
-
             services.AddSingleton<IConfiguration>(Configuration);
+
+            var builder = new ContainerBuilder();
+            builder.Populate(services);
+
+            if (Configuration["Compiler"].Equals("HackerRank"))
+            {
+                builder.RegisterType<HackerRankCompiler>().As<ICompiler>();
+            }
+            else
+            {
+                builder.RegisterType<PaizaCompiler>().As<ICompiler>();
+            }
+
+            builder.RegisterType<HackerRankCompiler>().Keyed<ICompiler>("HackerRank");
+            builder.RegisterType<PaizaCompiler>().Keyed<ICompiler>("Paiza");
+
+            ApplicationContainer = builder.Build();
+
+            // Create the IServiceProvider based on the container.
+            return new AutofacServiceProvider(ApplicationContainer);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -116,11 +138,11 @@ namespace CtsContestWeb
                             if (res.StatusCode == HttpStatusCode.OK)
                             {
                                 var jsonResult = await res.Content.ReadAsStringAsync();
-                         
+
                                 //parse json
                                 var obj = JArray.Parse(jsonResult);
                                 string userId = obj[0]["user_id"].Value<string>(); //user_id
-                                var provider = obj[0]["provider_name"].Value<string>(); 
+                                var provider = obj[0]["provider_name"].Value<string>();
 
                                 // Create claims id
                                 List<Claim> claims = new List<Claim>();
@@ -168,6 +190,7 @@ namespace CtsContestWeb
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
             });
+
         }
     }
 }

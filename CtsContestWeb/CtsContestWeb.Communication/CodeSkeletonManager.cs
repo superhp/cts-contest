@@ -31,7 +31,7 @@ namespace CtsContestWeb.Communication
 
                 if (solution != null)
                 {
-                    var languages = await _compiler.GetLanguages();
+                    var languages = _compiler.GetLanguages();
                     var languageCode = languages.Codes.FirstOrDefault(c => c.Value == solution.Language).Key;
 
                     if (languageCode.Equals(language.ToLower()) || language.Equals("undefined"))
@@ -69,7 +69,7 @@ namespace CtsContestWeb.Communication
             return new CodeSkeletonDto
             {
                 Language = language.ToLower(),
-                Skeleton = skeleton
+                Skeleton = skeleton.Replace("\\\n", "\\n")
             };
         }
 
@@ -110,7 +110,7 @@ namespace CtsContestWeb.Communication
             }
             else
             {
-                skeleton = AddReadLine(genericSkeleton);
+                skeleton = genericSkeleton.Skeleton.Replace("{read}", "");
             }
             return skeleton;
         }

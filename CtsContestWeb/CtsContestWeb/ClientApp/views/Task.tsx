@@ -87,7 +87,12 @@ export class TaskComponent extends React.Component<any, any> {
             method: 'PUT',
             body: formData,
             credentials: 'include'
-        })
+        }).then(function(response) {
+                if(response.ok)
+                    return response;         
+
+                throw new Error('Something went wrong.');
+            })
             .then(response => response.json() as Promise<CompileResult>)
             .then(data => {
                 let task = this.state.task;
@@ -98,7 +103,16 @@ export class TaskComponent extends React.Component<any, any> {
                     compileResult: data,
                     task: task
                 })
-            });
+            }).catch(error => this.compileError());
+    }
+
+    compileError() {
+        let compileResult = {
+            message: "Unexpected error occurred. Please come to our stand."
+        }
+        this.setState({
+            compileResult: compileResult
+        })
     }
 
     saveForLater() {
@@ -217,11 +231,11 @@ export class TaskComponent extends React.Component<any, any> {
             {compileResult.resultCorrect ?
                 <p className="success-message">
                     You successfully resolved this task. Congratulations!
-                    </p>
+                </p>
                 :
                 <p className="error-message">
-                    Failed {compileResult.failedInputs} out of {compileResult.totalInputs} inputs.
-                    </p>
+                    Failed testcase number {compileResult.failedInput} out of {compileResult.totalInputs}.
+                </p>
             }
         </span>;
     }
@@ -374,6 +388,6 @@ interface CompileResult {
     compiled: boolean;
     resultCorrect: boolean;
     totalInputs: number;
-    failedInputs: number;
+    failedInput: number;
     message: string;
 }

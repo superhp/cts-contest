@@ -5,7 +5,7 @@ namespace CtsContestWeb.Communication
 {
     public interface ICompiler
     {
-        Task<LanguageDto> GetLanguages();
+        LanguageDto GetLanguages();
         Task<CompileDto> Compile(TaskDto task, string source, int language);
     }
 }

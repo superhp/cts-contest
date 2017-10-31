@@ -9,11 +9,11 @@ using RestSharp;
 
 namespace CtsContestWeb.Communication
 {
-    public class Compiler : ICompiler
+    public class HackerRankCompiler : CompilerLanguages, ICompiler
     {
         readonly IConfiguration _configuration;
 
-        public Compiler(IConfiguration configuration)
+        public HackerRankCompiler(IConfiguration configuration)
         {
             _configuration = configuration;
         }
@@ -58,7 +58,7 @@ namespace CtsContestWeb.Communication
                 for (int i = 0; i < task.Inputs.Count; i++)
                 {
                     if (task.Outputs[i] != data.result.stdout[i].Value.ToString().TrimEnd('\r', '\n'))
-                        compileResult.FailedInputs++;
+                        compileResult.FailedInput = i;
                 }
             }
             else
@@ -69,7 +69,7 @@ namespace CtsContestWeb.Communication
             return compileResult;
         }
 
-        public async Task<LanguageDto> GetLanguages()
+        /*public async Task<LanguageDto> GetLanguages()
         {
             var hackerRankUrl = _configuration["HackerRankUrl"];
             var client = new RestClient(hackerRankUrl);
@@ -99,6 +99,6 @@ namespace CtsContestWeb.Communication
             }
 
             return languages;
-        }
+        }*/
     }
 }

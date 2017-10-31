@@ -168,7 +168,7 @@ namespace CtsContestBoard
                             .Sum(s => s.Score) -
                         _purchases.Where(s => s.UserEmail.Equals(u.Email) && s.Created.Date == DateTime.Today)
                             .Sum(s => s.Cost)
-            }).OrderByDescending(l => l.TotalBalance).ThenByDescending(l => l.TodaysBalance)
+            }).OrderByDescending(l => l.TodaysBalance).ThenByDescending(l => l.TotalBalance)
                 .ThenByDescending(l => l.LastSolved).ToList();
         }
 
