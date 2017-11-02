@@ -14,8 +14,12 @@ const links = [
         name: 'Tasks'
     },
     {
-        routeTo: '/prizes',
+        routeTo: '/shop',
         name: 'Shop'
+    },
+    {
+        routeTo: '/prizes',
+        name: 'Prizes'
     },
     {
         routeTo: '/about',

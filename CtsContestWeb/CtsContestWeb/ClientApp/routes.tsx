@@ -5,6 +5,7 @@ import { FetchData } from './components/FetchData';
 import { Tasks } from './views/Tasks';
 import { About } from './views/About';
 import { Prizes } from './views/Prizes';
+import { Shop } from './views/Shop';
 import { TaskComponent } from './views/Task';
 
 export class Routes extends React.Component<any, any> {
@@ -49,6 +50,7 @@ export class Routes extends React.Component<any, any> {
             <Layout userInfo={this.state.userInfo}>
                 <Route exact path='/' component={Tasks} />
                 <Route path='/about' component={About} />
+                <Route path='/shop' render={(props:any) => <Shop {...props} userInfo={this.state.userInfo} onDecrementBalance={this.decrementBalance}/>} />
                 <Route path='/prizes' render={(props:any) => <Prizes {...props} userInfo={this.state.userInfo} onDecrementBalance={this.decrementBalance}/>} />
                 <Route path="/task/:id" render={(props: any) => <TaskComponent {...props} userInfo={this.state.userInfo} onIncrementBalance={this.incrementBalance}/>} />
             </Layout>

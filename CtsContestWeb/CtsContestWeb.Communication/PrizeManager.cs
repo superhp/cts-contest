@@ -19,7 +19,32 @@ namespace CtsContestWeb.Communication
             _configuration = configuration;
             _purchaseRepository = purchaseRepository;
         }
+        public async Task<List<PrizeDto>> GetAllWinnablePrizes()
+        {
+            var umbracoApiUrl = _configuration["UmbracoApiUrl"];
+            var pictureUrl = _configuration["UmbracoPictureUrl"];
+            var client = new RestClient(umbracoApiUrl);
 
+            var request = new RestRequest("prize/getAll", Method.GET);
+
+            TaskCompletionSource<List<PrizeDto>> taskCompletion = new TaskCompletionSource<List<PrizeDto>>();
+            client.ExecuteAsync<List<PrizeDto>>(request, response =>
+            {
+                taskCompletion.SetResult(response.Data);
+            });
+
+            var prizes = await taskCompletion.Task;
+            var winnablePrizes = prizes.Where(p => !p.Category.Equals("Prize for points")).ToList();
+            var purchases = _purchaseRepository.GetAll().ToList();
+
+            foreach (var item in winnablePrizes)
+            {
+                item.Picture = pictureUrl + item.Picture;
+                item.Quantity -= purchases.Count(np => np.PrizeId == item.Id);
+            }
+
+            return winnablePrizes;
+        }
         public async Task<List<PrizeDto>> GetAllPrizesForPoints()
         {
             var umbracoApiUrl = _configuration["UmbracoApiUrl"];

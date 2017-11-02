@@ -17,6 +17,12 @@ namespace CtsContestWeb.Controllers
             _prizeManager = prizeManager;
         }
 
+        [HttpGet("[action]")]
+        public async Task<List<PrizeDto>> GetWinnables()
+        {
+            return await _prizeManager.GetAllWinnablePrizes();
+        }
+
         [HttpGet("")]
         public async Task<List<PrizeDto>> Get()
         {

@@ -44,41 +44,37 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                         </Container>
                     </Segment>
                 </div>
-                <Segment style={{ padding: '4em 0em' }} vertical>
+                <Segment style={{ padding: '1em 0em 3em' }} vertical>
                     <Container>
                         <div className='cg-title'>
                             <h2>About</h2>
                         </div>
                         
-                        <p style={{ fontSize: '1.33em' }}>
+                        <p className='cg-about-p'>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         </p>
                     </Container>
-                    <Divider
-                        style={{ margin: '2em 0em'}}
-                    />
+                    <Divider />
                     <Container>
                         <div className='cg-title'>
                             <h2>Prizes</h2>
                         </div>
-                         <p style={{ fontSize: '1.33em' }}>
+                         <p className='cg-about-p'>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         </p>
                     </Container>
-                    <Divider
-                        style={{ margin: '2em 0em'}}
-                    />
+                    <Divider />
                     <Container>
                          <div className='cg-title'>
                             <h2>How to compete?</h2>
                         </div>
-                        <div style={{ fontSize: '1.33em'}}>
+                        <div className='cg-about-p'>
                             <List bulleted>
                                 <List.Item>Log in</List.Item>
                                 <List.Item>Solve puzzles</List.Item>
@@ -88,14 +84,12 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                         </div>
                     </Container>
 
-                    <Divider
-                        style={{ margin: '2em 0em'}}
-                    />
+                    <Divider />
                     <Container>
                          <div className='cg-title'>
                             <h2>Rules</h2>
                         </div>
-                         <p style={{ fontSize: '1.33em' }}>
+                         <p className='cg-about-p'>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.

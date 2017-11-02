@@ -19,7 +19,10 @@ export class PrizeDescription extends React.Component<any, any> {
                 closeIcon>
                 <Modal.Header>{this.props.prize.name}</Modal.Header>
                 <Modal.Content>
-                    <Image className='cg-modal-image' wrapped size='medium' src={this.props.prize.picture} />
+                    <div className='cg-modal-image'>
+                         <img src={this.props.prize.picture} />
+                    </div>
+                   
                     <Modal.Description>
                         <div className='cg-modal-description' dangerouslySetInnerHTML={{ __html: this.props.prize.description }}>
 

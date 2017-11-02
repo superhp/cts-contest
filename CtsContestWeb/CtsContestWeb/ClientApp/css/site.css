@@ -8,12 +8,6 @@ body{
     height: inherit;
 }
 
-.header-nav {
-    margin: 0 !important;
-    border-radius: 0 !important;
-    background-color: #A5D6A7;
-}
-
 .login-modal {
     height: 200px;
 }
@@ -38,6 +32,10 @@ button.google, button.facebook {
     color: green;
 }
 
+.cg-about-p {
+    font-size: 1.3em;
+    padding: 0px 0px 15px;
+}
 .cg-row {
     display: flex;
     flex-wrap: wrap;
@@ -51,17 +49,23 @@ button.google, button.facebook {
 }
 
 .cg-card {
+    background-color: #fff;
+    position: relative;
     border: 1px solid #eeeeee;
-    box-shadow: 2px 2px 5px #e1e1e1;
+    box-shadow: 3px 3px 5px #e1e1e1;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     width: 100%;
 }
+    .cg-card .cg-title{
+        display: flex;
+        flex-grow: 1;
+    }
     .cg-card .cg-card-image {
         position: relative;
+        padding: 10px;
         height: 300px;
-        /* flex-grow: 1; */
         overflow: hidden;
         border-bottom: 1px solid #e1e1e1;
     }
@@ -76,22 +80,23 @@ button.google, button.facebook {
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    padding: 10px;
+    padding: 10px; 
 }
 .cg-card-title {
     /* height: 20%; */
     display: flex;
     flex: 1 1 auto; 
     overflow: hidden;
+    padding: 0 5px;
 }
 
 .cg-card-actions {
     display: flex;
-    flex: 0 1 auto;
 }
 .cg-card-actions .cg-action-item {
     padding: 5px;
-    width: 50%;
+    flex: 1 1 0;
+    /* width: 50%; */
 }
 .cg-card-button {
     padding: 5px;
@@ -133,7 +138,7 @@ button.google, button.facebook {
     z-index: 10;
     display: block;
     padding: 5px;
-    height: 0px;
+    height: 30px;
     color: #4298b5;
 }
 
@@ -169,12 +174,34 @@ button.google, button.facebook {
 }
 
 .cg-modal-image {
-    width: 100% !important;
-    height: 350px !important;
+    width: 100%;
+    height: 350px;
     overflow: hidden;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+}
+.cg-modal-image:hover {
+    box-shadow: 0px 0px 25px #d1d1d1;
+    height: 450px;
 }
 
 .cg-modal-image img{
-    height: 150% !important;
-    margin: -13% auto;
+    display: block;
+    height: 100% !important;
+    margin: 0 auto;
+}
+.cg-modal-description table{
+    width: 100%;
+}
+.cg-modal-description tr{
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+}
+.cg-modal-description tr td{
+    padding: 5px;
+}
+.cg-modal-description tr td:first-child {
+    padding: 5px 20px 5px 0px;
+    border-right: 1px solid #e1e1e1;
 }

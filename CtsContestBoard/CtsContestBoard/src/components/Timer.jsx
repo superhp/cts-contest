@@ -20,7 +20,7 @@ export default class Timer extends React.Component {
     componentDidMount() {
         this.endTime = new Date(
             2017,
-            10 - 1,
+            11 - 1,
             this.props.day,
             this.props.hour,
             this.props.minutes,
@@ -31,7 +31,7 @@ export default class Timer extends React.Component {
     componentWillReceiveProps(nextProps) {
         this.endTime = new Date(
             2017,
-            10 - 1,
+            11 - 1,
             nextProps.day,
             nextProps.hour,
             nextProps.minutes,
