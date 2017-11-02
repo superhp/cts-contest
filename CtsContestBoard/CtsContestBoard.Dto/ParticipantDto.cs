@@ -5,6 +5,7 @@ namespace CtsContestBoard.Dto
     public class ParticipantDto
     {
         public string Name { get; set; }
+        public string Email { get; set; }
         public string Picture { get; set; }
         public int TotalBalance { get; set; }
         //public int TodayEarnedPoints { get; set; }

@@ -90,7 +90,7 @@ namespace CtsContestWeb.Tests
                 for (int i = 0; i < task.Inputs.Count; i++)
                 {
                     if (task.Outputs[i] != data.result.stdout[i].Value.ToString())
-                        compileResult.FailedInputs++;
+                        compileResult.FailedInput = i;
                 }
             }
             else

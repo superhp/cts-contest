@@ -140,7 +140,9 @@ export class TaskComponent extends React.Component<any, any> {
     }
 
     componentDidMount() {
-        fetch('api/Task/' + this.state.taskId)
+        fetch('api/Task/' + this.state.taskId, {
+            credentials: 'include'
+        })
             .then(response => response.json() as Promise<Task>)
             .then(data => {
                 this.setState({ task: data, loadingTask: false });

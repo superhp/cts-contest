@@ -178,3 +178,7 @@ button.google, button.facebook {
     height: 150% !important;
     margin: -13% auto;
 }
+
+.description {
+    text-align: center;
+}
