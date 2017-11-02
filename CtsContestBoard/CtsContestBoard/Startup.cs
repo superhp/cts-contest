@@ -29,9 +29,9 @@ namespace CtsContestBoard
             services.AddDotNetify();
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<IPurchaseRepository, PurchaseRepository>();
-            services.AddScoped<ISolutionRepository, SolutionRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddTransient<IPurchaseRepository, PurchaseRepository>();
+            services.AddTransient<ISolutionRepository, SolutionRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
 
             services.AddTransient<IPrizeManager, PrizeManager>();
 

@@ -204,4 +204,10 @@ button.google, button.facebook {
 .cg-modal-description tr td:first-child {
     padding: 5px 20px 5px 0px;
     border-right: 1px solid #e1e1e1;
+    height: 150% !important;
+    margin: -13% auto;
+}
+
+.description {
+    text-align: center;
 }

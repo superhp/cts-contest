@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using CtsContestBoard.Communications;
+using CtsContestBoard.Db;
 using CtsContestBoard.Db.Entities;
 using CtsContestBoard.Db.Repository;
 
@@ -17,6 +18,7 @@ namespace CtsContestBoard
         private readonly ISolutionRepository _solutionRepository;
         private readonly IPurchaseRepository _purchaseRepository;
         private readonly IUserRepository _userRepository;
+        private readonly ApplicationDbContext _dbContext;
 
         public string LastUpdate => DateTime.Now.ToString();
         private readonly List<PrizeDto> _prizes;
@@ -48,59 +50,67 @@ namespace CtsContestBoard
             WeekPrizes
         }
 
-        public BoardLoader(IPrizeManager prizeManager, ISolutionRepository solutionRepository, IPurchaseRepository purchaseRepository, IUserRepository userRepository)
+        public BoardLoader(IPrizeManager prizeManager, ISolutionRepository solutionRepository, IPurchaseRepository purchaseRepository, IUserRepository userRepository, ApplicationDbContext dbContext)
         {
             _prizeManager = prizeManager;
             _solutionRepository = solutionRepository;
             _purchaseRepository = purchaseRepository;
             _userRepository = userRepository;
+            _dbContext = dbContext;
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
-            _solutions = _solutionRepository.GetAll().Where(s => s.IsCorrect).ToList();
+            lock (dbContext)
+            {
+                _solutions = _solutionRepository.GetAll().Where(s => s.IsCorrect).ToList();
 
-            _prizes = _prizeManager.GetAllPrizes().Result;
-            _purchases = _purchaseRepository.GetAll().ToList();
-            _users = _userRepository.GetAll().ToList();
+                _prizes = _prizeManager.GetAllPrizes().Result;
+                _purchases = _purchaseRepository.GetAll().ToList();
+                _users = _userRepository.GetAll().ToList();
 
-            UpdateLeaderBoard();
+                UpdateLeaderBoard();
+            }
+
             _timer = new Timer(state =>
             {
-                SwitchBoard();
-
-                switch (Board)
+                lock (dbContext)
                 {
-                    case BoardEnum.LeaderBoard:
-                        UpdateLeaderBoard();
-                        Changed(nameof(LeaderBoard));
-                        break;
-                    case BoardEnum.Prizes:
-                        {
-                            GetNewPurchases();
-                            UpdatePrizes();
-                            Changed(nameof(PrizesForPoints));
+                    SwitchBoard();
+
+                    switch (Board)
+                    {
+                        case BoardEnum.LeaderBoard:
+                            UpdateLeaderBoard();
+                            Changed(nameof(LeaderBoard));
                             break;
-                        }
-                    case BoardEnum.TodayPrizes:
-                        {
-                            GetNewPurchases();
-                            UpdateTodayPrizes();
-                            Changed(nameof(TodaysPrize));
-                            break;
-                        }
-                    case BoardEnum.WeekPrizes:
-                        {
-                            GetNewPurchases();
-                            UpdateWeekPrizes();
-                            Changed(nameof(WeeksPrize));
-                            break;
-                        }
+                        case BoardEnum.Prizes:
+                            {
+                                GetNewPurchases();
+                                UpdatePrizes();
+                                Changed(nameof(PrizesForPoints));
+                                break;
+                            }
+                        case BoardEnum.TodayPrizes:
+                            {
+                                GetNewPurchases();
+                                UpdateTodayPrizes();
+                                Changed(nameof(TodaysPrize));
+                                break;
+                            }
+                        case BoardEnum.WeekPrizes:
+                            {
+                                GetNewPurchases();
+                                UpdateWeekPrizes();
+                                Changed(nameof(WeeksPrize));
+                                break;
+                            }
+                    }
+
+                    Changed(nameof(Board));
+                    Changed(nameof(LastUpdate));
+
+                    PushUpdates();
                 }
-
-                Changed(nameof(Board));
-                Changed(nameof(LastUpdate));
-
-                PushUpdates();
             }, null, 0, 15000);
         }
 
@@ -120,9 +130,16 @@ namespace CtsContestBoard
             List<ParticipantDto> participants;
 
             if (category.Equals("Week prize"))
-                participants = _leaderBoard.OrderByDescending(p => p.TotalBalance).ThenByDescending(p => p.LastSolved).ToList();
+            {
+                participants = _leaderBoard.OrderByDescending(p => p.TotalBalance).ThenByDescending(p => p.LastSolved)
+                    .ToList();
+            }
             else
-                participants = _leaderBoard.OrderByDescending(p => p.TodaysBalance).ThenByDescending(p => p.LastSolved).ToList();
+            {
+                var dayPrizes = _purchases.Where(p => p.PrizeId == 1548 || p.PrizeId == 1550 || p.PrizeId == 1303).Select(p => p.UserEmail).ToList();
+                participants = _leaderBoard.Where(l => dayPrizes.All(dp => dp != l.Email)).OrderByDescending(p => p.TodaysBalance).ThenByDescending(p => p.LastSolved)
+                    .ToList();
+            }
 
             var applicantsForPrize = 3;
             var participantsNeeded = applicantsForPrize + _prizes.Count(p => p.Category.Equals(category));
@@ -157,6 +174,7 @@ namespace CtsContestBoard
             _leaderBoard = _users.Select(u => new ParticipantDto
             {
                 Name = u.FullName,
+                Email = u.Email,
                 Picture = u.Picture,
                 LastSolved = _solutions.Where(s => s.UserEmail.Equals(u.Email) && s.IsCorrect)
                         .DefaultIfEmpty(new Solution()).Max(s => s.Created),
