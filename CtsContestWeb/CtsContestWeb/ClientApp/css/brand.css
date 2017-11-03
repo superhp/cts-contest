@@ -242,6 +242,18 @@
 .cg-padding-submit {
     padding-top: 25px
 }
+.cg-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+.cg-modal-actions .cg-card-button {
+    width: auto;
+    min-width: 75px;
+    margin: 5px;
+}
+.cg-modal-header {
+    color: #4298b5 !important;
+}
 
 @media screen and (max-width: 958px) {
     .cg-nav .cg-nav-item {

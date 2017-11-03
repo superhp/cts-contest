@@ -98,6 +98,7 @@ button.google, button.facebook {
     flex: 1 1 0;
     /* width: 50%; */
 }
+
 .cg-card-button {
     padding: 5px;
     width: 100%;
@@ -133,6 +134,22 @@ button.google, button.facebook {
     color: white;
     background-color: #64a70b;
 }
+.cg-card-button.grey {
+    color: #53565a;
+    border-color: #53565a;
+}
+.cg-card-button.grey:hover:not([disabled]) {
+    color: white;
+    background-color: #53565a;
+}
+.cg-card-button.red {
+    color: #e1523d;
+    border-color: #e1523d;
+}
+.cg-card-button.red:hover:not([disabled]) {
+    color: white;
+    background-color: #e1523d;
+}
 
 .cg-card-label {
     z-index: 10;
@@ -164,7 +181,12 @@ button.google, button.facebook {
     text-align: center;
     margin-top: -10px;
 }
-
+.cg-card-received {
+    padding-top: 5px;
+    text-align: center;
+    font-size: 1.2em;
+    color: #a1a1a1;
+}
 .cg-modal{
     overflow-y: scroll;
     margin: 100px auto !important; 

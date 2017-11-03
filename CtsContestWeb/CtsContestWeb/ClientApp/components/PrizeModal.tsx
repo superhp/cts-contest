@@ -50,7 +50,7 @@ export class PrizeModal extends React.Component<PrizeModalProps, PrizeModalState
     }
     public renderHeader() {
         return (
-            <Modal.Header>
+            <Modal.Header className='cg-modal-header'>
                 {this.props.prize.name}
             </Modal.Header>
         )
@@ -64,14 +64,17 @@ export class PrizeModal extends React.Component<PrizeModalProps, PrizeModalState
     }
     public renderActions() {
         return (
-            <Modal.Actions>
-                <Button className='cg-bg-danger' inverted onClick={this.close}>
-                    <Icon name='remove' /> No
-                </Button>
-                <Button className='cg-bg-success' inverted onClick={this.buy}>
-                    <Icon name='checkmark' /> Yes
-                </Button>
-
+            <Modal.Actions >
+                <div className='cg-modal-actions'>
+                    <button
+                        className='cg-card-button red'
+                        onClick={this.close}
+                    >No</button>
+                    <button
+                        className='cg-card-button secondary'
+                        onClick={this.buy}
+                    >Yes</button>
+                </div>
             </Modal.Actions>
         )
     }

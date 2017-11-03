@@ -58,7 +58,6 @@ export class ShopItemCard extends React.Component<any, any> {
         return '';
     }
     renderButtons() {
-
         if (this.props.purchased) {
             if (this.props.purchase.isGivenAway) {
                 return (
@@ -69,7 +68,7 @@ export class ShopItemCard extends React.Component<any, any> {
                 <button
                     className='cg-card-button cyan'
                     onClick={this.openPurchaseQR}
-                >Details</button>
+                >QR</button>
             )
         }
         else

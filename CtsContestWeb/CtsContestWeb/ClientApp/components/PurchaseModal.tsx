@@ -71,7 +71,7 @@ export class PurchaseModal extends React.Component<PurchaseModalProps, PurchaseM
     }
     public renderHeader() {
         return (
-            <Modal.Header>
+            <Modal.Header className='cg-modal-header'>
                 {this.props.prize.name}
             </Modal.Header>
         )
@@ -106,8 +106,12 @@ export class PurchaseModal extends React.Component<PurchaseModalProps, PurchaseM
     }
     public renderActions() {
         return (
+            
             <Modal.Actions>
-                <Button content='Close' onClick={this.close} />
+                <button
+                    className='cg-card-button grey'
+                    onClick={this.close}
+                >Close</button>
             </Modal.Actions>
         )
     }

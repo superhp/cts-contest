@@ -17,7 +17,7 @@ export class PrizeDescription extends React.Component<any, any> {
                 closeOnRootNodeClick={true}
                 onClose={this.close}
                 closeIcon>
-                <Modal.Header>{this.props.prize.name}</Modal.Header>
+                <Modal.Header className='cg-modal-header'>{this.props.prize.name}</Modal.Header>
                 <Modal.Content>
                     <div className='cg-modal-image'>
                          <img src={this.props.prize.picture} />
