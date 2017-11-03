@@ -171,6 +171,15 @@ button.google, button.facebook {
     float: right;  
     padding-right: 5px;
 }
+.cg-card-stock {
+    display: inline-block;
+    position: absolute;
+    color: #4298b5;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+    padding-right: 10px;
+}
 .cg-prize-quantity {
     margin: 0;
     text-align: center;

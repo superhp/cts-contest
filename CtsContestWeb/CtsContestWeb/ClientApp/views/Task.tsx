@@ -273,9 +273,11 @@ export class TaskComponent extends React.Component<any, any> {
             var submitButton = this.state.showResults ? <div></div> : <div className="success-message">You successfully resolved this task.</div>;
         } else {
             var submitButton = this.props.userInfo.isLoggedIn ?
-                <div>
-                    <Button onClick={this.compileCode} disabled={this.state.disabledButton} primary>Submit</Button>
-                    <Button onClick={this.saveForLater} disabled={this.state.disabledButton} primary>Save for later</Button>
+                <div className='cg-task-submit'>
+                     <button className='cg-card-button cyan' onClick={this.compileCode} disabled={this.state.disabledButton}>Submit</button>
+                     <button className='cg-card-button cyan' onClick={this.saveForLater} disabled={this.state.disabledButton}>Save for later</button>
+                    {/* <Button onClick={this.compileCode} disabled={this.state.disabledButton} primary>Submit</Button>
+                    <Button onClick={this.saveForLater} disabled={this.state.disabledButton} primary>Save for later</Button> */}
                 </div>
                 : <div className="error-message">Please login before solving tasks</div>;
         }

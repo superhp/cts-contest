@@ -39,7 +39,7 @@ export class Header extends React.Component<any, HeaderState> {
         super(props);
 
         let collapsed = false;
-        if (window.innerWidth <= 768)
+        if (window.innerWidth <= 1200)
             collapsed = true;
 
         this.state = {
@@ -49,9 +49,9 @@ export class Header extends React.Component<any, HeaderState> {
     }
 
     handleResize = () => {
-        if (window.innerWidth >= 768)
+        if (window.innerWidth >= 1200)
             this.setState({ collapsed: false });
-        if (window.innerWidth < 768)
+        if (window.innerWidth < 1200)
             this.setState({ collapsed: true });
     }
 
@@ -62,12 +62,12 @@ export class Header extends React.Component<any, HeaderState> {
     public render() {
         const activeItem = this.state.activeItem;
         return (
-            <Menu className="cg-nav" size='large' stackable color='blue' inverted>
+            <Menu className="cg-nav" size='large' color='blue' inverted>
                 <Menu.Item className='cg-nav-header' header>
                     <div style={{ width: '100%' }}>
                         <div style={{ display: 'inline' }}><NavLink to='/' ><img className='cg-nav-logo' src="../logo.svg" alt="Cognizant logo" /></NavLink></div>
                         <div style={{ position: 'absolute', height: '100%', right: 0, top: 0, display: 'inline', margin: 'auto' }}>
-                            <Responsive className='cg-mobile-menu' maxWidth={768} onUpdate={this.handleResize}>
+                            <Responsive className='cg-mobile-menu' maxWidth={1200} onUpdate={this.handleResize}>
                                 {this.props.userInfo.isLoggedIn
                                     ? <div style={{ fontWeight: 'bold', fontSize: '1.5em', position: 'absolute', top: '38%', right: 50, width: 100 }}>
                                         {this.props.userInfo.balance} &nbsp;<Icon name='money' />

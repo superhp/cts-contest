@@ -22,19 +22,14 @@ export class ShopItemCard extends React.Component<any, any> {
             <div className='cg-card'>
                 <div className='cg-card-label'>
                     <div className='left'>
-                        Price:  {this.props.prize.price}
-                    </div>
-                    <div className='right'>
-                        <p className='cg-prize-quantity'>
-                            {this.props.prize.quantity}
-                        </p>
-                        <p className='cg-prize-quantity-after'>
-                            Left
-                        </p>
+                        Value:  {this.props.prize.price} pts
                     </div>
                 </div>
                 <div className='cg-card-image'>
                     <img src={this.props.prize.picture} alt="" />
+                    <p className='cg-card-stock'>   
+                        In stock: {this.props.prize.quantity}
+                    </p>
                 </div>
                 <div className='cg-card-content'>
                     <h2 className='cg-card-title'>{this.props.prize.name}</h2>

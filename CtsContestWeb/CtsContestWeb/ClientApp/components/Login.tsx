@@ -40,10 +40,13 @@ export class Login extends React.Component<any, LoginModalState> {
     }
 
     private renderLoggedInView(userInfo: any) {
+        console.log(userInfo);
         return (
             <div className="right-menu">
-                <a className='item'>Hello, {userInfo.name}!</a>
-                <div className="item cg-balance" style={{ fontWeight: 'bold' }}>{userInfo.balance} &nbsp;<Icon name='money' /></div>
+                <a className='item cg-responsive-hide'>Hello, {userInfo.name}!</a>
+                <div className="item cg-responsive-hide cg-balance" style={{ fontWeight: 'bold' }}>
+                    {userInfo.balance} &nbsp;<Icon name='money' />
+                    </div>
                 <a className='item' href={"https://cts-contest.azurewebsites.net/.auth/logout?post_logout_redirect_uri=" + window.location.pathname}>Logout</a>
             </div>
         );

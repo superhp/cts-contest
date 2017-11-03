@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Header } from './Header';
+import { HeaderMenu } from './HeaderMenu';
 import { Footer } from './Footer';
 
 export interface LayoutProps {
