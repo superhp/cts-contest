@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-import { Responsive, Label, Button, Header as Header, Image, Modal, Icon } from 'semantic-ui-react'
+import { Responsive, Label, Button, Header as Header, Image, Modal, Icon, Menu } from 'semantic-ui-react'
 import { Link, NavLink } from 'react-router-dom';
 
 interface LoginModalState {
     modalHeight: number;
     loading: boolean;
+    wallet: boolean;
 }
 
 export class Login extends React.Component<any, LoginModalState> {
@@ -18,7 +19,8 @@ export class Login extends React.Component<any, LoginModalState> {
 
         this.state = {
             modalHeight: modalHeight,
-            loading: true
+            loading: true,
+            wallet: false
         }
 
         this.handleResize = this.handleResize.bind(this);
@@ -30,7 +32,9 @@ export class Login extends React.Component<any, LoginModalState> {
         } else
             this.setState({ modalHeight: 200 });
     }
-
+    toggleWallet = () => {
+        this.setState({ wallet: !this.state.wallet });
+    }
     public render() {
         let contents = this.props.userInfo.isLoggedIn
             ? this.renderLoggedInView(this.props.userInfo)
@@ -40,14 +44,27 @@ export class Login extends React.Component<any, LoginModalState> {
     }
 
     private renderLoggedInView(userInfo: any) {
-        console.log(userInfo);
         return (
             <div className="right-menu">
-                <a className='item cg-responsive-hide'>Hello, {userInfo.name}!</a>
-                <div className="item cg-responsive-hide cg-balance" style={{ fontWeight: 'bold' }}>
-                    {userInfo.balance} &nbsp;<Icon name='money' />
+                <div className='item cg-responsive-hide'>Hello, {userInfo.name}!</div>
+                <div style={{position: 'relative'}}>
+                    <a className={"item cg-responsive-hide cg-bold " + (this.state.wallet ? 'active' : '')} onClick={this.toggleWallet} style={{height: '100%', width: '100%'}}>My Wallet</a>
+                    <div className={'cg-balance ' + (this.state.wallet ? 'cg-show' : 'cg-hidden')}>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Todays balance</td>
+                                    <td>{this.props.userInfo.todaysBalance} pts</td>
+                                </tr>
+                                <tr>
+                                    <td>Tatal balance</td>
+                                    <td>{this.props.userInfo.totalBalance} pts</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                <a className='item' href={"https://cts-contest.azurewebsites.net/.auth/logout?post_logout_redirect_uri=" + window.location.pathname}>Logout</a>
+                </div>
+                <a className='item cg-responsive-hide cg-bold' href={"https://cts-contest.azurewebsites.net/.auth/logout?post_logout_redirect_uri=" + window.location.pathname}>Logout</a>
             </div>
         );
     }

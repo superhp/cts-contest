@@ -30,6 +30,7 @@ const links = [
 export type HeaderState = {
     activeItem: string;
     collapsed: boolean;
+    userInfo: boolean;
 }
 
 export class Header extends React.Component<any, HeaderState> {
@@ -44,7 +45,8 @@ export class Header extends React.Component<any, HeaderState> {
 
         this.state = {
             activeItem: "tasks",
-            collapsed: collapsed
+            collapsed: collapsed,
+            userInfo: false
         }
     }
 
@@ -56,36 +58,40 @@ export class Header extends React.Component<any, HeaderState> {
     }
 
     handleCollapseMenuButton = () => {
-        this.setState({ collapsed: !this.state.collapsed });
+        this.setState({ collapsed: !this.state.collapsed, userInfo: false });
     }
-
+    toggleUserInfo = () => {
+        this.setState({ userInfo: !this.state.userInfo, collapsed: true });
+    }
     public render() {
         const activeItem = this.state.activeItem;
         return (
             <Menu className="cg-nav" size='large' color='blue' inverted>
+                <Responsive maxWidth={1200} onUpdate={this.handleResize} />
                 <Menu.Item className='cg-nav-header' header>
                     <div style={{ width: '100%' }}>
-                        <div style={{ display: 'inline' }}><NavLink to='/' ><img className='cg-nav-logo' src="../logo.svg" alt="Cognizant logo" /></NavLink></div>
-                        <div style={{ position: 'absolute', height: '100%', right: 0, top: 0, display: 'inline', margin: 'auto' }}>
-                            <Responsive className='cg-mobile-menu' maxWidth={1200} onUpdate={this.handleResize}>
-                                {this.props.userInfo.isLoggedIn
-                                    ? <div style={{ fontWeight: 'bold', fontSize: '1.5em', position: 'absolute', top: '38%', right: 50, width: 100 }}>
-                                        {this.props.userInfo.balance} &nbsp;<Icon name='money' />
+                        <div style={{ float: 'left' }}><NavLink to='/' ><img className='cg-nav-logo' src="../logo.svg" alt="Cognizant logo" /></NavLink></div>
+                        <div className='cg-nav-right'>
+                             {this.props.userInfo.isLoggedIn
+                             ? <div className='cg-mobile-item'>
+                                <Icon link name='user circle' onClick={this.toggleUserInfo} size='big' />
+                                <div className={'cg-user-info-menu ' + (this.state.userInfo ? '' : 'hidden')}>
+                                    <div>
+                                            <div className='cg-user-menu-item cg-bold'>User</div>
+                                            <div className='cg-user-menu-item'>{this.props.userInfo.name}</div>
+                                            <div className='cg-user-menu-item cg-bold'>My wallet</div>
+                                            <div className='cg-user-menu-item'>Todays balance: {this.props.userInfo.todaysBalance} pts</div>
+                                            <div className='cg-user-menu-item'>Total balance: {this.props.userInfo.totalBalance} pts</div>
+                                            <a className='cg-user-menu-item cg-bold' href={"https://cts-contest.azurewebsites.net/.auth/logout?post_logout_redirect_uri=" + window.location.pathname}>Logout</a>
                                     </div>
-                                    : ''}
-                                <div style={{ position: 'absolute', top: '34%', right: 10 }}>
-                                    <Icon link name='content' onClick={this.handleCollapseMenuButton} size='big' />
                                 </div>
-                            </Responsive>
+                            </div>
+                             : ''
+                             }
+                            <div className='cg-mobile-item'>
+                                <Icon link name='content' onClick={this.handleCollapseMenuButton} size='big' />
+                            </div>
                         </div>
-                        {/* <div style={{ width: '100%' }}>
-                        <div style={{ float: 'left' }}>CtsContestWeb</div>
-                        <div style={{ float: 'right' }}>
-                            <Responsive maxWidth={768} onUpdate={this.handleResize}>
-                                <Icon link name='content' onClick={this.handleCollapseMenuButton} />
-                            </Responsive>
-                        </div>
-                    </div> */}
                     </div>
                 </Menu.Item>
 

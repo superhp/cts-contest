@@ -18,20 +18,18 @@
     --color-red: #e1523d;
     /* Font familty: Interstate-Regular*/
 }
-.body{
-    font-family: 'Interstate-Regular' !important;
-    background-color: #aaaaaa;
+body, div, p, h1, h2, h3, td{
+    font-family: "Montserrat", sans-serif !important;
+}
+.cg-bold{
+    font-weight: bold !important;
+    text-transform: uppercase !important;
 }
 .cg-gradient {
     background: var(--gradient) !important;
 }
 .cg-gradient-vertical {
     background: var(--gradient-vertical) !important;
-}
-.cg-balance{
-    font-size: 1.5em;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
 }
 .cg-nav {
     position: relative !important; 
@@ -40,7 +38,7 @@
     margin: 0 !important;
     background: linear-gradient(90deg, #4298b5 0%, #64a70b 100%) !important;
     border-radius: 0 !important;
-    box-shadow: 0 1px 4px #53565a !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5) !important;
     z-index: 50;
 }
 
@@ -62,14 +60,52 @@
 .cg-nav .cg-nav-item {
     position: static !important;
     min-width: 50px !important;
-    font-family: 'Interstate-Regular' !important;
+    /* font-family: "Montserrat", sans-serif !important; */
     text-transform: uppercase !important;
+    font-weight: bold !important;
     border-width: 0px !important; 
     padding: 15px 50px !important; 
+}
+.cg-nav-right {
+    display: none;
+    float: right;
+    height: 95px;
+}
+.cg-nav .cg-mobile-item {
+    position: relative;
+    display: inline-block;
+    padding: 30px 10px 22px;
+}
+.cg-nav .cg-mobile-item i{
+    height: 100%;
+}
+.cg-user-info-menu {
+    position: absolute;
+    right: 0;
+    width: 200px;
+    color: black;
+    background-color: white;
+    border: 1px solid #e1e1e1;
+    margin-top: 40px;
+    overflow: hidden;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+.cg-user-menu-item {
+    display: block;
+    font-weight: normal;
+    padding: 10px 10px;
+    border-top: 1px solid #e1e1e1;
+}
+a.cg-user-menu-item{
+    color: #64a70b;
+}
+a.cg-user-menu-item:hover{
+    background-color: #f1f1f1;
 }
 .cg-mobile-menu {
     display: none;
     height: 100%;
+   
 }
 .cg-page-header {
     text-align: center;
@@ -278,6 +314,11 @@
         display: none !important;
     }
     .cg-mobile-menu {
+        display: block;
+    }
+    .cg-nav-right {
+        float: right;
+        height: 95px;
         display: block;
     }
 }

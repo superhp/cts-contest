@@ -29,12 +29,30 @@ namespace CtsContestWeb.Logic
             return balance >= price;
         }
 
-        public int GetCurrentBalance(string userEmail)
+        public int GetTotalBalance(string userEmail)
         {
             return GetTotalEarnedMoney(userEmail) - GetTotalSpentMoney(userEmail);
         }
 
+        public int GetCurrentBalance(string userEmail)
+        {
+            return GetTodaysEarnedMoney(userEmail) - GetTodaysSpentMoney(userEmail);
+        }
+
         private int GetTotalEarnedMoney(string userEmail)
+        {
+            var solutions = _solRep.GetSolutionsByUserEmail(userEmail);
+            var sum = solutions.Where(s => s.IsCorrect).Select(x => x.Score).DefaultIfEmpty(0).Sum();
+            return sum;
+        }
+        private int GetTotalSpentMoney(string userEmail)
+        {
+            var purchases = _purRep.GetAllByUserEmail(userEmail);
+            var sum = purchases.Select(x => x.Cost).DefaultIfEmpty(0).Sum();
+            return sum;
+        }
+
+        private int GetTodaysEarnedMoney(string userEmail)
         {
             var solutions = _solRep.GetSolutionsByUserEmail(userEmail);
             //var sum = solutions.Where(s => s.IsCorrect).Select(x => x.Score).DefaultIfEmpty(0).Sum();
@@ -42,13 +60,12 @@ namespace CtsContestWeb.Logic
             return sum;
         }
 
-        private int GetTotalSpentMoney(string userEmail)
+        private int GetTodaysSpentMoney(string userEmail)
         {
             var purchases = _purRep.GetAllByUserEmail(userEmail);
             //var sum = purchases.Select(x => x.Cost).DefaultIfEmpty(0).Sum();
             var sum = purchases.Where(p => p.Created.Date == DateTime.Today).Select(x => x.Cost).DefaultIfEmpty(0).Sum();
             return sum;
-        }
-
+        }   
     }
 }
