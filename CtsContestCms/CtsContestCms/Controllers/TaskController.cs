@@ -16,7 +16,7 @@ namespace CtsContestCms.Controllers
             var taskDtos = new List<object>();
             var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
 
-            var tasks = umbracoHelper.Content(1153).Children;
+            var tasks = umbracoHelper.Content(1590).Children;
 
             foreach (var task in tasks)
             {
@@ -49,7 +49,7 @@ namespace CtsContestCms.Controllers
             var taskDtos = new List<TaskDto>();
             var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
 
-            var tasks = umbracoHelper.Content(1153).Children;
+            var tasks = umbracoHelper.Content(1590).Children;
 
             foreach (var task in tasks)
             {
@@ -71,12 +71,10 @@ namespace CtsContestCms.Controllers
             var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
 
             var task = umbracoHelper.Content(id);
-            if (task.Id == 0 || (!task.DocumentTypeAlias.Equals("task") && !task.DocumentTypeAlias.Equals("taskNew")))
+            if (task.Id == 0 || !task.DocumentTypeAlias.Equals("taskNew"))
                 throw new ArgumentException("No task found with given ID");
 
-            var taskDto = task.DocumentTypeAlias.Equals("task") ? GetTaskDto(task) : GetNewTaskDto(task);
-
-            return taskDto;
+            return GetNewTaskDto(task);
         }
 
         private TaskDto GetNewTaskDto (dynamic task)
@@ -91,26 +89,6 @@ namespace CtsContestCms.Controllers
                 Id = task.Id,
                 Name = task.Name,
                 Description = ConstructDescription(task, testCases),
-                Value = task.GetPropertyValue("value"),
-                Inputs = inputs,
-                Outputs = outputs,
-                InputType = task.GetPropertyValue("inputType")
-            };
-        }
-
-        private TaskDto GetTaskDto(dynamic task)
-        {
-            string[] inputsRaw = task.GetPropertyValue("input");
-            var inputs = inputsRaw.Where(i => i != string.Empty).Select(str => str.Replace("\\n", "\n"));
-
-            string[] outputsRaw = task.GetPropertyValue("output");
-            var outputs = outputsRaw.Where(i => i != string.Empty).Select(str => str.Replace("\\n", "\n"));
-
-            return new TaskDto
-            {
-                Id = task.Id,
-                Name = task.Name,
-                Description = task.GetPropertyValue("description").ToString(),
                 Value = task.GetPropertyValue("value"),
                 Inputs = inputs,
                 Outputs = outputs,
