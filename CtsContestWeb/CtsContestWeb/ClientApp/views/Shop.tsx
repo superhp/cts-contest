@@ -180,13 +180,13 @@ export class Shop extends React.Component<any, any> {
             : this.renderPrizeList(this.state.prizes.filter((prize:any) => prize.category === 'Prize for points'));
 
         return (
-            <div>
+            <div className='cg-shop-page'>
                 <div className='cg-page-header'>
                     <Container fluid>
                         <Header as='h1' textAlign='center' inverted>
-                            <Icon name='gift' />
+                            <Icon name='tags' />
                             <Header.Content>
-                                Shop
+                                Shoping booth
                             </Header.Content>
                         </Header>
                     </Container>
@@ -215,7 +215,7 @@ export class Shop extends React.Component<any, any> {
     }
     private renderPrizeList(prizes: Prize[]) {
         return <div>
-            <div className='cg-row'>
+            <div className='cg-row last-not-grow'>
                 {prizes.map((prize, index) =>
                     <div className='cg-col' key={index} style={{ paddingBottom: 20 }}>  
                         <ShopItemCard

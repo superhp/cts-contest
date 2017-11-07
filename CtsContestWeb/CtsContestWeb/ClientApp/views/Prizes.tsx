@@ -49,7 +49,7 @@ export class Prizes extends React.Component<any, any> {
             : this.renderPrizeList(this.state.prizes.filter((prize: any) => prize.category !== 'Prize for points'));
 
         return (
-            <div>
+            <div className='cg-prize-page'>
                 <div className='cg-page-header'>
                     <Container fluid>
                         <Header as='h1' textAlign='center' inverted>
@@ -91,7 +91,7 @@ export class Prizes extends React.Component<any, any> {
                         </div>
                     )}
                 </div>
-                <div className='cg-row'>
+                <div className='cg-row last-not-grow'>
                     {dayPrizes.map((prize, index) =>
                         <div className='cg-col' key={index} style={{ paddingBottom: 20 }}>
                             <PrizeCard

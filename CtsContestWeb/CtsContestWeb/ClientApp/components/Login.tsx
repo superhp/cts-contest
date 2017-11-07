@@ -36,7 +36,7 @@ export class Login extends React.Component<any, LoginModalState> {
         this.setState({ wallet: !this.state.wallet });
     }
     public render() {
-        let contents = this.props.userInfo.isLoggedIn
+        let contents = false
             ? this.renderLoggedInView(this.props.userInfo)
             : Login.renderLoginModal(this.state.modalHeight, this.handleResize)
 
@@ -70,7 +70,7 @@ export class Login extends React.Component<any, LoginModalState> {
     }
 
     private static renderLoginModal(height: number, handleResize: any) {
-        return <Responsive onUpdate={handleResize}>
+        return <Responsive className='cg-login-mobile' onUpdate={handleResize}>
             <Modal size="tiny" className="login-modal" trigger={<NavLink style={{height: '100%'}} className='item cg-nav-item' to="#" exact> Login </NavLink>} style={{ minHeight: height }} closeIcon>
                 <Modal.Header>Choose login method</Modal.Header>
                 <Modal.Content>

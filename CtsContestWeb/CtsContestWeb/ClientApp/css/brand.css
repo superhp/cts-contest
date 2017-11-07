@@ -21,6 +21,9 @@
 body, div, p, h1, h2, h3, td{
     font-family: "Montserrat", sans-serif !important;
 }
+.cg-login-mobile {
+    
+}
 .cg-bold{
     font-weight: bold !important;
     text-transform: uppercase !important;
