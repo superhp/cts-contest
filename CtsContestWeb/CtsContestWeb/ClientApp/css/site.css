@@ -96,6 +96,7 @@ button.google, button.facebook {
 
 .cg-card-actions {
     display: flex;
+    flex-wrap: wrap;
 }
 .cg-card-actions .cg-action-item {
     padding: 5px;

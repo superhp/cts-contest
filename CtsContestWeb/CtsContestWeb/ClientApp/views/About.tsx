@@ -29,7 +29,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                 <div className='cg-about-header'>
                     <Segment vertical textAlign='center'>
                         <Container text >
-                            <Header
+                            <Header className='cg-about-header-text'
                                 as='h1'
                                 content='PROGRAMMING CONTEST' 
                                 inverted

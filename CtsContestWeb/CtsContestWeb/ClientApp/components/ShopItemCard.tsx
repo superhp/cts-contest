@@ -27,7 +27,7 @@ export class ShopItemCard extends React.Component<any, any> {
                 </div>
                 <div className='cg-card-image'>
                     <img src={this.props.prize.picture} alt="" />
-                    <p className='cg-card-stock'>   
+                    <p className='cg-card-stock'>
                         In stock: {this.props.prize.quantity}
                     </p>
                 </div>
@@ -36,14 +36,13 @@ export class ShopItemCard extends React.Component<any, any> {
                     <div className='cg-card-actions'>
                         <div className='cg-action-item'>
                             <button className='cg-card-button cyan' onClick={this.openDescription}>Details</button>
-                        </div><div className='cg-action-item'>
-                            {this.props.userLogedIn
-                                ? this.renderButtons()
-                                : this.renderEmpty()
-                            }
                         </div>
-
-
+                        {this.props.userLogedIn
+                            ? <div className='cg-action-item'>
+                                {this.renderButtons()}
+                            </div>
+                            : this.renderEmpty()
+                        }
                     </div>
                 </div>
             </div>
@@ -63,7 +62,7 @@ export class ShopItemCard extends React.Component<any, any> {
                 <button
                     className='cg-card-button cyan'
                     onClick={this.openPurchaseQR}
-                >QR</button>
+                >Withdraw</button>
             )
         }
         else

@@ -22,7 +22,7 @@ body, div, p, h1, h2, h3, td{
     font-family: "Montserrat", sans-serif !important;
 }
 .cg-login-mobile {
-    
+
 }
 .cg-bold{
     font-weight: bold !important;
@@ -130,7 +130,14 @@ a.cg-user-menu-item:hover{
     padding-top: 100px;
     padding-bottom: 100px;
 }
-
+.cg-about-header-text{
+    font-size: 3em;
+    font-weight: arial;
+    margin-bottom: 0;
+}
+.cg-about-p{
+    text-align: justify;
+}
 .cg-title{
     padding-bottom: 15px;
     padding-top: 15px;
@@ -323,5 +330,10 @@ a.cg-user-menu-item:hover{
         float: right;
         height: 95px;
         display: block;
+    }
+}
+@media only screen and (max-width: 546px){
+    .cg-about-header-text {
+        font-size: 2em !important;
     }
 }
