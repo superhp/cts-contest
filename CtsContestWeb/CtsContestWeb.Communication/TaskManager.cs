@@ -45,7 +45,7 @@ namespace CtsContestWeb.Communication
                         task.IsSolved = true;
                 }
             }
-
+            tasks.ForEach(UpdateTaskValue);
             return tasks;
         }
 
@@ -74,7 +74,7 @@ namespace CtsContestWeb.Communication
                     task.IsSolved = true;
             }
             task.Description = PrependRootUrlToImageLinks(task.Description, pictureUrl);
-
+            UpdateTaskValue(task);
             return task;
         }
 
@@ -84,6 +84,12 @@ namespace CtsContestWeb.Communication
             var newDescription = Regex.Replace(description, htmlPattern, "$1" + url + "$2");
 
             return newDescription;
+        }
+
+        private void UpdateTaskValue(TaskDto task)
+        {
+            double d = Math.Pow(10, task.Value / 5.0 + 1);
+            task.Value = (int)Math.Floor(d / 5) * 5;
         }
     }
 }
