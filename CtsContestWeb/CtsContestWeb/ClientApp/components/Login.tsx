@@ -36,7 +36,7 @@ export class Login extends React.Component<any, LoginModalState> {
         this.setState({ wallet: !this.state.wallet });
     }
     public render() {
-        let contents = false
+        let contents = this.props.userInfo.isLoggedIn
             ? this.renderLoggedInView(this.props.userInfo)
             : Login.renderLoginModal(this.state.modalHeight, this.handleResize)
 
