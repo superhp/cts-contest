@@ -10,7 +10,7 @@ interface LoginModalState {
 }
 
 export class Login extends React.Component<any, LoginModalState> {
-    constructor(props:any) {
+    constructor(props: any) {
         super(props);
 
         let modalHeight = 200;
@@ -28,7 +28,7 @@ export class Login extends React.Component<any, LoginModalState> {
 
     handleResize = () => {
         if (window.innerWidth < 960) {
-            this.setState({ modalHeight: 250 });
+            this.setState({ modalHeight: 200 });
         } else
             this.setState({ modalHeight: 200 });
     }
@@ -47,8 +47,8 @@ export class Login extends React.Component<any, LoginModalState> {
         return (
             <div className="right-menu">
                 <div className='item cg-responsive-hide'>Hello, {userInfo.name}!</div>
-                <div style={{position: 'relative'}}>
-                    <a className={"item cg-responsive-hide cg-bold " + (this.state.wallet ? 'active' : '')} onClick={this.toggleWallet} style={{height: '100%', width: '100%'}}>My Wallet</a>
+                <div style={{ position: 'relative' }}>
+                    <a className={"item cg-responsive-hide cg-bold " + (this.state.wallet ? 'active' : '')} onClick={this.toggleWallet} style={{ height: '100%', width: '100%' }}>My Wallet</a>
                     <div className={'cg-balance ' + (this.state.wallet ? 'cg-show' : 'cg-hidden')}>
                         <table>
                             <tbody>
@@ -71,14 +71,16 @@ export class Login extends React.Component<any, LoginModalState> {
 
     private static renderLoginModal(height: number, handleResize: any) {
         return <Responsive className='cg-login-mobile' onUpdate={handleResize}>
-            <Modal size="tiny" className="login-modal" trigger={<NavLink style={{height: '100%'}} className='item cg-nav-item' to="#" exact> Login </NavLink>} style={{ minHeight: height }} closeIcon>
+            <Modal size="tiny" className="login-modal" trigger={<NavLink style={{ height: '100%' }} className='item cg-nav-item' to="#" exact> Login </NavLink>} closeIcon>
                 <Modal.Header>Choose login method</Modal.Header>
-                <Modal.Content>
-                    <Modal.Description>
-                        <a href={"https://cts-contest.azurewebsites.net/.auth/login/facebook?post_login_redirect_url=" + window.location.pathname}><Button color='facebook'><Icon name='facebook' /> Login with Facebook</Button></a>
-                        <a href={"https://cts-contest.azurewebsites.net/.auth/login/google?post_login_redirect_url=" + window.location.pathname}><Button color='google plus'><Icon name='google' /> Login with Google</Button></a>
-                    </Modal.Description>
-                </Modal.Content>
+                
+                    <div className='cg-login-modal-button '>
+                        <a className='ui facebook fluid button cg-login-button' href={"https://cts-contest.azurewebsites.net/.auth/login/facebook?post_login_redirect_url=" + window.location.pathname}><Icon name='facebook' /> Login with Facebook</a>
+                    </div>
+                    <div className='cg-login-modal-button '>
+                        <a className='ui google plus fluid button cg-login-button' href={"https://cts-contest.azurewebsites.net/.auth/login/google?post_login_redirect_url=" + window.location.pathname}><Icon name='google' /> Login with Google</a>
+                    </div>
+                
             </Modal>
         </Responsive>;
     }

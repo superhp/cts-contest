@@ -20,7 +20,7 @@ class Board extends React.Component {
 
     renderSlide() {
         //console.log(this.state);
-        //switch (BoardEnum.LeaderBoard) {
+        //switch (BoardEnum.Prizes) {
         switch(this.state.Board){
             case BoardEnum.LeaderBoard:
                 const sortedLeaderboard = this.state.LeaderBoard;

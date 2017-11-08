@@ -98,7 +98,7 @@ const OnePrizeBoard = ({ data, prize, props }) => (
                         
                         props.board === 'today'
                             ?  <Timer day={new Date().getDate()} hour={17} minutes={0} />
-                            :  <Timer day={4} hour={17} minutes={0} />
+                            :  <Timer day={17} hour={17} minutes={0} />
                     }
                    
                 </div>

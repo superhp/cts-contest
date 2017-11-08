@@ -23,23 +23,7 @@ export class PrizeModal extends React.Component<PrizeModalProps, PrizeModalState
         super();
 
     }
-    componentDidUpdate() {
-        this.modalFix();
-    }
-    modalFix() {
-        if (this.modal !== null && this.modal.ref !== undefined && this.modal.ref !== null) {
-            this.modalHeight = 0;
-            for (let i = 1; i < this.modal.ref.children.length; i++) {
-                this.modalHeight += this.modal.ref.children[i].clientHeight;
-            }
-            if (!this.modalHeightSet)
-                this.handleResize();
-            this.modalHeightSet = true;
-        }
-    }
-    handleResize = () => {
-        this.setState({});
-    }
+
     buy = () => {
         this.props.onBuy(this.props.prize);
         this.close();
@@ -64,37 +48,33 @@ export class PrizeModal extends React.Component<PrizeModalProps, PrizeModalState
     }
     public renderActions() {
         return (
-            <Modal.Actions >
-                <div className='cg-modal-actions'>
-                    <button
-                        className='cg-card-button red'
-                        onClick={this.close}
-                    >No</button>
-                    <button
-                        className='cg-card-button secondary'
-                        onClick={this.buy}
-                    >Yes</button>
-                </div>
-            </Modal.Actions>
+            <div className='cg-modal-actions'>
+                <button
+                    className='cg-card-button red'
+                    onClick={this.close}
+                >No</button>
+                <button
+                    className='cg-card-button secondary'
+                    onClick={this.buy}
+                >Yes</button>
+            </div>
         )
     }
     public render() {
         return (
-            <Responsive onUpdate={this.handleResize}>
-                <Modal open={this.props.open}
-                    size='tiny'
-                    closeOnEscape={true}
-                    closeOnRootNodeClick={true}
-                    style={{ height: window.innerHeight >= this.modalHeight ? this.modalHeight : 'auto' }}
-                    onClose={this.close}
-                    closeIcon
-                    ref={(content: any) => this.modal = content}
-                >
-                    {this.renderHeader()}
-                    {this.renderContent()}
-                    {this.renderActions()}
-                </Modal>
-            </Responsive>
+            <Modal open={this.props.open}
+                size='tiny'
+                closeOnEscape={true}
+                closeOnRootNodeClick={true}
+                style={{ backgroundColor: 'transparent', marginTop: -100 }}
+                onClose={this.close}
+                closeIcon
+                ref={(content: any) => this.modal = content}
+            >
+                {this.renderHeader()}
+                {this.renderContent()}
+                {this.renderActions()}
+            </Modal>
         )
     }
 }

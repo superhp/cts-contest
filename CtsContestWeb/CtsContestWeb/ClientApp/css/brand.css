@@ -302,6 +302,9 @@ a.cg-user-menu-item:hover{
 .cg-modal-actions {
     display: flex;
     justify-content: flex-end;
+    border-top: 1px solid #e1e1e1;
+    background-color: white; 
+    padding: 15px;
 }
 .cg-modal-actions .cg-card-button {
     width: auto;
@@ -330,6 +333,9 @@ a.cg-user-menu-item:hover{
         float: right;
         height: 95px;
         display: block;
+    }
+    .cg-login-mobile {
+        width: 100%;
     }
 }
 @media only screen and (max-width: 546px){

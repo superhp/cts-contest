@@ -31,7 +31,7 @@
     }
         .prize-card .img-container img {
             width: 100%;
-            margin: -8vh 0px;
+            /*margin: -8vh 0px;*/
         }
     .prize-card .prize-card-header {
         margin: 0;
