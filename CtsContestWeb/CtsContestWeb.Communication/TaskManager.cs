@@ -88,8 +88,8 @@ namespace CtsContestWeb.Communication
 
         private void UpdateTaskValue(TaskDto task)
         {
-            double d = Math.Pow(10, task.Value / 5.0 + 1);
-            task.Value = (int)Math.Floor(d / 5) * 5;
+            double d = 8.2d * task.Value * task.Value - 20 * task.Value + 23;
+            task.Value = (int)Math.Ceiling(d / 5) * 5;
         }
     }
 }
