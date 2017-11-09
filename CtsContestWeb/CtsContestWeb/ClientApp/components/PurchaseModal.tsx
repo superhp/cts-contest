@@ -38,6 +38,7 @@ export class PurchaseModal extends React.Component<PurchaseModalProps, PurchaseM
             for (let i = 0; i < this.modal.ref.children.length; i++) {
                 this.modalHeight += this.modal.ref.children[i].clientHeight;
             }
+            console.log();
             if (this.counter <= 2) {
                 this.setState({});
                 const body = document.getElementsByTagName('body')[0];
@@ -45,9 +46,25 @@ export class PurchaseModal extends React.Component<PurchaseModalProps, PurchaseM
                     body.classList.add('scrolling');
                 this.counter++;
             }
+            this.modalHeight += 25;
         }
     }
     handleResize = () => {
+        if (this.modal != null && this.modal.ref !== undefined && this.modal.ref !== null) {
+            this.modalHeight = 0;
+            for (let i = 0; i < this.modal.ref.children.length; i++) {
+                this.modalHeight += this.modal.ref.children[i].clientHeight;
+            }
+            if (this.counter <= 2) {
+                this.setState({});
+                const body = document.getElementsByTagName('body')[0];
+                if (this.state !== 'loading')
+                    body.classList.add('scrolling');
+                this.counter++;
+            }
+            if(window.innerWidth < 769)
+                this.modalHeight += 25;
+        }
         this.setState({});
     }
     close = () => {

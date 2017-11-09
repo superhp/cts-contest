@@ -9,11 +9,8 @@ body{
 }
 
 .login-modal {
-    height: 200px;
-}
-
-button.google, button.facebook {
-    margin: 24px !important;
+    max-height: 200px !important;
+    height: 200px !important;
 }
 
 .right-menu {
@@ -31,7 +28,9 @@ button.google, button.facebook {
 .success-message {
     color: green;
 }
-
+.cg-login-modal-button {
+    padding: 15px;
+}
 .cg-about-p {
     font-size: 1.3em;
     padding: 0px 0px 15px;
@@ -100,7 +99,7 @@ button.google, button.facebook {
 }
 .cg-card-actions .cg-action-item {
     padding: 5px;
-    flex: 1 1 0;
+    flex: 1 1 0;  
     /* width: 50%; */
 }
 
@@ -114,7 +113,9 @@ button.google, button.facebook {
     background-color: white;
     border: 2px solid #aaaaaa;
 }
-
+.cg-modal-actions .cg-card-button{
+    margin-left: 10px;
+}
 .cg-card-button:hover:not([disabled]){
     color: white;
     background-color: #aaaaaa;
@@ -201,13 +202,6 @@ button.google, button.facebook {
     font-size: 1.2em;
     color: #a1a1a1;
 }
-.cg-modal{
-    overflow-y: scroll;
-    margin: 100px auto !important; 
-    /* margin-top: 0; */
-    top: 0 !important;
-    left: 0 !important; 
-}
 
 .cg-modal-image {
     width: 100%;
@@ -217,15 +211,22 @@ button.google, button.facebook {
     border-radius: 5px;
     transition-duration: 0.4s;
 }
-.cg-modal-image:hover {
+/* .cg-modal-image:hover {
     box-shadow: 0px 0px 25px #d1d1d1;
     height: 450px;
-}
+} */
 
 .cg-modal-image img{
     display: block;
     height: 100% !important;
     margin: 0 auto;
+}
+.cg-modal-content{
+    overflow-y: scroll;
+    height: calc(100% - 61px) !important;
+}
+.cg-modal-description {
+    padding-bottom: 25px;
 }
 .cg-modal-description table{
     width: 100%;
@@ -290,6 +291,9 @@ button.google, button.facebook {
         margin-left: 0!important; 
         margin-right: 0!important;  
     }
+     .cg-login-modal-button{
+        padding: 15px;
+    }
 }
 
 @media only screen and (max-width: 991px){
@@ -302,5 +306,16 @@ button.google, button.facebook {
 
     .cg-row.last-not-grow .cg-col:last-child{
         flex-grow: 1;
+    }
+}
+@media only screen and (max-width: 400px){
+
+    .cg-modal-image {
+        width: 100%;
+        height: auto;
+    }
+    .cg-modal-image img{
+        height: auto;
+        width: 100%;
     }
 }
