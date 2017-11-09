@@ -49,6 +49,7 @@ body, div, p, h1, h2, h3, td{
     height: 100% !important; 
     padding: 0 !important;
     margin: 0 !important;
+    width: 200px !important;
 }
 .cg-nav .cg-nav-header a{
     height: 100% !important;
@@ -318,6 +319,9 @@ a.cg-user-menu-item:hover{
 @media screen and (max-width: 1200px) {
     .cg-nav {
         display: block !important;
+    }
+    .cg-nav .cg-nav-header{
+        width: auto !important;
     }
     .cg-nav .cg-nav-item {
         padding: 15px 20px !important; 
