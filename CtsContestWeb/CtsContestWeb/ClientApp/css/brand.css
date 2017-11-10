@@ -18,11 +18,8 @@
     --color-red: #e1523d;
     /* Font familty: Interstate-Regular*/
 }
-body, div, p, h1, h2, h3, td{
-    font-family: "Montserrat", sans-serif !important;
-}
-.cg-login-mobile {
-
+body, p, h1, h2, h3, td, a{
+     font-family: "Montserrat", sans-serif;
 }
 .cg-bold{
     font-weight: bold !important;

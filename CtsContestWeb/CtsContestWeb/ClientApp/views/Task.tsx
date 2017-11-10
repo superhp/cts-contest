@@ -87,12 +87,12 @@ export class TaskComponent extends React.Component<any, any> {
             method: 'PUT',
             body: formData,
             credentials: 'include'
-        }).then(function(response) {
-                if(response.ok)
-                    return response;         
+        }).then(function (response) {
+            if (response.ok)
+                return response;
 
-                throw new Error('Something went wrong.');
-            })
+            throw new Error('Something went wrong.');
+        })
             .then(response => response.json() as Promise<CompileResult>)
             .then(data => {
                 let task = this.state.task;
@@ -117,7 +117,8 @@ export class TaskComponent extends React.Component<any, any> {
 
     saveForLater() {
         this.setState({
-            showSaved: false
+            showSaved: false,
+            loadingButtons: true
         });
 
         let languageCode = this.state.languages.codes[this.state.mode];
@@ -134,7 +135,8 @@ export class TaskComponent extends React.Component<any, any> {
             .then(response => response.json() as Promise<boolean>)
             .then(data => {
                 this.setState({
-                    showSaved: true
+                    showSaved: true,
+                    loadingButtons: false
                 });
             });
     }
@@ -173,7 +175,7 @@ export class TaskComponent extends React.Component<any, any> {
             language = "Csharp";
         else if (language == "C++")
             language = "Cpp";
-            
+
         fetch('api/Task/GetCodeSkeleton/' + language + '/' + this.state.taskId, {
             credentials: 'include'
         })
@@ -273,12 +275,15 @@ export class TaskComponent extends React.Component<any, any> {
             var submitButton = this.state.showResults ? <div></div> : <div className="success-message">You successfully resolved this task.</div>;
         } else {
             var submitButton = this.props.userInfo.isLoggedIn ?
-                <div className='cg-task-submit'>
-                     <button className='cg-card-button cyan' onClick={this.compileCode} disabled={this.state.disabledButton}>Submit</button>
-                     <button className='cg-card-button cyan' onClick={this.saveForLater} disabled={this.state.disabledButton}>Save for later</button>
-                    {/* <Button onClick={this.compileCode} disabled={this.state.disabledButton} primary>Submit</Button>
+                this.state.loadingButtons
+                    ? <Loader active inline='centered' />
+                    :
+                    <div className='cg-task-submit'>
+                        <button className='cg-card-button cyan' onClick={this.compileCode} disabled={this.state.disabledButton}>Submit</button>
+                        <button className='cg-card-button cyan' onClick={this.saveForLater} disabled={this.state.disabledButton}>Save for later</button>
+                        {/* <Button onClick={this.compileCode} disabled={this.state.disabledButton} primary>Submit</Button>
                     <Button onClick={this.saveForLater} disabled={this.state.disabledButton} primary>Save for later</Button> */}
-                </div>
+                    </div>
                 : <div className="error-message">Please login before solving tasks</div>;
         }
 
@@ -327,7 +332,6 @@ export class TaskComponent extends React.Component<any, any> {
                                     highlightActiveLine={true}
                                     value={this.state.value}
                                     onChange={this.onChange}
-                                    //width={this.state.editorWidth}
                                     setOptions={{
                                         enableBasicAutocompletion: false,
                                         enableLiveAutocompletion: true,
@@ -340,7 +344,7 @@ export class TaskComponent extends React.Component<any, any> {
                                 <div className='cg-padding-submit'>
                                     {submitButton}
                                 </div>
-                                
+
                                 {this.state.showSaved ?
                                     <p className="success-message">
                                         Solution saved
@@ -348,7 +352,7 @@ export class TaskComponent extends React.Component<any, any> {
                                     :
                                     <p></p>
                                 }
-                                
+
                                 {this.state.showResults ?
                                     <Segment>
                                         <Header as='h2'>Result</Header>

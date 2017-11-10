@@ -35,13 +35,15 @@ export class Routes extends React.Component<any, any> {
 
     incrementBalance(value:number){
         const userInfo = this.state.userInfo;
-        userInfo.balance = userInfo.balance + value;
+        userInfo.todaysBalance = userInfo.todaysBalance + value;
+        userInfo.totalBalance = userInfo.totalBalance + value;
         this.setState({userInfo});
     }
 
     decrementBalance(value:number){
         const userInfo = this.state.userInfo;
-        userInfo.balance = userInfo.balance - value;
+        userInfo.todaysBalance = userInfo.todaysBalance - value;
+        userInfo.totalBalance = userInfo.totalBalance - value;
         this.setState({userInfo});
     }
 
