@@ -72,7 +72,7 @@ export class Tasks extends React.Component<any, TasksState> {
             tableRows.push(
                 <Table.Row positive={t.isSolved} key={t.id}>
                     <Table.Cell selectable>
-                        <Link to={"/task/" + t.id} style={{ paddingLeft: 35 }}> {t.name}</Link>
+                        <Link to={"/tasks/" + t.id} style={{ paddingLeft: 35 }}> {t.name}</Link>
                     </Table.Cell>
                 </Table.Row>
             );

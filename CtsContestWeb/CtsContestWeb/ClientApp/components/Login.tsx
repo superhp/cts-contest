@@ -53,11 +53,11 @@ export class Login extends React.Component<any, LoginModalState> {
                         <table>
                             <tbody>
                                 <tr>
-                                    <td>Todays balance</td>
+                                    <td>Days balance</td>
                                     <td>{this.props.userInfo.todaysBalance} pts</td>
                                 </tr>
                                 <tr>
-                                    <td>Tatal balance</td>
+                                    <td>Total balance</td>
                                     <td>{this.props.userInfo.totalBalance} pts</td>
                                 </tr>
                             </tbody>

@@ -53,11 +53,6 @@ export class ShopItemCard extends React.Component<any, any> {
     }
     renderButtons() {
         if (this.props.purchased) {
-            if (this.props.purchase.isGivenAway) {
-                return (
-                    <div>Item received</div>
-                )
-            }
             return (
                 <button
                     className='cg-card-button cyan'

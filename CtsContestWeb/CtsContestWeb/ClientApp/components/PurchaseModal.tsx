@@ -112,7 +112,7 @@ export class PurchaseModal extends React.Component<PurchaseModalProps, PurchaseM
                 <Container textAlign='center'>
                     <Header>
                         {this.props.purchase.isGivenAway
-                            ? 'You have received this item'
+                            ? ''
                             : 'Your item has been purchased'}
                     </Header>
 
