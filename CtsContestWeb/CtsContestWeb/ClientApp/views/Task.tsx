@@ -75,7 +75,8 @@ export class TaskComponent extends React.Component<any, any> {
         this.setState({
             compileResult: null,
             showResults: true,
-            showSaved: false
+            showSaved: false,
+            loadingButtons: true 
         })
 
         let languageCode = this.state.languages.codes[this.state.mode];
@@ -102,7 +103,8 @@ export class TaskComponent extends React.Component<any, any> {
                     this.props.onIncrementBalance(task.value);
                 this.setState({
                     compileResult: data,
-                    task: task
+                    task: task,
+                    loadingButtons: false  
                 })
             }).catch(error => this.compileError());
     }
@@ -112,7 +114,8 @@ export class TaskComponent extends React.Component<any, any> {
             message: "Unexpected error occurred. Please come to our stand."
         }
         this.setState({
-            compileResult: compileResult
+            compileResult: compileResult, 
+            loadingButtons: false  
         })
     }
 
