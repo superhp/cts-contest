@@ -19,7 +19,7 @@ const links = [
     },
     {
         routeTo: '/shop',
-        name: 'Shoping booth'
+        name: 'Shopping booth'
     },
     {
         routeTo: '/prizes',
