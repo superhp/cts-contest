@@ -29,7 +29,8 @@ export class TaskComponent extends React.Component<any, any> {
             loadingUserInfo: true,
             disabledButton: true,
             value: "",
-            showSaved: false
+            showSaved: false,
+            saveSuccess: true
         };
 
         this.setMode = this.setMode.bind(this);
@@ -132,11 +133,24 @@ export class TaskComponent extends React.Component<any, any> {
             body: formData,
             credentials: 'include'
         })
-            .then(response => response.json() as Promise<boolean>)
-            .then(data => {
+            .then(function (response) {
+                if (response.ok)
+                    return response;
+
+                throw new Error();
+            })
+            .then(() => {
                 this.setState({
                     showSaved: true,
-                    loadingButtons: false
+                    loadingButtons: false,
+                    saveSuccess: true
+                });
+            })
+            .catch(error => {
+                this.setState({
+                    showSaved: true,
+                    loadingButtons: false,
+                    saveSuccess: false
                 });
             });
     }
@@ -271,6 +285,10 @@ export class TaskComponent extends React.Component<any, any> {
             ? TaskComponent.renderCompileResult(this.state.compileResult)
             : <em>Loading...</em>;
 
+        let saveResult = this.state.saveSuccess 
+            ? <p className="success-message">Successfully saved</p>
+            : <p className="error-message">Save failed</p>; 
+
         if (!this.state.loadingTask && this.state.task.isSolved) {
             var submitButton = this.state.showResults ? <div></div> : <div className="success-message">You successfully resolved this task.</div>;
         } else {
@@ -346,11 +364,9 @@ export class TaskComponent extends React.Component<any, any> {
                                 </div>
 
                                 {this.state.showSaved ?
-                                    <p className="success-message">
-                                        Solution saved
-                                        </p>
+                                    <Segment>{saveResult}</Segment>
                                     :
-                                    <p></p>
+                                    <div></div>
                                 }
 
                                 {this.state.showResults ?

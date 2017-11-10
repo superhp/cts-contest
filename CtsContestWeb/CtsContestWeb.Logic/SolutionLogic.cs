@@ -62,6 +62,11 @@ namespace CtsContestWeb.Logic
         {
             var solution = _solutionRepository.GetSolution(userEmail, task.Id);
 
+            if (solution != null && solution.IsCorrect)
+            {
+                throw new Exception($"You can't save solved solution. User: {userEmail}. TaskId: {task.Id}.");
+            }
+
             if (solution == null)
             {
                 solution = new Solution
@@ -80,6 +85,7 @@ namespace CtsContestWeb.Logic
                 solution.Language = language;
                 solution.Source = source;
                 solution.IsCorrect = isCorrect;
+                solution.Score = task.Value;
             }
 
             _solutionRepository.Upsert(solution);

@@ -71,13 +71,16 @@ namespace CtsContestWeb.Controllers
 
         [LoggedIn]
         [HttpPut("[action]")]
-        public async Task<bool> SaveCode(int taskId, string source, int language)
+        public void SaveCode(int taskId, string source, int language)
         {
             var userEmail = User.FindFirst(ClaimTypes.Email).Value;
-            var task = await _taskManager.GetTaskById(taskId);
-            _solutionLogic.SaveSolution(task, source, userEmail, language, false);
+            var task = new TaskDto()
+            {
+                Id = taskId,
+                Value = 0
+            };
 
-            return true;
+            _solutionLogic.SaveSolution(task, source, userEmail, language, false);
         }
 
         [HttpGet("[action]")]
