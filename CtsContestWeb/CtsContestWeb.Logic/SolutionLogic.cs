@@ -29,8 +29,13 @@ namespace CtsContestWeb.Logic
 
         public async Task<CompileDto> CheckSolution(int taskId, string source, int language, string userEmail)
         {
-            var task = await _taskManager.GetTaskById(taskId);
             CompileDto compileResult;
+            var task = await _taskManager.GetTaskById(taskId);
+            
+            if(task.Outputs.Count < 1)
+            {
+                throw new Exception($"TaskId={taskId} doesn't have any inputs/outputs."); 
+            }
 
             try
             {

@@ -251,11 +251,11 @@ export class TaskComponent extends React.Component<any, any> {
         return <span>
             {compileResult.resultCorrect ?
                 <p className="success-message">
-                    You successfully resolved this task. Congratulations!
+                    You successfully solved this task. Congratulations!
                 </p>
                 :
                 <p className="error-message">
-                    Failed testcase number {compileResult.failedInput} out of {compileResult.totalInputs}.
+                    Failed testcase No. {compileResult.failedInput} out of {compileResult.totalInputs}.
                 </p>
             }
         </span>;

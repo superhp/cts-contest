@@ -33,7 +33,7 @@ namespace CtsContestWeb.Communication
             var languages = GetLanguages();
             var languageCode = languages.Codes.FirstOrDefault(x => x.Value == language).Key;
 
-            for (int i = 0; i < task.Inputs.Count; i++)
+            for (int i = 0; i < task.Outputs.Count; i++)
             {
                 var request = new RestRequest("/runners/create", Method.POST);
 

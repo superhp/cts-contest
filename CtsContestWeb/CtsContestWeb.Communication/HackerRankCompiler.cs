@@ -55,10 +55,13 @@ namespace CtsContestWeb.Communication
 
             if (compileResult.Compiled)
             {
-                for (int i = 0; i < task.Inputs.Count; i++)
+                for (int i = 0; i < task.Outputs.Count; i++)
                 {
                     if (task.Outputs[i] != data.result.stdout[i].Value.ToString().TrimEnd('\r', '\n'))
-                        compileResult.FailedInput = i;
+                    {
+                        compileResult.FailedInput = i+1; 
+                        break; 
+                    }
                 }
             }
             else
