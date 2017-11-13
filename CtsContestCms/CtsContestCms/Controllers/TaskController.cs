@@ -53,16 +53,25 @@ namespace CtsContestCms.Controllers
 
             foreach (var task in tasks)
             {
-                taskDtos.Add(new TaskDto
+                if (task.GetPropertyValue("enabled"))
                 {
-                    Id = task.Id,
-                    Name = task.Name,
-                    Value = task.GetPropertyValue("value"),
-                    IsEnabled = task.GetPropertyValue("enabled")
-                });
+                    var test = task.GetPropertyValue("testCases");
+                    List<TestcaseDto> testCases = task.GetPropertyValue("testCases").ToObject<List<TestcaseDto>>();
+
+                    IEnumerable<string> outputs = testCases.Select(x => x.Output);
+
+                    if (outputs.Any())
+                        taskDtos.Add(new TaskDto
+                        {
+                            Id = task.Id,
+                            Name = task.Name,
+                            Value = task.GetPropertyValue("value"),
+                            IsEnabled = task.GetPropertyValue("enabled")
+                        });
+                }
             }
 
-            return taskDtos.Where(t => t.IsEnabled).ToList();
+            return taskDtos;
         }
 
         // GET api/task/get/{id}
@@ -77,10 +86,10 @@ namespace CtsContestCms.Controllers
             return GetNewTaskDto(task);
         }
 
-        private TaskDto GetNewTaskDto (dynamic task)
+        private TaskDto GetNewTaskDto(dynamic task)
         {
             List<TestcaseDto> testCases = task.GetPropertyValue("testCases").ToObject<List<TestcaseDto>>();
-            
+
             IEnumerable<string> inputs = testCases.Select(x => x.Input);
             IEnumerable<string> outputs = testCases.Select(x => x.Output);
 
@@ -110,7 +119,7 @@ namespace CtsContestCms.Controllers
             return sb.ToString();
         }
 
-        private string GenerateTestsTable (IEnumerable<TestcaseDto> tests)
+        private string GenerateTestsTable(IEnumerable<TestcaseDto> tests)
         {
             var sb = new StringBuilder();
             sb.Append("<table>");

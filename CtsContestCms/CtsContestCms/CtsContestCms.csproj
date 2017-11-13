@@ -218,6 +218,7 @@
       <HintPath>..\packages\System.Reflection.Metadata.1.0.21\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Threading.Tasks.Dataflow, Version=4.6.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Dataflow.4.7.0\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
       <Private>True</Private>
@@ -374,9 +375,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppStart\WebApiConfig.cs" />
     <Compile Include="Controllers\CodeSkeletonController.cs" />
     <Compile Include="Controllers\PrizeController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Filters\ContestIPHandler.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Models\GenericCodeSkeletonDto.cs" />
     <Compile Include="Models\PrizeDto.cs" />
     <Compile Include="Models\TaskDto.cs" />
