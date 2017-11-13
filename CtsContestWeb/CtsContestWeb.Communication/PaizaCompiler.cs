@@ -103,7 +103,7 @@ namespace CtsContestWeb.Communication
             {
                 Compiled = data.Result != null && data.Result.Equals("success"),
                 Message = data.BuildStderr,
-                IsOutputCorrect = data.Stdout != null && data.Stdout.TrimEnd('\r', '\n').Equals(expectedOutput)
+                IsOutputCorrect = data.Stdout != null && data.Stdout.TrimEnd('\r', '\n', ' ').Equals(expectedOutput.TrimEnd('\r', '\n', ' '))
             };
 
             return compileResult;
