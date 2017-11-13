@@ -111,7 +111,7 @@ export class TaskComponent extends React.Component<any, any> {
 
     compileError() {
         let compileResult = {
-            message: "Unexpected error occurred. Please come to our stand."
+            message: "Unexpected error occurred. Try again or come to our stand."
         }
         this.setState({
             compileResult: compileResult, 
@@ -247,7 +247,7 @@ export class TaskComponent extends React.Component<any, any> {
         return <div className="cg-task-content" dangerouslySetInnerHTML={{ __html: task.description }}></div>;
     }
 
-    private static renderResult(compileResult: CompileResult) {
+    private static renderResult(compileResult: CompileResult) {        
         return <span>
             {compileResult.resultCorrect ?
                 <p className="success-message">
@@ -263,9 +263,9 @@ export class TaskComponent extends React.Component<any, any> {
 
     private static renderCompileResult(compileResult: CompileResult) {
         return <div>
-            {compileResult.message ?
+            {!compileResult.compiled ?
                 <p className="error-message">
-                    {compileResult.message}
+                    {compileResult.message ? compileResult.message : "Unspecified error occurred. Try again or come to our stand."} 
                 </p>
                 :
                 this.renderResult(compileResult)
