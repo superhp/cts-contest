@@ -38,7 +38,19 @@ namespace CtsContestWeb
             services.AddMvc();
             services.AddMemoryCache();
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(options =>
+
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                    sqlServerOptionsAction: sqlOptions =>
+                    {
+                        sqlOptions.EnableRetryOnFailure(
+                            5,
+                            TimeSpan.FromSeconds(1),
+                            null);
+                    }
+                )
+            );
+
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
             services.AddScoped<ISolutionRepository, SolutionRepository>();
             services.AddScoped<IUserRepository, UserRepository>();

@@ -26,37 +26,12 @@ namespace CtsContestWeb.Communication
 
         public async Task<List<TaskDto>> GetAllTasks(string userEmail = null)
         {
-            List<TaskDto> content;
-            if (!_cache.TryGetValue<List<TaskDto>>("tasks", out content))
+            List<TaskDto> tasks;
+            if (!_cache.TryGetValue<List<TaskDto>>("tasks", out tasks))
             {
-                content =  await CacheTasks();
+                tasks =  await CacheTasks();
             }
-            return content;
-        }
 
-        public async Task<List<TaskDto>> CacheTasks(string userEmail = null)
-        {
-            var content = await GetAllTasksFromApi(userEmail);
-
-            MemoryCacheEntryOptions cacheExpirationOptions = new MemoryCacheEntryOptions();
-            cacheExpirationOptions.AbsoluteExpiration = DateTime.Now.AddMinutes(30);
-            cacheExpirationOptions.Priority = CacheItemPriority.Normal;
-            _cache.Set<List<TaskDto>>("tasks", content, cacheExpirationOptions);
-
-            return content;
-        }
-
-        private async Task<List<TaskDto>> GetAllTasksFromApi(string userEmail)
-        {
-            var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
-            var client = new RestClient(umbracoApiUrl);
-
-            var request = new RestRequest("task/getAll", Method.GET);
-
-            TaskCompletionSource<List<TaskDto>> taskCompletion = new TaskCompletionSource<List<TaskDto>>();
-            client.ExecuteAsync<List<TaskDto>>(request, response => { taskCompletion.SetResult(response.Data); });
-
-            var tasks = await taskCompletion.Task;
             var solvedTasks = _solutionRepository.GetSolvedTasksIdsByUserEmail(userEmail).ToList();
 
             foreach (var task in tasks)
@@ -67,6 +42,34 @@ namespace CtsContestWeb.Communication
                         task.IsSolved = true;
                 }
             }
+
+            return tasks;
+        }
+
+        public async Task<List<TaskDto>> CacheTasks(string userEmail = null)
+        {
+            var tasks = await GetAllTasksFromApi();
+
+            MemoryCacheEntryOptions cacheExpirationOptions = new MemoryCacheEntryOptions();
+            cacheExpirationOptions.AbsoluteExpiration = DateTime.Now.AddMinutes(30);
+            cacheExpirationOptions.Priority = CacheItemPriority.Normal;
+            _cache.Set<List<TaskDto>>("tasks", tasks, cacheExpirationOptions);
+
+            return tasks;
+        }
+
+        private async Task<List<TaskDto>> GetAllTasksFromApi()
+        {
+            var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
+            var client = new RestClient(umbracoApiUrl);
+
+            var request = new RestRequest("task/getAll", Method.GET);
+
+            TaskCompletionSource<List<TaskDto>> taskCompletion = new TaskCompletionSource<List<TaskDto>>();
+            client.ExecuteAsync<List<TaskDto>>(request, response => { taskCompletion.SetResult(response.Data); });
+
+            var tasks = await taskCompletion.Task;
+            
             tasks.ForEach(UpdateTaskValue);
             return tasks;
         }
