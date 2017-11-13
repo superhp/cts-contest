@@ -125,7 +125,7 @@ export class TaskComponent extends React.Component<any, any> {
             loadingButtons: true
         });
 
-        let languageCode = this.state.languages.codes[this.state.mode];
+        let languageCode = this.state.languages.codes[this.state.selectedLanguage];
 
         const formData = new FormData();
         formData.append('taskId', this.state.taskId);
@@ -179,6 +179,8 @@ export class TaskComponent extends React.Component<any, any> {
             case 'sbcl':
                 return 'lisp';
             case 'python3':
+                return 'python';
+            case 'python2':
                 return 'python';
             case 'visualbasic':
                 return 'vbscript';

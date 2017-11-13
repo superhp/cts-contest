@@ -37,7 +37,7 @@ namespace CtsContestWeb.Communication
                     if (languageCode.Equals(language.ToLower()) || language.Equals("undefined"))
                         return new CodeSkeletonDto
                         {
-                            Language = languageCode,
+                            Language = languageCode.Replace(" ", string.Empty),
                             Skeleton = solution.Source
                         };
                 }
@@ -68,7 +68,7 @@ namespace CtsContestWeb.Communication
 
             return new CodeSkeletonDto
             {
-                Language = language.ToLower(),
+                Language = language.ToLower().Replace(" ", string.Empty),
                 Skeleton = skeleton.Replace("\\\n", "\\n")
             };
         }

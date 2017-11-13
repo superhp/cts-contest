@@ -42,7 +42,7 @@ namespace CtsContestWeb.Communication
             languages.Names.Add("haskell", "Haskell");
             languages.Names.Add("erlang", "Erlang");
             languages.Names.Add("perl", "Perl");
-            languages.Names.Add("python", "Python 2");
+            languages.Names.Add("python", "Python");
             languages.Names.Add("python3", "Python 3");
             languages.Names.Add("ruby", "Ruby");
             languages.Names.Add("php", "PHP");
