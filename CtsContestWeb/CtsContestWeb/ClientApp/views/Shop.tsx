@@ -186,7 +186,7 @@ export class Shop extends React.Component<any, any> {
                         <Header as='h1' textAlign='center' inverted>
                             <Icon name='tags' />
                             <Header.Content>
-                                Shoping booth
+                                Shopping booth
                             </Header.Content>
                         </Header>
                     </Container>
