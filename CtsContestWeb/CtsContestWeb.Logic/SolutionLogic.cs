@@ -31,10 +31,10 @@ namespace CtsContestWeb.Logic
         {
             CompileDto compileResult;
             var task = await _taskManager.GetTaskById(taskId);
-            
-            if(task.Outputs.Count < 1)
+
+            if (task.Outputs.Count < 1)
             {
-                throw new Exception($"TaskId={taskId} doesn't have any inputs/outputs."); 
+                throw new Exception($"TaskId={taskId} doesn't have any inputs/outputs.");
             }
 
             try

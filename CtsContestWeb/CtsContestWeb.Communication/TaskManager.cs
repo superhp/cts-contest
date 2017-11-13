@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CtsContestWeb.Db.Repository;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace CtsContestWeb.Communication
 {
@@ -14,14 +15,38 @@ namespace CtsContestWeb.Communication
     {
         private readonly IConfiguration _iconfiguration;
         private readonly ISolutionRepository _solutionRepository;
+        private readonly IMemoryCache _cache;
 
-        public TaskManager(IConfiguration iconfiguration, ISolutionRepository solutionRepository)
+        public TaskManager(IConfiguration iconfiguration, ISolutionRepository solutionRepository, IMemoryCache cache)
         {
             _iconfiguration = iconfiguration;
             _solutionRepository = solutionRepository;
+            _cache = cache;
         }
 
         public async Task<List<TaskDto>> GetAllTasks(string userEmail = null)
+        {
+            List<TaskDto> content;
+            if (!_cache.TryGetValue<List<TaskDto>>("tasks", out content))
+            {
+                content =  await CacheTasks();
+            }
+            return content;
+        }
+
+        public async Task<List<TaskDto>> CacheTasks(string userEmail = null)
+        {
+            var content = await GetAllTasksFromApi(userEmail);
+
+            MemoryCacheEntryOptions cacheExpirationOptions = new MemoryCacheEntryOptions();
+            cacheExpirationOptions.AbsoluteExpiration = DateTime.Now.AddMinutes(30);
+            cacheExpirationOptions.Priority = CacheItemPriority.Normal;
+            _cache.Set<List<TaskDto>>("tasks", content, cacheExpirationOptions);
+
+            return content;
+        }
+
+        private async Task<List<TaskDto>> GetAllTasksFromApi(string userEmail)
         {
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
             var client = new RestClient(umbracoApiUrl);
@@ -29,10 +54,7 @@ namespace CtsContestWeb.Communication
             var request = new RestRequest("task/getAll", Method.GET);
 
             TaskCompletionSource<List<TaskDto>> taskCompletion = new TaskCompletionSource<List<TaskDto>>();
-            client.ExecuteAsync<List<TaskDto>>(request, response =>
-            {
-                taskCompletion.SetResult(response.Data);
-            });
+            client.ExecuteAsync<List<TaskDto>>(request, response => { taskCompletion.SetResult(response.Data); });
 
             var tasks = await taskCompletion.Task;
             var solvedTasks = _solutionRepository.GetSolvedTasksIdsByUserEmail(userEmail).ToList();
