@@ -1,15 +1,29 @@
 ﻿import React from 'react';
 import dotnetify from 'dotnetify';
+import Information from './views/Information.jsx';
 import LeaderBoard from './views/LeaderBoard.jsx';
 import PrizeBoard from './views/PrizeBoard.jsx';
 import SpecialPrizeBoard from './views/SpecialPrizeBoard.jsx';
 import Header from './components/Header.jsx';
 
+const timer = {
+    dayGame: {
+        day: (new Date().getDate()),
+        hour: 16,   //Wednesday: @4 PM, Thursday: @5:10 PM, Friday: @4:45 PM
+        minute: 0
+    },
+    conferenceGame: {
+        day: 17,
+        hour: 4,
+        minute: 45
+    }
+}
 const BoardEnum = {
     LeaderBoard: 0,
     Prizes: 1,
     TodayPrizes: 2,
-    WeekPrizes: 3
+    WeekPrizes: 3,
+    Information: 4
 }
 class Board extends React.Component {
     constructor(props) {
@@ -19,7 +33,7 @@ class Board extends React.Component {
     }
 
     renderSlide() {
-        //switch (BoardEnum.Prizes) {
+        //switch (BoardEnum.Information) {
         switch(this.state.Board){
             case BoardEnum.LeaderBoard:
                 const sortedLeaderboard = this.state.LeaderBoard;
@@ -47,14 +61,16 @@ class Board extends React.Component {
                 for(let i = 0; i < 3; i++)
                      leaders.push({ username: undefined, points: '', picture: undefined });
                 
-                return <SpecialPrizeBoard data={leaders} prize={this.state.WeeksPrize} board='week'/>
+                return <SpecialPrizeBoard data={leaders} prize={this.state.WeeksPrize} board='week' />
+            case BoardEnum.Information:
+                return <Information timer={timer}/>
         }
 
     }
     render() {
         return (
             <div>
-                <Header board={this.state.Board}/>
+                <Header board={this.state.Board} timer={timer}/>
                 <div>
                     {this.renderSlide()}
                 </div>

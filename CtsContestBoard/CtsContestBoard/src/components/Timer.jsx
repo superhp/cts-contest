@@ -99,7 +99,7 @@ export default class Timer extends React.Component {
     }
     renderNormal() {
         return (
-            <p className='cg-timer'>
+            <p className='cg-timer' style={this.props.style}>
                 {this.state.days === 0
                     ? ''
                     : this.state.days === 1
@@ -111,7 +111,7 @@ export default class Timer extends React.Component {
     }
     renderWarning() {
         return (
-            <p className='cg-timer warning'>
+            <p className='cg-timer warning' style={this.props.style}>
                 {this.state.days === 0
                     ? ''
                     : this.state.days === 1
@@ -123,14 +123,14 @@ export default class Timer extends React.Component {
     }
     renderTimeOut() {
         return (
-            <p className='cg-timer time-out'>
-                Game Over
+            <p className='cg-timer time-out' style={this.props.style}>
+                Game over
             </p>
         )
     }
     renderShopTimer() {
         return (
-            <p className='cg-timer warning shop'>
+            <p className='cg-timer warning shop' style={this.props.style}>
                 Shop will close in {this.parseTimeLeft(this.state.hours, this.state.minutes, this.state.seconds)}
             </p>
         )

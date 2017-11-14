@@ -2,31 +2,22 @@ import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import Timer from './Timer.jsx';
 
-//Days timer
-const endHours = 16;
-const endMinutes = 0;
-
-//Conference timer
-const confEndDay = 17;
-const confEndHours = 16;
-const confEndMinutes = 0;
-
 export default class Header extends React.Component {
     constructor(props) {
         super(props);
-
-
     }
     renderTimer() {
         switch (this.props.board) {
             case 0:
                 return null;
             case 1:
-                return <Timer day={new Date().getDate()} hour={endHours} minutes={endMinutes} onlyWarning />;
+                return <Timer day={this.props.timer.dayGame.day} hour={this.props.timer.dayGame.hour} minutes={this.props.timer.dayGame.minute} onlyWarning />;
             case 2:
-                return <Timer day={new Date().getDate()} hour={endHours} minutes={endMinutes} />;
+                return <Timer day={this.props.timer.dayGame.day} hour={this.props.timer.dayGame.hour} minutes={this.props.timer.dayGame.minute} />;
             case 3:
-                return <Timer day={confEndDay} hour={confEndHours} minutes={confEndMinutes} />;
+                return <Timer day={this.props.timer.conferenceGame.day} hour={this.props.timer.conferenceGame.hour} minutes={this.props.timer.conferenceGame.minute} />;
+            default:
+                return null;
         }
     }
     render() {

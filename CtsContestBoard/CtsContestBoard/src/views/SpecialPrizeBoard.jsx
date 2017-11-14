@@ -13,16 +13,6 @@ export default class SpecialPrizeBoard extends React.Component {
     }
 
     render() {
-        // return (
-        //     <div className='prize-board'>
-        //         <div className='prize'>
-        //             <WeekPrizeCard className="prize-card" name={this.props.prize.Name} picture={this.props.prize.Picture} />
-        //         </div>
-        //         <div className='podium'>
-
-        //         </div>
-        //     </div>
-        // )
         return (
             <div>
                 <OnePrizeBoard data={this.props.data} prize={this.props.prize} props={this.props} />
@@ -56,11 +46,6 @@ const TwoPrizeBoard = ({ data }) => (
             </Grid.Column>
             <Grid.Column width={4}>
 
-                {/* <ReactCountdownClock seconds={86400}
-                    color="#000"
-                    alpha={0.9}
-                    size={300}
-                    onComplete={() => { }} /> */}
             </Grid.Column>
         </Grid.Row>
         <Grid.Row columns={2} className="second-week-prize-row">
@@ -89,18 +74,10 @@ const OnePrizeBoard = ({ data, prize, props }) => (
                 <h1 className='prize-board-header'>
                     {
                         props.board === 'today'
-                            ? 'Today\'s prize'
+                            ? 'Days prize'
                             : 'Conference prize'
                     }
                 </h1>
-                {/*<div>
-                    {
-                        props.board === 'today'
-                            ? <Timer day={new Date().getDate()} hour={17} minutes={0} />
-                            : <Timer day={17} hour={17} minutes={0} />
-                    }
-
-                </div>*/}
                 <Podium first={data[0]} second={data[1]} third={data[2]} />
             </Grid.Column>
         </Grid.Row>

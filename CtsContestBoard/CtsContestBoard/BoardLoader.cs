@@ -47,7 +47,8 @@ namespace CtsContestBoard
             LeaderBoard,
             Prizes,
             TodayPrizes,
-            WeekPrizes
+            WeekPrizes,
+            Information
         }
 
         public BoardLoader(IPrizeManager prizeManager, ISolutionRepository solutionRepository, IPurchaseRepository purchaseRepository, IUserRepository userRepository, ApplicationDbContext dbContext)
@@ -230,7 +231,7 @@ namespace CtsContestBoard
 
         private void SwitchBoard()
         {
-            if (Board < BoardEnum.WeekPrizes)
+            if (Board < BoardEnum.Information)
                 Board++;
             else
                 Board = BoardEnum.LeaderBoard;
