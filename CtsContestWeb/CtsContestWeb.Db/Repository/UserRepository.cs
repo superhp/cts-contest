@@ -44,13 +44,13 @@ namespace CtsContestWeb.Db.Repository
 
                     var response = taskCompletion.Task.Result;
 
-                    if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                        return;
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var json = response.Content.Replace("$", "");
+                        dynamic data = JsonConvert.DeserializeObject(json);
 
-                    var json = response.Content.Replace("$", "");
-                    dynamic data = JsonConvert.DeserializeObject(json);
-
-                    picture = data.entry.gphotothumbnail.t;
+                        picture = data.entry.gphotothumbnail.t;
+                    }
                 }
 
                 var userEntity = new User
