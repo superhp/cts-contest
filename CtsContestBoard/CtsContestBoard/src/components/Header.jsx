@@ -25,7 +25,7 @@ export default class Header extends React.Component {
         return (
             <Menu className="cg-nav" size='large' stackable color='blue' inverted>
                 <Menu.Item className='cg-nav-header' header>
-                    <img className='cg-nav-logo' src="./img/logo.svg" alt="Cognizant logo" />
+                    <img className='cg-nav-logo' src="./img/Cognizant_LOGO.png" alt="Cognizant logo" />
                 </Menu.Item>
                  <Menu.Menu position='right'>
                     <div className='cg-timeleft'>
