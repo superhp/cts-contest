@@ -5,9 +5,11 @@ using CtsContestCms.Models;
 using Umbraco.Web;
 using Umbraco.Web.WebApi;
 using System.Text;
+using CtsContestCms.Filters;
 
 namespace CtsContestCms.Controllers
 {
+    [ContestIPHandler]
     public class TaskController : UmbracoApiController
     {
         // GET api/task/getInputs

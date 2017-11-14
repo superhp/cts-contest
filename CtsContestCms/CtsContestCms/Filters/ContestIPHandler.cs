@@ -1,29 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.ServiceModel.Channels;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Web;
+using System.Web.Http;
+using System.Web.Http.Controllers;
 
 namespace CtsContestCms.Filters
 {
-    public class ContestIPHandler : DelegatingHandler
+    public class ContestIPHandler : AuthorizeAttribute
     {
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected override bool IsAuthorized(HttpActionContext actionContext)
         {
-            var allowedIp = ConfigurationManager.AppSettings["allowedIp"];
+            var request = actionContext.Request;
+            var allowedIps = ConfigurationManager.AppSettings["allowedIps"];
+
+            var ipsList = allowedIps.Split(',');
             var clientIp = GetClientIp(request);
-            if (clientIp != null && clientIp.Equals(allowedIp))
-            {
-                return await base.SendAsync(request, cancellationToken);
-            }
-            return request
-                .CreateErrorResponse(HttpStatusCode.Unauthorized
-                    , "Not authorized to view/access this resource");
+            if (clientIp != null && ipsList.Any(i => i.Equals(clientIp)))
+                return true;
+
+            return false;
         }
 
         private string GetClientIp(HttpRequestMessage request)

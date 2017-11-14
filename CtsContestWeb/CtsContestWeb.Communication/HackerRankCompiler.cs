@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CtsContestWeb.Dto;
 using Microsoft.Extensions.Configuration;
@@ -66,7 +67,8 @@ namespace CtsContestWeb.Communication
             }
             else
             {
-                compileResult.Message = data.result.compilemessage.Value.ToString();
+                var message = data.result.compilemessage.Value.ToString();
+                compileResult.Message = Regex.Replace(message, @"[^\u0000-\u007F]+", string.Empty);
             }
 
             return compileResult;

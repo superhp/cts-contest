@@ -13,7 +13,7 @@ namespace CtsContestCms.AppStart
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            config.MessageHandlers.Add(new ContestIPHandler());
+            //config.MessageHandlers.Add(new ContestIPHandler());
         }
     }
 }
