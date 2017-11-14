@@ -83,6 +83,10 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                             <ul className='cg-ul-dash'>
                                 <li>Daily prize is awarded to contestant based on leaderboard results</li>
                                 <li>Final value of a daily prize is all unspent points earned on a particular day
+                                    
+                                    {/* <Icon className='cg-help' name='help circle'>
+                                        <div className='cg-help-tooltip'>i.e. getting daily prize sets daily balance to 0</div>
+                                    </Icon> */}
                                     <ul className='cg-ul-circle'>
                                         <li>i.e. getting daily prize sets daily balance to 0</li>
                                     </ul>

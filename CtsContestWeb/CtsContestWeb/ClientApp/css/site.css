@@ -31,6 +31,22 @@ body{
 .solved {
     background-color: rgba(100,167,11,0.2);
 }
+.cg-help{
+    position:relative;
+}
+.cg-help .cg-help-tooltip{
+    position: absolute;
+    color: white;
+    bottom: 36px;
+    left: -50%;
+    padding: 10px;
+    background-color: #505050;
+    border: solid 1px #303030;
+    border-radius: 5px;
+    width: 200px;
+    
+    /* display: none; */
+}
 .cg-login-modal-button {
     padding: 15px;
 }

@@ -54,7 +54,7 @@ class Board extends React.Component {
     render() {
         return (
             <div>
-                <Header />
+                <Header board={this.state.Board}/>
                 <div>
                     {this.renderSlide()}
                 </div>

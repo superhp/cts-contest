@@ -82,15 +82,15 @@ h1 {
     font-size: 48px;
     font-weight: bold;
     margin: 0px;
-    color: var(--secondary-color);
+    color: white;
 }
 
-.cg-timer.warning{
-    color: var(--color-red);
-}
+    .cg-timer.warning {
+        color: #FFAAAA;
+    }
     .cg-timer.warning.shop {
-        font-size: 36px;
-        min-height: 36px;
+        /*font-size: 36px;
+        min-height: 36px;*/
     } 
 
 .cg-font-interstate h4 {

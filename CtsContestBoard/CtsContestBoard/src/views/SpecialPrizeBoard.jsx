@@ -93,15 +93,14 @@ const OnePrizeBoard = ({ data, prize, props }) => (
                             : 'Conference prize'
                     }
                 </h1>
-                <div>
+                {/*<div>
                     {
-                        
                         props.board === 'today'
-                            ?  <Timer day={new Date().getDate()} hour={17} minutes={0} />
-                            :  <Timer day={17} hour={17} minutes={0} />
+                            ? <Timer day={new Date().getDate()} hour={17} minutes={0} />
+                            : <Timer day={17} hour={17} minutes={0} />
                     }
-                   
-                </div>
+
+                </div>*/}
                 <Podium first={data[0]} second={data[1]} third={data[2]} />
             </Grid.Column>
         </Grid.Row>
