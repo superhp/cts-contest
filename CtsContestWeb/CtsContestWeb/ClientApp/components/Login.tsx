@@ -24,6 +24,10 @@ export class Login extends React.Component<any, LoginModalState> {
         }
 
         this.handleResize = this.handleResize.bind(this);
+
+        if (window.location.search.indexOf("refresh=true") !== -1) {
+            window.location.replace(window.location.origin + window.location.pathname);
+        }
     }
 
     handleResize = () => {
@@ -37,13 +41,44 @@ export class Login extends React.Component<any, LoginModalState> {
     }
     public render() {
         let contents = this.props.userInfo.isLoggedIn
-            ? this.renderLoggedInView(this.props.userInfo)
-            : Login.renderLoginModal(this.state.modalHeight, this.handleResize)
+            ? this.renderLoggedInView(this.props.userInfo, this.detectIE())
+            : Login.renderLoginModal(this.state.modalHeight, this.detectIE(), this.handleResize)
 
         return contents;
     }
 
-    private renderLoggedInView(userInfo: any) {
+    private detectIE() {
+        var ua = window.navigator.userAgent;
+
+        var msie = ua.indexOf('MSIE ');
+        if (msie > 0) {
+            // IE 10 or older => return version number
+            return true;
+        }
+
+        var trident = ua.indexOf('Trident/');
+        if (trident > 0) {
+            // IE 11 => return version number
+            var rv = ua.indexOf('rv:');
+            return true;
+        }
+
+        var edge = ua.indexOf('Edge/');
+        if (edge > 0) {
+            // Edge (IE 12+) => return version number
+            return true;
+        }
+
+        // other browser
+        return false;
+    }
+
+    private renderLoggedInView(userInfo: any, isIE: boolean) {
+        var addon = "";
+        if (isIE) {
+            addon = "?refresh=true";
+        }
+        
         return (
             <div className="right-menu">
                 <div className='item cg-responsive-hide'>Hello, {userInfo.name}!</div>
@@ -64,24 +99,32 @@ export class Login extends React.Component<any, LoginModalState> {
                         </table>
                     </div>
                 </div>
-                <a className='item cg-responsive-hide cg-bold' href={"https://cts-contest.azurewebsites.net/.auth/logout?post_logout_redirect_uri=" + window.location.pathname}>Logout</a>
+                <a className='item cg-responsive-hide cg-bold' href={"https://cts-contest.azurewebsites.net/.auth/logout?post_logout_redirect_uri=" + window.location.pathname  + addon}>Logout</a>
             </div>
         );
     }
 
-    private static renderLoginModal(height: number, handleResize: any) {
+    private static renderLoginModal(height: number, isIE: boolean, handleResize: any) {
+
+        var addon = "";
+        if (isIE) {
+            addon = "?refresh=true";
+        }
+
         return <Responsive className='cg-login-mobile' onUpdate={handleResize}>
             <Modal size="tiny" className="login-modal" trigger={<NavLink style={{ height: '100%' }} className='item cg-nav-item' to="#" exact> Login </NavLink>} closeIcon>
                 <Modal.Header>Choose login method</Modal.Header>
                 
                     <div className='cg-login-modal-button '>
-                        <a className='ui facebook fluid button cg-login-button' href={"https://cts-contest.azurewebsites.net/.auth/login/facebook?post_login_redirect_url=" + window.location.pathname}><Icon name='facebook' /> Login with Facebook</a>
+                        <a className='ui facebook fluid button cg-login-button' href={"https://cts-contest.azurewebsites.net/.auth/login/facebook?post_login_redirect_url=" + window.location.pathname + addon}><Icon name='facebook' /> Login with Facebook</a>
                     </div>
                     <div className='cg-login-modal-button '>
-                        <a className='ui google plus fluid button cg-login-button' href={"https://cts-contest.azurewebsites.net/.auth/login/google?post_login_redirect_url=" + window.location.pathname}><Icon name='google' /> Login with Google</a>
+                        <a className='ui google plus fluid button cg-login-button' href={"https://cts-contest.azurewebsites.net/.auth/login/google?post_login_redirect_url=" + window.location.pathname + addon}><Icon name='google' /> Login with Google</a>
                     </div>
                 
             </Modal>
         </Responsive>;
     }
+
+    
 }

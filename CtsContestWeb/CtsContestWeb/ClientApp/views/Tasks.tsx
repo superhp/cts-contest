@@ -16,7 +16,9 @@ export class Tasks extends React.Component<any, TasksState> {
         super();
         this.state = { tasks: [], loading: true };
 
-        fetch('api/Task')
+        fetch('api/Task', {
+            credentials: 'include'
+        })
             .then(response => response.json() as Promise<Task[]>)
             .then(data => {
                 if (this._mounted)

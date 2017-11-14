@@ -203,8 +203,8 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                 <li>The execution time of each solution must not exceed 5 seconds and it must not consume more than 256 MB of memory. The size of the source file of a solution must not exceed 256 KB.</li>
                                 <li>There is an editor provided near each of the tasks, but you can use anything you like – just make sure to put your code into the editor before you submit.</li>
                                 <li>You can try to submit your solution as many times as you want. Once your code passes the tests, you will gain the respective amount of points and the task will be marked as solved.</li>
-                                <li>Quantity of items in stock is limited</li>
-                                <li>Cognizant employees are not eligible to participate</li>
+                                <li>Quantity of items in stock is limited.</li>
+                                <li>Cognizant employees are not eligible to participate.</li>
                             </ul>
                         </div>
                     </Container>
