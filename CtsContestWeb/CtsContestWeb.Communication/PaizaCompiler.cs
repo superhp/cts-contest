@@ -99,11 +99,14 @@ namespace CtsContestWeb.Communication
             if (data.Status.Equals("running"))
                 return await GetCompileResult(compileId, expectedOutput, client);
 
+            var expected = string.Join('\n', expectedOutput.Split('\n', '\r').Where(s => s.Length != 0).Select(s => s.Trim('\r', '\n', ' ')));
+            var actual = string.Join('\n', data.Stdout.Split('\n', '\r').Where(s => s.Length != 0).Select(s => s.Trim('\r', '\n', ' ')));
+
             var compileResult = new PaizaCompileDto
             {
                 Compiled = data.Result != null && data.Result.Equals("success"),
                 Message = data.BuildStderr,
-                IsOutputCorrect = data.Stdout != null && data.Stdout.TrimEnd('\r', '\n', ' ').Equals(expectedOutput.TrimEnd('\r', '\n', ' '))
+                IsOutputCorrect = data.Stdout != null && actual.Equals(expected)
             };
 
             return compileResult;
