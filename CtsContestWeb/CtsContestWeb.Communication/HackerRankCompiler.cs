@@ -58,7 +58,9 @@ namespace CtsContestWeb.Communication
             {
                 for (int i = 0; i < task.Outputs.Count; i++)
                 {
-                    if (task.Outputs[i].TrimEnd('\r', '\n', ' ') != data.result.stdout[i].Value.ToString().TrimEnd('\r', '\n', ' '))
+                    var expected = string.Join('\n', task.Outputs[i].Split('\n', '\r').Where(s => s.Length != 0).Select(s => s.Trim('\r', '\n', ' ')));
+                    var actual = string.Join('\n', ((string)data.result.stdout[i].Value.ToString()).Split('\n', '\r').Where(s => s.Length != 0).Select(s => s.Trim('\r', '\n', ' ')));
+                    if (expected != actual)
                     {
                         compileResult.FailedInput = i+1; 
                         break; 
