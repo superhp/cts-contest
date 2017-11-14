@@ -46,7 +46,7 @@ namespace CtsContestWeb.Communication
             return tasks;
         }
 
-        public async Task<List<TaskDto>> CacheTasks(string userEmail = null)
+        public async Task<List<TaskDto>> CacheTasks()
         {
             var tasks = await GetAllTasksFromApi();
 
