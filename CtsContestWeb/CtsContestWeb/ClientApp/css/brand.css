@@ -21,6 +21,21 @@
 body, p, h1, h2, h3, td, a{
      font-family: "Montserrat", sans-serif;
 }
+.cg-image{
+    max-width: 600px;
+    margin:auto;
+}
+.cg-image.height{
+    max-height: 300px;
+    width: 300px;
+}
+.cg-image > img {
+    width: 100%;
+}
+.cg-image.height > img {
+    width: auto;
+    height: 100%;
+}
 .cg-bold{
     font-weight: bold !important;
     text-transform: uppercase !important;
@@ -54,7 +69,7 @@ body, p, h1, h2, h3, td, a{
 .cg-nav .cg-nav-logo{
     padding: 0px 0px !important;
     width: auto !important;
-    height: 50px !important; 
+    height: 55px !important; 
     margin: 22px 25px !important;
 }
 
@@ -134,7 +149,38 @@ a.cg-user-menu-item:hover{
     margin-bottom: 0;
 }
 .cg-about-p{
-    text-align: justify;
+    /* text-align: justify; */
+    line-height: 30px;
+}
+.cg-about-p ol {
+    padding-left: 20px;
+}
+.cg-about-p > ol > li{
+    padding-left: 15px;
+}
+ul.cg-ul-dash{
+    padding: 0;
+    padding-left: 15px;
+    margin: 0;
+}
+ul.cg-ul-dash > li{
+    list-style-type: none;
+    
+}
+ul.cg-ul-dash > li::before{
+     content: "-";
+     margin-left: -23px;
+     padding-right: 15px;
+}
+    .cg-title-bold{
+        font-weight: bold;
+    }
+.cg-points ul{
+    padding-left: 50px;
+}
+.cg-ul-circle{
+    list-style-type: circle;
+    padding-left: 35px;
 }
 .cg-title{
     padding-bottom: 15px;
@@ -148,6 +194,9 @@ a.cg-user-menu-item:hover{
     text-transform: uppercase;
     font-size: 32px;
     color: #4298b5;
+}
+h3.cg-title-2{
+    text-align: center;
 }
 
 .cg-bg-success {

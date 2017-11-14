@@ -70,7 +70,7 @@ export class Header extends React.Component<any, HeaderState> {
                 <Responsive maxWidth={1200} onUpdate={this.handleResize} />
                 <Menu.Item className='cg-nav-header' header>
                     <div style={{ width: '100%' }}>
-                        <div style={{ float: 'left' }}><NavLink to='/' ><img className='cg-nav-logo' src="../logo.svg" alt="Cognizant logo" /></NavLink></div>
+                        <div style={{ float: 'left' }}><NavLink to='/' ><img className='cg-nav-logo' src="../Cognizant_LOGO.png" alt="Cognizant logo" /></NavLink></div>
                         <div className='cg-nav-right'>
                              {this.props.userInfo.isLoggedIn
                              ? <div className='cg-mobile-item'>

@@ -40,7 +40,7 @@ body{
     flex-wrap: wrap;
 }
 .cg-col {
-    display: flex;
+    display: flex; 
     flex-grow: 1;
     min-width: 250px;
     width: 33%;
@@ -251,7 +251,7 @@ body{
 
 .cg-balance {
     position: absolute;
-    width: 350px;
+    width: 375px;
     right: 0;
     margin-top: 15px;
     font-size: 1.5em;
@@ -282,6 +282,7 @@ body{
     padding: 15px;
 }
 .cg-balance td:last-child{
+    padding-left: 0;
     text-align: right;
 }
 
