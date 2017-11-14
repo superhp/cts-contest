@@ -70,7 +70,7 @@ export class Tasks extends React.Component<any, TasksState> {
         let tableRows: any = [];
         tasks.forEach(t => {
             tableRows.push(
-                <Table.Row positive={t.isSolved} key={t.id}>
+                <Table.Row className={t.isSolved ? 'solved' : ''} key={t.id}>
                     <Table.Cell selectable>
                         <Link to={"/tasks/" + t.id} style={{ paddingLeft: 35 }}> {t.name}</Link>
                     </Table.Cell>

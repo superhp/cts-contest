@@ -28,6 +28,9 @@ body{
 .success-message {
     color: green;
 }
+.solved {
+    background-color: rgba(100,167,11,0.2);
+}
 .cg-login-modal-button {
     padding: 15px;
 }
