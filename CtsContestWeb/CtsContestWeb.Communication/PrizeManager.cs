@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CtsContestWeb.Db.Repository;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace CtsContestWeb.Communication
 {
@@ -13,13 +14,38 @@ namespace CtsContestWeb.Communication
     {
         private readonly IConfiguration _configuration;
         private readonly IPurchaseRepository _purchaseRepository;
+        private readonly IMemoryCache _cache;
 
-        public PrizeManager(IConfiguration configuration, IPurchaseRepository purchaseRepository)
+        public PrizeManager(IConfiguration configuration, IPurchaseRepository purchaseRepository, IMemoryCache cache)
         {
             _configuration = configuration;
             _purchaseRepository = purchaseRepository;
+            _cache = cache;
         }
         public async Task<List<PrizeDto>> GetAllWinnablePrizes()
+        {
+            List<PrizeDto> winnablePrizes;
+            if (!_cache.TryGetValue<List<PrizeDto>>("winnablePrizes", out winnablePrizes))
+            {
+                winnablePrizes = await CacheWinnablePrizes();
+            }
+
+            return winnablePrizes;
+        }
+
+        public async Task<List<PrizeDto>> CacheWinnablePrizes()
+        {
+            var winnablePrizes = await GetAllWinnablePrizesFromApi();
+
+            MemoryCacheEntryOptions cacheExpirationOptions = new MemoryCacheEntryOptions();
+            cacheExpirationOptions.AbsoluteExpiration = DateTime.Now.AddMinutes(60);
+            cacheExpirationOptions.Priority = CacheItemPriority.Normal;
+            _cache.Set<List<PrizeDto>>("winnablePrizes", winnablePrizes, cacheExpirationOptions);
+
+            return winnablePrizes;
+        }
+
+        private async Task<List<PrizeDto>> GetAllWinnablePrizesFromApi()
         {
             var umbracoApiUrl = _configuration["UmbracoApiUrl"];
             var pictureUrl = _configuration["UmbracoPictureUrl"];
@@ -45,6 +71,7 @@ namespace CtsContestWeb.Communication
 
             return winnablePrizes;
         }
+
         public async Task<List<PrizeDto>> GetAllPrizesForPoints()
         {
             var umbracoApiUrl = _configuration["UmbracoApiUrl"];
