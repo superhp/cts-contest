@@ -74,44 +74,48 @@ namespace CtsContestBoard
 
             _timer = new Timer(state =>
             {
-                lock (dbContext)
+                try
                 {
-                    SwitchBoard();
-
-                    switch (Board)
+                    lock (dbContext)
                     {
-                        case BoardEnum.LeaderBoard:
-                            UpdateLeaderBoard();
-                            Changed(nameof(LeaderBoard));
-                            break;
-                        case BoardEnum.Prizes:
-                            {
-                                GetNewPurchases();
-                                UpdatePrizes();
-                                Changed(nameof(PrizesForPoints));
+                        SwitchBoard();
+
+                        switch (Board)
+                        {
+                            case BoardEnum.LeaderBoard:
+                                UpdateLeaderBoard();
+                                Changed(nameof(LeaderBoard));
                                 break;
-                            }
-                        case BoardEnum.TodayPrizes:
-                            {
-                                GetNewPurchases();
-                                UpdateTodayPrizes();
-                                Changed(nameof(TodaysPrize));
-                                break;
-                            }
-                        case BoardEnum.WeekPrizes:
-                            {
-                                GetNewPurchases();
-                                UpdateWeekPrizes();
-                                Changed(nameof(WeeksPrize));
-                                break;
-                            }
+                            case BoardEnum.Prizes:
+                                {
+                                    GetNewPurchases();
+                                    UpdatePrizes();
+                                    Changed(nameof(PrizesForPoints));
+                                    break;
+                                }
+                            case BoardEnum.TodayPrizes:
+                                {
+                                    GetNewPurchases();
+                                    UpdateTodayPrizes();
+                                    Changed(nameof(TodaysPrize));
+                                    break;
+                                }
+                            case BoardEnum.WeekPrizes:
+                                {
+                                    GetNewPurchases();
+                                    UpdateWeekPrizes();
+                                    Changed(nameof(WeeksPrize));
+                                    break;
+                                }
+                        }
+
+                        Changed(nameof(Board));
+                        Changed(nameof(LastUpdate));
+
+                        PushUpdates();
                     }
-
-                    Changed(nameof(Board));
-                    Changed(nameof(LastUpdate));
-
-                    PushUpdates();
                 }
+                catch (Exception ex){};
             }, null, 0, 15000);
         }
 

@@ -9,12 +9,12 @@ import Header from './components/Header.jsx';
 const timer = {
     dayGame: {
         day: (new Date().getDate()),
-        hour: 16,   //Wednesday: @4 PM, Thursday: @5:10 PM, Friday: @4:45 PM
+        hour: 17, 
         minute: 0
     },
     conferenceGame: {
         day: 17,
-        hour: 4,
+        hour: 16,
         minute: 45
     }
 }

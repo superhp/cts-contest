@@ -86,7 +86,7 @@ h1 {
 }
 
     .cg-timer.warning {
-        color: #FFAAAA;
+        color: red;
     }
     .cg-timer.warning.shop {
         /*font-size: 36px;
