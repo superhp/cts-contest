@@ -36,6 +36,7 @@ namespace CtsContestWeb.Communication
 
             foreach (var task in tasks)
             {
+                task.IsSolved = false;
                 if (userEmail != null)
                 {
                     if (solvedTasks.Any(t => t == task.Id))
