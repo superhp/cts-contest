@@ -5,6 +5,9 @@ import 'isomorphic-fetch';
 import { Accordion, Icon, Table, Container, Header, Divider, Loader } from 'semantic-ui-react';
 import * as _ from 'lodash';
 
+import * as GA from 'react-ga';
+GA.initialize('UA-109707377-1');
+
 interface TasksState {
     tasks: Task[];
     loading: boolean;
@@ -24,6 +27,9 @@ export class Tasks extends React.Component<any, TasksState> {
                 if (this._mounted)
                     this.setState({ tasks: data, loading: false });
             });
+    }
+    componentWillMount() {
+        GA.pageview(window.location.pathname + window.location.search);
     }
     componentDidMount() {
         this._mounted = true;

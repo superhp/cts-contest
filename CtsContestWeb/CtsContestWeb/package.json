@@ -31,7 +31,8 @@
     "url-loader": "0.5.9",
     "webpack": "2.5.1",
     "webpack-hot-middleware": "2.18.2",
-    "react-ace": "5.2.0"
+    "react-ace": "5.2.0",
+    "react-ga": "2.3.5"
   },
   "dependencies": {
     "lodash": "4.17.4",

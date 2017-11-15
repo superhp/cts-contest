@@ -1,6 +1,9 @@
 ﻿import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 
+import * as GA from 'react-ga';
+GA.initialize('UA-109707377-1');
+
 import {
     Button,
     Container,
@@ -20,6 +23,10 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
 
     hideFixedMenu = () => this.setState({ visible: false })
     showFixedMenu = () => this.setState({ visible: true })
+
+    componentWillMount() {        
+        GA.pageview(window.location.pathname + window.location.search);
+    }
 
     render() {
         const visible = this.state.visible;
