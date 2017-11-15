@@ -5,18 +5,32 @@ import 'bootstrap';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Router, Route } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 import {Routes} from './routes';
-//let routes = RoutesModule.routes;
+
+import * as GA from 'react-ga';
+GA.initialize('UA-109707377-1');
+
+function logPageView(){
+    GA.pageview(window.location.pathname + window.location.search);
+}
+
+const history = createHistory()
+history.listen((location, action) => {
+    logPageView();
+});
+
 function renderApp() {
     // This code starts up the React app when it runs in a browser. It sets up the routing
     // configuration and injects the app into a DOM element.
     const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href')!;
+    logPageView();
     ReactDOM.render(
         <AppContainer>
-            <BrowserRouter basename={ baseUrl } >
+            <Router history={history} >
                 <Routes />
-            </BrowserRouter>
+            </Router>
         </AppContainer>,
         document.getElementById('react-app')
     );

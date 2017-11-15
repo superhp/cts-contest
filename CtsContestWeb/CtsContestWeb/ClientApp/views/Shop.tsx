@@ -8,8 +8,8 @@ import { PurchaseModal } from '../components/PurchaseModal';
 import { ShopItemCard } from '../components/ShopItemCard';
 import 'isomorphic-fetch';
 
-import * as GA from 'react-ga';
-GA.initialize('UA-109707377-1');
+// import * as GA from 'react-ga';
+// GA.initialize('UA-109707377-1');
 
 export class Shop extends React.Component<any, any> {
     _mounted: boolean;
@@ -39,7 +39,7 @@ export class Shop extends React.Component<any, any> {
     }
 
     componentWillMount() {
-        GA.pageview(window.location.pathname + window.location.search);
+        //GA.pageview(window.location.pathname + window.location.search);
     }
 
     componentDidMount() {
