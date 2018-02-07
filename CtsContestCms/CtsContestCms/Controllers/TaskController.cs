@@ -92,8 +92,8 @@ namespace CtsContestCms.Controllers
         {
             List<TestcaseDto> testCases = task.GetPropertyValue("testCases").ToObject<List<TestcaseDto>>();
 
-            IEnumerable<string> inputs = testCases.Select(x => x.Input);
-            IEnumerable<string> outputs = testCases.Select(x => x.Output);
+            var inputs = testCases.Select(x => string.Join("\n", x.Input.Split('\n', '\r').Where(s => s.Length != 0).Select(s => s.Trim('\r', '\n', ' '))));
+            var outputs = testCases.Select(x => x.Output);
 
             return new TaskDto
             {
