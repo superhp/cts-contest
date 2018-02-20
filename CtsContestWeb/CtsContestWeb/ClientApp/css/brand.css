@@ -351,6 +351,12 @@ h3.cg-title-2{
     display: flex;
     justify-content: flex-start;
 }
+.cg-quiz-button {
+    display: flex;
+    justify-content: flex-start;
+    width: auto;
+    margin: 10px !important;
+}
 .cg-task-submit .cg-card-button{
     width: auto;
     min-width: 100px;
