@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="ClientApp\views\Questions.tsx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="ClientApp\assets\OurSolutions.png" />
     <Content Include="ClientApp\Interstate-Regular.ttf" />
   </ItemGroup>
