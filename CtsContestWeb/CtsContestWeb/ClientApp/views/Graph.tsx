@@ -52,6 +52,11 @@ class Graph {
     setCurr(id: number) {
         this.curr = this.nodes.filter(x => x.id === id)[0];
     }
+
+    answer(ansText: string) {
+        var idTo = this.curr.edges.filter(x => x.text == ansText)[0].id;
+        this.setCurr(idTo);
+    }
 }
 
 const g = new Graph();
