@@ -36,19 +36,23 @@ export default class Questions extends React.Component<any, any> {
         console.log(visible);
         return (
                 <Segment style={{ padding: '1em 0em 3em' }} vertical>
-                <Container>
-                    <Transition visible={this.state.visible} animation='horizontal flip' duration={500} onHide={() => this.showNextQuestion()} transitionOnMount={true}>
-                        <div>
-                        <div className='cg-title'>
-                            <h2>{this.state.question.text}</h2>
-                        </div>
-                        <div className="cg-quiz-button">
-                                {this.state.question.edges.map(x =>
-                                    <div className='cg-action-item' key={x.text} >
-                                    <button className='cg-card-button cyan' onClick={() => this.handleAnswerSelection(x.text)} > {x.text}</button>
+                    <Container>
+                        <Transition visible={this.state.visible} animation='horizontal flip' duration={500} onHide={() => this.showNextQuestion()} transitionOnMount={true}>
+                            <div className='cg-card'>
+                                <div style={{ position: 'absolute', left: 0, top: 0, width: '100%', zIndex: 1 }}>
+                                    <div className='cg-title'>
+                                        <h2>{this.state.question.text}</h2>
+                                    </div>
                                 </div>
-                            )}
-                        </div>
+                                <div className='cg-card-content'>
+                                    <div className='cg-card-actions' style={{ marginTop: 71}}>
+                                        {this.state.question.edges.map(x =>
+                                            <div className='cg-action-item' key={x.text} >
+                                                <button className='cg-card-button cyan' onClick={() => this.handleAnswerSelection(x.text)} > {x.text}</button>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
                             </div>
                         </Transition>
                     </Container>
@@ -56,3 +60,6 @@ export default class Questions extends React.Component<any, any> {
         );
     }
 }
+
+
+

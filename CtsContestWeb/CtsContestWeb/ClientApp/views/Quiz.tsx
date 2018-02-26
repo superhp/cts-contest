@@ -16,7 +16,6 @@ import {
 import { RouteComponentProps } from 'react-router';
 
 
-import Fade from './Fade';
 import Questions from './Questions';
 
 export class Quiz extends React.Component<RouteComponentProps<{}>, {}> {
