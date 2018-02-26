@@ -11,19 +11,18 @@ import {
     Menu,
     Segment,
     Visibility,
-} from 'semantic-ui-react'
+} from 'semantic-ui-react';
+
 import { RouteComponentProps } from 'react-router';
 
-import q from './Graph'; 
+
+import Fade from './Fade';
+import Questions from './Questions';
 
 export class Quiz extends React.Component<RouteComponentProps<{}>, {}> {
 
-    state = { question: q.curr }
-
-    handleAnswerSelection = (answerText: string) => {
-        q.answer(answerText);
-        this.setState({question: q.curr});
-    };
+    
+    
     public render() {
         return (
             <div className='cg-prize-page'>
@@ -37,20 +36,7 @@ export class Quiz extends React.Component<RouteComponentProps<{}>, {}> {
                         </Header>
                     </Container>
                 </div>
-                <Segment style={{ padding: '1em 0em 3em' }} vertical>
-                    <Container>
-                        <div className='cg-title'>
-                            <h2>{this.state.question.text}</h2>
-                        </div>
-                        <div className="cg-quiz-button">
-                            {this.state.question.edges.map(x =>
-                                <div className='cg-action-item'>
-                                    <button className='cg-card-button cyan' onClick={() => this.handleAnswerSelection(x.text)} > { x.text }</button>
-                                </div>
-                            )}
-                        </div>
-                    </Container>
-                </Segment>
+                <Questions />
             </div>    
         );
     }
