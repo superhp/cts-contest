@@ -378,6 +378,10 @@ h3.cg-title-2{
     color: #4298b5 !important;
 }
 
+.questions {
+    overflow: hidden;
+}
+
 @media screen and (max-width: 1200px) {
     .cg-nav {
         display: block !important;
