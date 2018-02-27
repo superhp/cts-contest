@@ -7,11 +7,11 @@ import SpecialPrizeBoard from './views/SpecialPrizeBoard.jsx';
 import Header from './components/Header.jsx';
 
 const timer = {
-    /*dayGame: {
+    dayGame: {
         day: (new Date().getDate()),
         hour: 17, 
         minute: 0
-    },*/
+    },
     conferenceGame: {
         /*day: 17,
         hour: 16,
@@ -22,15 +22,11 @@ const timer = {
     }
 }
 const BoardEnum = {
-    /*LeaderBoard: 0,
+    LeaderBoard: 0,
     Prizes: 1,
     TodayPrizes: 2,
     WeekPrizes: 3,
-    Information: 4*/
-    LeaderBoard: 0,
-    Prizes: 1,
-    WeekPrizes: 2,
-    Information: 3
+    Information: 4
 }
 class Board extends React.Component {
     constructor(props) {
@@ -38,7 +34,6 @@ class Board extends React.Component {
         dotnetify.react.connect("BoardLoader", this);
         this.state = { Board: 1, PrizesForPoints: [], LeaderBoard: [], WeeksPrize: {}/*,TodaysPrize: {}*/ }
     }
-    s
     renderSlide() {
         //switch (BoardEnum.Information) {
         console.log(this.state.Board);
@@ -69,7 +64,7 @@ class Board extends React.Component {
                     leaders.push({ username: undefined, points: '', picture: undefined });
                 return <SpecialPrizeBoard data={leaders} prize={this.state.TodaysPrize} board='today'/>*/
             case BoardEnum.WeekPrizes:
-                leaders = [];
+                var leaders = [];
                 if(this.state.WeeksPrize.Applicants !== null && this.state.WeeksPrize.Applicants !== undefined)
                     leaders = this.state.WeeksPrize.Applicants.map(user => ({ username: user.Name, points: user.TotalBalance, picture: user.Picture }));
                 for(let i = 0; i < 3; i++)

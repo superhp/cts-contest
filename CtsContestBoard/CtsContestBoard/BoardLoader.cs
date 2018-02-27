@@ -51,6 +51,8 @@ namespace CtsContestBoard
             Information
         }
 
+        private readonly List<BoardEnum> _ignoredBoards = new List<BoardEnum> { BoardEnum.TodayPrizes };
+
         public BoardLoader(IPrizeManager prizeManager, ISolutionRepository solutionRepository, IPurchaseRepository purchaseRepository, IUserRepository userRepository, ApplicationDbContext dbContext)
         {
             _prizeManager = prizeManager;
@@ -235,10 +237,20 @@ namespace CtsContestBoard
 
         private void SwitchBoard()
         {
-            if (Board < BoardEnum.Information)
+            /*if (Board < BoardEnum.Information)
                 Board++;
             else
-                Board = BoardEnum.LeaderBoard;
+                Board = BoardEnum.LeaderBoard;*/
+            do
+            {
+                Board = Increment(Board);
+            } while (_ignoredBoards.Contains(Board));
+        }
+
+        private BoardEnum Increment(BoardEnum value)
+        {
+            if (value < BoardEnum.Information) return value + 1;
+            return BoardEnum.LeaderBoard;
         }
 
         public override void Dispose() => _timer.Dispose();
