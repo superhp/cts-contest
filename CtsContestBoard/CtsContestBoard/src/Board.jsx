@@ -7,53 +7,67 @@ import SpecialPrizeBoard from './views/SpecialPrizeBoard.jsx';
 import Header from './components/Header.jsx';
 
 const timer = {
-    dayGame: {
+    /*dayGame: {
         day: (new Date().getDate()),
         hour: 17, 
         minute: 0
-    },
+    },*/
     conferenceGame: {
-        day: 17,
+        /*day: 17,
+        hour: 16,
+        minute: 45*/
+        day: 27,
         hour: 16,
         minute: 45
     }
 }
 const BoardEnum = {
-    LeaderBoard: 0,
+    /*LeaderBoard: 0,
     Prizes: 1,
     TodayPrizes: 2,
     WeekPrizes: 3,
-    Information: 4
+    Information: 4*/
+    LeaderBoard: 0,
+    Prizes: 1,
+    WeekPrizes: 2,
+    Information: 3
 }
 class Board extends React.Component {
     constructor(props) {
         super(props);
         dotnetify.react.connect("BoardLoader", this);
-        this.state = { Board: 1, PrizesForPoints: [], LeaderBoard: [], WeeksPrize: {},TodaysPrize: {} }
+        this.state = { Board: 1, PrizesForPoints: [], LeaderBoard: [], WeeksPrize: {}/*,TodaysPrize: {}*/ }
     }
-
+    s
     renderSlide() {
         //switch (BoardEnum.Information) {
-        switch(this.state.Board){
+        console.log(this.state.Board);
+        switch (this.state.Board) {
+            
             case BoardEnum.LeaderBoard:
                 const sortedLeaderboard = this.state.LeaderBoard;
                 sortedLeaderboard.sort((a,b) => {
-                    if(a.TodaysBalance < b.TodaysBalance)
+                    /*if(a.TodaysBalance < b.TodaysBalance)
                         return 1;
                     else if(a.TodaysBalance > b.TodaysBalance)
                         return -1
+                    else return 0;*/
+                    if (a.TotalBalance < b.TotalBalance)
+                        return 1;
+                    else if (a.TotalBalance > b.TotalBalance)
+                        return -1;
                     else return 0;
                 });
                 return <LeaderBoard data={sortedLeaderboard} />
             case BoardEnum.Prizes:
                 return <PrizeBoard prizes={this.state.PrizesForPoints} />
-            case BoardEnum.TodayPrizes:
+            /*case BoardEnum.TodayPrizes:
                 var leaders = [];
                 if (this.state.TodaysPrize.Applicants !== null && this.state.TodaysPrize.Applicants !== undefined)
                     leaders = this.state.TodaysPrize.Applicants.map(user => ({ username: user.Name, points: user.TodaysBalance, picture: user.Picture }));
                 for(let i = 0; i < 3; i++)
                     leaders.push({ username: undefined, points: '', picture: undefined });
-                return <SpecialPrizeBoard data={leaders} prize={this.state.TodaysPrize} board='today'/>
+                return <SpecialPrizeBoard data={leaders} prize={this.state.TodaysPrize} board='today'/>*/
             case BoardEnum.WeekPrizes:
                 leaders = [];
                 if(this.state.WeeksPrize.Applicants !== null && this.state.WeeksPrize.Applicants !== undefined)

@@ -6,7 +6,7 @@ export default class Timer extends React.Component {
         super(props);
 
         this.state = {
-            days: 0,
+            /*days: 0,*/
             hours: 0,
             minutes: 0,
             seconds: 0
@@ -19,8 +19,11 @@ export default class Timer extends React.Component {
     }
     componentDidMount() {
         this.endTime = new Date(
-            2017,
+            /*2017,
             11 - 1,
+            this.props.day,*/
+            2018,
+            2 - 1,
             this.props.day,
             this.props.hour,
             this.props.minutes,
@@ -30,8 +33,11 @@ export default class Timer extends React.Component {
     }
     componentWillReceiveProps(nextProps) {
         this.endTime = new Date(
-            2017,
+            /*2017,
             11 - 1,
+            nextProps.day,*/
+            2018,
+            2 - 1,
             nextProps.day,
             nextProps.hour,
             nextProps.minutes,
@@ -100,11 +106,11 @@ export default class Timer extends React.Component {
     renderNormal() {
         return (
             <p className='cg-timer' style={this.props.style}>
-                {this.state.days === 0
+                {/*{this.state.days === 0
                     ? ''
                     : this.state.days === 1
                         ? this.state.days + ' Day, '
-                        : this.state.days + ' Days, '}
+                        : this.state.days + ' Days, '}*/}
                 {this.parseTimeLeft(this.state.hours, this.state.minutes, this.state.seconds)}
             </p>
         )
@@ -112,11 +118,11 @@ export default class Timer extends React.Component {
     renderWarning() {
         return (
             <p className='cg-timer warning' style={this.props.style}>
-                {this.state.days === 0
+                {/*{this.state.days === 0
                     ? ''
                     : this.state.days === 1
                         ? this.state.days + ' Day, '
-                        : this.state.days + ' Days, '}
+                        : this.state.days + ' Days, '}*/}
                 {this.parseTimeLeft(this.state.hours, this.state.minutes, this.state.seconds)}
             </p>
         )

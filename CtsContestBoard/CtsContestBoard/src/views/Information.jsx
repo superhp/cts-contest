@@ -27,12 +27,12 @@ export default class Information extends React.Component {
                 </p>
 
                 <p style={{ margin: 0, fontSize: 60, textAlign: 'center' }}>
-                    Please come to Cognizant stand to take daily prize.
+                    Please come to Cognizant stand to take your prize.
                 </p>
 
-                <p style={{ margin: 0, fontSize: 60, textAlign: 'center' }}>
+                {/*<p style={{ margin: 0, fontSize: 60, textAlign: 'center' }}>
                     Today's balance will reset and will only be valid for Conference prize.
-                </p>
+                </p>*/}
                 
                 <p style={{ margin: 0, fontSize: 60, textAlign: 'center' }}>
                     Please withdraw your purchases until this time.
