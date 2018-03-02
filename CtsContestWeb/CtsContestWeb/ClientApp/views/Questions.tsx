@@ -41,7 +41,7 @@ export default class Questions extends React.Component<any, any> {
                             <div className='cg-card questions'>
                                 <div style={{  width: '100%', zIndex: 1 }}>
                                     <div className='cg-title'>
-                                        <h2>{this.state.question.text}</h2>
+                                        <h2 dangerouslySetInnerHTML={ { __html:  this.state.question.text } } ></h2>
                                     </div>
                                 </div>
                                 <div className='cg-card-content'>
