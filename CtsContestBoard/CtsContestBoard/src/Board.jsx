@@ -16,7 +16,7 @@ const timer = {
         /*day: 17,
         hour: 16,
         minute: 45*/
-        day: 27,
+        day: 2,
         hour: 16,
         minute: 45
     }

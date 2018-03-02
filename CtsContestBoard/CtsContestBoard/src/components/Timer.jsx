@@ -23,7 +23,7 @@ export default class Timer extends React.Component {
             11 - 1,
             this.props.day,*/
             2018,
-            2 - 1,
+            3 - 1,
             this.props.day,
             this.props.hour,
             this.props.minutes,
@@ -37,7 +37,7 @@ export default class Timer extends React.Component {
             11 - 1,
             nextProps.day,*/
             2018,
-            2 - 1,
+            3 - 1,
             nextProps.day,
             nextProps.hour,
             nextProps.minutes,

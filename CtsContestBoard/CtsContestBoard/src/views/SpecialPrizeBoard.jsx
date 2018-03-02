@@ -75,7 +75,7 @@ const OnePrizeBoard = ({ data, prize, props }) => (
                     {
                         props.board === 'today'
                             ? 'Days prize'
-                            : 'Conference prize'
+                            : 'Main prize'
                     }
                 </h1>
                 <Podium first={data[0]} second={data[1]} third={data[2]} />
