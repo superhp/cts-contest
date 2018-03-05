@@ -1,4 +1,4 @@
-﻿enum NodeType { Q , A }
+﻿export enum NodeType { Q , A }
 
 class GraphNode {
     id: number;
@@ -65,20 +65,20 @@ g.addQuestion(1, 'Does your love language includes .NET/Java/Python/CSS & etc.?'
 g.addQuestion(2, 'Do you feel experienced enough to dive into international IT ocean?');
 g.addQuestion(3, 'If you would be a musician, what you prefer more: ');
 g.addAnswer(4, 'Don\'t worry, You can grow your knowledge together with us. Find Marija, tell code <span style="color: #64a70b">"1001"</span> and You will get a gift.');
-g.addAnswer(5, '<span style="color: #64a70b">Congratulations!</span> You are meant to be a front end developer. Find Marija, tell the code <span style="color: #64a70b">"FR10"</span> and You will get a gift.');
-g.addAnswer(6, '<span style="color: #64a70b">Congratulations!</span> You are meant to be a back end developer. Find Marija, tell the code <span style="color: #64a70b">"BC11"</span> and You will get a gift.');
-g.addAnswer(7, '<span style="color: #64a70b">Congratulations!</span> You are meant to be a test analyst. Find Marija, tell the code <span style="color: #64a70b">"TS01"</span> and You will get a gift.');
+g.addAnswer(5, '<span style="color: #64a70b">Congratulations!</span> You are meant to be a <span style="color: #64a70b">front end developer</span>. Find Marija, tell the code <span style="color: #64a70b">"FR10"</span> and You will get a gift.');
+g.addAnswer(6, '<span style="color: #64a70b">Congratulations!</span> You are meant to be a <span style="color: #64a70b">back end developer</span>. Find Marija, tell the code <span style="color: #64a70b">"BC11"</span> and You will get a gift.');
+g.addAnswer(7, '<span style="color: #64a70b">Congratulations!</span> You are meant to be a <span style="color: #64a70b">test analyst</span>. Find Marija, tell the code <span style="color: #64a70b">"TS01"</span> and You will get a gift.');
 g.addAnswer(8, '<span style="color: #64a70b">Try again :)</span>');
 g.addQuestion(9, 'Can You give positive answer to this question: "Snakker du dansk, norsh eller svensk"?');
 g.addQuestion(10, 'Do You feel strong enough to use Danish/Norwegian or Swedish at work?');
 g.addQuestion(11, 'When you are planning trip with friends, what role do You take:');
-g.addAnswer(12, '<span style="color: #64a70b">Congratulations!</span> You are meant to work in finance field. Find Ieva, tell the code <span style="color: #64a70b">"FIN1"</span> and You will get a gift.');
-g.addAnswer(13, '<span style="color: #64a70b">Congratulations!</span> You are meant to work with business process managment. Find Ieva, tell the code <span style="color: #64a70b">"BPS2"</span> and You will get a gift.');
+g.addAnswer(12, '<span style="color: #64a70b">Congratulations!</span> You are meant to work in <span style="color: #64a70b">finance</span> field. Find Ieva, tell the code <span style="color: #64a70b">"FIN1"</span> and You will get a gift.');
+g.addAnswer(13, '<span style="color: #64a70b">Congratulations!</span> You are meant to work with <span style="color: #64a70b">business process managment</span>. Find Ieva, tell the code <span style="color: #64a70b">"BPS2"</span> and You will get a gift.');
 g.addQuestion(14, 'Would You like to become guru in one of the Scandinavian language?');
-g.addAnswer(15, '<span style="color: #64a70b">Congratulations!</span> You could fulfill this dream by joining our language courses and becoming Jr. Finance Specialist. Find Ieva, tell the code <span style="color: #64a70b">"April16"</span> and You will get a gift.');
+g.addAnswer(15, '<span style="color: #64a70b">Congratulations!</span> You could fulfill this dream by joining our language courses and becoming <span style="color: #64a70b">Jr. Finance Specialist</span>. Find Ieva, tell the code <span style="color: #64a70b">"April16"</span> and You will get a gift.');
 g.addQuestion(16, 'When you are planning trip with friends, what role do You take:');
-g.addAnswer(17, '<span style="color: #64a70b">Congratulations!</span> You are meant to work with business process managment. Find Ieva, tell the code <span style="color: #64a70b">"PM01"</span> and You will get a gift.');
-g.addAnswer(18, '<span style="color: #64a70b">Congratulations!</span> You are meant to work with analytics. Find Marija, tell the code <span style="color: #64a70b">"BA02"</span> and You will get a gift.');
+g.addAnswer(17, '<span style="color: #64a70b">Congratulations!</span> You are meant to work with <span style="color: #64a70b">business process managment</span>. Find Ieva, tell the code <span style="color: #64a70b">"PM01"</span> and You will get a gift.');
+g.addAnswer(18, '<span style="color: #64a70b">Congratulations!</span> You are meant to work with <span style="color: #64a70b">analytics</span>. Find Marija, tell the code <span style="color: #64a70b">"BA02"</span> and You will get a gift.');
 
 g.addEdge(0, 1, "YES");
 g.addEdge(0, 8, "NO");
