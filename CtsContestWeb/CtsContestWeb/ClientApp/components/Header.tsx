@@ -23,7 +23,7 @@ const links = [
     },
     {
         routeTo: '/prizes',
-        name: 'Prizes'
+        name: 'Prize'
     },
     {
         routeTo: '/quiz',

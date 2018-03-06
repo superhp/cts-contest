@@ -62,7 +62,7 @@ export class Prizes extends React.Component<any, any> {
                         <Header as='h1' textAlign='center' inverted>
                             <Icon name='gift' />
                             <Header.Content>
-                                Prizes
+                                Prize
                             </Header.Content>
                         </Header>
                     </Container>
@@ -90,7 +90,7 @@ export class Prizes extends React.Component<any, any> {
             <div>
                 <div className='cg-row'>
                     {conferencePrize.map((prize, index) =>
-                        <div className='cg-col' key={index} style={{ paddingBottom: 20 }}>
+                        <div className='cg-col main-prize-prizes' key={index} style={{ paddingBottom: 20 }}>
                             <PrizeCard
                                 prize={prize}
                                 onOpenDescription={this.openDescriptionModal}
@@ -98,7 +98,7 @@ export class Prizes extends React.Component<any, any> {
                         </div>
                     )}
                 </div>
-                <div className='cg-row last-not-grow'>
+                {/*<div className='cg-row last-not-grow'>
                     {dayPrizes.map((prize, index) =>
                         <div className='cg-col' key={index} style={{ paddingBottom: 20 }}>
                             <PrizeCard
@@ -107,7 +107,7 @@ export class Prizes extends React.Component<any, any> {
                             />
                         </div>
                     )}
-                </div>
+                </div>*/}
             </div>
         )
     }
