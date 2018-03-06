@@ -74,14 +74,14 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                     <Divider />
                     <Container>
                         <div className='cg-title'>
-                            <h2>3 ways to spend your points</h2>
+                            <h2>2 ways to spend your points</h2>
                         </div>
                         <div className='cg-about-p cg-points'>
 
                             <div className='cg-title-bold'>1.  Purchase items in our virtual shopping booth</div>
                             <ul className='cg-ul-dash'>
-                                <li>Points can be spent in a shopping booth only on the same day it is gained</li>
-                                <li>Unspent points can be added up to your total score in a daily and in a conference leaderboard</li>
+                                <li>Points can be spent in a shopping booth</li>
+                                <li>Unspent points can be added up to your total score in a daily leaderboard</li>
                                 <li>Each registered contestant can purchase the same item only once </li>
                                 <li>Points spent in either virtual shopping booth or to win daily prize are no longer valid</li>
                             </ul>
@@ -89,61 +89,18 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                             <div className='cg-title-bold'>2.  Save your points to win cool daily prize</div>
                             <ul className='cg-ul-dash'>
                                 <li>Daily prize is awarded to contestant based on leaderboard results</li>
-                                <li>Final value of a daily prize is all unspent points earned on a particular day
-                                    
-                                    {/* <Icon className='cg-help' name='help circle'>
-                                        <div className='cg-help-tooltip'>i.e. getting daily prize sets daily balance to 0</div>
-                                    </Icon> */}
-                                    <ul className='cg-ul-circle'>
-                                        <li>i.e. getting daily prize sets daily balance to 0</li>
-                                    </ul>
-                                </li>
-                                <li>Daily leaderboard calculates points that are gained on a particular day only </li>
-                                <li>The contestant who is eligible to receive daily prize may choose to pass it on to the next best contestant and keep the points for a conference leaderboard</li>
-                                <li>Each registered contestant can win only one daily prize during the conference</li>
                                 <li>Points spent to win daily prize are no longer valid</li>
+                                <li><strong>Boompods Enduro Sportpods Bluetooth Earphones</strong> will be awarded to the contestant with the highest total balance – the sum of participant’s unspent points throughout the entire game</li>
+                                <li>In case of absence, the prize will go to the next best in the leaderboard</li>
                             </ul>
 
-                            <h3 className='cg-title-2'>Daily prizes</h3>
-                            <div className='row'>
-                                <div className='col-md-4'>
-                                    <div style={{textAlign: 'center'}}>Wednesday @4 PM </div>
-                                    <div className='cg-image height'>
-                                        <img src="../Day_1.png" alt="Day one prize" />
-                                    </div>
-                                </div>
-                                <div className='col-md-4'>
-                                    <div style={{textAlign: 'center'}}>Thursday @5:10 PM</div>
-                                    <div className='cg-image height'>
-                                        <img src="../Day_2.png" alt="Day two prize" />
-                                    </div>
-                                </div>
-                                <div className='col-md-4'>
-                                    <div style={{textAlign: 'center'}}>Friday @4:45 PM</div>
-                                    <div className='cg-image height'>
-                                        <img src="../Day_3.png" alt="Day three prize" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className='cg-title-bold'>3. Save your points to win Sony PlayStation 4</div>
-                            <ul className='cg-ul-dash'>
-                                <li>Conference prize is awarded to contestant based on leaderboard results</li>
-                                <li>Conference leaderboard calculates points that are gained and not spent throughout the 3 conference days</li>
-                                <li><strong>PlayStation 4 with 2 Controllers + FIFA 18</strong> will be awarded to the contestant with the highest total balance – the sum of participant’s unspent points throughout the entire conference</li>
-                                <li>Contestant must be present at the conference during the award ceremony just before the closing keynote @Alfa at 5:10 PM on Friday
-                                     <ul className='cg-ul-circle'>
-                                        <li>In case of absence, the prize will go to the next best in the total conference leaderboard</li>
-                                    </ul>
-                                </li>
-                            </ul>
-
-                            <div className='cg-image'>
-                                <img src="../Conference_winner.png" alt="Day three prize" />
+                            <div className='cg-image main-prize' >
+                                <img src="../Main_prize.png" alt="The main prize" />
                             </div>
                             <p>Visit Cognizant stand to check leaderboard and to shop</p>
                         </div>
                     </Container>
+
                     <Divider />
                     <Container>
                         <div className='cg-title'>
