@@ -5,7 +5,7 @@ export default class Questions extends React.Component<any, any> {
     render() {
         return (
             <Form className="dataForm">
-                <label className='formInfo'>If you would like to get more information about positions in Cognixant, please leave contact information below and we will reach you.</label>
+                <label className='formInfo'>If you would like to get more information about positions in Cognizant, please leave contact information below and we will reach you.</label>
                 <label className='star'>Required fields are marked *.</label>
                 <Form.Field>
                     <label>First Name *</label>

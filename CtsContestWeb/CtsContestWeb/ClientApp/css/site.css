@@ -337,6 +337,15 @@ body{
     margin-left: 5% !important;
 }
 
+.main-prize > img{
+    width: 60% !important;
+    margin-left: 25% !important;
+}
+
+.main-prize-prizes .cg-card .cg-card-content h2{
+    margin-left: 25% !important;
+}
+
 @media only screen and (max-width: 767px){
     .ui.container {
         width: auto !important; 
