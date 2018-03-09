@@ -41,7 +41,7 @@ export default class Questions extends React.Component<any, any> {
                                     <div className='cg-title questionAlign'>
                                         <h2 dangerouslySetInnerHTML={ { __html: this.state.question.text } } ></h2>
                                     </div>
-                                    {this.state.question.type === NodeType.A ? <div><Divider className="divider" /> <DataForm /></div> : ""}
+                                    {this.state.question.type === NodeType.A ? <div><Divider className="divider" /> <DataForm answer={this.state.question.text}/></div> : ""}
                                 </div>
                                 <div className='cg-card-content'>
                                     <div className='cg-card-actions'>
