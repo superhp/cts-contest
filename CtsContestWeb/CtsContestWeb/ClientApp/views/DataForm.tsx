@@ -28,8 +28,12 @@ export default class Questions extends React.Component<any, any> {
                     <input placeholder='e.g. Mathematics' />
                 </Form.Field>
                 <Form.Field>
+                    <label>Degree</label>
+                    <input placeholder="e.g. Bachelor's" />
+                </Form.Field>
+                <Form.Field>
                     <label>Course</label>
-                    <input placeholder="e.g. Bachelor's 3" />
+                    <input placeholder="e.g. 3" />
                 </Form.Field>
                 <Form.Field>
                     <Checkbox className='checkBox' label='I agree that Cognizant could use data, provided above, to contact me for career purposes only.' />
