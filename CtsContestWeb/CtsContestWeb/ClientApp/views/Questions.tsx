@@ -30,6 +30,14 @@ export default class Questions extends React.Component<any, any> {
         this.setState({ question: q.curr, visible: true });
     }
 
+    resetQuiz = () => {
+        q.setCurr(0);
+
+        this.setState({
+            question: q.curr
+        })
+    }
+
     render() {
         const { animation, duration, visible } = this.state;
         return (
@@ -41,7 +49,7 @@ export default class Questions extends React.Component<any, any> {
                                     <div className='cg-title questionAlign'>
                                         <h2 dangerouslySetInnerHTML={ { __html: this.state.question.text } } ></h2>
                                     </div>
-                                    {this.state.question.type === NodeType.A ? <div><Divider className="divider" /> <DataForm answer={this.state.question.text}/></div> : ""}
+                                    {this.state.question.type === NodeType.A ? <div><Divider className="divider" /> <DataForm onSubmit={this.resetQuiz} answer={this.state.question.text}/></div> : ""}
                                 </div>
                                 <div className='cg-card-content'>
                                     <div className='cg-card-actions'>

@@ -20,7 +20,7 @@ namespace CtsContestWeb.Controllers
         }
 
         [HttpPost("[action]")]
-        public void AddContact([FromBody] ContactInfoDto contactInfoDto)
+        public OkResult AddContact([FromBody] ContactInfoDto contactInfoDto)
         {
             var contactInfoEntity = new ContactInfo
             {
@@ -35,6 +35,8 @@ namespace CtsContestWeb.Controllers
                 Created = DateTime.Now
             };
             _contactInfoRepository.InsertIfNotExists(contactInfoEntity);
+
+            return Ok();
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import { Button, Form, Select } from 'semantic-ui-react'
+import { Button, Form, Select, Modal } from 'semantic-ui-react'
 
 export default class Questions extends React.Component<any, any> {
     degreeOptions = [
@@ -12,7 +12,7 @@ export default class Questions extends React.Component<any, any> {
     ];
 
     initialState = {
-        name: '', email: '', surname: '', phone: '', courseName: '', degree: '', courseNumber: 0, answer: ''
+        name: '', email: '', surname: '', phone: '', courseName: '', degree: '', courseNumber: 0, answer: '', agree: true, openModal: false
     }
     state = this.initialState;
 
@@ -46,13 +46,38 @@ export default class Questions extends React.Component<any, any> {
             ),
             credentials: 'include'
         })
-            .then(response => response.json() as Promise<ContactInfo>)
+            .then(data => {
+                this.openModal();
+            })
             .catch(error => {
                 console.log(error);
                 this.setState({ purchaseId: "", purchaseModalState: 'error' });
             });
 
     }
+
+    handleAgreementChange = (target: any) => {
+        var value = this.state.agree;
+
+        this.setState({
+            agree: !value
+        })
+    }
+
+    openModal = () => {
+        this.setState({
+            openModal: true
+        })
+    }
+
+    resetQuiz = (event:any, data: any) => {
+        this.setState({ 
+            openModal: false
+        });
+
+        this.props.onSubmit();
+    }
+
     render() {
         const { name, surname, email, phone, courseName, degree, courseNumber, answer } = this.state;
 
@@ -89,9 +114,20 @@ export default class Questions extends React.Component<any, any> {
                     <Select placeholder='Select course' fluid selection options={this.courseNumberOptions} name='courseNumber' value={courseNumber} onChange={this.handleDropdownChange} />
                 </Form.Field>
                 <Form.Field>
-                    <Form.Checkbox className='checkBox' label='I agree that Cognizant could use data, provided above, to contact me for career purposes only.' required />
+                    <Form.Checkbox className='checkBox' checked={this.state.agree} onChange={this.handleAgreementChange} label='I agree that Cognizant could use data, provided above, to contact me for career purposes only.' required />
                 </Form.Field>
-                <button className='cg-card-button cyan'>Submit</button>
+                <button className='cg-card-button cyan' disabled={!this.state.agree}>Submit</button>
+
+                <Modal className='cg-modal' style={{ height: '182px' }}
+                    size="mini"
+                    open={this.state.openModal}
+                    onClose={this.resetQuiz}
+                    header='Thank you!'
+                    content='We will contact you!'
+                    actions={[
+                        { key: 'done', content: 'OK', positive: true },
+                    ]}
+                />
             </Form>
         );
     }

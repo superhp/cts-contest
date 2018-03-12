@@ -84,7 +84,7 @@ export class Header extends React.Component<any, HeaderState> {
                                             <div className='cg-user-menu-item cg-bold'>User</div>
                                             <div className='cg-user-menu-item'>{this.props.userInfo.name}</div>
                                             <div className='cg-user-menu-item cg-bold'>My wallet</div>
-                                            <div className='cg-user-menu-item'>Days balance: {this.props.userInfo.todaysBalance} pts</div>
+                                            {/* <div className='cg-user-menu-item'>Days balance: {this.props.userInfo.todaysBalance} pts</div> */}
                                             <div className='cg-user-menu-item'>Total balance: {this.props.userInfo.totalBalance} pts</div>
                                             <a className='cg-user-menu-item cg-bold' href={"https://cts-contest.azurewebsites.net/.auth/logout?post_logout_redirect_uri=" + window.location.pathname}>Logout</a>
                                     </div>
