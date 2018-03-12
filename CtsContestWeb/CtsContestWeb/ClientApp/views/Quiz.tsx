@@ -20,8 +20,6 @@ import Questions from './Questions';
 
 export class Quiz extends React.Component<RouteComponentProps<{}>, {}> {
 
-    
-    
     public render() {
         return (
             <div className='cg-prize-page'>
