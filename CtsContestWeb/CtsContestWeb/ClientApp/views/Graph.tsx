@@ -61,7 +61,7 @@ class Graph {
 
 const g = new Graph();
 g.addQuestion(0, 'Do you like new career challenges & opportunities?');
-g.addQuestion(1, 'Does <div style="\r\n    text-transform:  none;\r\n    font-family:  serif;\r\n    color: #64a70b;\r\n">\r\n    <span>if (careerDays) { </span><br>\r\n    <span style="\r\n    margin-left: 15px;\r\n">    console.log("gather all the contacts!");</span><br>\r\n    <span>} else {</span><br>\r\n    <span style="\r\n    margin-left: 15px;\r\n">console.log("back to lectures");</span><br>\r\n    <span>}</span>\r\n</div>mean anything to you?');
+g.addQuestion(1, 'Does <div style="\r\n    text-transform:  none;\r\n    font-family:  serif;\r\n    color: #64a70b;\r\n">\r\n    <span>if (careerDays) { </span><br>\r\n    <span style="\r\n    margin-left: 15px;\r\n">    console.log("meet Cognizant colleagues");</span><br>\r\n    <span>} else {</span><br>\r\n    <span style="\r\n    margin-left: 15px;\r\n">console.log("back to lectures");</span><br>\r\n    <span>}</span>\r\n</div>mean anything to you?');
 g.addQuestion(2, 'Do you feel experienced enough to dive into international IT ocean?');
 g.addQuestion(3, 'If you were a musician, what would you prefer?');
 g.addAnswer(4, 'Don\'t worry, You can grow your knowledge together with us. Find Marija, tell her the code <span style="color: #64a70b">"1001"</span> and You will get a gift.');
