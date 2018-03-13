@@ -61,13 +61,13 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                 <li>Login using your Facebook or Google account</li>
                                 <li>Solve coding tasks to earn points
                                     <ul className='cg-ul-dash' style={{paddingLeft: 25}}>
-                                        <li>Tasks are divided into several groups based on its complexity</li>
+                                        <li>Tasks are divided into several groups based on their complexity</li>
                                         <li>Each task can be solved only once</li>
                                         <li>You can earn 15-645 points for each correct solution, depending on task’s difficulty</li>
                                     </ul>
                                 </li>
                                 <li>Have points added to your virtual wallet</li>
-                                <li>Buy goodies in our shopping booth or save it for later and win different prizes</li>
+                                <li>Buy goodies in our shopping booth or save it to win the day prize</li>
                             </ol>
                         </div>
                     </Container>
@@ -80,18 +80,18 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
 
                             <div className='cg-title-bold'>1.  Purchase items in our virtual shopping booth</div>
                             <ul className='cg-ul-dash'>
-                                <li>Points can be spent in a shopping booth</li>
-                                <li>Unspent points can be added up to your total score in a daily leaderboard</li>
+                                <li>Points can be spent in the shopping booth for different items</li>
                                 <li>Each registered contestant can purchase the same item only once </li>
-                                <li>Points spent in either virtual shopping booth or to win daily prize are no longer valid</li>
+                                <li>Points spent in shopping booth will not be added to your total balance</li>
+                                <li>Unspent points are added up to your total balance</li>
                             </ul>
 
-                            <div className='cg-title-bold'>2.  Save your points to win cool daily prize</div>
+                            <div className='cg-title-bold'>2.  Save your points to win day prize</div>
                             <ul className='cg-ul-dash'>
-                                <li>Daily prize is awarded to contestant based on leaderboard results</li>
-                                <li>Points spent to win daily prize are no longer valid</li>
-                                <li><strong>Boompods Enduro Sportpods Bluetooth Earphones</strong> will be awarded to the contestant with the highest total balance – the sum of participant’s unspent points throughout the entire game</li>
-                                <li>In case of absence, the prize will go to the next best in the leaderboard</li>
+                                <li>Day prize is awarded at the end of the day to the leading contestant based on leaderboard results</li>
+                                <li>Points spent in shopping booth are no longer valid</li>
+                                <li><strong>Tom Tom Sports Bluetooh Earphones</strong> will be awarded to the contestant with the highest total balance – the sum of participant’s unspent points throughout the entire game</li>
+                                <li>In case of absence, the prize will go to the next best participant in the leaderboard</li>
                             </ul>
 
                             <div className='cg-image main-prize' >
