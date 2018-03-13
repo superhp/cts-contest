@@ -11,7 +11,7 @@ export class PrizeCard extends React.Component<any, any> {
     }
     printCategoryName(category: any) {
         if (category.toLowerCase() === 'week prize') {
-            return 'Conference prize';
+            return 'Main Career Days Prize';
         }
         return category;
     }
