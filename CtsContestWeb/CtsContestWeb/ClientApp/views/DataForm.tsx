@@ -3,7 +3,9 @@ import { Button, Form, Select, Modal } from 'semantic-ui-react'
 
 export default class Questions extends React.Component<any, any> {
     degreeOptions = [
-        { key: "b", value: "bachelor", text: "Bachelor's" }, { key: "m", value: "master", text: "Master's" }
+        { key: "b", value: "bachelor", text: "Bachelor's" },
+        { key: "m", value: "master", text: "Master's" },
+        { key: "d", value: "doctor", text: "Doctor's"}
     ];     
     courseNumberOptions = [
         { key: "1", value: 1, text: "1" }, { key: "2", value: 2, text: "2" },
@@ -106,7 +108,7 @@ export default class Questions extends React.Component<any, any> {
                     <input placeholder='e.g. Mathematics' name='courseName' value={courseName} onChange={this.handleChange}/>
                 </Form.Field>
                 <Form.Field>
-                    <label>Degree</label>
+                    <label>Current studies degree</label>
                     <Select placeholder='Select degree' fluid selection options={this.degreeOptions} name='degree' value={degree} onChange={this.handleDropdownChange} />
                 </Form.Field>
                 <Form.Field>
