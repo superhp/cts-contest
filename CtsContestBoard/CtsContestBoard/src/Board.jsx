@@ -10,7 +10,7 @@ const timer = {
     dayGame: {
         day: (new Date().getDate()),
         hour: 15, 
-        minute: 30
+        minute: 0
     },
     conferenceGame: {
         /*day: 17,
@@ -18,7 +18,7 @@ const timer = {
         minute: 45*/
         day: (new Date().getDate()),
         hour: 15,
-        minute: 30
+        minute: 0
     }
 }
 const BoardEnum = {
