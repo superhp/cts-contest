@@ -9,16 +9,16 @@ import Header from './components/Header.jsx';
 const timer = {
     dayGame: {
         day: (new Date().getDate()),
-        hour: 17, 
-        minute: 0
+        hour: 15, 
+        minute: 30
     },
     conferenceGame: {
         /*day: 17,
         hour: 16,
         minute: 45*/
-        day: 2,
-        hour: 16,
-        minute: 45
+        day: (new Date().getDate()),
+        hour: 15,
+        minute: 30
     }
 }
 const BoardEnum = {
@@ -56,13 +56,13 @@ class Board extends React.Component {
                 return <LeaderBoard data={sortedLeaderboard} />
             case BoardEnum.Prizes:
                 return <PrizeBoard prizes={this.state.PrizesForPoints} />
-            /*case BoardEnum.TodayPrizes:
+            case BoardEnum.TodayPrizes:
                 var leaders = [];
                 if (this.state.TodaysPrize.Applicants !== null && this.state.TodaysPrize.Applicants !== undefined)
                     leaders = this.state.TodaysPrize.Applicants.map(user => ({ username: user.Name, points: user.TodaysBalance, picture: user.Picture }));
                 for(let i = 0; i < 3; i++)
                     leaders.push({ username: undefined, points: '', picture: undefined });
-                return <SpecialPrizeBoard data={leaders} prize={this.state.TodaysPrize} board='today'/>*/
+                return <SpecialPrizeBoard data={leaders} prize={this.state.TodaysPrize} board='today'/>
             case BoardEnum.WeekPrizes:
                 var leaders = [];
                 if(this.state.WeeksPrize.Applicants !== null && this.state.WeeksPrize.Applicants !== undefined)
