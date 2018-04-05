@@ -9,24 +9,24 @@ import { Header as ModalHeader, Image, Modal } from 'semantic-ui-react'
 import { Login } from './login';
 
 const links = [
-    // {
-    //     routeTo: '/',
-    //     name: 'About'
-    // },
-    // {
-    //     routeTo: '/tasks',
-    //     name: 'Tasks'
-    // },
-    // {
-    //     routeTo: '/shop',
-    //     name: 'Shopping booth'
-    // },
-    // {
-    //     routeTo: '/prizes',
-    //     name: 'Day Prize'
-    // },
     {
         routeTo: '/',
+        name: 'About'
+    },
+    {
+        routeTo: '/tasks',
+        name: 'Tasks'
+    },
+    {
+        routeTo: '/shop',
+        name: 'Shopping booth'
+    },
+    {
+        routeTo: '/prizes',
+        name: 'Day Prize'
+    },
+    {
+        routeTo: '/quiz',
         name: 'Quiz'
     }
 ];

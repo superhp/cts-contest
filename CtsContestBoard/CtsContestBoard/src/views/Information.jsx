@@ -17,7 +17,7 @@ export default class Information extends React.Component {
             : <div />;
         return (
             <div className="container">
-                <div style={{ textAlign: 'center', paddingTop: 25, paddingBottom: 0, margin: 0 }}>
+                <div style={{ textAlign: 'center', paddingTop: 100, paddingBottom: 0, margin: 0 }}>
                     {leftTime}
                     <Timer day={this.props.timer.dayGame.day} hour={this.props.timer.dayGame.hour} minutes={this.props.timer.dayGame.minute} style={{ color: 'black', fontSize: 72}}/>
                 </div>                

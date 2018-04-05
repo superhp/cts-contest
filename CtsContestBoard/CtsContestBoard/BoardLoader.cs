@@ -48,7 +48,8 @@ namespace CtsContestBoard
             Prizes,
             TodayPrizes,
             WeekPrizes,
-            Information
+            Information,
+            Slogan
         }
 
         private readonly List<BoardEnum> _ignoredBoards = new List<BoardEnum> { BoardEnum.TodayPrizes };
@@ -249,7 +250,7 @@ namespace CtsContestBoard
 
         private BoardEnum Increment(BoardEnum value)
         {
-            if (value < BoardEnum.Information) return value + 1;
+            if (value < BoardEnum.Slogan) return value + 1;
             return BoardEnum.LeaderBoard;
         }
 

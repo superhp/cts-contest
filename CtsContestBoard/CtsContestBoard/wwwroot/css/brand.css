@@ -96,3 +96,12 @@ h1 {
 .cg-font-interstate h4 {
     font-family: Interstate-Regular;
 }
+
+.cg-title {
+    display: block;
+    font-size: 38px;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 0px 20px;
+    margin: auto 80px;
+}
