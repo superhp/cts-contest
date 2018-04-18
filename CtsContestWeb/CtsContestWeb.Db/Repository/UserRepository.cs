@@ -57,7 +57,8 @@ namespace CtsContestWeb.Db.Repository
                 {
                     Email = email,
                     FullName = user.FindFirst(ClaimTypes.GivenName).Value + " " + user.FindFirst(ClaimTypes.Surname).Value,
-                    Picture = picture
+                    Picture = picture,
+                    Group = user.FindFirst("jobTitle").Value
                 };
 
                 _dbContext.Add(userEntity);

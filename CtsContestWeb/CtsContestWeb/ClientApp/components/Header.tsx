@@ -17,18 +17,18 @@ const links = [
         routeTo: '/tasks',
         name: 'Tasks'
     },
-    {
-        routeTo: '/shop',
-        name: 'Shopping booth'
-    },
-    {
-        routeTo: '/prizes',
-        name: 'Day Prize'
-    },
-    {
-        routeTo: '/quiz',
-        name: 'Quiz'
-    }
+    // {
+    //     routeTo: '/shop',
+    //     name: 'Shopping booth'
+    // },
+    // {
+    //     routeTo: '/prizes',
+    //     name: 'Day Prize'
+    // },
+    // {
+    //     routeTo: '/quiz',
+    //     name: 'Quiz'
+    // }
 ];
 
 export type HeaderState = {

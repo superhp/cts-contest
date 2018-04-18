@@ -20,8 +20,8 @@ export class TaskComponent extends React.Component<any, any> {
         this.state = {
             taskId: this.props.match.params.id,
             theme: 'monokai',
-            mode: 'java',
-            selectedLanguage: 'java',
+            mode: 'cpp',
+            selectedLanguage: 'c++',
             loadingLanguages: true,
             loadingTask: true,
             editorWidth: this.calculateEditorWidth(),
@@ -52,7 +52,7 @@ export class TaskComponent extends React.Component<any, any> {
                     require(`brace/mode/${compiler}`)
                 }
 
-                this.setCodeSkeleton("undefined");
+                this.setCodeSkeleton("C++");
             });
 
         this.compileCode = this.compileCode.bind(this);

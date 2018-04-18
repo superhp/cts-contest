@@ -11,6 +11,7 @@ namespace CtsContestWeb.Db.Entities
         public string Email { get; set; }
         public string FullName { get; set; }
         public string Picture { get; set; }
+        public string Group { get; set; }
         public ICollection<Solution> Solutions { get; set; }
         public ICollection<Purchase> Purchases { get; set; }
     }

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System;
+using System.Linq;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Newtonsoft.Json.Linq;
@@ -18,6 +19,7 @@ using CtsContestWeb.Communication;
 using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Logic;
 using CtsContestWeb.Middleware;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace CtsContestWeb
 {
@@ -112,6 +114,7 @@ namespace CtsContestWeb
                         new Claim(ClaimTypes.Surname, "Developer"),
                         new Claim(ClaimTypes.GivenName, "Test"),
                         new Claim(ClaimTypes.Actor, "Test"),
+                        new Claim("jobTitle", "Ifkj"),
                         new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity")
                     };
 
@@ -162,6 +165,17 @@ namespace CtsContestWeb
                                 List<Claim> claims = new List<Claim>();
                                 foreach (var claim in obj[0]["user_claims"])
                                 {
+                                    if (claim["typ"].ToString().Equals("emails"))
+                                        claims.Add(new Claim(ClaimTypes.Email, claim["val"].ToString()));
+                                    if (claim["typ"].ToString().Equals("name"))
+                                    {
+                                        var name = claim["val"].ToString().Split(' ');
+
+                                        claims.Add(new Claim(ClaimTypes.Surname, name[name.Length - 1]));
+                                        name = name.Take(name.Length - 1).ToArray();
+
+                                        claims.Add(new Claim(ClaimTypes.GivenName, name.Join(" ")));
+                                    }
                                     claims.Add(new Claim(claim["typ"].ToString(), claim["val"].ToString()));
                                 }
                                 claims.Add(new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity"));
