@@ -71,7 +71,7 @@ namespace CtsContestWeb.Communication
 
             var tasks = await taskCompletion.Task;
             
-            tasks.ForEach(UpdateTaskValue);
+            //tasks.ForEach(UpdateTaskValue);
             return tasks;
         }
 
@@ -100,7 +100,7 @@ namespace CtsContestWeb.Communication
                     task.IsSolved = true;
             }
             task.Description = PrependRootUrlToImageLinks(task.Description, pictureUrl);
-            UpdateTaskValue(task);
+            //UpdateTaskValue(task);
             return task;
         }
 
