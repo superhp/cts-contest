@@ -15,6 +15,9 @@ namespace CtsContestCms.Filters
             var request = actionContext.Request;
             var allowedIps = ConfigurationManager.AppSettings["allowedIps"];
 
+            if (ConfigurationManager.AppSettings["filterIps"].Equals("true"))
+                return true;
+
             var ipsList = allowedIps.Split(',');
             var clientIp = GetClientIp(request);
             if (clientIp != null && ipsList.Any(i => i.Equals(clientIp)))
