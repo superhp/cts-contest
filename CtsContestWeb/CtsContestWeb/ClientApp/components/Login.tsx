@@ -83,21 +83,7 @@ export class Login extends React.Component<any, LoginModalState> {
             <div className="right-menu">
                 <div className='item cg-responsive-hide'>Hello, {userInfo.name}!</div>
                 <div style={{ position: 'relative' }}>
-                    <a className={"item cg-responsive-hide cg-bold " + (this.state.wallet ? 'active' : '')} onClick={this.toggleWallet} style={{ height: '100%', width: '100%' }}>My Wallet</a>
-                    <div className={'cg-balance ' + (this.state.wallet ? 'cg-show' : 'cg-hidden')}>
-                        <table>
-                            <tbody>
-                                {/* <tr>
-                                    <td>Days balance</td>
-                                    <td>{this.props.userInfo.todaysBalance} pts</td>
-                                </tr> */}
-                                <tr>
-                                    <td>Total balance</td>
-                                    <td>{this.props.userInfo.totalBalance} pts</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <a className='item cg-responsive-hide cg-bold' style={{ height: '100%', width: '100%' }}>My points: {this.props.userInfo.totalBalance}</a>
                 </div>
                 <a className='item cg-responsive-hide cg-bold' href={"https://cts-contest.azurewebsites.net/.auth/logout?post_logout_redirect_uri=" + window.location.pathname  + addon}>Logout</a>
             </div>
@@ -111,7 +97,7 @@ export class Login extends React.Component<any, LoginModalState> {
             addon = "?refresh=true";
         }
 
-        return <a className='item cg-responsive-hide cg-bold' href={"https://cts-contest.azurewebsites.net/.auth/login/aad?post_login_redirect_url=" + window.location.pathname + addon}>Login</a>;
+        return <a className='item cg-nav-item cg-bold' href={"https://cts-contest.azurewebsites.net/.auth/login/aad?post_login_redirect_url=" + window.location.pathname + addon}>Login</a>;
     }
 
     
