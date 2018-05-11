@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using CtsContestWeb.Db.Entities;
+using CtsContestWeb.Dto;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -64,6 +65,15 @@ namespace CtsContestWeb.Db.Repository
                 _dbContext.Add(userEntity);
                 _dbContext.SaveChanges();
             }
+        }
+
+        public IEnumerable<UserInfoDto> GetAllUsers()
+        {
+            return _dbContext.Users.Select(u => new UserInfoDto
+            {
+                Name = u.FullName,
+                TotalBalance = u.Solutions.Where(s => s.IsCorrect).Sum(s => s.Score)
+            });
         }
     }
 }

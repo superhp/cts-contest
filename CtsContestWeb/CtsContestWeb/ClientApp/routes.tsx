@@ -8,6 +8,7 @@ import { Prizes } from './views/Prizes';
 import { Shop } from './views/Shop';
 import { Quiz } from './views/Quiz';
 import { TaskComponent } from './views/Task';
+import { Leaderboard } from './views/Leaderboard';
 
 export class Routes extends React.Component<any, any> {
     constructor(props:any) {
@@ -56,6 +57,7 @@ export class Routes extends React.Component<any, any> {
                 {/* <Route path='/shop' render={(props:any) => <Shop {...props} userInfo={this.state.userInfo} onDecrementBalance={this.decrementBalance}/>} />
                 <Route path='/prizes' render={(props:any) => <Prizes {...props} userInfo={this.state.userInfo} onDecrementBalance={this.decrementBalance}/>} />*/}
                 <Route path="/tasks/:id" render={(props: any) => <TaskComponent {...props} userInfo={this.state.userInfo} onIncrementBalance={this.incrementBalance} />} /> 
+                <Route path="/leaderboard" component={Leaderboard} /> 
                 {/* <Route exact path='/quiz' component={Quiz}/> */}
             </Layout>
         )

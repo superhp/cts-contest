@@ -17,6 +17,10 @@ const links = [
         routeTo: '/about',
         name: 'About'
     },
+    {
+        routeTo: '/leaderboard',
+        name: 'Leaderboard'
+    },
     // {
     //     routeTo: '/shop',
     //     name: 'Shopping booth'
