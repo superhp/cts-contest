@@ -260,6 +260,14 @@ export class TaskComponent extends React.Component<any, any> {
                     Failed testcase No. {compileResult.failedInput} out of {compileResult.totalInputs}.
                 </p>
             }
+
+            {compileResult.message ?
+                <p className="error-message">
+                    Compiler message: <br/> {compileResult.message}
+                </p>
+                    :
+                <span></span>
+            }
         </span>;
     }
 

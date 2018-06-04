@@ -61,6 +61,8 @@ namespace CtsContestWeb.Communication
                     if (!result.IsOutputCorrect)
                     {
                         compileDto.FailedInput = i+1;
+                        compileDto.Message = result.Message;
+
                         return compileDto;
                     }
                 }
@@ -102,7 +104,7 @@ namespace CtsContestWeb.Communication
             var compileResult = new PaizaCompileDto
             {
                 Compiled = data.Result != null && data.Result.Equals("success"),
-                Message = data.BuildStderr,
+                Message = (string.IsNullOrEmpty(data.BuildStderr)) ? data.Stderr : data.BuildStderr,
                 IsOutputCorrect = data.Stdout != null && data.Stdout.TrimEnd('\r', '\n', ' ').Equals(expectedOutput.TrimEnd('\r', '\n', ' '))
             };
 
