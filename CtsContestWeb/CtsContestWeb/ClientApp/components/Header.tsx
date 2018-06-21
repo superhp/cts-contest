@@ -18,6 +18,10 @@ const links = [
         name: 'Tasks'
     },
     {
+        routeTo: '/competition',
+        name: 'Competition'
+    },
+    {
         routeTo: '/shop',
         name: 'Shopping booth'
     },

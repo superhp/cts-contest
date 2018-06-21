@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CtsContestWeb.Logic", "CtsC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CtsContestWeb.Dto", "CtsContestWeb.Dto\CtsContestWeb.Dto.csproj", "{B769B9BC-53E6-4688-8412-6FD6AD3D27F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CtsContestWeb.Tests", "CtsContestWeb.Tests\CtsContestWeb.Tests.csproj", "{A53B64A6-E90D-4369-AC5F-14505A15756C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CtsContestWeb.Tests", "CtsContestWeb.Tests\CtsContestWeb.Tests.csproj", "{A53B64A6-E90D-4369-AC5F-14505A15756C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CtsContestWeb.Competition", "CtsContestWeb.Competition\CtsContestWeb.Competition.csproj", "{31B542AD-3439-44C7-B322-9D8A24C5A066}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{A53B64A6-E90D-4369-AC5F-14505A15756C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A53B64A6-E90D-4369-AC5F-14505A15756C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A53B64A6-E90D-4369-AC5F-14505A15756C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31B542AD-3439-44C7-B322-9D8A24C5A066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31B542AD-3439-44C7-B322-9D8A24C5A066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31B542AD-3439-44C7-B322-9D8A24C5A066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31B542AD-3439-44C7-B322-9D8A24C5A066}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
