@@ -33,7 +33,6 @@ namespace CtsContestWeb
 
             // Set current thread user to identity
             context.User = new GenericPrincipal(identity, null);
-            Thread.CurrentPrincipal = context.User;
         }
 
         public static async Task GetAzureIdentity(HttpContext context)
@@ -43,7 +42,7 @@ namespace CtsContestWeb
             {
                 //invoke /.auth/me
                 var cookieContainer = new CookieContainer();
-                HttpClientHandler handler = new HttpClientHandler()
+                HttpClientHandler handler = new HttpClientHandler
                 {
                     CookieContainer = cookieContainer
                 };
@@ -78,7 +77,6 @@ namespace CtsContestWeb
 
                         // Set current thread user to identity
                         context.User = new GenericPrincipal(identity, null);
-                        Thread.CurrentPrincipal = context.User;
                     }
                 }
 

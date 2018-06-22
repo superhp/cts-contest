@@ -5,18 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CtsContestWeb.Db;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Principal;
-using System.Security.Claims;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
 using System;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Newtonsoft.Json.Linq;
-using CtsContestWeb.Communication;
-using CtsContestWeb.Db.Repository;
-using CtsContestWeb.Logic;
+using CtsContestWeb.DI;
 using CtsContestWeb.Middleware;
 
 namespace CtsContestWeb
@@ -38,52 +30,8 @@ namespace CtsContestWeb
             services.AddMvc();
             services.AddMemoryCache();
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            ApplicationContainer = TypeRegistrations.Register(services, Configuration);
 
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-                    sqlServerOptionsAction: sqlOptions =>
-                    {
-                        sqlOptions.EnableRetryOnFailure(
-                            5,
-                            TimeSpan.FromSeconds(1),
-                            null);
-                    }
-                )
-            );
-
-            services.AddScoped<IPurchaseRepository, PurchaseRepository>();
-            services.AddScoped<ISolutionRepository, SolutionRepository>();
-            services.AddScoped<IContactInfoRepository, ContactInfoRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IBalanceLogic, BalanceLogic>();
-            services.AddScoped<IPurchaseLogic, PurchaseLogic>();
-
-            services.AddTransient<ITaskManager, TaskManager>();
-            services.AddTransient<IPrizeManager, PrizeManager>();
-            services.AddTransient<ICodeSkeletonManager, CodeSkeletonManager>();
-
-            services.AddScoped<ISolutionLogic, SolutionLogic>();
-
-            services.AddSingleton<IConfiguration>(Configuration);
-
-            var builder = new ContainerBuilder();
-            builder.Populate(services);
-
-            if (Configuration["Compiler"].Equals("HackerRank"))
-            {
-                builder.RegisterType<HackerRankCompiler>().As<ICompiler>();
-            }
-            else
-            {
-                builder.RegisterType<PaizaCompiler>().As<ICompiler>();
-            }
-
-            builder.RegisterType<HackerRankCompiler>().Keyed<ICompiler>("HackerRank");
-            builder.RegisterType<PaizaCompiler>().Keyed<ICompiler>("Paiza");
-
-            ApplicationContainer = builder.Build();
-
-            // Create the IServiceProvider based on the container.
             return new AutofacServiceProvider(ApplicationContainer);
         }
 
@@ -128,12 +76,8 @@ namespace CtsContestWeb
                 serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
             }
 
-
-
             app.UseStaticFiles();
-
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

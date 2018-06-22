@@ -104,6 +104,16 @@ namespace CtsContestWeb.Communication
             return task;
         }
 
+        public async Task<TaskDto> GetTaskForCompetition(IEnumerable<string> usersEmail)
+        {
+            var tasks = await GetAllTasks();
+
+            var rnd = new Random();
+            var taskNr = rnd.Next(tasks.Count);
+
+            return tasks[taskNr];
+        }
+
         private string PrependRootUrlToImageLinks(string description, string url)
         {
             var htmlPattern = @"(src="")(/media/(.+?)"")";

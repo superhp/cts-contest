@@ -8,5 +8,6 @@ namespace CtsContestWeb.Communication
     {
         Task<List<TaskDto>> GetAllTasks(string userEmail = null);
         Task<TaskDto> GetTaskById(int id, string userEmail = null);
+        Task<TaskDto> GetTaskForCompetition(IEnumerable<string> usersEmail);
     }
 }
