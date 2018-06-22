@@ -9,6 +9,7 @@ import {
 import { RouteComponentProps } from 'react-router';
 import * as signalR from '@aspnet/signalr';
 import { CompetitionTask } from './CompetitionTask';
+import { fakeCompetitionInfo } from '../mocks/fakeData';
 
 interface CompetitionState {
     step: string
@@ -25,8 +26,9 @@ export class Competition extends React.Component<RouteComponentProps<{}>, Compet
         };
     }
 
-    public componentDidMount() {
+    findOpponent = () => {
         console.log("mounted");
+        console.log('Should start the searching now');
     
         this.hubConnection = new signalR.HubConnectionBuilder()
             .withUrl('http://localhost:2531/competition')
@@ -41,10 +43,7 @@ export class Competition extends React.Component<RouteComponentProps<{}>, Compet
         this.hubConnection.on("competitionStarts", (competitionInfo) => {
             console.log("competition starts");
         });
-    }
 
-    findOpponent = () => {
-        console.log('Start searching now');
         this.setState({ step: 'searching' });
         setTimeout(() => this.setState({step: 'started'}), 2000);
     }
@@ -62,7 +61,7 @@ export class Competition extends React.Component<RouteComponentProps<{}>, Compet
                            <h2>Wait for your opponent...</h2>
                 </div>;
             case 'started':
-                return <CompetitionTask taskId={5}/>
+                return <CompetitionTask players={fakeCompetitionInfo.players} startTime={fakeCompetitionInfo.startTime} task={fakeCompetitionInfo.task} />
         }
     }
 

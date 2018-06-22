@@ -9,6 +9,7 @@ import { Shop } from './views/Shop';
 import { Quiz } from './views/Quiz';
 import { TaskComponent } from './views/Task';
 import { Competition } from './views/Competition';
+import { UserInfo } from './components/models/UserInfo';
 
 export class Routes extends React.Component<any, any> {
     constructor(props:any) {

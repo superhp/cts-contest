@@ -12,13 +12,17 @@ import {
 } from 'semantic-ui-react';
 import AceEditor from 'react-ace';
 import { Task, Languages, Skeleton, CompileResult  } from '../components/models/Task';
+import { CompetitionInfo } from '../components/models/CompetitionInfo';
+import { languages } from '../assets/languages';
 
-export class CompetitionTask extends React.Component<any, any> {
+export class CompetitionTask extends React.Component<CompetitionInfo, any> {
+    languageOptions: any = [];
+
     constructor(props: any) {
         super(props);
 
         this.state = {
-            taskId: this.props.taskId,
+            taskId: this.props.task.id,
             theme: 'monokai',
             mode: 'java',
             selectedLanguage: 'java',
@@ -32,6 +36,10 @@ export class CompetitionTask extends React.Component<any, any> {
             showSaved: false,
             saveSuccess: true
         };
+
+        Object.keys(languages.names).sort().map((lang) => {
+            this.languageOptions.push({ key: lang, value: lang, text: languages.names[lang] });
+        })
 
         fetch('api/Task/GetLanguages')
             .then(response => response.json() as Promise<Languages>)
@@ -94,7 +102,7 @@ export class CompetitionTask extends React.Component<any, any> {
                 let task = this.state.task;
                 task.isSolved = data.resultCorrect && data.compiled;
                 if (task.isSolved)
-                    this.props.onIncrementBalance(task.value);
+                    //this.props.onIncrementBalance(task.value);
                 this.setState({
                     compileResult: data,
                     task: task,
@@ -195,10 +203,8 @@ export class CompetitionTask extends React.Component<any, any> {
     }
 
     setMode(e: any, data: any) {
-        //if (this.state.value.length == 0) {
-        let language = this.state.languages.names[data.value];
+        let language = languages.names[data.value];
         this.setCodeSkeleton(language);
-        //}
 
         this.setState({
             mode: this.getHighlighter(data.value),
@@ -217,70 +223,7 @@ export class CompetitionTask extends React.Component<any, any> {
         })
     }
 
-    renderLanguages = (languages: Languages, setMode: any, selectedLanguage: string) => {
-        const languageOptions: any = [];
-
-        Object.keys(languages.names).sort().map((lang) => {
-            languageOptions.push({ key: lang, value: lang, text: languages.names[lang] });
-        })
-        return <Dropdown value={selectedLanguage} onChange={setMode} fluid search selection options={languageOptions} />
-        // return <select name="mode" onChange={setMode} value={selectedLanguage}>
-        //         {Object.keys(languages.names).sort().map((lang) => <option key={lang} value={lang}>{languages.names[lang]}</option>)}
-        //     </select>;
-    }
-
-    renderTask = (task: Task) => {
-        return <div className="cg-task-content" dangerouslySetInnerHTML={{ __html: task.description }}></div>;
-    }
-
-    renderResult = (compileResult: CompileResult) => {        
-        return <span>
-            {compileResult.resultCorrect ?
-                <p className="success-message">
-                    You successfully solved this task. Congratulations!
-                </p>
-                :
-                <p className="error-message">
-                    Failed testcase No. {compileResult.failedInput} out of {compileResult.totalInputs}.
-                </p>
-            }
-
-            {compileResult.message ?
-                <p className="error-message">
-                    Compiler message: <br/> {compileResult.message}
-                </p>
-                    :
-                <span></span>
-            }
-        </span>;
-    }
-
-    renderCompileResult = (compileResult: CompileResult) => {
-        return <div>
-            {!compileResult.compiled ?
-                <p className="error-message">
-                    {compileResult.message ? compileResult.message : "Unspecified error occurred. Try again or come to our stand."} 
-                </p>
-                :
-                this.renderResult(compileResult)
-            }
-        </div>;
-    }
-    render() {
-        const taskHeaderName = this.state.loadingTask
-            ? ''
-            : this.state.task.name;
-        let selectOptions = this.state.loadingLanguages
-            ? <Loader active inline='centered'>Loading</Loader>
-            : this.renderLanguages(this.state.languages, this.setMode, this.state.selectedLanguage);
-
-        let task = this.state.loadingTask
-            ? <Loader active inline='centered'>Loading</Loader>
-            : this.renderTask(this.state.task);
-
-        let compileResult = this.state.compileResult
-            ? this.renderCompileResult(this.state.compileResult)
-            : <em>Loading...</em>;
+    render() { 
 
         let saveResult = this.state.saveSuccess 
             ? <p className="success-message">Successfully saved</p>
@@ -295,37 +238,14 @@ export class CompetitionTask extends React.Component<any, any> {
 
         return (
             <div>
-                <Container fluid>
-                    <div style={{ paddingTop: 20 }}>
-                        <Header as='h1' textAlign='left'>
-                            <Header.Content>
-                                {taskHeaderName}
-                            </Header.Content>
-                        </Header>
-                    </div>
-                </Container>
-
+                <TaskHeader title="Great task" />
                 <Divider />
-
                 <Container fluid>
-
                     <Grid columns={2} relaxed>
-                        <Grid.Column mobile={16} tablet={8} computer={8}>
-                            {/* <Segment basic> */}
-                            {task}
-                            {/* </Segment> */}
-                        </Grid.Column>
+                        <TaskDescription description={this.props.task.description}/>
 
                         <Grid.Column mobile={16} tablet={8} computer={8}>
-                            {/* <Segment basic> */}
-                            <div className='cg-language'>
-                                <label className='cg-label'>
-                                    Language
-                                </label>
-                                <div className='cg-dropdown' >
-                                    {selectOptions}
-                                </div>
-                            </div>
+                            <LanguageDropdown options={this.languageOptions} onChange={this.setMode.bind(this)} value={this.state.selectedLanguage}/>
                             <Responsive onUpdate={this.handleResize}>
                                 <AceEditor
                                     className='cg-editor'
@@ -351,29 +271,70 @@ export class CompetitionTask extends React.Component<any, any> {
                                     {submitButton}
                                 </div>
 
-                                {this.state.showSaved ?
-                                    <Segment>{saveResult}</Segment>
-                                    :
-                                    <div></div>
-                                }
-
-                                {this.state.showResults ?
-                                    <Segment>
-                                        <Header as='h2'>Result</Header>
-                                        {compileResult}
-                                    </Segment>
-                                    : <div></div>
-                                }
+                                {this.state.showSaved && <Segment>{saveResult}</Segment>}
+                                {this.state.showResults && <CompileResult result={this.state.compileResult}/>}
+                                
                             </Responsive>
-
-                            {/* </Segment> */}
                         </Grid.Column>
                     </Grid>
-
                 </Container>
                 <div style={{ height: 20 }}></div>
             </div>
         )
 
     }
+}
+
+const TaskHeader = ({title}: {title: string}) => {
+    return <Container fluid>
+        <div style={{ paddingTop: 20 }}>
+            <Header as='h1' textAlign='left'>
+                <Header.Content>
+                    {title}
+                </Header.Content>
+            </Header>
+        </div>
+    </Container>;
+}
+
+const TaskDescription = ({description}: {description: string}) => {
+    return <Grid.Column mobile={16} tablet={8} computer={8}>
+                            <div className="cg-task-content" dangerouslySetInnerHTML={{ __html: description }}></div>
+            </Grid.Column>;
+}
+
+const LanguageDropdown = ({value, options, onChange}: {value: string, options: any, onChange: any}) => {
+    return <div className='cg-language'>
+        <label className='cg-label'>
+            Language
+        </label>
+        <div className='cg-dropdown' >
+            <Dropdown value={value} onChange={onChange} fluid search selection options={options} />
+        </div>
+    </div>;
+}
+
+const CompileResult = ({result}: {result: CompileResult}) => {
+    let compilerCompletionMessage = result.resultCorrect ?
+        <p className="success-message">You successfully solved this task. Congratulations!</p> :
+        <p className="error-message">Failed testcase No. {result.failedInput} out of {result.totalInputs}.</p>;
+    let compilerErrorMessage = result.message ? <p className="error-message">Compiler message: <br/> {result.message}</p> : null;
+
+    let compilerMessages = <div>
+        {compilerCompletionMessage}
+        {compilerErrorMessage}
+    </div>;
+
+    return <Segment>
+        <Header as='h2'>Result</Header>
+        {
+            !result ? <em>Loading...</em> :
+            <div>
+                {!result.compiled ?
+                    <p className="error-message">{result.message ? result.message : "Unspecified error occurred. Try again or come to our stand."}</p> :
+                    compilerMessages
+                }
+            </div>
+        }
+    </Segment>
 }
