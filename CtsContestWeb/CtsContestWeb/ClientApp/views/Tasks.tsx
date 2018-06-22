@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import 'isomorphic-fetch';
 import { Accordion, Icon, Table, Container, Header, Divider, Loader } from 'semantic-ui-react';
 import * as _ from 'lodash';
+import { Task } from '../components/models/Task';
 
 //import * as GA from 'react-ga';
 //GA.initialize('UA-109707377-1');

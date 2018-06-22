@@ -1,25 +1,24 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import {
+    Container,
+    Divider,
+    Header,
+    Icon,
+    Segment,
+    Dropdown,
+    Loader,
+    Grid,
+    Responsive
+} from 'semantic-ui-react';
 import AceEditor from 'react-ace';
-import { RouteComponentProps } from 'react-router-dom';
-import { Responsive, Grid, Segment, Divider, Header, Button, Container, Loader, Dropdown } from 'semantic-ui-react';
-import * as brace from 'brace';
 import { Task, Languages, Skeleton, CompileResult  } from '../components/models/Task';
 
-import 'brace/mode/jsx';
-import 'brace/theme/monokai';
-
-/*eslint-disable no-alert, no-console */
-import 'brace/ext/language_tools';
-import 'brace/ext/searchbox';
-import 'brace/mode/java';
-
-export class TaskComponent extends React.Component<any, any> {
+export class CompetitionTask extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
 
         this.state = {
-            taskId: this.props.match.params.id,
+            taskId: this.props.taskId,
             theme: 'monokai',
             mode: 'java',
             selectedLanguage: 'java',
@@ -33,9 +32,6 @@ export class TaskComponent extends React.Component<any, any> {
             showSaved: false,
             saveSuccess: true
         };
-
-        this.setMode = this.setMode.bind(this);
-        this.onChange = this.onChange.bind(this);
 
         fetch('api/Task/GetLanguages')
             .then(response => response.json() as Promise<Languages>)
@@ -55,12 +51,9 @@ export class TaskComponent extends React.Component<any, any> {
 
                 this.setCodeSkeleton("undefined");
             });
-
-        this.compileCode = this.compileCode.bind(this);
-        this.saveForLater = this.saveForLater.bind(this);
     }
 
-    calculateEditorWidth() {
+    calculateEditorWidth = () => {
         let editorWidth = (window.innerWidth - 150) / 2 + 'px';
         if (window.innerWidth < 768)
             editorWidth = (window.innerWidth - 150) + 'px';
@@ -159,17 +152,7 @@ export class TaskComponent extends React.Component<any, any> {
             });
     }
 
-    componentDidMount() {
-        fetch('api/Task/' + this.state.taskId, {
-            credentials: 'include'
-        })
-            .then(response => response.json() as Promise<Task>)
-            .then(data => {
-                this.setState({ task: data, loadingTask: false });
-            });
-    }
-
-    getHighlighter(name: string) {
+    getHighlighter = (name: string) => {
         switch (name) {
             case 'c':
                 return 'c_cpp';
@@ -190,7 +173,7 @@ export class TaskComponent extends React.Component<any, any> {
         }
     }
 
-    setCodeSkeleton(language: string) {
+    setCodeSkeleton = (language: string) => {
         if (language == "C#")
             language = "Csharp";
         else if (language == "C++")
@@ -223,7 +206,7 @@ export class TaskComponent extends React.Component<any, any> {
         })
     }
 
-    onChange(newValue: any) {
+    onChange = (newValue: any) => {
         let disabledButton = true;
         if (newValue.length > 0)
             disabledButton = false;
@@ -234,7 +217,7 @@ export class TaskComponent extends React.Component<any, any> {
         })
     }
 
-    private static renderLanguages(languages: Languages, setMode: any, selectedLanguage: string) {
+    renderLanguages = (languages: Languages, setMode: any, selectedLanguage: string) => {
         const languageOptions: any = [];
 
         Object.keys(languages.names).sort().map((lang) => {
@@ -246,11 +229,11 @@ export class TaskComponent extends React.Component<any, any> {
         //     </select>;
     }
 
-    private static renderTask(task: Task) {
+    renderTask = (task: Task) => {
         return <div className="cg-task-content" dangerouslySetInnerHTML={{ __html: task.description }}></div>;
     }
 
-    private static renderResult(compileResult: CompileResult) {        
+    renderResult = (compileResult: CompileResult) => {        
         return <span>
             {compileResult.resultCorrect ?
                 <p className="success-message">
@@ -272,7 +255,7 @@ export class TaskComponent extends React.Component<any, any> {
         </span>;
     }
 
-    private static renderCompileResult(compileResult: CompileResult) {
+    renderCompileResult = (compileResult: CompileResult) => {
         return <div>
             {!compileResult.compiled ?
                 <p className="error-message">
@@ -289,35 +272,26 @@ export class TaskComponent extends React.Component<any, any> {
             : this.state.task.name;
         let selectOptions = this.state.loadingLanguages
             ? <Loader active inline='centered'>Loading</Loader>
-            : TaskComponent.renderLanguages(this.state.languages, this.setMode, this.state.selectedLanguage);
+            : this.renderLanguages(this.state.languages, this.setMode, this.state.selectedLanguage);
 
         let task = this.state.loadingTask
             ? <Loader active inline='centered'>Loading</Loader>
-            : TaskComponent.renderTask(this.state.task);
+            : this.renderTask(this.state.task);
 
         let compileResult = this.state.compileResult
-            ? TaskComponent.renderCompileResult(this.state.compileResult)
+            ? this.renderCompileResult(this.state.compileResult)
             : <em>Loading...</em>;
 
         let saveResult = this.state.saveSuccess 
             ? <p className="success-message">Successfully saved</p>
             : <p className="error-message">Save failed</p>; 
 
-        if (!this.state.loadingTask && this.state.task.isSolved) {
-            var submitButton = this.state.showResults ? <div></div> : <div className="success-message">You successfully resolved this task.</div>;
-        } else {
-            var submitButton = this.props.userInfo.isLoggedIn ?
-                this.state.loadingButtons
-                    ? <Loader active inline='centered' />
-                    :
+
+            var submitButton =
                     <div className='cg-task-submit'>
                         <button className='cg-card-button cyan' onClick={this.compileCode} disabled={this.state.disabledButton}>Submit</button>
                         <button className='cg-card-button cyan' onClick={this.saveForLater} disabled={this.state.disabledButton}>Save for later</button>
-                        {/* <Button onClick={this.compileCode} disabled={this.state.disabledButton} primary>Submit</Button>
-                    <Button onClick={this.saveForLater} disabled={this.state.disabledButton} primary>Save for later</Button> */}
-                    </div>
-                : <div className="error-message">Please login before solving tasks</div>;
-        }
+                    </div>;
 
         return (
             <div>
@@ -403,4 +377,3 @@ export class TaskComponent extends React.Component<any, any> {
 
     }
 }
-
