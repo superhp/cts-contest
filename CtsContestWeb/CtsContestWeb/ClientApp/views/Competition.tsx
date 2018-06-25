@@ -40,6 +40,7 @@ export class Competition extends React.Component<RouteComponentProps<{}>, Compet
 
         this.hubConnection.on("competitionStarts", (competitionInfo) => {
             console.log("competition starts");
+            console.log(competitionInfo);
         });
     }
 

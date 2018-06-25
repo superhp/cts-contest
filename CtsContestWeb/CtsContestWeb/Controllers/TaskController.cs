@@ -66,7 +66,14 @@ namespace CtsContestWeb.Controllers
         public async Task<CompileDto> Solve(int taskId, string source, int language)
         {
             var userEmail = User.FindFirst(ClaimTypes.Email).Value;
-            return await _solutionLogic.CheckSolution(taskId, source, language, userEmail);
+            var compileResult = await _solutionLogic.CheckSolution(taskId, source, language);
+
+            if (compileResult.Compiled && compileResult.ResultCorrect)
+            {
+                await _solutionLogic.SaveSolution(taskId, source, userEmail, language);
+            }
+
+            return compileResult;
         }
 
         [LoggedIn]
@@ -74,13 +81,8 @@ namespace CtsContestWeb.Controllers
         public void SaveCode(int taskId, string source, int language)
         {
             var userEmail = User.FindFirst(ClaimTypes.Email).Value;
-            var task = new TaskDto()
-            {
-                Id = taskId,
-                Value = 0
-            };
 
-            _solutionLogic.SaveSolution(task, source, userEmail, language, false);
+            _solutionLogic.SaveSolution(taskId, source, userEmail, language, false);
         }
 
         [HttpGet("[action]")]

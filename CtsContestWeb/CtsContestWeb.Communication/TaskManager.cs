@@ -111,7 +111,9 @@ namespace CtsContestWeb.Communication
             var rnd = new Random();
             var taskNr = rnd.Next(tasks.Count);
 
-            return tasks[taskNr];
+            var task = await GetTaskById(tasks[taskNr].Id);
+
+            return task;
         }
 
         private string PrependRootUrlToImageLinks(string description, string url)

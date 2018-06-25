@@ -28,7 +28,7 @@ namespace CtsContestWeb.Competition
                 builder
                     .AllowAnyMethod()
                     .AllowAnyHeader()
-                    .WithOrigins("http://localhost:40976")
+                    .WithOrigins(Configuration.GetValue<string>("Hostname"))
                     .AllowCredentials();
             }));
 
