@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using CtsContestWeb.Competition;
 using CtsContestWeb.DI;
 using CtsContestWeb.Middleware;
 
@@ -29,6 +30,7 @@ namespace CtsContestWeb
         {
             services.AddMvc();
             services.AddMemoryCache();
+            services.AddSignalR();
 
             ApplicationContainer = TypeRegistrations.Register(services, Configuration);
 
@@ -78,6 +80,10 @@ namespace CtsContestWeb
 
             app.UseStaticFiles();
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<CompetitionHub>("/competitionhub");
+            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

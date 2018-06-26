@@ -90,8 +90,15 @@ namespace CtsContestWeb.Competition
             var compileResult = await _solutionLogic.CheckSolution(competition.Task.Id, source, language);
 
             _solutionLogic.SaveCompetitionSolution(competition.Id, source, player.Email, language, compileResult.ResultCorrect);
-
-            await Clients.User(Context.ConnectionId).SendAsync("checkedSolution", compileResult);
+            if (compileResult.ResultCorrect)
+            {
+                // send result to users
+                // mark competition as ended
+            }
+            else
+            {
+                await Clients.User(Context.ConnectionId).SendAsync("checkedSolution", compileResult);
+            }
         }
 
         private CompetitionDto GetCurrentCompetition()

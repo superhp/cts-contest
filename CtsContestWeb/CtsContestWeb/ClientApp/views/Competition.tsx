@@ -29,7 +29,7 @@ export class Competition extends React.Component<RouteComponentProps<{}>, Compet
         console.log("mounted");
     
         this.hubConnection = new signalR.HubConnectionBuilder()
-            .withUrl('http://localhost:2531/competition')
+            .withUrl('/competitionhub')
             .configureLogging(signalR.LogLevel.Information)
             .build();
     
