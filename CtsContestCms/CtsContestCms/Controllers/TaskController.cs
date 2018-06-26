@@ -46,7 +46,34 @@ namespace CtsContestCms.Controllers
         }
 
         // GET api/task/getAll
-        public List<TaskDto> GetAll()
+        public IEnumerable<TaskDto> GetAll()
+        {
+            var taskDtos = GetAllTasks();
+
+            return taskDtos.Where(t => !t.IsForCompetition);
+        }
+
+        // GET api/task/getAllCompetitionTasks
+        public IEnumerable<TaskDto> GetAllCompetitionTasks()
+        {
+            var taskDtos = GetAllTasks();
+
+            return taskDtos.Where(t => t.IsForCompetition);
+        }
+
+       // GET api/task/get/{id}
+        public TaskDto Get(int id)
+        {
+            var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
+
+            var task = umbracoHelper.Content(id);
+            if (task.Id == 0 || !task.DocumentTypeAlias.Equals("taskNew"))
+                throw new ArgumentException("No task found with given ID");
+
+            return GetNewTaskDto(task);
+        }
+
+        private static List<TaskDto> GetAllTasks()
         {
             var taskDtos = new List<TaskDto>();
             var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
@@ -57,7 +84,6 @@ namespace CtsContestCms.Controllers
             {
                 if (task.GetPropertyValue("enabled"))
                 {
-                    var test = task.GetPropertyValue("testCases");
                     List<TestcaseDto> testCases = task.GetPropertyValue("testCases").ToObject<List<TestcaseDto>>();
 
                     IEnumerable<string> outputs = testCases.Select(x => x.Output);
@@ -68,24 +94,13 @@ namespace CtsContestCms.Controllers
                             Id = task.Id,
                             Name = task.Name,
                             Value = task.GetPropertyValue("value"),
-                            IsEnabled = task.GetPropertyValue("enabled")
+                            IsEnabled = task.GetPropertyValue("enabled"),
+                            IsForCompetition = task.GetPropertyValue("competition")
                         });
                 }
             }
 
             return taskDtos;
-        }
-
-        // GET api/task/get/{id}
-        public TaskDto Get(int id)
-        {
-            var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
-
-            var task = umbracoHelper.Content(id);
-            if (task.Id == 0 || !task.DocumentTypeAlias.Equals("taskNew"))
-                throw new ArgumentException("No task found with given ID");
-
-            return GetNewTaskDto(task);
         }
 
         private TaskDto GetNewTaskDto(dynamic task)
