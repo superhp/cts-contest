@@ -31,7 +31,7 @@ export class Competition extends React.Component<RouteComponentProps<{}>, Compet
         console.log('Should start the searching now');
     
         this.hubConnection = new signalR.HubConnectionBuilder()
-            .withUrl('http://localhost:2531/competition')
+            .withUrl('/competitionhub')
             .configureLogging(signalR.LogLevel.Information)
             .build();
     
@@ -42,6 +42,7 @@ export class Competition extends React.Component<RouteComponentProps<{}>, Compet
 
         this.hubConnection.on("competitionStarts", (competitionInfo) => {
             console.log("competition starts");
+            console.log(competitionInfo);
         });
 
         this.setState({ step: 'searching' });

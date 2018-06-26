@@ -31,6 +31,7 @@ namespace CtsContestWeb.DI
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
             services.AddScoped<ISolutionRepository, SolutionRepository>();
             services.AddScoped<IContactInfoRepository, ContactInfoRepository>();
+            services.AddScoped<ICompetitionRepository, CompetitionRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBalanceLogic, BalanceLogic>();
             services.AddScoped<IPurchaseLogic, PurchaseLogic>();
