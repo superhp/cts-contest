@@ -46,7 +46,7 @@ namespace CtsContestWeb.Db.Repository
 
         public CompetitionSolution GetSolution(int competitionId, string userEmail)
         {
-            return _dbContext.CompetitionSolutions.Single(cs =>
+            return _dbContext.CompetitionSolutions.SingleOrDefault(cs =>
                 cs.CompetitionId == competitionId && cs.UserEmail == userEmail);
         }
 
