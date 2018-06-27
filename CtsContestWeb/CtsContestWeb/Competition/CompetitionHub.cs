@@ -120,6 +120,7 @@ namespace CtsContestWeb.Competition
             await base.OnDisconnectedAsync(exception);
         }
 
+        [HubMethodName("CheckSolution")]
         public async Task CheckSolution(string source, int language)
         {
             var competition = GetCurrentCompetition();

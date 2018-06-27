@@ -46,11 +46,11 @@ export class Competition extends React.Component<RouteComponentProps<{}>, Compet
         this.hubConnection
             .start()
             .then(() => console.log('Connection started!'))
-            .catch(err => console.log('Error while establishing connection :('));
+            .catch((err:any) => console.log('Error while establishing connection :('));
         console.log("searching");
         this.setState({ step: 'searching' });
 
-        this.hubConnection.on("competitionStarts", (competitionInfo) => {
+        this.hubConnection.on("competitionStarts", (competitionInfo: CompetitionInfo) => {
             this.setState({step: 'started', competitionInfo: competitionInfo});
             console.log("started game");
         });
