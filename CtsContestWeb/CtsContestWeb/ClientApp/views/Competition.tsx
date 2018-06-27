@@ -3,7 +3,8 @@ import {
     Container,
     Divider,
     Header,
-    Icon
+    Icon,
+    Grid
 } from 'semantic-ui-react';
 
 import { RouteComponentProps } from 'react-router';
@@ -18,7 +19,8 @@ interface CompetitionState {
     compileResult: CompileResult | null,
     winner: UserInfo | null,
     step: string,
-    competitionInfo: CompetitionInfo
+    competitionInfo: CompetitionInfo,
+    timeElapsed: number
 }
 
 export class Competition extends React.Component<RouteComponentProps<{}>, CompetitionState> {
@@ -32,7 +34,8 @@ export class Competition extends React.Component<RouteComponentProps<{}>, Compet
             compileResult: null,
             winner: null,
             step: 'initial',
-            competitionInfo: fakeCompetitionInfo
+            competitionInfo: fakeCompetitionInfo,
+            timeElapsed: 0
         };
 
         this.hubConnection = new signalR.HubConnectionBuilder()
@@ -40,18 +43,13 @@ export class Competition extends React.Component<RouteComponentProps<{}>, Compet
             .configureLogging(signalR.LogLevel.Information)
             .build();
         console.log("mounted");
-    }
-
-    findOpponent = () => {
-        this.hubConnection
-            .start()
-            .then(() => console.log('Connection started!'))
-            .catch((err:any) => console.log('Error while establishing connection :('));
-        console.log("searching");
-        this.setState({ step: 'searching' });
 
         this.hubConnection.on("competitionStarts", (competitionInfo: CompetitionInfo) => {
             this.setState({step: 'started', competitionInfo: competitionInfo});
+            setInterval(() => {
+                let seconds = this.state.timeElapsed + 1;   
+                this.setState({timeElapsed: seconds})
+            }, 1000);
             console.log("started game");
         });
 
@@ -64,6 +62,15 @@ export class Competition extends React.Component<RouteComponentProps<{}>, Compet
             this.setState({step: 'finished', winner: winningPlayer});
             console.log(`${winningPlayer.email} won`)
         })
+    }
+
+    findOpponent = () => {
+        this.hubConnection
+            .start()
+            .then(() => console.log('Opponent found! Wait a sec mate'))
+            .catch((err:any) => console.log('Error while establishing connection :('));
+        console.log("searching");
+        this.setState({ step: 'searching' });
     }
 
     submitSolution = (code: string, language: number) => {
@@ -87,7 +94,7 @@ export class Competition extends React.Component<RouteComponentProps<{}>, Compet
                 return <CompetitionTask info={this.state.competitionInfo} submitSolution={this.submitSolution} compilerError={this.state.compileResult}/>
             case 'finished':
                 return <div className="cg-title loading-text">
-                    <h2>{this.state.winner && this.state.winner.name} has won the duel!</h2>
+                    <h2>{this.state.winner && this.state.winner.name} has won the competition!</h2>
                 </div>;
         }
     }
@@ -100,13 +107,17 @@ export class Competition extends React.Component<RouteComponentProps<{}>, Compet
                         <Header as='h1' textAlign='center' inverted>
                             <Icon name='checkmark box' />
                             <Header.Content>
-                                Duel
+                                Competition
                             </Header.Content>
                         </Header>
                     </Container>
                 </div>
 
-                <Rules/>
+                {
+                    this.state.step === "started" ?
+                    <RulesAndCompetitionInfo info={this.state.competitionInfo} timeElapsed={this.state.timeElapsed}/> :
+                    <Rules/>
+                }
                 <Divider />
 
                 {this.getCurrentStepTemplate(this.state.step)}
@@ -133,4 +144,27 @@ const Rules = ({}) => {
             </div>
         </Container>
     );
+}
+
+const RulesAndCompetitionInfo = ({info, timeElapsed}: {info: CompetitionInfo, timeElapsed: number}) => {
+    return (<Container fluid>
+        <Grid columns={2} relaxed>
+
+            <Grid.Column mobile={16} tablet={8} computer={8}>
+                <Rules/>
+            </Grid.Column>
+            <Grid.Column mobile={16} tablet={8} computer={8}>
+            <Container>
+                <div className='cg-title'>
+                    <h2>Information</h2>
+                </div>
+
+                <div className='cg-about-p'>
+                    <p><strong>{info.players[0].name}</strong> vs <strong>{info.players[1].name}</strong></p>
+                    <p>Time elapsed: {timeElapsed} seconds</p>    
+                </div>
+            </Container>
+            </Grid.Column>
+        </Grid>
+    </Container>)
 }

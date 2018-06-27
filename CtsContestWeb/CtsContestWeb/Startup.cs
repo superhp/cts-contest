@@ -35,7 +35,7 @@ namespace CtsContestWeb
                 builder =>
                 {
                     builder.AllowAnyMethod().AllowAnyHeader()
-                        .WithOrigins("https://cts-contest.azurewebsites.net")
+                        .WithOrigins("http://localhost:40976")
                         .AllowCredentials();
                 }));
 
