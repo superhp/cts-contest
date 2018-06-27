@@ -30,6 +30,15 @@ namespace CtsContestWeb
         {
             services.AddMvc();
             services.AddMemoryCache();
+
+            services.AddCors(options => options.AddPolicy("CorsPolicy",
+                builder =>
+                {
+                    builder.AllowAnyMethod().AllowAnyHeader()
+                        .WithOrigins("https://cts-contest.azurewebsites.net")
+                        .AllowCredentials();
+                }));
+
             services.AddSignalR();
 
             ApplicationContainer = TypeRegistrations.Register(services, Configuration);
@@ -80,6 +89,7 @@ namespace CtsContestWeb
 
             app.UseStaticFiles();
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
+            app.UseCors("CorsPolicy");
             app.UseSignalR(routes =>
             {
                 routes.MapHub<CompetitionHub>("/competitionhub");

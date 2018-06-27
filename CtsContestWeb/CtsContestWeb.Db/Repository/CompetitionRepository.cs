@@ -52,7 +52,7 @@ namespace CtsContestWeb.Db.Repository
 
         public void UpsertSolution(CompetitionSolution solution)
         {
-            _dbContext.Entry(solution).State = solution.CompetitionId == 0 ?
+            _dbContext.Entry(solution).State = solution.CompetitionSolutionId == 0 ?
                 EntityState.Added :
                 EntityState.Modified;
             _dbContext.SaveChanges();
