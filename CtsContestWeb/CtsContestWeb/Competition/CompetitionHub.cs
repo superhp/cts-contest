@@ -128,8 +128,8 @@ namespace CtsContestWeb.Competition
 
             var compileResult = await _solutionLogic.CheckSolution(competition.Task.Id, source, language);
 
-            _solutionLogic.SaveCompetitionSolution(competition.Id, source, player.Email, language, compileResult.ResultCorrect);
-            if (compileResult.ResultCorrect)
+            _solutionLogic.SaveCompetitionSolution(competition.Id, source, player.Email, language, compileResult.Compiled && compileResult.ResultCorrect);
+            if (compileResult.Compiled && compileResult.ResultCorrect)
             {
                 await Clients.Group(competition.GroupName).SendAsync("competitionHasWinner", player);
 
