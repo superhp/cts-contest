@@ -15,14 +15,19 @@ import { Task, Languages, Skeleton, CompileResult  } from '../components/models/
 import { CompetitionInfo } from '../components/models/CompetitionInfo';
 import { languages } from '../assets/languages';
 
-export class CompetitionTask extends React.Component<CompetitionInfo, any> {
+interface CompetitionTaskProps {
+    info: CompetitionInfo,
+    submitSolution: any,
+    compilerError: CompileResult | null
+}
+
+export class CompetitionTask extends React.Component<CompetitionTaskProps, any> {
     languageOptions: any = [];
 
     constructor(props: any) {
         super(props);
 
         this.state = {
-            taskId: this.props.task.id,
             theme: 'monokai',
             mode: 'java',
             selectedLanguage: 'java',
@@ -73,42 +78,9 @@ export class CompetitionTask extends React.Component<CompetitionInfo, any> {
         this.setState({ editorWidth: this.calculateEditorWidth() });
     }
 
-    compileCode() {
-        this.setState({
-            compileResult: null,
-            showResults: true,
-            showSaved: false,
-            loadingButtons: true 
-        })
-
+    compileCode = () => {
         let languageCode = this.state.languages.codes[this.state.selectedLanguage];
-
-        const formData = new FormData();
-        formData.append('taskId', this.state.taskId);
-        formData.append('source', this.state.value);
-        formData.append('language', languageCode);
-        fetch('api/Task/Solve', {
-            method: 'PUT',
-            body: formData,
-            credentials: 'include'
-        }).then(function (response) {
-            if (response.ok)
-                return response;
-
-            throw new Error('Something went wrong.');
-        })
-            .then(response => response.json() as Promise<CompileResult>)
-            .then(data => {
-                let task = this.state.task;
-                task.isSolved = data.resultCorrect && data.compiled;
-                if (task.isSolved)
-                    //this.props.onIncrementBalance(task.value);
-                this.setState({
-                    compileResult: data,
-                    task: task,
-                    loadingButtons: false  
-                })
-            }).catch(error => this.compileError());
+        this.props.submitSolution(this.state.value, languageCode);
     }
 
     compileError() {
@@ -223,26 +195,14 @@ export class CompetitionTask extends React.Component<CompetitionInfo, any> {
         })
     }
 
-    render() { 
-
-        let saveResult = this.state.saveSuccess 
-            ? <p className="success-message">Successfully saved</p>
-            : <p className="error-message">Save failed</p>; 
-
-
-            var submitButton =
-                    <div className='cg-task-submit'>
-                        <button className='cg-card-button cyan' onClick={this.compileCode} disabled={this.state.disabledButton}>Submit</button>
-                        <button className='cg-card-button cyan' onClick={this.saveForLater} disabled={this.state.disabledButton}>Save for later</button>
-                    </div>;
-
+    render() {
         return (
             <div>
-                <TaskHeader title="Great task" />
+                <TaskHeader title={this.props.info.task.name} />
                 <Divider />
                 <Container fluid>
                     <Grid columns={2} relaxed>
-                        <TaskDescription description={this.props.task.description}/>
+                        <TaskDescription description={this.props.info.task.description}/>
 
                         <Grid.Column mobile={16} tablet={8} computer={8}>
                             <LanguageDropdown options={this.languageOptions} onChange={this.setMode.bind(this)} value={this.state.selectedLanguage}/>
@@ -268,11 +228,12 @@ export class CompetitionTask extends React.Component<CompetitionInfo, any> {
 
                                 />
                                 <div className='cg-padding-submit'>
-                                    {submitButton}
+                                    <div className='cg-task-submit'>
+                                        <button className='cg-card-button cyan' onClick={this.compileCode} disabled={this.state.disabledButton}>Submit</button>
+                                    </div>
                                 </div>
 
-                                {this.state.showSaved && <Segment>{saveResult}</Segment>}
-                                {this.state.showResults && <CompileResult result={this.state.compileResult}/>}
+                                {this.props.compilerError && <CompileResult result={this.props.compilerError}/>}
                                 
                             </Responsive>
                         </Grid.Column>

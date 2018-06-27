@@ -10,43 +10,65 @@ import { RouteComponentProps } from 'react-router';
 import * as signalR from '@aspnet/signalr';
 import { CompetitionTask } from './CompetitionTask';
 import { fakeCompetitionInfo } from '../mocks/fakeData';
+import { CompileResult } from '../components/models/Task';
+import { UserInfo } from '../components/models/UserInfo';
+import { CompetitionInfo } from '../components/models/CompetitionInfo';
 
 interface CompetitionState {
-    step: string
+    compileResult: CompileResult | null,
+    winner: UserInfo | null,
+    step: string,
+    competitionInfo: CompetitionInfo
 }
 
 export class Competition extends React.Component<RouteComponentProps<{}>, CompetitionState> {
 
     hubConnection: signalR.HubConnection;
+
     constructor(props: any) {
         super(props);
 
         this.state = {
-            step: 'initial'
+            compileResult: null,
+            winner: null,
+            step: 'initial',
+            competitionInfo: fakeCompetitionInfo
         };
-    }
 
-    findOpponent = () => {
-        console.log("mounted");
-        console.log('Should start the searching now');
-    
         this.hubConnection = new signalR.HubConnectionBuilder()
             .withUrl('/competitionhub')
             .configureLogging(signalR.LogLevel.Information)
             .build();
-    
+        console.log("mounted");
+    }
+
+    findOpponent = () => {
         this.hubConnection
             .start()
             .then(() => console.log('Connection started!'))
             .catch(err => console.log('Error while establishing connection :('));
+        console.log("searching");
+        this.setState({ step: 'searching' });
 
         this.hubConnection.on("competitionStarts", (competitionInfo) => {
-            console.log("competition starts");
-            console.log(competitionInfo);
+            this.setState({step: 'started', competitionInfo: competitionInfo});
+            console.log("started game");
         });
 
-        this.setState({ step: 'searching' });
-        setTimeout(() => this.setState({step: 'started'}), 2000);
+        this.hubConnection.on("solutionChecked", (compileResult: CompileResult) => {
+            this.setState({compileResult: compileResult});
+            console.log('compiler error received');
+        })
+
+        this.hubConnection.on("competitionHasWinner", (winningPlayer: UserInfo) => {
+            this.setState({step: 'finished', winner: winningPlayer});
+            console.log(`${winningPlayer.email} won`)
+        })
+    }
+
+    submitSolution = (code: string, language: number) => {
+        this.hubConnection.invoke("CheckSolution", code, language)
+            .then(() => console.log('invoked method CheckSolution'));
     }
 
     getCurrentStepTemplate = (step: string) => {
@@ -62,7 +84,11 @@ export class Competition extends React.Component<RouteComponentProps<{}>, Compet
                            <h2>Wait for your opponent...</h2>
                 </div>;
             case 'started':
-                return <CompetitionTask players={fakeCompetitionInfo.players} startTime={fakeCompetitionInfo.startTime} task={fakeCompetitionInfo.task} />
+                return <CompetitionTask info={this.state.competitionInfo} submitSolution={this.submitSolution} compilerError={this.state.compileResult}/>
+            case 'finished':
+                return <div className="cg-title loading-text">
+                    <h2>{this.state.winner && this.state.winner.name} has won the duel!</h2>
+                </div>;
         }
     }
 
