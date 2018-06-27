@@ -132,6 +132,7 @@ namespace CtsContestWeb.Competition
             if (compileResult.Compiled && compileResult.ResultCorrect)
             {
                 await Clients.Group(competition.GroupName).SendAsync("competitionHasWinner", player);
+                await Clients.Caller.SendAsync("scoreAdded", 100);
 
                 _competitionRepository.SetWinner(competition, player);
             }

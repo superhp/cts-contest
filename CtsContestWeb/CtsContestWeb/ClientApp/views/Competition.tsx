@@ -23,7 +23,7 @@ interface CompetitionState {
     timeElapsed: number
 }
 
-export class Competition extends React.Component<RouteComponentProps<{}>, CompetitionState> {
+export class Competition extends React.Component<any, CompetitionState> {
 
     hubConnection: signalR.HubConnection;
 
@@ -54,9 +54,14 @@ export class Competition extends React.Component<RouteComponentProps<{}>, Compet
         });
 
         this.hubConnection.on("solutionChecked", (compileResult: CompileResult) => {
-            this.setState({compileResult: compileResult});
-            console.log('compiler error received');
+            this.setState({ compileResult: compileResult }); 
+	        console.log('compiler error received');
         })
+
+	    this.hubConnection.on("scoreAdded", (score: number) => {
+		    this.props.onIncrementBalance(score); 
+		    console.log(score + ' points added');
+	    })
 
         this.hubConnection.on("competitionHasWinner", (winningPlayer: UserInfo) => {
             this.setState({step: 'finished', winner: winningPlayer});
