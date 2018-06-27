@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using CtsContestWeb.Db.Entities;
 using CtsContestWeb.Dto;
 using Microsoft.EntityFrameworkCore;
@@ -34,7 +36,10 @@ namespace CtsContestWeb.Db.Repository
         {
             var competition = _dbContext.Competitions.Find(competitionDto.Id);
 
-            competition.WinnerEmail = winner.Email;
+            if (string.IsNullOrEmpty(competition.WinnerEmail))
+                competition.WinnerEmail = winner.Email;
+            else
+                throw new ArgumentException($"Competition {competitionDto.Id} already has a winner");
 
             _dbContext.SaveChanges();
         }
@@ -51,6 +56,44 @@ namespace CtsContestWeb.Db.Repository
                 EntityState.Added :
                 EntityState.Modified;
             _dbContext.SaveChanges();
+        }
+
+        public IEnumerable<CompetitionDto> GetWonCompetitionsByEmail(string userEmail)
+        {
+            return _dbContext.Competitions
+                .Where(c => c.WinnerEmail.Equals(userEmail)).AsEnumerable()
+                .Select(CompetitionToCompetitionDto);
+        }
+
+        public IEnumerable<CompetitionDto> GetCompetitionsByEmail(string email)
+        {
+            return _dbContext.Competitions
+                .Where(c => c.FirstPlayerEmail.Equals(email) || c.SecondPlayerEmail.Equals(email)).AsEnumerable()
+                .Select(CompetitionToCompetitionDto);
+        }
+
+        private CompetitionDto CompetitionToCompetitionDto(Competition c)
+        {
+            return new CompetitionDto
+            {
+                Prize = c.Prize,
+                Players = new List<PlayerDto>
+                {
+                    new PlayerDto
+                    {
+                        Email = c.FirstPlayerEmail
+                    },
+                    new PlayerDto
+                    {
+                        Email = c.SecondPlayerEmail
+                    }
+                },
+                Task = new TaskDto
+                {
+                    Id = c.TaskId
+                },
+                Id = c.CompetitionId
+            };
         }
     }
 }

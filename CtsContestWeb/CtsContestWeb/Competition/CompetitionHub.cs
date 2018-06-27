@@ -26,6 +26,12 @@ namespace CtsContestWeb.Competition
 
         public override async Task OnConnectedAsync()
         {
+            if (IsAlreadyConnected())
+            {
+                await Clients.User(Context.ConnectionId).SendAsync("closeThisWindow");
+                return;
+            }
+
             var firstPlayer = new PlayerDto
             {
                 ConnectionId = Context.ConnectionId,
@@ -35,19 +41,38 @@ namespace CtsContestWeb.Competition
 
             if (UserHandler.WaitingPlayers.Count > 0)
             {
-                var secondPlayer = UserHandler.WaitingPlayers.First();
+                PlayerDto secondPlayer = null;
+                TaskDto task = null;
+                for (int i = 0; i < UserHandler.WaitingPlayers.Count; i++)
+                {
+                    secondPlayer = UserHandler.WaitingPlayers.Skip(i).First();
+
+                    task = await _taskManager.GetTaskForCompetition(new List<string> { firstPlayer.Email, secondPlayer.Email });
+                    if (task != null)
+                        break;
+                }
+
+                if (task == null)
+                {
+                    UserHandler.WaitingPlayers.Add(firstPlayer);
+                    return;
+                }
+              
                 UserHandler.WaitingPlayers.Remove(secondPlayer);
 
                 // TODO: prize amount calculation
                 var competition = new CompetitionDto
                 {
-                    Prize = 100
+                    Prize = 100,
+                    Players = new List<PlayerDto>
+                    {
+                        firstPlayer,
+                        secondPlayer
+                    },
+                    Task = task
                 };
-                competition.Players.Add(firstPlayer);
-                competition.Players.Add(secondPlayer);
-                competition.Task = await _taskManager.GetTaskForCompetition(competition.Players.Select(p => p.Email));
+                
                 competition.Id = _competitionRepository.CreateCompetition(competition);
-
                 UserHandler.ActiveCompetitions.Add(competition);
 
                 await Groups.AddToGroupAsync(firstPlayer.ConnectionId, competition.GroupName);
@@ -60,6 +85,19 @@ namespace CtsContestWeb.Competition
             }
 
             await base.OnConnectedAsync();
+        }
+
+        private bool IsAlreadyConnected()
+        {
+            var email = Context.User.FindFirst(ClaimTypes.Email).Value;
+
+            if (UserHandler.WaitingPlayers.Select(wp => wp.Email).Contains(email))
+                return true;
+
+            if (UserHandler.ActiveCompetitions.SelectMany(ac => ac.Players).Select(p => p.Email).Contains(email))
+                return true;
+
+            return false;
         }
 
         public override async Task OnDisconnectedAsync(Exception exception)
@@ -92,12 +130,13 @@ namespace CtsContestWeb.Competition
             _solutionLogic.SaveCompetitionSolution(competition.Id, source, player.Email, language, compileResult.ResultCorrect);
             if (compileResult.ResultCorrect)
             {
-                // send result to users
-                // mark competition as ended
+                await Clients.Group(competition.GroupName).SendAsync("competitionHasWinner", player);
+
+                _competitionRepository.SetWinner(competition, player);
             }
             else
             {
-                await Clients.User(Context.ConnectionId).SendAsync("checkedSolution", compileResult);
+                await Clients.User(Context.ConnectionId).SendAsync("solutionChecked", compileResult);
             }
         }
 

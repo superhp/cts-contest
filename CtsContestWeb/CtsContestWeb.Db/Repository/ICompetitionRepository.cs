@@ -10,5 +10,7 @@ namespace CtsContestWeb.Db.Repository
         void SetWinner(CompetitionDto competitionDto, PlayerDto winner);
         CompetitionSolution GetSolution(int competitionId, string userEmail);
         void UpsertSolution(CompetitionSolution solution);
+        IEnumerable<CompetitionDto> GetWonCompetitionsByEmail(string userEmail);
+        IEnumerable<CompetitionDto> GetCompetitionsByEmail(string email);
     }
 }
