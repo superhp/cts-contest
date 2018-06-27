@@ -137,7 +137,7 @@ namespace CtsContestWeb.Competition
             }
             else
             {
-                await Clients.User(Context.ConnectionId).SendAsync("solutionChecked", compileResult);
+                await Clients.Caller.SendAsync("solutionChecked", compileResult);
             }
         }
 
