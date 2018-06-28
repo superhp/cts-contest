@@ -116,6 +116,7 @@ namespace CtsContestWeb.Competition
                 await Groups.RemoveFromGroupAsync(winner.ConnectionId, competition.GroupName);
 
                 _competitionRepository.SetWinner(competition, winner);
+                UserHandler.ActiveCompetitions.Remove(competition);
             }
 
             await base.OnDisconnectedAsync(exception);
@@ -139,6 +140,7 @@ namespace CtsContestWeb.Competition
                 await Groups.RemoveFromGroupAsync(competition.Players[1].ConnectionId, competition.GroupName);
 
                 _competitionRepository.SetWinner(competition, player);
+                UserHandler.ActiveCompetitions.Remove(competition);
             }
             else
             {
