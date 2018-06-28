@@ -40,18 +40,22 @@ export class CompetitionTask extends React.Component<CompetitionTaskProps, any> 
             disabledButton: true,
             value: "",
             showSaved: false,
-            saveSuccess: true
+            saveSuccess: true,
+            languages: languages
         };
 
         Object.keys(languages.names).sort().map((lang) => {
             this.languageOptions.push({ key: lang, value: lang, text: languages.names[lang] });
         });
-
-        
     }
 
     componentDidMount() {
         this.setCodeSkeleton('undefined');
+
+        for (let key in this.state.languages.names) {
+            let compiler = this.getHighlighter(key);
+            require(`brace/mode/${compiler}`)
+        }
     }
 
     calculateEditorWidth = () => {
