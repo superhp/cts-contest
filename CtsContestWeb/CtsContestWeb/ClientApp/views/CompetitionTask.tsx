@@ -15,6 +15,14 @@ import { Task, Languages, Skeleton, CompileResult  } from '../components/models/
 import { CompetitionInfo } from '../components/models/CompetitionInfo';
 import { languages } from '../assets/languages';
 
+import 'brace/mode/jsx';
+import 'brace/theme/monokai';
+
+/*eslint-disable no-alert, no-console */
+import 'brace/ext/language_tools';
+import 'brace/ext/searchbox';
+import 'brace/mode/java';
+
 interface CompetitionTaskProps {
     info: CompetitionInfo,
     submitSolution: any,
@@ -178,6 +186,9 @@ export class CompetitionTask extends React.Component<CompetitionTaskProps, any> 
                                         enableSnippets: false,
                                         showLineNumbers: true,
                                         tabSize: 4,
+                                    }}
+                                    editorProps={{
+                                        $blockScrolling: Infinity
                                     }}
 
                                 />

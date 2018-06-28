@@ -62,7 +62,7 @@ namespace CtsContestWeb.Competition
 
                 var competition = new CompetitionDto
                 {
-                    Prize = Convert.ToInt32(task.Value * 1.5),
+                    Prize = task.Value,
                     Players = new List<PlayerDto>
                     {
                         firstPlayer,
@@ -134,6 +134,9 @@ namespace CtsContestWeb.Competition
             {
                 await Clients.Group(competition.GroupName).SendAsync("competitionHasWinner", player);
                 await Clients.Caller.SendAsync("scoreAdded");
+
+                await Groups.RemoveFromGroupAsync(competition.Players[0].ConnectionId, competition.GroupName);
+                await Groups.RemoveFromGroupAsync(competition.Players[1].ConnectionId, competition.GroupName);
 
                 _competitionRepository.SetWinner(competition, player);
             }

@@ -27,6 +27,7 @@ interface CompetitionState {
 export class Competition extends React.Component<any, CompetitionState> {
 
     hubConnection: signalR.HubConnection;
+    timer: any;
 
     constructor(props: any) {
         super(props);
@@ -48,7 +49,7 @@ export class Competition extends React.Component<any, CompetitionState> {
 
         this.hubConnection.on("competitionStarts", (competitionInfo: CompetitionInfo) => {
             this.setState({step: 'started', competitionInfo: competitionInfo});
-            setInterval(() => {
+            this.timer = setInterval(() => {
                 let seconds = this.state.timeElapsed + 1;   
                 this.setState({timeElapsed: seconds})
             }, 1000);
@@ -85,6 +86,7 @@ export class Competition extends React.Component<any, CompetitionState> {
     componentWillUnmount() {
         this.hubConnection.stop()
             .then(() => console.log('Connection terminated'));
+        clearInterval(this.timer);
     }
 
     findOpponent = () => {

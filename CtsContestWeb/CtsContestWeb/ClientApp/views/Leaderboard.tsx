@@ -78,7 +78,7 @@ export class Leaderboard extends React.Component<any, LeaderboardState> {
 
     private static renderUserRow(user: UserInfo, rank: number) {
         return (
-            <Grid className="users vcenter">
+            <Grid key={rank} className="users vcenter">
                 <Grid.Column width={2} className="rank">
                     <span>{rank}</span>
                 </Grid.Column>
