@@ -118,6 +118,14 @@ namespace CtsContestWeb.Competition
                 _competitionRepository.SetWinner(competition, winner);
                 UserHandler.ActiveCompetitions.Remove(competition);
             }
+            else
+            {
+                var player =
+                    UserHandler.WaitingPlayers.FirstOrDefault(wp => wp.ConnectionId.Equals(Context.ConnectionId));
+
+                if (player != null)
+                    UserHandler.WaitingPlayers.Remove(player);
+            }
 
             await base.OnDisconnectedAsync(exception);
         }
