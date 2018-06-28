@@ -16,24 +16,30 @@ export class Routes extends React.Component<any, any> {
         super(props);
 
         this.state = {
+            //TODO: should be changed from any to defined class
             userInfo: {
                 isLoggedIn: false,
                 name: '',
-                balance: 0
+                balance: 0,
+                todaysBalance: 0,
+                totalBalance: 0,
+                competitionBalance: 0
             }
         }
 
         this.incrementBalance = this.incrementBalance.bind(this);
         this.decrementBalance = this.decrementBalance.bind(this);
     }
+
     componentDidMount() {
         fetch('api/User', {
             credentials: 'include'
         })
-            .then(response => response.json() as Promise<UserInfo>)
-            .then(data => {
-                this.setState({userInfo: data});
-            });
+        .then(response => response.json() as Promise<any>)
+        .then(data => {
+            data.totalBalance += data.competitionBalance;
+            this.setState({userInfo: data});
+        });
     }
 
     incrementBalance(value:number){

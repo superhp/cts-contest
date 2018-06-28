@@ -108,9 +108,11 @@ namespace CtsContestWeb.Competition
                 UserHandler.ActiveCompetitions.Remove(competition);
 
                 var winner = competition.Players.Single(p => !p.ConnectionId.Equals(Context.ConnectionId));
-                await Clients.User(winner.ConnectionId).SendAsync("opponentDisconnected");
 
                 await Groups.RemoveFromGroupAsync(Context.ConnectionId, competition.GroupName);
+                //Currently calling Group (as the other person is removed). Should be changed to call just the winner
+                await Clients.Group(competition.GroupName).SendAsync("opponentDisconnected", winner);
+                await Clients.Group(competition.GroupName).SendAsync("scoreAdded");
                 await Groups.RemoveFromGroupAsync(winner.ConnectionId, competition.GroupName);
 
                 _competitionRepository.SetWinner(competition, winner);
@@ -131,7 +133,7 @@ namespace CtsContestWeb.Competition
             if (compileResult.Compiled && compileResult.ResultCorrect)
             {
                 await Clients.Group(competition.GroupName).SendAsync("competitionHasWinner", player);
-                await Clients.Caller.SendAsync("scoreAdded", 100);
+                await Clients.Caller.SendAsync("scoreAdded");
 
                 _competitionRepository.SetWinner(competition, player);
             }

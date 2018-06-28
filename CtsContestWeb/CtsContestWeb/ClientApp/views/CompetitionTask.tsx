@@ -18,7 +18,8 @@ import { languages } from '../assets/languages';
 interface CompetitionTaskProps {
     info: CompetitionInfo,
     submitSolution: any,
-    compilerError: CompileResult | null
+    compilerError: CompileResult | null,
+    compiling: boolean
 }
 
 export class CompetitionTask extends React.Component<CompetitionTaskProps, any> {
@@ -67,6 +68,7 @@ export class CompetitionTask extends React.Component<CompetitionTaskProps, any> 
 
     compileCode = () => {
         let languageCode = this.state.languages.codes[this.state.selectedLanguage];
+        this.setState({loading: true});
         this.props.submitSolution(this.state.value, languageCode);
     }
 
@@ -78,45 +80,6 @@ export class CompetitionTask extends React.Component<CompetitionTaskProps, any> 
             compileResult: compileResult, 
             loadingButtons: false  
         })
-    }
-
-    saveForLater() {
-        this.setState({
-            showSaved: false,
-            loadingButtons: true
-        });
-
-        let languageCode = this.state.languages.codes[this.state.selectedLanguage];
-
-        const formData = new FormData();
-        formData.append('taskId', this.state.taskId);
-        formData.append('source', this.state.value);
-        formData.append('language', languageCode);
-        fetch('api/Task/SaveCode', {
-            method: 'PUT',
-            body: formData,
-            credentials: 'include'
-        })
-            .then(function (response) {
-                if (response.ok)
-                    return response;
-
-                throw new Error();
-            })
-            .then(() => {
-                this.setState({
-                    showSaved: true,
-                    loadingButtons: false,
-                    saveSuccess: true
-                });
-            })
-            .catch(error => {
-                this.setState({
-                    showSaved: true,
-                    loadingButtons: false,
-                    saveSuccess: false
-                });
-            });
     }
 
     getHighlighter = (name: string) => {
@@ -186,7 +149,7 @@ export class CompetitionTask extends React.Component<CompetitionTaskProps, any> 
         return (
             <div>
                 <TaskHeader title={this.props.info.task.name} />
-                <Divider />
+                <br/>
                 <Container fluid>
                     <Grid columns={2} relaxed>
                         <TaskDescription description={this.props.info.task.description}/>
@@ -216,10 +179,11 @@ export class CompetitionTask extends React.Component<CompetitionTaskProps, any> 
                                 />
                                 <div className='cg-padding-submit'>
                                     <div className='cg-task-submit'>
-                                        <button className='cg-card-button cyan' onClick={this.compileCode} disabled={this.state.disabledButton}>Submit</button>
+                                        <button className='cg-card-button cyan' onClick={this.compileCode} disabled={this.props.compiling}>Submit</button>
                                     </div>
                                 </div>
 
+                                {this.props.compiling && <Loader active inline='centered' />}
                                 {this.props.compilerError && <CompileResult result={this.props.compilerError}/>}
                                 
                             </Responsive>
