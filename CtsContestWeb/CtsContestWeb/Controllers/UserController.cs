@@ -67,5 +67,11 @@ namespace CtsContestWeb.Controllers
 
             return new List<PurchaseDto>();
         }
+
+        [HttpGet("users")]
+        public List<UserInfoDto> GetUsers()
+        {
+            return _userRepository.GetAllUsers().ToList();
+        }
     }
 }

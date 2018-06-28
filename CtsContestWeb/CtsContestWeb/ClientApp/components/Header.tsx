@@ -21,6 +21,10 @@ const links = [
         routeTo: '/',
         name: 'Competition'
     },
+    {
+        routeTo: '/leaderboard',
+        name: 'Leaderboard'
+    },
     // {
     //     routeTo: '/shop',
     //     name: 'Shopping booth'

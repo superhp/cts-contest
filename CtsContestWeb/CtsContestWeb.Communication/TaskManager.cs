@@ -167,8 +167,13 @@ namespace CtsContestWeb.Communication
 
         private void UpdateTaskValue(TaskDto task)
         {
-            double d = 8.2d * task.Value * task.Value - 20 * task.Value + 23;
-            task.Value = (int)Math.Ceiling(d / 5) * 5;
+            if (task.Value == 0)
+                task.Value = 10;
+            else
+            {
+                var d = 8.2d * task.Value * task.Value - 20 * task.Value + 23;
+                task.Value = (int) Math.Ceiling(d / 5) * 5;
+            }
         }
     }
 }
