@@ -114,6 +114,12 @@ namespace CtsContestWeb.Logic
                     Source = source
                 };
             }
+            else
+            {
+                solution.IsCorrect = resultCorrect;
+                solution.Source = source;
+                solution.Language = language;
+            }
 
             _competitionRepository.UpsertSolution(solution);
         }

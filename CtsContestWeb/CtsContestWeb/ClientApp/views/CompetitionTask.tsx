@@ -44,26 +44,13 @@ export class CompetitionTask extends React.Component<CompetitionTaskProps, any> 
 
         Object.keys(languages.names).sort().map((lang) => {
             this.languageOptions.push({ key: lang, value: lang, text: languages.names[lang] });
-        })
+        });
 
-        fetch('api/Task/GetLanguages')
-            .then(response => response.json() as Promise<Languages>)
-            .then(data => {
-                var unsupportedLanguages: string[] = ['bash', 'fsharp', 'lolcode', 'smalltalk', 'whitespace', 'tsql', 'java8', 'db2', 'octave', 'racket', 'oracle'];
-                unsupportedLanguages.forEach(language => {
-                    delete data.codes[language];
-                    delete data.names[language];
-                });
+        
+    }
 
-                this.setState({ languages: data });
-
-                for (let key in data.names) {
-                    let compiler = this.getHighlighter(key);
-                    require(`brace/mode/${compiler}`)
-                }
-
-                this.setCodeSkeleton("undefined");
-            });
+    componentDidMount() {
+        this.setCodeSkeleton('undefined');
     }
 
     calculateEditorWidth = () => {
@@ -159,7 +146,7 @@ export class CompetitionTask extends React.Component<CompetitionTaskProps, any> 
         else if (language == "C++")
             language = "Cpp";
 
-        fetch('api/Task/GetCodeSkeleton/' + language + '/' + this.state.taskId, {
+        fetch('api/Task/GetCodeSkeleton/' + language + '/' + this.props.info.task.id, {
             credentials: 'include'
         })
             .then(response => response.json() as Promise<Skeleton>)

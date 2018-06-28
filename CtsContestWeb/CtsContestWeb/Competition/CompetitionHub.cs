@@ -28,7 +28,7 @@ namespace CtsContestWeb.Competition
         {
             if (IsAlreadyConnected())
             {
-                await Clients.User(Context.ConnectionId).SendAsync("closeThisWindow");
+                await Clients.Caller.SendAsync("closeThisWindow");
                 return;
             }
 
@@ -60,10 +60,9 @@ namespace CtsContestWeb.Competition
               
                 UserHandler.WaitingPlayers.Remove(secondPlayer);
 
-                // TODO: prize amount calculation
                 var competition = new CompetitionDto
                 {
-                    Prize = 100,
+                    Prize = Convert.ToInt32(task.Value * 1.5),
                     Players = new List<PlayerDto>
                     {
                         firstPlayer,
