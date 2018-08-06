@@ -15,10 +15,19 @@ import { Task, Languages, Skeleton, CompileResult  } from '../components/models/
 import { CompetitionInfo } from '../components/models/CompetitionInfo';
 import { languages } from '../assets/languages';
 
+import 'brace/mode/jsx';
+import 'brace/theme/monokai';
+
+/*eslint-disable no-alert, no-console */
+import 'brace/ext/language_tools';
+import 'brace/ext/searchbox';
+import 'brace/mode/java';
+
 interface CompetitionTaskProps {
     info: CompetitionInfo,
     submitSolution: any,
-    compilerError: CompileResult | null
+    compilerError: CompileResult | null,
+    compiling: boolean
 }
 
 export class CompetitionTask extends React.Component<CompetitionTaskProps, any> {
@@ -39,31 +48,22 @@ export class CompetitionTask extends React.Component<CompetitionTaskProps, any> 
             disabledButton: true,
             value: "",
             showSaved: false,
-            saveSuccess: true
+            saveSuccess: true,
+            languages: languages
         };
 
         Object.keys(languages.names).sort().map((lang) => {
             this.languageOptions.push({ key: lang, value: lang, text: languages.names[lang] });
-        })
+        });
+    }
 
-        fetch('api/Task/GetLanguages')
-            .then(response => response.json() as Promise<Languages>)
-            .then(data => {
-                var unsupportedLanguages: string[] = ['bash', 'fsharp', 'lolcode', 'smalltalk', 'whitespace', 'tsql', 'java8', 'db2', 'octave', 'racket', 'oracle'];
-                unsupportedLanguages.forEach(language => {
-                    delete data.codes[language];
-                    delete data.names[language];
-                });
+    componentDidMount() {
+        this.setCodeSkeleton('undefined');
 
-                this.setState({ languages: data });
-
-                for (let key in data.names) {
-                    let compiler = this.getHighlighter(key);
-                    require(`brace/mode/${compiler}`)
-                }
-
-                this.setCodeSkeleton("undefined");
-            });
+        for (let key in this.state.languages.names) {
+            let compiler = this.getHighlighter(key);
+            require(`brace/mode/${compiler}`)
+        }
     }
 
     calculateEditorWidth = () => {
@@ -80,6 +80,7 @@ export class CompetitionTask extends React.Component<CompetitionTaskProps, any> 
 
     compileCode = () => {
         let languageCode = this.state.languages.codes[this.state.selectedLanguage];
+        this.setState({loading: true});
         this.props.submitSolution(this.state.value, languageCode);
     }
 
@@ -91,45 +92,6 @@ export class CompetitionTask extends React.Component<CompetitionTaskProps, any> 
             compileResult: compileResult, 
             loadingButtons: false  
         })
-    }
-
-    saveForLater() {
-        this.setState({
-            showSaved: false,
-            loadingButtons: true
-        });
-
-        let languageCode = this.state.languages.codes[this.state.selectedLanguage];
-
-        const formData = new FormData();
-        formData.append('taskId', this.state.taskId);
-        formData.append('source', this.state.value);
-        formData.append('language', languageCode);
-        fetch('api/Task/SaveCode', {
-            method: 'PUT',
-            body: formData,
-            credentials: 'include'
-        })
-            .then(function (response) {
-                if (response.ok)
-                    return response;
-
-                throw new Error();
-            })
-            .then(() => {
-                this.setState({
-                    showSaved: true,
-                    loadingButtons: false,
-                    saveSuccess: true
-                });
-            })
-            .catch(error => {
-                this.setState({
-                    showSaved: true,
-                    loadingButtons: false,
-                    saveSuccess: false
-                });
-            });
     }
 
     getHighlighter = (name: string) => {
@@ -159,7 +121,7 @@ export class CompetitionTask extends React.Component<CompetitionTaskProps, any> 
         else if (language == "C++")
             language = "Cpp";
 
-        fetch('api/Task/GetCodeSkeleton/' + language + '/' + this.state.taskId, {
+        fetch('api/Task/GetCodeSkeleton/' + language + '/' + this.props.info.task.id, {
             credentials: 'include'
         })
             .then(response => response.json() as Promise<Skeleton>)
@@ -199,7 +161,7 @@ export class CompetitionTask extends React.Component<CompetitionTaskProps, any> 
         return (
             <div>
                 <TaskHeader title={this.props.info.task.name} />
-                <Divider />
+                <br/>
                 <Container fluid>
                     <Grid columns={2} relaxed>
                         <TaskDescription description={this.props.info.task.description}/>
@@ -225,14 +187,18 @@ export class CompetitionTask extends React.Component<CompetitionTaskProps, any> 
                                         showLineNumbers: true,
                                         tabSize: 4,
                                     }}
+                                    editorProps={{
+                                        $blockScrolling: Infinity
+                                    }}
 
                                 />
                                 <div className='cg-padding-submit'>
                                     <div className='cg-task-submit'>
-                                        <button className='cg-card-button cyan' onClick={this.compileCode} disabled={this.state.disabledButton}>Submit</button>
+                                        <button className='cg-card-button cyan' onClick={this.compileCode} disabled={this.props.compiling}>Submit</button>
                                     </div>
                                 </div>
 
+                                {this.props.compiling && <Loader active inline='centered' />}
                                 {this.props.compilerError && <CompileResult result={this.props.compilerError}/>}
                                 
                             </Responsive>

@@ -4,11 +4,13 @@ export const fakeCompetitionInfo = {
     players: [{
         isLoggedIn: true,
         email: 'a@a.com',
-        name: 'Petras'
+        name: 'Petras',
+        totalBalance: 0
     },{
         isLoggedIn: true,
         email: 'a@a.com',
-        name: 'Antanas'
+        name: 'Antanas',
+        totalBalance: 0
     }],
     startTime: new Date('1995-12-17T03:24:00'),
     task: {
