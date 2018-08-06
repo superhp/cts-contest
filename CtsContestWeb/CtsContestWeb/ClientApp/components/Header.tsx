@@ -6,7 +6,7 @@ import { Menu, Sidebar, Container, Segment } from 'semantic-ui-react';
 import { Button, Icon } from 'semantic-ui-react';
 import { Responsive } from 'semantic-ui-react'
 import { Header as ModalHeader, Image, Modal } from 'semantic-ui-react'
-import { Login } from './login';
+import { Login } from './Login';
 
 const links = [
     {
