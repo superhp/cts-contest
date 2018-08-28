@@ -18,7 +18,7 @@ const links = [
         name: 'Tasks'
     },
     {
-        routeTo: '/',
+        routeTo: '/competition',
         name: 'Competition'
     },
     {
