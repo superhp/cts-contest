@@ -58,14 +58,16 @@ export class Prizes extends React.Component<any, any> {
         return (
             <div className='cg-prize-page'>
                 <div className='cg-page-header'>
-                    <Container fluid>
-                        <Header as='h1' textAlign='center' inverted>
-                            <Icon name='gift' />
-                            <Header.Content>
-                                Day Prize
-                            </Header.Content>
-                        </Header>
-                    </Container>
+                    <div className='cg-page-header-overlay'>
+                        <Container fluid>
+                            <Header as='h1' textAlign='center' inverted>
+                                <Icon name='gift' />
+                                <Header.Content>
+                                    Day Prize
+                                </Header.Content>
+                            </Header>
+                        </Container>
+                    </div>
                 </div>
                 <Container>
                     {contents}

@@ -46,14 +46,16 @@ export class Tasks extends React.Component<any, TasksState> {
         return (
             <div>
                 <div className='cg-page-header'>
-                    <Container fluid>
-                        <Header as='h1' textAlign='center' inverted>
-                            <Icon name='tasks' />
-                            <Header.Content>
-                                Tasks
-                        </Header.Content>
-                        </Header>
-                    </Container>
+                    <div className='cg-page-header-overlay'>
+                        <Container fluid>
+                            <Header as='h1' textAlign='center' inverted>
+                                <Icon name='tasks' />
+                                <Header.Content>
+                                    Tasks
+                            </Header.Content>
+                            </Header>
+                        </Container>
+                    </div>
                 </div>
                 <Container>
                     {contents}

@@ -34,21 +34,30 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
         return (
             <div>
                 <div className='cg-about-header'>
-                    <Segment vertical textAlign='center'>
-                        <Container text >
-                            <Header className='cg-about-header-text'
-                                as='h1'
-                                content='Cognizant TaskCracker'
-                                inverted
-                            />
-                            <Header
-                                as='h2'
-                                content='Solve coding tasks and earn points to win!'
-                                inverted
-                                style={{ fontSize: '1.7em', fontWeight: 'normal' }}
-                            />
-                        </Container>
-                    </Segment>
+                    <div className='cg-about-header-overlay'>
+                        <Segment vertical textAlign='center'>
+                            <Container text >
+                                <Header className='cg-about-header-text'
+                                    as='h1'
+                                    content='Cognizant TaskCracker'
+                                    inverted
+                                    style={{
+                                        marginTop: '2px',
+                                    }}
+                                />
+                                <Header
+                                    as='h2'
+                                    content='Solve coding tasks and earn points to win!'
+                                    inverted
+                                    style={{
+                                        fontSize: '1.7em',
+                                        fontWeight: 'normal',
+                                        marginTop: '0',
+                                    }}
+                                />
+                            </Container>
+                        </Segment>
+                    </div>
                 </div>
                 <Segment style={{ padding: '1em 0em 3em' }} vertical>
                     <Container>

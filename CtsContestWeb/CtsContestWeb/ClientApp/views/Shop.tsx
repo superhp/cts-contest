@@ -189,14 +189,16 @@ export class Shop extends React.Component<any, any> {
         return (
             <div className='cg-shop-page'>
                 <div className='cg-page-header'>
-                    <Container fluid>
-                        <Header as='h1' textAlign='center' inverted>
-                            <Icon name='tags' />
-                            <Header.Content>
-                                Shopping booth
-                            </Header.Content>
-                        </Header>
-                    </Container>
+                    <div className='cg-page-header-overlay'>
+                        <Container fluid>
+                            <Header as='h1' textAlign='center' inverted>
+                                <Icon name='tags' />
+                                <Header.Content>
+                                    Shopping booth
+                                </Header.Content>
+                            </Header>
+                        </Container>
+                    </div>
                 </div>
                 <Container>
                     {contents}
