@@ -23,10 +23,10 @@ const links = [
         routeTo: '/tasks',
         name: 'Tasks'
     },
-    {
-        routeTo: '/competition',
-        name: 'Competition'
-    },
+    // {
+    //     routeTo: '/competition',
+    //     name: 'Competition'
+    // },
     {
         routeTo: '/leaderboard',
         name: 'Leaderboard'
@@ -39,10 +39,10 @@ const links = [
         routeTo: '/prizes',
         name: 'Day Prize'
     },
-    {
-        routeTo: '/quiz',
-        name: 'Quiz'
-    }
+    // {
+    //     routeTo: '/quiz',
+    //     name: 'Quiz'
+    // }
 ];
 
 export type HeaderState = {
