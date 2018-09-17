@@ -5,12 +5,13 @@ import 'isomorphic-fetch';
 import { Grid, Icon, Table, Container, Header, Divider, Loader } from 'semantic-ui-react';
 import * as _ from 'lodash';
 import { UserInfo } from '../components/models/UserInfo';
+import { Prize } from '../components/PurchaseModal';
 //import * as GA from 'react-ga';
 //GA.initialize('UA-109707377-1');
 
 interface LeaderboardState {
 	users: UserInfo[];
-	prizes: Array<any>;
+	prizes: Prize[];
     loading: boolean;
 }
 
@@ -29,11 +30,17 @@ export class Leaderboard extends React.Component<any, LeaderboardState> {
 			});
 
 		fetch('api/Prize/GetWinnables')
-			.then(response => response.json() as Promise<any>)
+			.then(response => response.json() as Promise<Prize[]>)
 			.then(data => {
 				if (this._mounted) {
-					this.setState({ prizes: data, loading: false });
-					_.sortBy(this.state.prizes, 'price', 'asc').reverse();
+					let prizes: Prize[] = []; 
+					data.forEach(prize => {
+						for (let i = 0; i < prize.quantity; i++) {
+							prizes.push(prize); 
+						}
+					})
+					_.sortBy(prizes, 'price', 'asc').reverse();
+					this.setState({ prizes: prizes, loading: false });					
 				}
 			});
     }
@@ -49,7 +56,7 @@ export class Leaderboard extends React.Component<any, LeaderboardState> {
     public render() {
         let contents = this.state.loading
 			? <Loader active inline='centered'>Loading</Loader>
-			: Leaderboard.renderLeaderboard(this.state.users, this.state.prizes.map(x => x.picture));
+			: Leaderboard.renderLeaderboard(this.state.users, this.state.prizesImgs);
 
         return (
             <div>
@@ -74,10 +81,10 @@ export class Leaderboard extends React.Component<any, LeaderboardState> {
         )
     }
 
-    private static renderLeaderboard(users: UserInfo[], prizesImgs: Array<any>) {
+    private static renderLeaderboard(users: UserInfo[], prizes: Array<Prize>) {
         users = _.sortBy(users, 'totalBalance', 'asc').reverse();
 
-		const userlist = users.map((user, i) => Leaderboard.renderUserRow(user, i + 1, i < prizesImgs.length ? prizesImgs[i] : ""));
+		const userlist = users.map((user, i) => Leaderboard.renderUserRow(user, i + 1, i < prizes.length ? prizes[i] : ""));
         return (
             <div className="container">
                 <ColumnHeader />
@@ -88,11 +95,11 @@ export class Leaderboard extends React.Component<any, LeaderboardState> {
             );
     }
 
-    private static renderUserRow(user: UserInfo, rank: number, img: any) {
+    private static renderUserRow(user: UserInfo, rank: number, prize: Prize) {
         return (
 			<Grid key={rank} className="users vcenter">
 				<Grid.Column width={2} className="rank">
-					{img !== "" ? <img src={img}></img> : ""}
+					{img !== "" ? <a href="/prizes"><img src={prize.picture} alt={prize.name} /></a> : ""}
 				</Grid.Column>
                 <Grid.Column width={2} className="rank">
                     <span>{rank}</span>
