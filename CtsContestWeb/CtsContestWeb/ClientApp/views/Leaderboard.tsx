@@ -56,7 +56,7 @@ export class Leaderboard extends React.Component<any, LeaderboardState> {
     public render() {
         let contents = this.state.loading
 			? <Loader active inline='centered'>Loading</Loader>
-			: Leaderboard.renderLeaderboard(this.state.users, this.state.prizesImgs);
+			: Leaderboard.renderLeaderboard(this.state.users, this.state.prizes);
 
         return (
             <div>
@@ -84,7 +84,7 @@ export class Leaderboard extends React.Component<any, LeaderboardState> {
     private static renderLeaderboard(users: UserInfo[], prizes: Array<Prize>) {
         users = _.sortBy(users, 'totalBalance', 'asc').reverse();
 
-		const userlist = users.map((user, i) => Leaderboard.renderUserRow(user, i + 1, i < prizes.length ? prizes[i] : ""));
+		const userlist = users.map((user, i) => Leaderboard.renderUserRow(user, i + 1, i < prizes.length ? prizes[i] : undefined));
         return (
             <div className="container">
                 <ColumnHeader />
@@ -95,11 +95,11 @@ export class Leaderboard extends React.Component<any, LeaderboardState> {
             );
     }
 
-    private static renderUserRow(user: UserInfo, rank: number, prize: Prize) {
+    private static renderUserRow(user: UserInfo, rank: number, prize: Prize | undefined) {
         return (
 			<Grid key={rank} className="users vcenter">
 				<Grid.Column width={2} className="rank">
-					{img !== "" ? <a href="/prizes"><img src={prize.picture} alt={prize.name} /></a> : ""}
+					{prize ? <a href="/prizes"><img src={prize.picture} alt={prize.name} /></a> : ""}
 				</Grid.Column>
                 <Grid.Column width={2} className="rank">
                     <span>{rank}</span>
