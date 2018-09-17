@@ -9,8 +9,9 @@ body{
 }
 
 .login-modal {
-    max-height: 200px !important;
-    height: 200px !important;
+    /* max-height: 200px !important;
+    height: 200px !important; */
+    height: 350px !important;
 }
 
 .right-menu {
