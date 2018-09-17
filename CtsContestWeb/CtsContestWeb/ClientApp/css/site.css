@@ -9,8 +9,9 @@ body{
 }
 
 .login-modal {
-    max-height: 200px !important;
-    height: 200px !important;
+    /* max-height: 200px !important;
+    height: 200px !important; */
+    height: 350px !important;
 }
 
 .right-menu {
@@ -142,21 +143,21 @@ body{
     opacity: 0.5;
 }
 .cg-card-button.cyan {
-    color: #71c5e8;
-    border-color: #71c5e8;
+    color: #0033A0;
+    border-color: #0033A0;
 }
 .cg-card-button.cyan:hover:not([disabled]) {
     color: white;
-    background-color: #71c5e8;
+    background-color: #0033A0;
 }
 
 .cg-card-button.secondary {
-    color: #64a70b;
-    border-color: #64a70b;
+    color: #00b140;
+    border-color: #00b140;
 }
 .cg-card-button.secondary:hover:not([disabled]) {
     color: white;
-    background-color: #64a70b;
+    background-color: #00b140;
 }
 .cg-card-button.grey {
     color: #53565a;
@@ -180,7 +181,7 @@ body{
     display: block;
     padding: 5px;
     height: 30px;
-    color: #4298b5;
+    color: #0033A0;
 }
 
 .cg-card-label .left{
@@ -198,7 +199,7 @@ body{
 .cg-card-stock {
     display: inline-block;
     position: absolute;
-    color: #4298b5;
+    color: #0033A0;
     bottom: 0;
     right: 0;
     padding: 5px;
@@ -293,7 +294,7 @@ body{
     border-bottom: 1px solid #e1e1e1;
 }
 .cg-balance td{
-    color: #4298b5;
+    color: #0033a0;
     box-sizing: border-box;
     text-transform: uppercase;
     font-weight: bold;
@@ -413,8 +414,9 @@ body{
     background: rgba(254, 254, 254, 0.9);
     width: 100%;
     text-align: left;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.2); */
     margin: 0 !important;
+    padding-bottom: 10px !important;
 }
 
     .colHeader column {
@@ -422,7 +424,7 @@ body{
     }
     .colHeader h4 {
         font-family: "Montserrat", sans-serif;
-        color: rgba(66, 152, 181, 1);
+        color: #0033A0;
         text-align: center !important;
         font-size: 20px;
         text-transform: uppercase;
@@ -493,11 +495,13 @@ body{
     }
 
     .users:nth-of-type(odd) {
-        background: rgba(218, 245, 255, 0.9);
+        /* background: rgba(218, 245, 255, 0.9); */
+        color: #0033a0;
     }
 
     .users:nth-of-type(even) {
-        background: rgba(254, 254, 254, 0.9);
+        /* background: rgba(254, 254, 254, 0.9); */
+        color: #00b140;
     }
 
     .users:last-child {

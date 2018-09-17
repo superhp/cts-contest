@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-import { Responsive, Label, Button, Header as Header, Image, Modal, Icon, Menu } from 'semantic-ui-react'
+import { Responsive, Label, Button, Header as Header, Image, Modal, Icon, Menu, Checkbox } from 'semantic-ui-react'
 import { Link, NavLink } from 'react-router-dom';
 
 interface LoginModalState {
     modalHeight: number;
     loading: boolean;
     wallet: boolean;
+    ConsentGiven: boolean;
 }
 
 export class Login extends React.Component<any, LoginModalState> {
@@ -20,7 +21,8 @@ export class Login extends React.Component<any, LoginModalState> {
         this.state = {
             modalHeight: modalHeight,
             loading: true,
-            wallet: false
+            wallet: false,
+            ConsentGiven: false,
         }
 
         this.handleResize = this.handleResize.bind(this);
@@ -42,7 +44,7 @@ export class Login extends React.Component<any, LoginModalState> {
     public render() {
         let contents = this.props.userInfo.isLoggedIn
             ? this.renderLoggedInView(this.props.userInfo, this.detectIE())
-            : Login.renderLoginModal(this.state.modalHeight, this.detectIE(), this.handleResize)
+            : Login.renderLoginModal(this.state.modalHeight, this.detectIE(), this.handleResize, this.state.ConsentGiven, this.ToggleConsentCheckbox)
 
         return contents;
     }
@@ -104,27 +106,50 @@ export class Login extends React.Component<any, LoginModalState> {
         );
     }
 
-    private static renderLoginModal(height: number, isIE: boolean, handleResize: any) {
+    private static renderLoginModal(height: number, isIE: boolean, handleResize: any, ConsentGiven: boolean, ToggleConsentCheckbox: () => void) {
 
         var addon = "";
         if (isIE) {
             addon = "?refresh=true";
         }
-
+       
         return <Responsive className='cg-login-mobile' onUpdate={handleResize}>
             <Modal size="tiny" className="login-modal" trigger={<NavLink style={{ height: '100%' }} className='item cg-nav-item' to="#" exact> Login </NavLink>} closeIcon>
                 <Modal.Header>Choose login method</Modal.Header>
+
                 
-                    <div className='cg-login-modal-button '>
-                        <a className='ui facebook fluid button cg-login-button' href={"https://cts-contest.azurewebsites.net/.auth/login/facebook?post_login_redirect_url=" + window.location.pathname + addon}><Icon name='facebook' /> Login with Facebook</a>
-                    </div>
-                    <div className='cg-login-modal-button '>
-                        <a className='ui google plus fluid button cg-login-button' href={"https://cts-contest.azurewebsites.net/.auth/login/google?post_login_redirect_url=" + window.location.pathname + addon}><Icon name='google' /> Login with Google</a>
-                    </div>
+                <div style={{ padding: "15px", textAlign: "justify" }}>
+                    <Checkbox
+                        checked={ConsentGiven}
+                        onChange={() => { ToggleConsentCheckbox(); }}
+                        label={{
+                            children: "By logging in you agree that your full name and profile photo will appear on contest's leaderboard and your email address will be stored secretly in the contest's database. You also understand that the website uses cookie in order to keep you logged in. In case you use a public laptop, you must disconnect from contest's website and Facebook/Gmail separately after you finish your session."
+                        }}
+                    />
+                </div>
+                
+                <div className='cg-login-modal-button '>
+                    <a
+                        className={`ui facebook fluid button cg-login-button${ConsentGiven ? "" : " disabled"}`}
+                        href={"https://cts-contest.azurewebsites.net/.auth/login/facebook?post_login_redirect_url=" + window.location.pathname + addon}
+                    ><Icon name='facebook' /> Login with Facebook</a>
+                </div>
+                <div className='cg-login-modal-button '>
+                    <a
+                        className={`ui google plus fluid button cg-login-button${ConsentGiven ? "" : " disabled"}`}
+                        href={"https://cts-contest.azurewebsites.net/.auth/login/google?post_login_redirect_url=" + window.location.pathname + addon}
+                    ><Icon name='google' /> Login with Google</a>
+                </div>
                 
             </Modal>
         </Responsive>;
     }
 
-    
+    ToggleConsentCheckbox = () =>
+    {
+        this.setState({
+            ConsentGiven: !this.state.ConsentGiven,
+        });
+    }
+
 }

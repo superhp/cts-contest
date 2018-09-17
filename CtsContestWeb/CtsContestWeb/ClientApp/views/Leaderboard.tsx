@@ -54,14 +54,16 @@ export class Leaderboard extends React.Component<any, LeaderboardState> {
         return (
             <div>
                 <div className='cg-page-header'>
-                    <Container fluid>
-                        <Header as='h1' textAlign='center' inverted>
-                            <Icon name='numbered list' />
-                            <Header.Content>
-                                Leaderboard
-                        </Header.Content>
-                        </Header>
-                    </Container>
+                    <div className='cg-page-header-overlay'>
+                        <Container fluid>
+                            <Header as='h1' textAlign='center' inverted>
+                                <Icon name='numbered list' />
+                                <Header.Content>
+                                    Leaderboard
+                            </Header.Content>
+                            </Header>
+                        </Container>
+                    </div>
                 </div>
                 <Container>
                     {contents}
