@@ -71,7 +71,8 @@ namespace CtsContestWeb.Db.Repository
             return _dbContext.Users.Select(u => new UserInfoDto
             {
                 Name = u.FullName,
-                TotalBalance = _dbContext.Competitions.Where(c => c.WinnerEmail.Equals(u.Email)).Sum(c => c.Prize)
+                //TotalBalance = _dbContext.Competitions.Where(c => c.WinnerEmail.Equals(u.Email)).Sum(c => c.Prize)
+                TotalBalance = u.Solutions.Where(s => s.IsCorrect).Sum(s => s.Score)
             });
         }
     }

@@ -5,19 +5,21 @@ import 'isomorphic-fetch';
 import { Grid, Icon, Table, Container, Header, Divider, Loader } from 'semantic-ui-react';
 import * as _ from 'lodash';
 import { UserInfo } from '../components/models/UserInfo';
+import { Prize } from '../components/PurchaseModal';
 //import * as GA from 'react-ga';
 //GA.initialize('UA-109707377-1');
 
 interface LeaderboardState {
-    users: UserInfo[];
+	users: UserInfo[];
+	prizes: Prize[];
     loading: boolean;
 }
 
 export class Leaderboard extends React.Component<any, LeaderboardState> {
     _mounted: boolean;
     constructor() {
-        super();
-        this.state = { users: [], loading: true };
+		super();
+		this.state = { users: [], loading: true, prizes: [] };
 
         fetch('api/User/Users')
             .then(response => response.json() as Promise<UserInfo[]>)
@@ -25,7 +27,22 @@ export class Leaderboard extends React.Component<any, LeaderboardState> {
                 if (this._mounted)
                     this.setState({ users: data, loading: false });
 
-            });
+			});
+
+		fetch('api/Prize/GetWinnables')
+			.then(response => response.json() as Promise<Prize[]>)
+			.then(data => {
+				if (this._mounted) {
+					let prizes: Prize[] = []; 
+					data.forEach(prize => {
+						for (let i = 0; i < prize.quantity; i++) {
+							prizes.push(prize); 
+						}
+					})
+					prizes = _.sortBy(prizes, 'price', 'asc').reverse();
+					this.setState({ prizes: prizes, loading: false });					
+				}
+			});
     }
     componentWillMount() {
         //GA.pageview(window.location.pathname + window.location.search);
@@ -38,8 +55,8 @@ export class Leaderboard extends React.Component<any, LeaderboardState> {
     }
     public render() {
         let contents = this.state.loading
-            ? <Loader active inline='centered'>Loading</Loader>
-            : Leaderboard.renderLeaderboard(this.state.users);
+			? <Loader active inline='centered'>Loading</Loader>
+			: Leaderboard.renderLeaderboard(this.state.users, this.state.prizes);
 
         return (
             <div>
@@ -64,10 +81,10 @@ export class Leaderboard extends React.Component<any, LeaderboardState> {
         )
     }
 
-    private static renderLeaderboard(users: UserInfo[]) {
+    private static renderLeaderboard(users: UserInfo[], prizes: Array<Prize>) {
         users = _.sortBy(users, 'totalBalance', 'asc').reverse();
 
-        const userlist = users.map((user, i) => Leaderboard.renderUserRow(user, i+1));
+		const userlist = users.map((user, i) => Leaderboard.renderUserRow(user, i + 1, i < prizes.length ? prizes[i] : undefined));
         return (
             <div className="container">
                 <ColumnHeader />
@@ -78,13 +95,16 @@ export class Leaderboard extends React.Component<any, LeaderboardState> {
             );
     }
 
-    private static renderUserRow(user: UserInfo, rank: number) {
+    private static renderUserRow(user: UserInfo, rank: number, prize: Prize | undefined) {
         return (
-            <Grid key={rank} className="users vcenter">
+			<Grid key={rank} className="users vcenter">
+				<Grid.Column width={2} className="rank">
+					{prize ? <a href="/prizes"><img src={prize.picture} alt={prize.name} /></a> : ""}
+				</Grid.Column>
                 <Grid.Column width={2} className="rank">
                     <span>{rank}</span>
                 </Grid.Column>
-                <Grid.Column width={9} className="name">
+                <Grid.Column width={7} className="name">
                     <span>{user.name}</span>
                 </Grid.Column>
                 <Grid.Column width={4} textAlign="center">
@@ -97,11 +117,14 @@ export class Leaderboard extends React.Component<any, LeaderboardState> {
 }
 
 const ColumnHeader = () => (
-    <Grid className="colHeader">
+	<Grid className="colHeader">
+		<Grid.Column width={2}>
+			<h4></h4>
+		</Grid.Column>
         <Grid.Column width={2}>
             <h4>#</h4>
         </Grid.Column>
-        <Grid.Column width={9}>
+        <Grid.Column width={7}>
             <h4>Name</h4>
         </Grid.Column>
         <Grid.Column width={4}>
