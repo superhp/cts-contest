@@ -76,7 +76,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                     </ul>
                                 </li>
                                 <li>Have points added to your virtual wallet</li>
-                                <li>Buy goodies in our shopping booth or save it to win the day prize</li>
+                                <li>Buy goodies in our shopping booth or save it to win the day prizes</li>
                             </ol>
                         </div>
                     </Container>
@@ -95,18 +95,14 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                 <li>Unspent points are added up to your total balance</li>
                             </ul>
 
-                            <div className='cg-title-bold'>2.  Save your points to win day prize</div>
+                            <div className='cg-title-bold'>2.  Save your points to win day prizes</div>
                             <ul className='cg-ul-dash'>
-                                <li>Day prize is awarded at the end of the day to the leading contestant based on leaderboard results</li>
+                                <li>Day prizes are awarded at the end of the day to the leading contestants based on leaderboard results</li>
                                 <li>Points spent in shopping booth are no longer valid</li>
-                                <li><strong>Tom Tom Sports Bluetooh Earphones</strong> will be awarded to the contestant with the highest total balance – the sum of participant’s unspent points throughout the entire game</li>
+                                <li><strong>Tickets to conferences</strong> will be awarded to the contestants with the highest total balance – the sum of participant’s unspent points throughout the entire game</li>
                                 <li>In case of absence, the prize will go to the next best participant in the leaderboard</li>
                             </ul>
 
-                            <div className='cg-image main-prize' >
-                                <img src="../Main_prize.png" alt="The main prize" />
-                            </div>
-                            <p>Visit Cognizant stand to check leaderboard and to shop</p>
                         </div>
                     </Container>
 
@@ -127,7 +123,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                     </ul>
                                 </li>
                                 <li>Receive a unique QR code (this is your purchase receipt)</li>
-                                <li>Present the code at Cognizant stand to redeem the prize</li>
+                                <li>Present the code to contest organizers to redeem the prize</li>
                             </ul>
                         </div>
                     </Container>
