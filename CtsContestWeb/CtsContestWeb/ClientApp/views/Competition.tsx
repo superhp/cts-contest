@@ -138,14 +138,16 @@ export class Competition extends React.Component<any, CompetitionState> {
         return (
             <div className='cg-prize-page'>
                 <div className='cg-page-header'>
-                    <Container fluid>
-                        <Header as='h1' textAlign='center' inverted>
-                            <Icon name='checkmark box' />
-                            <Header.Content>
-                                Competition
-                            </Header.Content>
-                        </Header>
-                    </Container>
+                    <div className='cg-page-header-overlay'>
+                        <Container fluid>
+                            <Header as='h1' textAlign='center' inverted>
+                                <Icon name='checkmark box' />
+                                <Header.Content>
+                                    Competition
+                                </Header.Content>
+                            </Header>
+                        </Container>
+                    </div>
                 </div>
 
                 {

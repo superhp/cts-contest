@@ -6,33 +6,39 @@ import { Menu, Sidebar, Container, Segment } from 'semantic-ui-react';
 import { Button, Icon } from 'semantic-ui-react';
 import { Responsive } from 'semantic-ui-react'
 import { Header as ModalHeader, Image, Modal } from 'semantic-ui-react'
-import { Login } from './login';
+import { Login } from './Login';
+
+// Pictures
+
+const LogoPic: string = require('../assets/CognizantLogo.svg');
+
+//
 
 const links = [
-    // {
-    //     routeTo: '/',
-    //     name: 'About'
-    // },
-    // {
-    //     routeTo: '/tasks',
-    //     name: 'Tasks'
-    // },
-    {
+	{
         routeTo: '/',
-        name: 'Competition'
+        name: 'About'
     },
+    {
+        routeTo: '/tasks',
+        name: 'Tasks'
+    },
+    // {
+    //     routeTo: '/competition',
+    //     name: 'Competition'
+    // },
     {
         routeTo: '/leaderboard',
         name: 'Leaderboard'
     },
-    // {
-    //     routeTo: '/shop',
-    //     name: 'Shopping booth'
-    // },
-    // {
-    //     routeTo: '/prizes',
-    //     name: 'Day Prize'
-    // },
+    {
+        routeTo: '/shop',
+        name: 'Shopping booth'
+    },
+    {
+        routeTo: '/prizes',
+        name: 'Day Prize'
+    },
     // {
     //     routeTo: '/quiz',
     //     name: 'Quiz'
@@ -82,7 +88,7 @@ export class Header extends React.Component<any, HeaderState> {
                 <Responsive maxWidth={1200} onUpdate={this.handleResize} />
                 <Menu.Item className='cg-nav-header' header>
                     <div style={{ width: '100%' }}>
-                        <div style={{ float: 'left' }}><NavLink to='/' ><img className='cg-nav-logo' src="../Cognizant_LOGO.png" alt="Cognizant logo" /></NavLink></div>
+                        <div style={{ float: 'left' }}><NavLink to='/' ><img className='cg-nav-logo' src={LogoPic} alt="Cognizant logo" /></NavLink></div>
                         <div className='cg-nav-right'>
                              {this.props.userInfo.isLoggedIn
                              ? <div className='cg-mobile-item'>

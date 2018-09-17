@@ -24,14 +24,16 @@ export class Quiz extends React.Component<RouteComponentProps<{}>, {}> {
         return (
             <div className='cg-prize-page'>
                 <div className='cg-page-header'>
-                    <Container fluid>
-                        <Header as='h1' textAlign='center' inverted>
-                            <Icon name='checkmark box' />
-                            <Header.Content>
-                                Quiz
-                            </Header.Content>
-                        </Header>
-                    </Container>
+                    <div className='cg-page-header-overlay'>
+                        <Container fluid>
+                            <Header as='h1' textAlign='center' inverted>
+                                <Icon name='checkmark box' />
+                                <Header.Content>
+                                    Quiz
+                                </Header.Content>
+                            </Header>
+                        </Container>
+                    </div>
                 </div>
                 <Questions />
             </div>    
