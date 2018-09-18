@@ -23,7 +23,7 @@ namespace CtsContestWeb.Db.Repository
         public void InsertIfNotExists(ClaimsPrincipal user)
         {
             var email = user.FindFirst(ClaimTypes.Email).Value;
-            
+
             var exists = _dbContext.Users.Any(u => u.Email.Equals(email));
 
             if (!exists)
@@ -69,15 +69,19 @@ namespace CtsContestWeb.Db.Repository
         public IEnumerable<UserInfoDto> GetAllUsers()
         {
             return _dbContext.Users
-                .OrderBy(u => u.Solutions.Last(s => s.IsCorrect).Created)
-                .Select(u => new UserInfoDto
+                .Select(u => new
                 {
                     Name = u.FullName,
-                    //TotalBalance = _dbContext.Competitions.Where(c => c.WinnerEmail.Equals(u.Email)).Sum(c => c.Prize)
-
-                    TotalBalance = u.Solutions.Where(s => s.IsCorrect).Sum(s => s.Score) - u.Purchases.Select(x => x.Cost).DefaultIfEmpty(0).Sum()
+                    TotalBalance = u.Solutions.Where(s => s.IsCorrect).Sum(s => s.Score) - u.Purchases.Select(x => x.Cost).DefaultIfEmpty(0).Sum(),
+                    LastSolutionDate = u.Solutions.Last(s => s.IsCorrect).Created
                 })
-                .OrderByDescending(u => u.TotalBalance);
+                .OrderByDescending(u => u.TotalBalance)
+                .ThenBy(u => u.LastSolutionDate)
+                .Select(u => new UserInfoDto
+                {
+                    Name = u.Name,
+                    TotalBalance = u.TotalBalance
+                });
         }
     }
 }
