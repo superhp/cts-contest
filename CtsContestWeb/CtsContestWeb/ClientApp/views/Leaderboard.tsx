@@ -39,7 +39,7 @@ export class Leaderboard extends React.Component<any, LeaderboardState> {
 							prizes.push(prize); 
 						}
 					})
-					_.sortBy(prizes, 'price', 'asc').reverse();
+					prizes = _.sortBy(prizes, 'price', 'asc').reverse();
 					this.setState({ prizes: prizes, loading: false });					
 				}
 			});
