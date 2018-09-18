@@ -68,13 +68,22 @@ namespace CtsContestWeb.Db.Repository
 
         public IEnumerable<UserInfoDto> GetAllUsers()
         {
-            var users = _dbContext.Users
+            var users = _dbContext.Users.ToList()
+                .GroupJoin(_dbContext.Solutions, user => user.Email, solution => solution.UserEmail, (user, solutions) => new { user, solutions })
+                .GroupJoin(_dbContext.Purchases, user => user.user.Email, purchase => purchase.UserEmail, (user, purchases) => new { user.user, user.solutions, purchases })
+                .Select(x => new
+                {
+                    Name = x.user.FullName,
+                    TotalBalance = x.solutions.Where(s => s.IsCorrect).Sum(s => s.Score) - x.purchases.Select(p => p.Cost).DefaultIfEmpty(0).Sum(),
+                    LastSolutionDate = x.solutions.Any(s => s.IsCorrect) ? x.solutions.Last(s => s.IsCorrect).Created : DateTime.MaxValue
+                })
+                .OrderByDescending(u => u.TotalBalance)
+                .ThenBy(u => u.LastSolutionDate)
                 .Select(u => new UserInfoDto
                 {
-                    Name = u.FullName,
-                    TotalBalance = u.Solutions.Where(s => s.IsCorrect).Sum(s => s.Score) - u.Purchases.Select(x => x.Cost).DefaultIfEmpty(0).Sum()
-                }).ToList()
-                .OrderByDescending(u => u.TotalBalance); 
+                    Name = u.Name,
+                    TotalBalance = u.TotalBalance
+                });
             return users; 
         }
     }
