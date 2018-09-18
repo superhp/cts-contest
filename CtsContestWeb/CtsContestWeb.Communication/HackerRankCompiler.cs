@@ -62,7 +62,8 @@ namespace CtsContestWeb.Communication
                     var actual = string.Join('\n', ((string)data.result.stdout[i].Value.ToString()).Split('\n', '\r').Where(s => s.Length != 0).Select(s => s.Trim('\r', '\n', ' ')));
                     if (expected != actual)
                     {
-                        compileResult.FailedInput = i+1; 
+                        compileResult.FailedInput = i+1;
+                        compileResult.Message = data.result.strerr[i].Value.ToString();
                         break; 
                     }
                 }
