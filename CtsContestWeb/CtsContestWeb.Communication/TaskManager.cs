@@ -99,7 +99,7 @@ namespace CtsContestWeb.Communication
             client.ExecuteAsync<List<TaskDto>>(request, response => { taskCompletion.SetResult(response.Data); });
 
             var tasks = await taskCompletion.Task;
-            
+
             tasks.ForEach(UpdateTaskValue);
             return tasks;
         }
@@ -113,15 +113,12 @@ namespace CtsContestWeb.Communication
             var request = new RestRequest("task/get/{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
 
-            TaskCompletionSource<TaskDto> taskCompletion = new TaskCompletionSource<TaskDto>();
-            client.ExecuteAsync<TaskDto>(request, response =>
-            {
-                if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                    throw new ArgumentException("No task with given ID");
-                taskCompletion.SetResult(response.Data);
-            });
+            var response = await client.ExecuteTaskAsync<TaskDto>(request);
 
-            var task = await taskCompletion.Task;
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                throw new ArgumentException("No task with given ID");
+            var task = response.Data;
+
             if (userEmail != null)
             {
                 var solvedTasks = _solutionRepository.GetSolvedTasksIdsByUserEmail(userEmail);
@@ -172,7 +169,7 @@ namespace CtsContestWeb.Communication
             else
             {
                 var d = 8.2d * task.Value * task.Value - 20 * task.Value + 23;
-                task.Value = (int) Math.Ceiling(d / 5) * 5;
+                task.Value = (int)Math.Ceiling(d / 5) * 5;
             }
         }
     }
