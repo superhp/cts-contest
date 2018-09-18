@@ -73,7 +73,7 @@ namespace CtsContestWeb.Db.Repository
                 Name = u.FullName,
                 //TotalBalance = _dbContext.Competitions.Where(c => c.WinnerEmail.Equals(u.Email)).Sum(c => c.Prize)
 
-                TotalBalance = u.Solutions.Where(s => s.IsCorrect).Sum(s => s.Score) - u.Purchases.Sum(p => p.Cost) 
+                TotalBalance = u.Solutions.Where(s => s.IsCorrect).Sum(s => s.Score) - u.Purchases.Select(x => x.Cost).DefaultIfEmpty(0).Sum()
             });
         }
     }
