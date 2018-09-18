@@ -82,8 +82,6 @@ export class Leaderboard extends React.Component<any, LeaderboardState> {
     }
 
     private static renderLeaderboard(users: UserInfo[], prizes: Array<Prize>) {
-        users = _.sortBy(users, 'totalBalance', 'asc').reverse();
-
 		const userlist = users.map((user, i) => Leaderboard.renderUserRow(user, i + 1, i < prizes.length ? prizes[i] : undefined));
         return (
             <div className="container">
