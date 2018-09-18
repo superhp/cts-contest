@@ -68,20 +68,14 @@ namespace CtsContestWeb.Db.Repository
 
         public IEnumerable<UserInfoDto> GetAllUsers()
         {
-            return _dbContext.Users
-                .Select(u => new
-                {
-                    Name = u.FullName,
-                    TotalBalance = u.Solutions.Where(s => s.IsCorrect).Sum(s => s.Score) - u.Purchases.Select(x => x.Cost).DefaultIfEmpty(0).Sum(),
-                    LastSolutionDate = u.Solutions.Last(s => s.IsCorrect).Created
-                })
-                .OrderByDescending(u => u.TotalBalance)
-                .ThenBy(u => u.LastSolutionDate)
+            var users = _dbContext.Users
                 .Select(u => new UserInfoDto
                 {
-                    Name = u.Name,
-                    TotalBalance = u.TotalBalance
-                });
+                    Name = u.FullName,
+                    TotalBalance = u.Solutions.Where(s => s.IsCorrect).Sum(s => s.Score) - u.Purchases.Select(x => x.Cost).DefaultIfEmpty(0).Sum()
+                }).ToList()
+                .OrderByDescending(u => u.TotalBalance); 
+            return users; 
         }
     }
 }
