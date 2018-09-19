@@ -234,7 +234,7 @@ export class Shop extends React.Component<any, any> {
                             onBuy={this.openPrizeModal}
                             onOpenPurchaseQR={this.openPurchasedQRModal}
                             onOpenDescription={this.openDescriptionModal}
-                            balance={this.props.userInfo.todaysBalance}
+                            balance={this.props.userInfo.totalBalance}
                             purchased={this.isPurchased(prize.id)}
                             userLogedIn={this.props.userInfo.isLoggedIn}
                             purchase={this.findPrizePurchase(prize.id)}
