@@ -9,7 +9,7 @@ import Header from './components/Header.jsx';
 
 const timer = {
     dayGame: {
-        day: (new Date().getDate()),
+        day: (new Date().getDate() + 1),
         hour: 17, 
         minute: 0
     },
@@ -22,7 +22,7 @@ const timer = {
         minute: 0
     }
 }
-const BoardEnum = {
+export const BoardEnum = {
     LeaderBoard: 0,
     Prizes: 1,
     TodayPrizes: 2,
@@ -77,6 +77,8 @@ class Board extends React.Component {
                 return <Information timer={timer} />;
             case BoardEnum.Slogan:
                 return <Slogan />;
+            // default:
+            // return <Information timer={timer} />;
         }
 
     }

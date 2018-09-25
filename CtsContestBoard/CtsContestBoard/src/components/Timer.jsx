@@ -1,53 +1,58 @@
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
+
+const GameOver = (props) => {
+    return <p className='cg-timer time-out warning-timer' style={props.style}>
+            Game Over
+        </p>
+}
+
+const TimeLeft = (props) => {
+    return <div>
+            {props.infoText}
+            <p className={'cg-timer ' + props.warningClass} style={props.style}>
+                {props.timeLeft}
+            </p>
+        </div>
+}
 
 export default class Timer extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            /*days: 0,*/
+            days: 0,
             hours: 0,
             minutes: 0,
-            seconds: 0
+            seconds: 0,
         }
         this.getTimeToEnd = this.getTimeToEnd.bind(this);
+    }
 
-        this.renderNormal = this.renderNormal.bind(this);
-        this.renderWarning = this.renderWarning.bind(this);
-        this.renderTimeOut = this.renderTimeOut.bind(this);
-    }
     componentDidMount() {
-        this.endTime = new Date(
-            /*2017,
-            11 - 1,
-            this.props.day,*/
-            2018,
-            4 - 1,
-            this.props.day,
-            this.props.hour,
-            this.props.minutes,
-            0
-        );
+        this.onReceivedProps(this.props.day, this.props.hour, this.props.minutes);
         this.loadInterval();
     }
+
     componentWillReceiveProps(nextProps) {
-        this.endTime = new Date(
-            /*2017,
-            11 - 1,
-            nextProps.day,*/
-            2018,
-            4 - 1,
-            nextProps.day,
-            nextProps.hour,
-            nextProps.minutes,
-            0
-        );
+        this.onReceivedProps(nextProps.day, nextProps.hour, nextProps.minutes);
         this.loadInterval();
     }
+    
     componentWillUnmount() {
         clearInterval(this.leftInterval);
     }
+
+    onReceivedProps(day, hour, minutes) {
+        this.endTime = new Date(
+            2018,
+            9 - 1,
+            day,
+            hour,
+            minutes,
+            0
+        );
+    }
+
     loadInterval() {
         this.getTimeToEnd();
         if (this.leftInterval !== undefined) {
@@ -55,11 +60,10 @@ export default class Timer extends React.Component {
         }
         this.leftInterval = setInterval(this.getTimeToEnd, 1000);
     }
+
     getTimeToEnd() {
         const currentTime = new Date();
-        const endTime = this.endTime;
-
-        const distance = endTime - currentTime;
+        const distance = this.endTime - currentTime;
 
         this.setState({
             days: Math.floor(distance / (1000 * 60 * 60 * 24)),
@@ -67,15 +71,10 @@ export default class Timer extends React.Component {
             minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
             seconds: Math.floor((distance % (1000 * 60)) / 1000)
         });
-
     }
-    parseTimeLeft(hours, minutes, seconds) {
-        if (hours <= 0 && minutes <= 0 && seconds <= 0) {
-            //clearInterval(this.leftInterval);
-            return 'Game over';
-        }
-        let timeString = '';
 
+    parseTimeLeft(hours, minutes, seconds) {
+        let timeString = '';
 
         if (hours < 10) timeString += '0' + hours + ' : ';
         else timeString += hours + ' : ';
@@ -90,56 +89,14 @@ export default class Timer extends React.Component {
     }
 
     render() {
-        if (this.state.days <= 0 && this.state.hours <= 0 && this.state.minutes <= 0 && this.state.seconds <= 0) {
-            //clearInterval(this.leftInterval);
-            return this.renderTimeOut();
+        let gameEnded = ((this.state.days <= 0 && this.state.hours <= 0 && this.state.minutes <= 0) || this.state.hours === 23);
+        if (gameEnded) {
+            return <GameOver style={this.props.style}/>
         }
-        if (this.state.days <= 0 && this.state.hours <= 0) {
-            if (this.props.onlyWarning)
-                return this.renderShopTimer();
-            return this.renderWarning();
-        }
-        if (this.props.onlyWarning)
-            return  <p className='cg-timer warning shop'/>
-        return this.renderNormal()
+        
+        let timeLeft = this.parseTimeLeft(this.state.hours, this.state.minutes, this.state.seconds);
+        let warningClass = this.state.hours === 0 && this.state.minutes <= 15 ? 'warning-timer' : null;
+        return <TimeLeft style={this.props.style} timeLeft={timeLeft} infoText={this.props.informationViewText} parseTimeLeft={this.state.parseTimeLeft}
+            warningClass={warningClass}/>
     }
-    renderNormal() {
-        return (
-            <p className='cg-timer' style={this.props.style}>
-                {/*{this.state.days === 0
-                    ? ''
-                    : this.state.days === 1
-                        ? this.state.days + ' Day, '
-                        : this.state.days + ' Days, '}*/}
-                {this.parseTimeLeft(this.state.hours, this.state.minutes, this.state.seconds)}
-            </p>
-        )
-    }
-    renderWarning() {
-        return (
-            <p className='cg-timer warning' style={this.props.style}>
-                {/*{this.state.days === 0
-                    ? ''
-                    : this.state.days === 1
-                        ? this.state.days + ' Day, '
-                        : this.state.days + ' Days, '}*/}
-                {this.parseTimeLeft(this.state.hours, this.state.minutes, this.state.seconds)}
-            </p>
-        )
-    }
-    renderTimeOut() {
-        return (
-            <p className='cg-timer time-out' style={this.props.style}>
-                Game over
-            </p>
-        )
-    }
-    renderShopTimer() {
-        return (
-            <p className='cg-timer warning shop' style={this.props.style}>
-                Shop will close in {this.parseTimeLeft(this.state.hours, this.state.minutes, this.state.seconds)}
-            </p>
-        )
-    }
-
 }

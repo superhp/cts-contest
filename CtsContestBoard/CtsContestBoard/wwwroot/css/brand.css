@@ -3,10 +3,10 @@
     src: url('../fonts/Interstate-Regular.ttf')
 }
 :root {
-    --primary-color: #4298b5;
-    --secondary-color:  #64a70b;
-    --gradient: linear-gradient(90deg, #4298b5 0%, #64a70b 100%);
-    --gradient-vertical: linear-gradient(#4298b5 0%, #64a70b 100%);
+    --primary-color: #0033a0;
+    --secondary-color:  #00b140;
+    --gradient: linear-gradient(90deg, #0033a0 0%, #0033a0 100%);
+    --gradient-vertical: linear-gradient(#0033a0 0%, #00b140 100%);
     --color-grey:  #53565a;
     --color-black: #2d2926;
     --color-white: #ffffff;
@@ -18,11 +18,11 @@
     --color-red: #e1523d;
     /* Font familty: Interstate-Regular*/
 }
+body, p, h1, h2, h3, td, a{
+    font-family: "Montserrat", sans-serif !important;
+}
 .body {
     height: 100%;
-}
-h1 {
-    font-family: "Montserrat", sans-serif;
 }
 .cg-gradient {
     background: var(--gradient) !important;
@@ -57,8 +57,6 @@ h1 {
 .cg-nav .cg-nav-logo{
     padding: 0px 0px !important;
     width: auto !important;
-    height: 80px !important; /*50px*/
-    margin: 35px 80px !important; /*23*/
 }
 .cg-nav .cg-nav-item {
     position: static !important;
@@ -98,10 +96,19 @@ h1 {
 }
 
 .cg-title {
+    padding-right: 140px !important;
     display: block;
     font-size: 38px;
     text-transform: uppercase;
     color: #fff;
     padding: 0px 20px;
     margin: auto 80px;
+}
+
+.warning-timer {
+    color: var(--color-red);
+}
+
+.hidden-timer {
+    display: none;
 }

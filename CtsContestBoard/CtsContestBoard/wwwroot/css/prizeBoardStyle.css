@@ -11,7 +11,7 @@
 }
 .col {
     padding: 10px;
-    width: 25%;
+    width: 26%;
 }
 .prize-card {
     border-radius: 5px;
@@ -25,21 +25,25 @@
 
     .prize-card .img-container {
         overflow: hidden;
-        width: 25vh;
+        width: 28vh;
         margin: 0 auto;
-        height: 60%;
+        height: 70%;
     }
         .prize-card .img-container img {
             height: 100%;
+            width: inherit;
         }
     .prize-card .prize-card-header {
+        border-top: 1px solid #e1e1e1;
         margin: 0;
-        height: 30%;
+        height: 20%;
         padding: 0;
-        background-color: rgba(0, 94, 128, 0.9) !important;
+        /* background-color: rgba(0, 94, 128, 0.9) !important; */
         text-align: center;
+        font-weight: bold;
         font-size: 30px;
-        color: whitesmoke;
+        display: flex;
+        justify-content: center;
     }
 
 .cardFooter {
@@ -50,17 +54,17 @@
     text-align: center;
     background-color: white;
     padding: 10px;
-    color: rgb(100,167,11);
+    color: var(--primary-color);
 }
 
     .cardFooter.yellow {
-        background-color: rgb(237,139,0);
+        background-color: var(--color-orange);
         color: white;
         font-weight: bold;
     }
 
     .cardFooter.sold-out {
-        background-color: rgb(225,82,61);
+        background-color: var(--color-red);
         color: white;
         font-weight: bold;
     }
@@ -96,4 +100,15 @@
 
 .full-space{
     height: 100vh !important;
+}
+
+.prize-card-header {
+    align-items: center;
+    display: flex;
+}
+
+.center-image {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
