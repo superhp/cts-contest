@@ -27,17 +27,17 @@ const links = [
     //     routeTo: '/competition',
     //     name: 'Competition'
     // },
-    {
-        routeTo: '/leaderboard',
-        name: 'Leaderboard'
-    },
+    // {
+    //     routeTo: '/leaderboard',
+    //     name: 'Leaderboard'
+    // },
     {
         routeTo: '/shop',
         name: 'Shopping booth'
     },
     {
         routeTo: '/prizes',
-        name: 'Day Prizes'
+        name: 'Conference prize'
     },
     // {
     //     routeTo: '/quiz',
