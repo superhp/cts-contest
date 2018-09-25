@@ -76,7 +76,9 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                     </ul>
                                 </li>
                                 <li>Have points added to your virtual wallet</li>
-                                <li>Buy goodies in our shopping booth or save it to win the day prizes</li>
+                                <li>Buy goodies in our shopping booth or save it to win the conference prize - <b>Xbox One X</b></li>
+                                <li>To access leaderboard results, visit Cognizant booth</li>
+                                <li>Challenge is active from 8AM to 5PM</li>
                             </ol>
                         </div>
                     </Container>
@@ -95,11 +97,10 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                 <li>Unspent points are added up to your total balance</li>
                             </ul>
 
-                            <div className='cg-title-bold'>2.  Save your points to win day prizes</div>
+                            <div className='cg-title-bold'>2.  Save your points to win the conference prize</div>
                             <ul className='cg-ul-dash'>
-                                <li>Day prizes are awarded at the end of the day to the leading contestants based on leaderboard results</li>
+                                <li>Conference prize is awarded at the end of the second day of the conference to the leading contestant based on leaderboard results</li>
                                 <li>Points spent in shopping booth are no longer valid</li>
-                                <li><strong>Tickets to conferences</strong> will be awarded to the contestants with the highest total balance – the sum of participant’s unspent points throughout the entire game</li>
                                 <li>In case of absence, the prize will go to the next best participant in the leaderboard</li>
                             </ul>
 
@@ -173,6 +174,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                 <li>There is an editor provided near each of the tasks, but you can use anything you like – just make sure to put your code into the editor before you submit.</li>
                                 <li>You can try to submit your solution as many times as you want. Once your code passes the tests, you will gain the respective amount of points and the task will be marked as solved.</li>
                                 <li>Quantity of items in stock is limited.</li>
+                                <li>Price of items may change throughout the conference</li>
                             </ul>
                         </div>
                     </Container>

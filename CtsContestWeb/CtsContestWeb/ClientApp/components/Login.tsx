@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Responsive, Label, Button, Header as Header, Image, Modal, Icon, Menu, Checkbox } from 'semantic-ui-react'
@@ -123,7 +124,7 @@ export class Login extends React.Component<any, LoginModalState> {
                         checked={ConsentGiven}
                         onChange={() => { ToggleConsentCheckbox(); }}
                         label={{
-                            children: "By logging in you agree that your full name and profile photo will appear on contest's leaderboard and your email address will be stored secretly in the contest's database. You also understand that the website uses cookie in order to keep you logged in. In case you use a public laptop, you must disconnect from contest's website and Facebook/Gmail separately after you finish your session."
+                            children: "By logging in you agree that your full name and profile photo will appear on contest's leaderboard and your email address will be stored secretly in the contest's database. After the conference, you will receive a contest overview with leaderboard from Cognizant team. You also understand that the website uses cookie in order to keep you logged in. In case you use a public laptop, you must disconnect from contest's website and Facebook/Gmail separately after you finish your session."
                         }}
                     />
                 </div>
