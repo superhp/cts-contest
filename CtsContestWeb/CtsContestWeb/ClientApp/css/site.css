@@ -345,7 +345,8 @@ body{
 }
 
 .main-prize-prizes .cg-card .cg-card-content h2{
-    margin-left: 25% !important;
+    display: flex;
+    justify-content: center;
 }
 
 .loading-text {
