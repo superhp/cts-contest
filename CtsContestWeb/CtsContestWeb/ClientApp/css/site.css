@@ -63,7 +63,7 @@ body{
     display: flex; 
     flex-grow: 1;
     min-width: 250px;
-    width: 33%;
+    width: 25%;
     padding: 10px;
 }
 .cg-row.last-not-grow .cg-col:last-child{
