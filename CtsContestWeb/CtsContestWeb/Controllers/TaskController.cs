@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using CtsContestWeb.Communication;
 using CtsContestWeb.Dto;
@@ -7,6 +8,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using CtsContestWeb.Filters;
 using CtsContestWeb.Logic;
+using Microsoft.Extensions.Configuration;
 
 namespace CtsContestWeb.Controllers
 {
@@ -17,13 +19,15 @@ namespace CtsContestWeb.Controllers
         private readonly ICompiler _compiler;
         private readonly ISolutionLogic _solutionLogic;
         private readonly ICodeSkeletonManager _codeSkeletonManager;
+        private readonly IConfiguration _configuration;
 
-        public TaskController(ITaskManager taskManager, ICompiler compiler, ISolutionLogic solutionLogic, ICodeSkeletonManager codeSkeletonManager)
+        public TaskController(ITaskManager taskManager, ICompiler compiler, ISolutionLogic solutionLogic, ICodeSkeletonManager codeSkeletonManager, IConfiguration iconfiguration)
         {
             _taskManager = taskManager;
             _compiler = compiler;
             _solutionLogic = solutionLogic;
             _codeSkeletonManager = codeSkeletonManager;
+            _configuration = iconfiguration;
         }
 
         public async Task<IEnumerable<TaskDisplayDto>> Get()
@@ -65,6 +69,10 @@ namespace CtsContestWeb.Controllers
         [HttpPut("[action]")]
         public async Task<CompileDto> Solve(int taskId, string source, int language)
         {
+            if (IsCognizantChallengeOver())
+            {
+                throw new Exception("Challenge is over!");
+            }  
             var userEmail = User.FindFirst(ClaimTypes.Email).Value;
             var compileResult = await _solutionLogic.CheckSolution(taskId, source, language);
 
@@ -100,6 +108,13 @@ namespace CtsContestWeb.Controllers
             else
                 userEmail = null;
             return await _codeSkeletonManager.GetCodeSkeleton(userEmail, taskId, language);
+        }
+
+        private bool IsCognizantChallengeOver()
+        {
+            var now = DateTime.UtcNow;
+            var endTime = DateTime.Parse(_configuration.GetValue<string>("EndTimeUTC"));
+            return now > endTime;
         }
     }
 }
