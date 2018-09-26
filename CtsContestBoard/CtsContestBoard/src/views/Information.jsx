@@ -20,7 +20,7 @@ export default class Information extends React.Component {
                         style={{ color: 'black', fontSize: 72}} informationViewText={informationViewText}/>
                 </div>
                 <p style={{ margin: 0, fontSize: 60, textAlign: 'center', paddingTop: 40,paddingBottom: 10, fontWeight: 'bold' }}>
-                    The main prize winner will be awarded tomorrow at {this.renderTimeValue(this.props.timer.dayGame.hour)}:{this.renderTimeValue(this.props.timer.dayGame.minute)}        
+                    Conference prize winner will be awarded on Friday at {this.renderTimeValue(this.props.timer.dayGame.hour)}:{this.renderTimeValue(this.props.timer.dayGame.minute)}        
                 </p>                
                 
                 <p style={{ margin: 0, fontSize: 60, textAlign: 'center' }}>
@@ -30,7 +30,7 @@ export default class Information extends React.Component {
                     Please come to Cognizant stand to take your prize
                 </p>
                 <p style={{margin: 0, fontSize: 60, textAlign: 'center' }}>
-                    Solution submission will be disabled from 17:00 until 8:00 tomorrow
+                    Solution submission will be disabled from 17:00 today until 8:30 tomorrow
                 </p>
 
                 {/*<p style={{ margin: 0, fontSize: 60, textAlign: 'center' }}>

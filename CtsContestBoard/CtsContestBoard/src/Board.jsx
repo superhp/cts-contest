@@ -6,12 +6,13 @@ import LeaderBoard from './views/LeaderBoard.jsx';
 import PrizeBoard from './views/PrizeBoard.jsx';
 import SpecialPrizeBoard from './views/SpecialPrizeBoard.jsx';
 import Header from './components/Header.jsx';
+import JobPosters from './views/JobPosters.jsx';
 
 const timer = {
     dayGame: {
         day: (new Date().getDate() + 1),
         hour: 17, 
-        minute: 0
+        minute: 00
     },
     conferenceGame: {
         /*day: 17,
@@ -28,7 +29,8 @@ export const BoardEnum = {
     TodayPrizes: 2,
     WeekPrizes: 3,
     Information: 4,
-    Slogan: 5
+    JobPosters: 5,
+    Slogan: 6
 }
 class Board extends React.Component {
     constructor(props) {
@@ -39,6 +41,7 @@ class Board extends React.Component {
     renderSlide() {
         //switch (BoardEnum.Information) {
         console.log(this.state.Board);
+        //return <JobPosters/>;
         switch (this.state.Board) {
             
             case BoardEnum.LeaderBoard:
@@ -75,10 +78,10 @@ class Board extends React.Component {
                 return <SpecialPrizeBoard data={leaders} prize={this.state.WeeksPrize} board='week'/>;
             case BoardEnum.Information:
                 return <Information timer={timer} />;
+            case BoardEnum.JobPosters:
+                return <JobPosters/>;
             case BoardEnum.Slogan:
                 return <Slogan />;
-            // default:
-            // return <Information timer={timer} />;
         }
 
     }

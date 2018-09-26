@@ -112,3 +112,7 @@ body, p, h1, h2, h3, td, a{
 .hidden-timer {
     display: none;
 }
+
+.stretch-image {
+    width: 100%;
+}

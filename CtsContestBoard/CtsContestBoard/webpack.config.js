@@ -12,12 +12,16 @@ module.exports = {
    },
    module: {
       loaders: [
-         {
+        {
             test: /\.jsx?$/,
             loader: "babel-loader",
             query: {
                presets: ["es2015", "react"]
             }
+         },
+         { 
+            test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)$/,
+            use: 'url-loader?limit=25000'
          }
       ]
    }

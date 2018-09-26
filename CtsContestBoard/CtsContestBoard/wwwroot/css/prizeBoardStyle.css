@@ -25,18 +25,17 @@
 
     .prize-card .img-container {
         overflow: hidden;
-        width: 28vh;
         margin: 0 auto;
-        height: 70%;
+        height: 66%;
     }
         .prize-card .img-container img {
-            height: 100%;
-            width: inherit;
+            max-height: 100%;
+            max-width: 100%;
         }
     .prize-card .prize-card-header {
         border-top: 1px solid #e1e1e1;
         margin: 0;
-        height: 20%;
+        height: 22%;
         padding: 0;
         /* background-color: rgba(0, 94, 128, 0.9) !important; */
         text-align: center;
@@ -47,14 +46,17 @@
     }
 
 .cardFooter {
-    height: 10%;
+    height: 12%;
     text-transform: uppercase;
     font-size: 36px;
     /*color: white;*/
-    text-align: center;
     background-color: white;
     padding: 10px;
+    padding-top: 12px;
     color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
     .cardFooter.yellow {
@@ -78,7 +80,7 @@
     }
 .card-daily-prize-header {
     padding: 0 !important;
-    background-color: rgba(0, 94, 128, 0.9) !important;
+    background-color: var(--primary-color) !important;
     z-index: 10;
 }
 .headerText  {

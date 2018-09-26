@@ -49,6 +49,7 @@ namespace CtsContestBoard
             TodayPrizes,
             WeekPrizes,
             Information,
+            JobPosters,
             Slogan
         }
 
@@ -250,7 +251,7 @@ namespace CtsContestBoard
 
         private BoardEnum Increment(BoardEnum value)
         {
-            if (value < BoardEnum.Information) return value + 1;
+            if (value < BoardEnum.JobPosters) return value + 1;
             return BoardEnum.LeaderBoard;
         }
 

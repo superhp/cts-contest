@@ -95,7 +95,7 @@ export default class Timer extends React.Component {
         }
         
         let timeLeft = this.parseTimeLeft(this.state.hours, this.state.minutes, this.state.seconds);
-        let warningClass = this.state.hours === 0 && this.state.minutes <= 15 ? 'warning-timer' : null;
+        let warningClass = this.state.hours === 0 && this.state.minutes <= 14 ? 'warning-timer' : null;
         return <TimeLeft style={this.props.style} timeLeft={timeLeft} infoText={this.props.informationViewText} parseTimeLeft={this.state.parseTimeLeft}
             warningClass={warningClass}/>
     }
