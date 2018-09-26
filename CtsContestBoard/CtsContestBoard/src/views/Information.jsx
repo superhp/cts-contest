@@ -12,7 +12,7 @@ export default class Information extends React.Component {
             return value;
     }
     render() {
-        let informationViewText = <h1 style={{ fontSize: 72 }}>Game closes in:</h1>;
+        let informationViewText = <h1 style={{ fontSize: 72 }}>Game stops in:</h1>;
         return (
             <div className="container">
                 <div style={{ textAlign: 'center', paddingTop: 100, paddingBottom: 0, margin: 0 }}>
@@ -30,7 +30,7 @@ export default class Information extends React.Component {
                     Please come to Cognizant stand to take your prize
                 </p>
                 <p style={{margin: 0, fontSize: 60, textAlign: 'center' }}>
-                    Solution submission will be disabled from 17:00 today until 8:30 tomorrow
+                    Game will be stopped from 17:00 today until 8:30 tomorrow
                 </p>
 
                 {/*<p style={{ margin: 0, fontSize: 60, textAlign: 'center' }}>

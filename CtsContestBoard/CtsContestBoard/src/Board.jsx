@@ -12,7 +12,7 @@ const timer = {
     dayGame: {
         day: (new Date().getDate() + 1),
         hour: 17, 
-        minute: 00
+        minute: 0
     },
     conferenceGame: {
         /*day: 17,
@@ -41,7 +41,7 @@ class Board extends React.Component {
     renderSlide() {
         //switch (BoardEnum.Information) {
         console.log(this.state.Board);
-        //return <JobPosters/>;
+        //return <PrizeBoard prizes={this.state.PrizesForPoints}/>;
         switch (this.state.Board) {
             
             case BoardEnum.LeaderBoard:
