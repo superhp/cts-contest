@@ -63,7 +63,7 @@ namespace CtsContestWeb.Communication
                     if (expected != actual)
                     {
                         compileResult.FailedInput = i+1;
-                        compileResult.Message = data.result.stderr[i-1].Value.ToString() == "False" ? (data.result.message[i].Value.ToString() != "Success" ? data.result.message[i].Value.ToString() : "") : data.result.stderr[i].Value.ToString();
+                        compileResult.Message = data.result.stderr[i].Value.ToString() == "False" ? (data.result.message[i].Value.ToString() != "Success" ? data.result.message[i].Value.ToString() : "") : data.result.stderr[i].Value.ToString();
                         break; 
                     }
                 }
