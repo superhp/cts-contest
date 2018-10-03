@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
@@ -15,12 +16,13 @@ namespace CtsContestWeb
     {
         public static void GetDeveloperIdentity(HttpContext context)
         {
+            string emailHeaderVal = context.Request.Headers.FirstOrDefault(header => header.Key.Equals("email")).Value;
             // Create claims for testing/development
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, "Test Developer"),
                 new Claim(ClaimTypes.NameIdentifier, "LocalDev"),
-                new Claim(ClaimTypes.Email, "LocalDev@local.com"),
+                new Claim(ClaimTypes.Email, emailHeaderVal ?? "LocalDev@local.com"),
                 new Claim(ClaimTypes.Surname, "Developer"),
                 new Claim(ClaimTypes.GivenName, "Test"),
                 new Claim(ClaimTypes.Actor, "Test"),
