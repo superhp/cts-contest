@@ -13,21 +13,23 @@ import { DuelTask } from './DuelTask';
 import { fakeDuelInfo } from '../mocks/fakeData';
 import { CompileResult } from '../components/models/Task';
 import { UserInfo } from '../components/models/UserInfo';
-import { DuelInfo } from '../components/models/DuelInfo';
+import { DuelInfo, initialDuelTime, DuelTime } from '../components/models/DuelInfo';
 
 interface DuelState {
     compileResult: CompileResult | null,
     winner: UserInfo | null,
     step: string,
     DuelInfo: DuelInfo,
-    timeElapsed: number,
-    compiling: boolean
+    secondsToPlay: number,
+    compiling: boolean,
+    time : DuelTime
 }
 
 export class Duel extends React.Component<any, DuelState> {
 
     hubConnection: signalR.HubConnection;
     timer: any;
+
 
     constructor(props: any) {
         super(props);
@@ -37,8 +39,9 @@ export class Duel extends React.Component<any, DuelState> {
             winner: null,
             step: 'initial',
             DuelInfo: fakeDuelInfo,
-            timeElapsed: 0,
-            compiling: false
+            secondsToPlay: initialDuelTime.minutes*60 + initialDuelTime.seconds,
+            compiling: false,
+            time: initialDuelTime
         };
 
         this.hubConnection = new signalR.HubConnectionBuilder()
@@ -49,9 +52,9 @@ export class Duel extends React.Component<any, DuelState> {
 
         this.hubConnection.on("DuelStarts", (DuelInfo: DuelInfo) => {
             this.setState({step: 'started', DuelInfo: DuelInfo});
+            this.resetDuelTimerState();
             this.timer = setInterval(() => {
-                let seconds = this.state.timeElapsed + 1;   
-                this.setState({timeElapsed: seconds})
+               this.countDown()
             }, 1000);
             console.log("Game started. Step: started");
         });
@@ -67,7 +70,7 @@ export class Duel extends React.Component<any, DuelState> {
         })
 
         this.hubConnection.on("scoreAdded", (score: number) => {
-		    this.props.onIncrementBalance(this.state.DuelInfo.task.value); 
+            this.props.onIncrementBalance(this.state.DuelInfo.task.value); 
 		    console.log(score + ' points added');
 	    })
 
@@ -83,10 +86,48 @@ export class Duel extends React.Component<any, DuelState> {
         })
     }
 
+    countDown() {
+        let seconds = this.state.secondsToPlay - 1;
+        this.setState({
+            time: this.secondsToTime(seconds),
+            secondsToPlay: seconds,
+        });
+        
+        if (seconds == 0) { 
+            this.setState({step: "finishedByTimeout"});
+            this.resetDuelTimerState();
+            this.componentWillUnmount();
+        }
+    }
+
+    resetDuelTimerState() {
+        clearInterval(this.timer);
+        this.setState({secondsToPlay: initialDuelTime.minutes*60 + initialDuelTime.seconds, time: initialDuelTime});
+    }
+
+    secondsToTime(secs : number) {
+        let divisor_for_minutes = secs % (60 * 60);
+        let minutesVal = Math.floor(divisor_for_minutes / 60);
+
+        let divisor_for_seconds = divisor_for_minutes % 60;
+        let secondsVal = Math.ceil(divisor_for_seconds);
+
+        let obj : DuelTime = {
+            minutes: minutesVal,
+            seconds: secondsVal
+        };
+        return obj;
+    }
+
     componentWillUnmount() {
         this.hubConnection.stop()
             .then(() => console.log('Connection terminated'));
         clearInterval(this.timer);
+    }
+
+    componentDidMount() {
+        let timeLeft = this.secondsToTime(this.state.secondsToPlay);
+        this.setState({ time: timeLeft });
     }
 
     findOpponent = () => {
@@ -107,11 +148,9 @@ export class Duel extends React.Component<any, DuelState> {
     getCurrentStepTemplate = (step: string) => {
         switch (step) {
             case 'initial':
-                return <Container textAlign="center">
-                           <button className='cg-card-button cyan' onClick={this.findOpponent} style={{
-                               "width": "15%"
-                           }}>Start</button>
-                </Container>;
+                  return <Container textAlign="center"><div><button className='cg-card-button cyan' onClick={this.findOpponent} style={{
+                    "width": "15%"
+                }}>Start</button></div>;</Container>;
             case 'searching':
                 return <div className="cg-title loading-text">
                            <h2>Wait for your opponent...</h2>
@@ -127,6 +166,13 @@ export class Duel extends React.Component<any, DuelState> {
                 return <div className="cg-title loading-text">
                     <h2>Opponent disconnected - you won!</h2>
                 </div>;
+            case 'finishedByTimeout':
+                return <div>
+                    <div className="cg-title loading-text"><h2>Time for a duel has finished. There is no winner! It's a draw! </h2></div>;  
+                    <Container textAlign="center"><div><button className='cg-card-button cyan' onClick={this.findOpponent} style={{
+            "width": "15%"
+        }}>Start</button></div>;</Container>;
+                    </div>
             case 'closeWindow':
                 return <div className="cg-title loading-text">
                     <h2>Duel is ongoing. Close this window</h2>
@@ -152,7 +198,7 @@ export class Duel extends React.Component<any, DuelState> {
 
                 {
                     this.state.step === "started" ?
-                    <RulesAndDuelInfo info={this.state.DuelInfo} timeElapsed={this.state.timeElapsed} 
+                    <RulesAndDuelInfo info={this.state.DuelInfo} duelState={this.state} 
                         taskName={this.state.DuelInfo.task.name} taskPoints={this.state.DuelInfo.task.value}/> :
                     <Rules centered={true}/>
                 }
@@ -191,7 +237,7 @@ const Rules = ({centered}: {centered: boolean}) => {
     );
 }
 
-const RulesAndDuelInfo = ({info, timeElapsed, taskName, taskPoints}: {info: DuelInfo, timeElapsed: number, taskName: string, taskPoints: number}) => {
+const RulesAndDuelInfo = ({info, duelState, taskName, taskPoints}: {info: DuelInfo, duelState: DuelState, taskName: string, taskPoints: number}) => {
     return (<Container fluid>
         <Grid columns={2} relaxed>
 
@@ -208,7 +254,7 @@ const RulesAndDuelInfo = ({info, timeElapsed, taskName, taskPoints}: {info: Duel
 
                 <div className='cg-about-p'>
                     <p><strong>{info.players[0].name}</strong> vs <strong>{info.players[1].name}</strong></p>
-                    <p>Time elapsed: {timeElapsed} seconds</p>
+                    <p>Time remaining: {duelState.time.minutes} m.  {duelState.time.seconds} sec.</p>
                     <p>Task's {taskName} value: {taskPoints} points</p> 
                 </div>
             </Container>
