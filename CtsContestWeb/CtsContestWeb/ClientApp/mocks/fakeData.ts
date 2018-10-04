@@ -1,6 +1,6 @@
-import { CompetitionInfo } from '../components/models/CompetitionInfo';
+import { DuelInfo } from '../components/models/DuelInfo';
 
-export const fakeCompetitionInfo = {
+export const fakeDuelInfo = {
     players: [{
         isLoggedIn: true,
         email: 'a@a.com',

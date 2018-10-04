@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CtsContestWeb.Db.Entities
 {
-    public class CompetitionSolution : IAuditable
+    public class DuelSolution : IAuditable
     {
-        public int CompetitionSolutionId { get; set; }
-        public int CompetitionId { get; set; }
-        public virtual Competition Competition { get; set; }
+        public int DuelSolutionId { get; set; }
+        public int DuelId { get; set; }
+        public virtual Duel Duel { get; set; }
         public string UserEmail { get; set; }
         [ForeignKey("UserEmail")]
         public User User { get; set; }

@@ -7,18 +7,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CtsContestWeb.Db.Repository
 {
-    public class CompetitionRepository : ICompetitionRepository
+    public class DuelRepository : IDuelRepository
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public CompetitionRepository(ApplicationDbContext dbContext)
+        public DuelRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public int CreateCompetition(CompetitionDto competitionDto)
+        public int CreateDuel(DuelDto competitionDto)
         {
-            var competition = new Competition
+            var competition = new Duel
             {
                 FirstPlayerEmail = competitionDto.Players[0].Email,
                 SecondPlayerEmail = competitionDto.Players[1].Email,
@@ -26,55 +26,55 @@ namespace CtsContestWeb.Db.Repository
                 TaskId = competitionDto.Task.Id
             };
 
-            _dbContext.Competitions.Add(competition);
+            _dbContext.Duels.Add(competition);
             _dbContext.SaveChanges();
 
-            return competition.CompetitionId;
+            return competition.DuelId;
         }
 
-        public void SetWinner(CompetitionDto competitionDto, PlayerDto winner)
+        public void SetWinner(DuelDto competitionDto, PlayerDto winner)
         {
-            var competition = _dbContext.Competitions.Find(competitionDto.Id);
+            var competition = _dbContext.Duels.Find(competitionDto.Id);
 
             if (string.IsNullOrEmpty(competition.WinnerEmail))
                 competition.WinnerEmail = winner.Email;
             else
-                throw new ArgumentException($"Competition {competitionDto.Id} already has a winner");
+                throw new ArgumentException($"Duel {competitionDto.Id} already has a winner");
 
             _dbContext.SaveChanges();
         }
 
-        public CompetitionSolution GetSolution(int competitionId, string userEmail)
+        public DuelSolution GetSolution(int competitionId, string userEmail)
         {
-            return _dbContext.CompetitionSolutions.SingleOrDefault(cs =>
-                cs.CompetitionId == competitionId && cs.UserEmail == userEmail);
+            return _dbContext.DuelSolutions.SingleOrDefault(cs =>
+                cs.DuelId == competitionId && cs.UserEmail == userEmail);
         }
 
-        public void UpsertSolution(CompetitionSolution solution)
+        public void UpsertSolution(DuelSolution solution)
         {
-            _dbContext.Entry(solution).State = solution.CompetitionSolutionId == 0 ?
+            _dbContext.Entry(solution).State = solution.DuelSolutionId == 0 ?
                 EntityState.Added :
                 EntityState.Modified;
             _dbContext.SaveChanges();
         }
 
-        public IEnumerable<CompetitionDto> GetWonCompetitionsByEmail(string userEmail)
+        public IEnumerable<DuelDto> GetWonDuelsByEmail(string userEmail)
         {
-            return _dbContext.Competitions
+            return _dbContext.Duels
                 .Where(c => c.WinnerEmail.Equals(userEmail)).AsEnumerable()
-                .Select(CompetitionToCompetitionDto);
+                .Select(DuelToDuelDto);
         }
 
-        public IEnumerable<CompetitionDto> GetCompetitionsByEmail(string email)
+        public IEnumerable<DuelDto> GetDuelsByEmail(string email)
         {
-            return _dbContext.Competitions
+            return _dbContext.Duels
                 .Where(c => c.FirstPlayerEmail.Equals(email) || c.SecondPlayerEmail.Equals(email)).AsEnumerable()
-                .Select(CompetitionToCompetitionDto);
+                .Select(DuelToDuelDto);
         }
 
-        private CompetitionDto CompetitionToCompetitionDto(Competition c)
+        private DuelDto DuelToDuelDto(Duel c)
         {
-            return new CompetitionDto
+            return new DuelDto
             {
                 Prize = c.Prize,
                 Players = new List<PlayerDto>
@@ -92,7 +92,7 @@ namespace CtsContestWeb.Db.Repository
                 {
                     Id = c.TaskId
                 },
-                Id = c.CompetitionId
+                Id = c.DuelId
             };
         }
     }

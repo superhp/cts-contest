@@ -15,14 +15,14 @@ namespace CtsContestWeb.Communication
     {
         private readonly IConfiguration _iconfiguration;
         private readonly ISolutionRepository _solutionRepository;
-        private readonly ICompetitionRepository _competitionRepository;
+        private readonly IDuelRepository _duelRepository;
         private readonly IMemoryCache _cache;
 
-        public TaskManager(IConfiguration iconfiguration, ISolutionRepository solutionRepository, ICompetitionRepository competitionRepository, IMemoryCache cache)
+        public TaskManager(IConfiguration iconfiguration, ISolutionRepository solutionRepository, IDuelRepository duelRepository, IMemoryCache cache)
         {
             _iconfiguration = iconfiguration;
             _solutionRepository = solutionRepository;
-            _competitionRepository = competitionRepository;
+            _duelRepository = duelRepository;
             _cache = cache;
         }
 
@@ -50,21 +50,21 @@ namespace CtsContestWeb.Communication
             return tasks;
         }
 
-        private async Task<List<TaskDto>> GetAllTasksForCompetition()
+        private async Task<List<TaskDto>> GetAllTasksForDuel()
         {
             var competitionTasks = "competitionTasks";
             List<TaskDto> tasks;
 
             if (!_cache.TryGetValue<List<TaskDto>>(competitionTasks, out tasks))
             {
-                tasks = await GetAllTasksForCompetitionFromApi();
+                tasks = await GetAllTasksForDuelFromApi();
                 CacheTasks(tasks, competitionTasks);
             }
 
             return tasks;
         }
 
-        private async Task<List<TaskDto>> GetAllTasksForCompetitionFromApi()
+        private async Task<List<TaskDto>> GetAllTasksForDuelFromApi()
         {
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
             var client = new RestClient(umbracoApiUrl);
@@ -130,14 +130,14 @@ namespace CtsContestWeb.Communication
             return task;
         }
 
-        public async Task<TaskDto> GetTaskForCompetition(IEnumerable<string> usersEmail)
+        public async Task<TaskDto> GetTaskForDuel(IEnumerable<string> usersEmail)
         {
-            var tasks = (await GetAllTasksForCompetition()).Select(t => t.Id).ToList();
+            var tasks = (await GetAllTasksForDuel()).Select(t => t.Id).ToList();
 
-            var competitions = new List<CompetitionDto>();
+            var competitions = new List<DuelDto>();
             foreach (var email in usersEmail)
             {
-                competitions.AddRange(_competitionRepository.GetCompetitionsByEmail(email));
+                competitions.AddRange(_duelRepository.GetDuelsByEmail(email));
             }
 
             var usedTaskIds = competitions.Select(c => c.Task.Id).Distinct();

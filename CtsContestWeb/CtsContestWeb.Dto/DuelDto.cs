@@ -5,9 +5,9 @@ using Newtonsoft.Json;
 
 namespace CtsContestWeb.Dto
 {
-    public class CompetitionDto
+    public class DuelDto
     {
-        public CompetitionDto()
+        public DuelDto()
         {
             StartTime = DateTime.Now;
             Players = new List<PlayerDto>();

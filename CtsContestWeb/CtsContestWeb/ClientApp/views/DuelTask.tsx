@@ -12,7 +12,7 @@ import {
 } from 'semantic-ui-react';
 import AceEditor from 'react-ace';
 import { Task, Languages, Skeleton, CompileResult  } from '../components/models/Task';
-import { CompetitionInfo } from '../components/models/CompetitionInfo';
+import { DuelInfo } from '../components/models/DuelInfo';
 import { languages } from '../assets/languages';
 
 import 'brace/mode/jsx';
@@ -23,14 +23,14 @@ import 'brace/ext/language_tools';
 import 'brace/ext/searchbox';
 import 'brace/mode/java';
 
-interface CompetitionTaskProps {
-    info: CompetitionInfo,
+interface DuelTaskProps {
+    info: DuelInfo,
     submitSolution: any,
     compilerError: CompileResult | null,
     compiling: boolean
 }
 
-export class CompetitionTask extends React.Component<CompetitionTaskProps, any> {
+export class DuelTask extends React.Component<DuelTaskProps, any> {
     languageOptions: any = [];
 
     constructor(props: any) {

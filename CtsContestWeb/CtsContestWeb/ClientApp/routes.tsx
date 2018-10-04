@@ -8,7 +8,7 @@ import { Prizes } from './views/Prizes';
 import { Shop } from './views/Shop';
 import { Quiz } from './views/Quiz';
 import { TaskComponent } from './views/Task';
-import { Competition } from './views/Competition';
+import { Duel } from './views/Duel';
 import { UserInfo } from './components/models/UserInfo';
 import { Leaderboard } from './views/Leaderboard';
 
@@ -24,7 +24,7 @@ export class Routes extends React.Component<any, any> {
                 balance: 0,
                 todaysBalance: 0,
                 totalBalance: 0,
-                competitionBalance: 0
+                duelBalance: 0
             }
         }
 
@@ -38,7 +38,7 @@ export class Routes extends React.Component<any, any> {
         })
         .then(response => response.json() as Promise<any>)
         .then(data => {
-            data.totalBalance += data.competitionBalance;
+            data.totalBalance += data.duelBalance;
             this.setState({userInfo: data});
         });
     }
@@ -62,7 +62,7 @@ export class Routes extends React.Component<any, any> {
             <Layout userInfo={this.state.userInfo}>
                 <Route exact path='/' component={About} />
                 <Route exact path='/tasks' component={Tasks} /> 
-                <Route exact path='/competition' render={(props: any) => <Competition {...props} userInfo={this.state.userInfo} onIncrementBalance={this.incrementBalance} />} />
+                <Route exact path='/duel' render={(props: any) => <Duel {...props} userInfo={this.state.userInfo} onIncrementBalance={this.incrementBalance} />} />
                 <Route path='/shop' render={(props:any) => <Shop {...props} userInfo={this.state.userInfo} onDecrementBalance={this.decrementBalance}/>} />
                 <Route path='/prizes' render={(props:any) => <Prizes {...props} userInfo={this.state.userInfo} onDecrementBalance={this.decrementBalance}/>} />
                 <Route path="/tasks/:id" render={(props: any) => <TaskComponent {...props} userInfo={this.state.userInfo} onIncrementBalance={this.incrementBalance} />} />

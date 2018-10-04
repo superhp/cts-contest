@@ -17,16 +17,16 @@ namespace CtsContestWeb.Logic
         private readonly ITaskManager _taskManager;
         private readonly IConfiguration _iconfiguration;
         private readonly IIndex<string, ICompiler> _compilers;
-        private readonly ICompetitionRepository _competitionRepository;
+        private readonly IDuelRepository _duelRepository;
         private readonly ISolutionRepository _solutionRepository;
 
-        public SolutionLogic(ISolutionRepository solutionRepository, ITaskManager taskManager, IConfiguration iconfiguration, IIndex<string, ICompiler> compilers, ICompetitionRepository competitionRepository)
+        public SolutionLogic(ISolutionRepository solutionRepository, ITaskManager taskManager, IConfiguration iconfiguration, IIndex<string, ICompiler> compilers, IDuelRepository duelRepository)
         {
             _solutionRepository = solutionRepository;
             _taskManager = taskManager;
             _iconfiguration = iconfiguration;
             _compilers = compilers;
-            _competitionRepository = competitionRepository;
+            _duelRepository = duelRepository;
         }
 
         public async Task<CompileDto> CheckSolution(int taskId, string source, int language)
@@ -103,9 +103,9 @@ namespace CtsContestWeb.Logic
             _solutionRepository.Upsert(solution);
         }
 
-        public void SaveCompetitionSolution(int competitionId, string source, string userEmail, int language, bool resultCorrect)
+        public void SaveDuelSolution(int competitionId, string source, string userEmail, int language, bool resultCorrect)
         {
-            var solution = _competitionRepository.GetSolution(competitionId, userEmail);
+            var solution = _duelRepository.GetSolution(competitionId, userEmail);
 
             if (solution != null && solution.IsCorrect)
             {
@@ -114,10 +114,10 @@ namespace CtsContestWeb.Logic
 
             if (solution == null)
             {
-                solution = new CompetitionSolution
+                solution = new DuelSolution
                 {
                     UserEmail = userEmail,
-                    CompetitionId = competitionId,
+                    DuelId = competitionId,
                     IsCorrect = resultCorrect,
                     Language = language,
                     Source = source
@@ -130,7 +130,7 @@ namespace CtsContestWeb.Logic
                 solution.Language = language;
             }
 
-            _competitionRepository.UpsertSolution(solution);
+            _duelRepository.UpsertSolution(solution);
         }
     }
 }

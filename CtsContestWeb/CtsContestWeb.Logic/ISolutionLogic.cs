@@ -7,6 +7,6 @@ namespace CtsContestWeb.Logic
     {
         Task<CompileDto> CheckSolution(int taskId, string source, int language);
         Task SaveSolution(int taskId, string source, string userEmail, int language, bool isCorrect = true);
-        void SaveCompetitionSolution(int taskId, string source, string userEmail, int language, bool resultCorrect);
+        void SaveDuelSolution(int taskId, string source, string userEmail, int language, bool resultCorrect);
     }
 }

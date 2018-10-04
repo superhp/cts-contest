@@ -9,22 +9,22 @@ import {
 
 import { RouteComponentProps } from 'react-router';
 import * as signalR from '@aspnet/signalr';
-import { CompetitionTask } from './CompetitionTask';
-import { fakeCompetitionInfo } from '../mocks/fakeData';
+import { DuelTask } from './DuelTask';
+import { fakeDuelInfo } from '../mocks/fakeData';
 import { CompileResult } from '../components/models/Task';
 import { UserInfo } from '../components/models/UserInfo';
-import { CompetitionInfo } from '../components/models/CompetitionInfo';
+import { DuelInfo } from '../components/models/DuelInfo';
 
-interface CompetitionState {
+interface DuelState {
     compileResult: CompileResult | null,
     winner: UserInfo | null,
     step: string,
-    competitionInfo: CompetitionInfo,
+    DuelInfo: DuelInfo,
     timeElapsed: number,
     compiling: boolean
 }
 
-export class Competition extends React.Component<any, CompetitionState> {
+export class Duel extends React.Component<any, DuelState> {
 
     hubConnection: signalR.HubConnection;
     timer: any;
@@ -36,19 +36,19 @@ export class Competition extends React.Component<any, CompetitionState> {
             compileResult: null,
             winner: null,
             step: 'initial',
-            competitionInfo: fakeCompetitionInfo,
+            DuelInfo: fakeDuelInfo,
             timeElapsed: 0,
             compiling: false
         };
 
         this.hubConnection = new signalR.HubConnectionBuilder()
-            .withUrl('/competitionhub')
+            .withUrl('/Duelhub')
             .configureLogging(signalR.LogLevel.Information)
             .build();
         console.log("Component mounted. Step: initial");
 
-        this.hubConnection.on("competitionStarts", (competitionInfo: CompetitionInfo) => {
-            this.setState({step: 'started', competitionInfo: competitionInfo});
+        this.hubConnection.on("DuelStarts", (DuelInfo: DuelInfo) => {
+            this.setState({step: 'started', DuelInfo: DuelInfo});
             this.timer = setInterval(() => {
                 let seconds = this.state.timeElapsed + 1;   
                 this.setState({timeElapsed: seconds})
@@ -61,23 +61,23 @@ export class Competition extends React.Component<any, CompetitionState> {
 	        console.log('Submitted code did not go through.');
         })
 
-        this.hubConnection.on("competitionHasWinner", (winningPlayer: UserInfo) => {
+        this.hubConnection.on("DuelHasWinner", (winningPlayer: UserInfo) => {
             this.setState({step: 'finishedByWinning', winner: winningPlayer});
             console.log(`${winningPlayer.email} won. Cause: correct solution. Step: 'finishedByWinning'`)
         })
 
         this.hubConnection.on("scoreAdded", (score: number) => {
-		    this.props.onIncrementBalance(this.state.competitionInfo.task.value); 
+		    this.props.onIncrementBalance(this.state.DuelInfo.task.value); 
 		    console.log(score + ' points added');
 	    })
 
         this.hubConnection.on("closeThisWindow", () => {
             this.setState({step: 'closeWindow'});
-            console.log("Competition is already ongoing. Step: 'closeWindow'");
+            console.log("Duel is already ongoing. Step: 'closeWindow'");
         })
 
         this.hubConnection.on("opponentDisconnected", (winningPlayer: UserInfo) => {
-            this.props.onIncrementBalance(this.state.competitionInfo.task.value); 
+            this.props.onIncrementBalance(this.state.DuelInfo.task.value); 
             this.setState({step: 'finishedByDisconnection', winner: winningPlayer})
             console.log(`${winningPlayer.email} won. Cause: opponent disconnection. Step: 'finishedByDisconnection'`)
         })
@@ -117,11 +117,11 @@ export class Competition extends React.Component<any, CompetitionState> {
                            <h2>Wait for your opponent...</h2>
                 </div>;
             case 'started':
-                return <CompetitionTask info={this.state.competitionInfo} submitSolution={this.submitSolution} compilerError={this.state.compileResult}
+                return <DuelTask info={this.state.DuelInfo} submitSolution={this.submitSolution} compilerError={this.state.compileResult}
                     compiling={this.state.compiling}/>
             case 'finishedByWinning':
                 return <div className="cg-title loading-text">
-                    <h2>{this.state.winner && this.state.winner.name} has won the competition!</h2>
+                    <h2>{this.state.winner && this.state.winner.name} has won the Duel!</h2>
                 </div>;
             case 'finishedByDisconnection':
                 return <div className="cg-title loading-text">
@@ -129,7 +129,7 @@ export class Competition extends React.Component<any, CompetitionState> {
                 </div>;
             case 'closeWindow':
                 return <div className="cg-title loading-text">
-                    <h2>Competition is ongoing. Close this window</h2>
+                    <h2>Duel is ongoing. Close this window</h2>
                 </div>;
         }
     }
@@ -143,7 +143,7 @@ export class Competition extends React.Component<any, CompetitionState> {
                             <Header as='h1' textAlign='center' inverted>
                                 <Icon name='checkmark box' />
                                 <Header.Content>
-                                    Competition
+                                    Clash of Code
                                 </Header.Content>
                             </Header>
                         </Container>
@@ -152,8 +152,8 @@ export class Competition extends React.Component<any, CompetitionState> {
 
                 {
                     this.state.step === "started" ?
-                    <RulesAndCompetitionInfo info={this.state.competitionInfo} timeElapsed={this.state.timeElapsed} 
-                        taskName={this.state.competitionInfo.task.name} taskPoints={this.state.competitionInfo.task.value}/> :
+                    <RulesAndDuelInfo info={this.state.DuelInfo} timeElapsed={this.state.timeElapsed} 
+                        taskName={this.state.DuelInfo.task.name} taskPoints={this.state.DuelInfo.task.value}/> :
                     <Rules centered={true}/>
                 }
                 <Divider />
@@ -191,7 +191,7 @@ const Rules = ({centered}: {centered: boolean}) => {
     );
 }
 
-const RulesAndCompetitionInfo = ({info, timeElapsed, taskName, taskPoints}: {info: CompetitionInfo, timeElapsed: number, taskName: string, taskPoints: number}) => {
+const RulesAndDuelInfo = ({info, timeElapsed, taskName, taskPoints}: {info: DuelInfo, timeElapsed: number, taskName: string, taskPoints: number}) => {
     return (<Container fluid>
         <Grid columns={2} relaxed>
 

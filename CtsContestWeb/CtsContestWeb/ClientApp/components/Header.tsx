@@ -24,8 +24,8 @@ const links = [
         name: 'Tasks'
     },
     // {
-    //     routeTo: '/competition',
-    //     name: 'Competition'
+    //     routeTo: '/duel',
+    //     name: 'duel'
     // },
     // {
     //     routeTo: '/leaderboard',

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using CtsContestWeb.Competition;
+using CtsContestWeb.Duel;
 using CtsContestWeb.DI;
 using CtsContestWeb.Middleware;
 
@@ -93,7 +93,7 @@ namespace CtsContestWeb
             app.UseCors("CorsPolicy");
             app.UseSignalR(routes =>
             {
-                routes.MapHub<CompetitionHub>("/competitionhub");
+                routes.MapHub<DuelHub>("/duelhub");
             });
             app.UseMvc(routes =>
             {

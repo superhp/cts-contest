@@ -16,8 +16,8 @@ namespace CtsContestWeb.Db
         public DbSet<Purchase> Purchases { get; set; }
         public DbSet<GivenPurchase> GivenPurchases { get; set; }
         public DbSet<ContactInfo> ContactInformation { get; set; }
-        public DbSet<Competition> Competitions { get; set; }
-        public DbSet<CompetitionSolution> CompetitionSolutions { get; set; }
+        public DbSet<Duel> Duels { get; set; }
+        public DbSet<DuelSolution> DuelSolutions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,12 +33,12 @@ namespace CtsContestWeb.Db
                 .HasIndex(p => new { p.Email })
                 .IsUnique(true);
 
-            modelBuilder.Entity<Competition>()
+            modelBuilder.Entity<Duel>()
                 .HasIndex(p => new { p.FirstPlayerEmail, p.SecondPlayerEmail, p.TaskId })
                 .IsUnique(true);
 
-            modelBuilder.Entity<CompetitionSolution>()
-                .HasIndex(p => new { p.UserEmail, p.CompetitionId })
+            modelBuilder.Entity<DuelSolution>()
+                .HasIndex(p => new { p.UserEmail, p.DuelId })
                 .IsUnique(true);
 
             //modelBuilder.Entity<CompetitionSolution>()

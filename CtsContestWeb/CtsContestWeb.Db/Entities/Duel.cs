@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CtsContestWeb.Db.Entities
 {
-    public class Competition : IAuditable
+    public class Duel : IAuditable
     {
-        public int CompetitionId { get; set; }
+        public int DuelId { get; set; }
         public string FirstPlayerEmail { get; set; }
         [ForeignKey("FirstPlayerEmail")]
         public virtual User FirstPlayer { get; set; }

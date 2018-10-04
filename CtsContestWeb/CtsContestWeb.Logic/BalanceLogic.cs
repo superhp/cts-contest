@@ -12,16 +12,16 @@ namespace CtsContestWeb.Logic
         private readonly IPurchaseRepository _purchaseRepository;
         private readonly ITaskManager _taskManager;
         private readonly IPrizeManager _prizeManager;
-        private readonly ICompetitionRepository _competitionRepository;
+        private readonly IDuelRepository _duelRepository;
 
         public BalanceLogic(ISolutionRepository solutionRepository, ITaskManager taskManager, 
-            IPurchaseRepository purchaseRepository, IPrizeManager prizeManager, ICompetitionRepository competitionRepository)
+            IPurchaseRepository purchaseRepository, IPrizeManager prizeManager, IDuelRepository duelRepository)
         {
             _solutionRepository = solutionRepository;
             _taskManager = taskManager;
             _purchaseRepository = purchaseRepository;
             _prizeManager = prizeManager;
-            _competitionRepository = competitionRepository;
+            _duelRepository = duelRepository;
         }
 
         public async Task<bool> IsBalanceEnough(string userEmail, int prizeId)
@@ -37,9 +37,9 @@ namespace CtsContestWeb.Logic
             return GetTotalEarnedMoney(userEmail) - GetTotalSpentMoney(userEmail);
         }
 
-        public int GetCompetitionBalance(string userEmail)
+        public int GetDuelBalance(string userEmail)
         {
-            var competitions = _competitionRepository.GetWonCompetitionsByEmail(userEmail);
+            var competitions = _duelRepository.GetWonDuelsByEmail(userEmail);
 
             return competitions.Sum(c => c.Prize);
         }

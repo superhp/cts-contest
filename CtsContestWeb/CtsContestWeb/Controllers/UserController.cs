@@ -36,7 +36,7 @@ namespace CtsContestWeb.Controllers
                     Name = User.FindFirst(ClaimTypes.GivenName).Value,
                     TodaysBalance = _balanceLogic.GetCurrentBalance(User.FindFirst(ClaimTypes.Email).Value),
                     TotalBalance = _balanceLogic.GetTotalBalance(User.FindFirst(ClaimTypes.Email).Value),
-                    CompetitionBalance = _balanceLogic.GetCompetitionBalance(User.FindFirst(ClaimTypes.Email).Value),
+                    DuelBalance = _balanceLogic.GetDuelBalance(User.FindFirst(ClaimTypes.Email).Value),
                     IsLoggedIn = true
                 };
             }
