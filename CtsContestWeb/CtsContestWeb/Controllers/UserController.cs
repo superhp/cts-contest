@@ -16,12 +16,15 @@ namespace CtsContestWeb.Controllers
         private readonly IBalanceLogic _balanceLogic;
         private readonly IPurchaseRepository _purchaseRepository;
         private readonly IUserRepository _userRepository;
+        private readonly IDuelRepository _duelRepository;
 
-        public UserController(IBalanceLogic balanceLogic, IPurchaseRepository purchaseRepository, IUserRepository userRepository)
+        public UserController(IBalanceLogic balanceLogic, IPurchaseRepository purchaseRepository,
+            IUserRepository userRepository, IDuelRepository duelRepository)
         {
             _balanceLogic = balanceLogic;
             _purchaseRepository = purchaseRepository;
             _userRepository = userRepository;
+            _duelRepository = duelRepository;
         }
 
         [HttpGet("")]
@@ -40,11 +43,13 @@ namespace CtsContestWeb.Controllers
                     IsLoggedIn = true
                 };
             }
-
-            return new UserInfoDto
+            else
             {
-                IsLoggedIn = false
-            };
+                return new UserInfoDto
+                {
+                    IsLoggedIn = false
+                };
+            }
         }
 
         [HttpGet("purchases")]
@@ -66,6 +71,25 @@ namespace CtsContestWeb.Controllers
             }
 
             return new List<PurchaseDto>();
+        }
+
+        [HttpGet("duel-statistics")]
+        public UserDuelStatisticsDto GetUserDuelStatistics()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userEmail = User.FindFirst(ClaimTypes.Email).Value;
+                var totalWins = _duelRepository.GetWonDuelsByEmail(userEmail).Count();
+                var totalLooses = _duelRepository.GetDuelsByEmail(userEmail).Count() - totalWins;
+                return new UserDuelStatisticsDto()
+                {
+                    Email = userEmail,
+                    TotalWins = totalWins,
+                    TotalLooses = totalLooses
+                };
+            }
+
+            return new UserDuelStatisticsDto();
         }
 
         [HttpGet("users")]

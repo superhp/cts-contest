@@ -1,12 +1,10 @@
-import { DuelInfo } from '../components/models/DuelInfo';
-
 export const fakeDuelInfo = {
     players: [{
         isLoggedIn: true,
         email: 'a@a.com',
         name: 'Petras',
         totalBalance: 0
-    },{
+    }, {
         isLoggedIn: true,
         email: 'a@a.com',
         name: 'Antanas',
@@ -21,4 +19,4 @@ export const fakeDuelInfo = {
         name: 'Great task',
         value: 10
     }
-}
+};

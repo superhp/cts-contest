@@ -1,19 +1,11 @@
 import * as React from 'react';
-import {
-    Container,
-    Divider,
-    Header,
-    Icon,
-    Grid
-} from 'semantic-ui-react';
-
-import { RouteComponentProps } from 'react-router';
+import {Container, Divider, Grid, Header, Icon} from 'semantic-ui-react';
 import * as signalR from '@aspnet/signalr';
-import { DuelTask } from './DuelTask';
-import { fakeDuelInfo } from '../mocks/fakeData';
-import { CompileResult } from '../components/models/Task';
-import { UserInfo } from '../components/models/UserInfo';
-import { DuelInfo, initialDuelTime, DuelTime } from '../components/models/DuelInfo';
+import {DuelTask} from './DuelTask';
+import {fakeDuelInfo} from '../mocks/fakeData';
+import {CompileResult} from '../components/models/Task';
+import {UserInfo} from '../components/models/UserInfo';
+import {DuelInfo, DuelTime, initialDuelTime} from '../components/models/DuelInfo';
 
 interface DuelState {
     compileResult: CompileResult | null,
@@ -22,7 +14,10 @@ interface DuelState {
     DuelInfo: DuelInfo,
     secondsToPlay: number,
     compiling: boolean,
-    time : DuelTime
+    time: DuelTime,
+    totalWins: number,
+    totalLooses: number,
+    waitingPlayers: number
 }
 
 export class Duel extends React.Component<any, DuelState> {
@@ -39,9 +34,12 @@ export class Duel extends React.Component<any, DuelState> {
             winner: null,
             step: 'initial',
             DuelInfo: fakeDuelInfo,
-            secondsToPlay: initialDuelTime.minutes*60 + initialDuelTime.seconds,
+            secondsToPlay: initialDuelTime.minutes * 60 + initialDuelTime.seconds,
             compiling: false,
-            time: initialDuelTime
+            time: initialDuelTime,
+            waitingPlayers: 0,
+            totalWins: 0,
+            totalLooses: 0
         };
 
         this.hubConnection = new signalR.HubConnectionBuilder()
@@ -50,18 +48,23 @@ export class Duel extends React.Component<any, DuelState> {
             .build();
         console.log("Component mounted. Step: initial");
 
+        this.hubConnection.on("waitingPlayers", (players: number) => {
+            this.setState({waitingPlayers: players});
+            console.log("Number of waiting players received");
+        });
+
         this.hubConnection.on("DuelStarts", (DuelInfo: DuelInfo) => {
             this.setState({step: 'started', DuelInfo: DuelInfo});
             this.resetDuelTimerState();
             this.timer = setInterval(() => {
-               this.countDown()
+                this.countDown()
             }, 1000);
             console.log("Game started. Step: started");
         });
 
         this.hubConnection.on("solutionChecked", (compileResult: CompileResult) => {
-            this.setState({ compileResult: compileResult, compiling: false }); 
-	        console.log('Submitted code did not go through.');
+            this.setState({compileResult: compileResult, compiling: false});
+            console.log('Submitted code did not go through.');
         })
 
         this.hubConnection.on("DuelHasWinner", (winningPlayer: UserInfo) => {
@@ -70,9 +73,9 @@ export class Duel extends React.Component<any, DuelState> {
         })
 
         this.hubConnection.on("scoreAdded", (score: number) => {
-            this.props.onIncrementBalance(this.state.DuelInfo.task.value); 
-		    console.log(score + ' points added');
-	    })
+            this.props.onIncrementBalance(this.state.DuelInfo.task.value);
+            console.log(score + ' points added');
+        })
 
         this.hubConnection.on("closeThisWindow", () => {
             this.setState({step: 'closeWindow'});
@@ -80,7 +83,7 @@ export class Duel extends React.Component<any, DuelState> {
         })
 
         this.hubConnection.on("opponentDisconnected", (winningPlayer: UserInfo) => {
-            this.props.onIncrementBalance(this.state.DuelInfo.task.value); 
+            this.props.onIncrementBalance(this.state.DuelInfo.task.value);
             this.setState({step: 'finishedByDisconnection', winner: winningPlayer})
             console.log(`${winningPlayer.email} won. Cause: opponent disconnection. Step: 'finishedByDisconnection'`)
         })
@@ -92,8 +95,8 @@ export class Duel extends React.Component<any, DuelState> {
             time: this.secondsToTime(seconds),
             secondsToPlay: seconds,
         });
-        
-        if (seconds == 0) { 
+
+        if (seconds == 0) {
             this.setState({step: "finishedByTimeout"});
             this.resetDuelTimerState();
             this.componentWillUnmount();
@@ -102,17 +105,17 @@ export class Duel extends React.Component<any, DuelState> {
 
     resetDuelTimerState() {
         clearInterval(this.timer);
-        this.setState({secondsToPlay: initialDuelTime.minutes*60 + initialDuelTime.seconds, time: initialDuelTime});
+        this.setState({secondsToPlay: initialDuelTime.minutes * 60 + initialDuelTime.seconds, time: initialDuelTime});
     }
 
-    secondsToTime(secs : number) {
+    secondsToTime(secs: number) {
         let divisor_for_minutes = secs % (60 * 60);
         let minutesVal = Math.floor(divisor_for_minutes / 60);
 
         let divisor_for_seconds = divisor_for_minutes % 60;
         let secondsVal = Math.ceil(divisor_for_seconds);
 
-        let obj : DuelTime = {
+        let obj: DuelTime = {
             minutes: minutesVal,
             seconds: secondsVal
         };
@@ -126,17 +129,24 @@ export class Duel extends React.Component<any, DuelState> {
     }
 
     componentDidMount() {
+        fetch('api/user/duel-statistics', {
+            credentials: 'include'
+        }).then(response => response.json() as Promise<any>)
+            .then(data => {
+                this.setState({totalWins: data.totalWins, totalLooses: data.totalLooses});
+            });
+
         let timeLeft = this.secondsToTime(this.state.secondsToPlay);
-        this.setState({ time: timeLeft });
+        this.setState({time: timeLeft});
     }
 
     findOpponent = () => {
         this.hubConnection
             .start()
             .then(() => console.log('Established connection.'))
-            .catch((err:any) => console.log('Error while establishing connection :('));
+            .catch((err: any) => console.log('Error while establishing connection :('));
         console.log("Trying to start connection. Step: searching");
-        this.setState({ step: 'searching' });
+        this.setState({step: 'searching'});
     }
 
     submitSolution = (code: string, language: number) => {
@@ -148,16 +158,23 @@ export class Duel extends React.Component<any, DuelState> {
     getCurrentStepTemplate = (step: string) => {
         switch (step) {
             case 'initial':
-                  return <Container textAlign="center"><div><button className='cg-card-button cyan' onClick={this.findOpponent} style={{
-                    "width": "15%"
-                }}>Start</button></div>;</Container>;
+                return <Container textAlign="center">
+                    <div>
+                        <button className='cg-card-button cyan' onClick={this.findOpponent} style={{
+                            "width": "15%"
+                        }}>Start
+                        </button>
+                    </div>
+                    ;</Container>;
             case 'searching':
                 return <div className="cg-title loading-text">
-                           <h2>Wait for your opponent...</h2>
+                    <h2>Wait for your opponent...</h2>
+                    {this.state.waitingPlayers != 1 ? <h3>{this.state.waitingPlayers} opponents are in queue</h3> : <h3>{this.state.waitingPlayers} opponent is in queue</h3> }
                 </div>;
             case 'started':
-                return <DuelTask info={this.state.DuelInfo} submitSolution={this.submitSolution} compilerError={this.state.compileResult}
-                    compiling={this.state.compiling}/>
+                return <DuelTask info={this.state.DuelInfo} submitSolution={this.submitSolution}
+                                 compilerError={this.state.compileResult}
+                                 compiling={this.state.compiling}/>
             case 'finishedByWinning':
                 return <div className="cg-title loading-text">
                     <h2>{this.state.winner && this.state.winner.name} has won the Duel!</h2>
@@ -168,11 +185,18 @@ export class Duel extends React.Component<any, DuelState> {
                 </div>;
             case 'finishedByTimeout':
                 return <div>
-                    <div className="cg-title loading-text"><h2>Time for a duel has finished. There is no winner! It's a draw! </h2></div>;  
-                    <Container textAlign="center"><div><button className='cg-card-button cyan' onClick={this.findOpponent} style={{
-            "width": "15%"
-        }}>Start</button></div>;</Container>;
-                    </div>
+                    <div className="cg-title loading-text"><h2>Time for a duel has finished. There is no winner! It's a
+                        draw! </h2></div>
+                    ;
+                    <Container textAlign="center">
+                        <div>
+                            <button className='cg-card-button cyan' onClick={this.findOpponent} style={{
+                                "width": "15%"
+                            }}>Start
+                            </button>
+                        </div>
+                        ;</Container>;
+                </div>
             case 'closeWindow':
                 return <div className="cg-title loading-text">
                     <h2>Duel is ongoing. Close this window</h2>
@@ -187,7 +211,7 @@ export class Duel extends React.Component<any, DuelState> {
                     <div className='cg-page-header-overlay'>
                         <Container fluid>
                             <Header as='h1' textAlign='center' inverted>
-                                <Icon name='checkmark box' />
+                                <Icon name='checkmark box'/>
                                 <Header.Content>
                                     Clash of Code
                                 </Header.Content>
@@ -198,25 +222,30 @@ export class Duel extends React.Component<any, DuelState> {
 
                 {
                     this.state.step === "started" ?
-                    <RulesAndDuelInfo info={this.state.DuelInfo} duelState={this.state} 
-                        taskName={this.state.DuelInfo.task.name} taskPoints={this.state.DuelInfo.task.value}/> :
-                    <Rules centered={true}/>
+                        <RulesAndDuelInfo info={this.state.DuelInfo} duelState={this.state}
+                                          taskName={this.state.DuelInfo.task.name}
+                                          taskPoints={this.state.DuelInfo.task.value}/> :
+                        <Rules centered={true} duelState={this.state}/>
                 }
-                <Divider />
+                <Divider/>
 
                 {this.getCurrentStepTemplate(this.state.step)}
 
-                
-            </div>    
+
+            </div>
         );
     }
 }
 
-const Rules = ({centered}: {centered: boolean}) => {
+const Rules = ({centered, duelState}: { centered: boolean, duelState: DuelState }) => {
+
     return (
         <Container>
+            <div className='cg-about-p'>
+                <div>Total wins: {duelState.totalWins}. Total looses: {duelState.totalLooses}</div>
+            </div>
             {
-                centered ? 
+                centered ?
                     <div className='cg-title'>
                         <h2>Rules</h2>
                     </div> :
@@ -237,27 +266,27 @@ const Rules = ({centered}: {centered: boolean}) => {
     );
 }
 
-const RulesAndDuelInfo = ({info, duelState, taskName, taskPoints}: {info: DuelInfo, duelState: DuelState, taskName: string, taskPoints: number}) => {
+const RulesAndDuelInfo = ({info, duelState, taskName, taskPoints}: { info: DuelInfo, duelState: DuelState, taskName: string, taskPoints: number }) => {
     return (<Container fluid>
         <Grid columns={2} relaxed>
 
             <Grid.Column mobile={16} tablet={8} computer={8}>
-                <Rules centered={false}/>
+                <Rules centered={false} duelState={duelState}/>
             </Grid.Column>
             <Grid.Column mobile={16} tablet={8} computer={8}>
-            <Container>
-                <Header as='h1' textAlign='left'>
-                    <Header.Content>
-                        INFORMATION
-                    </Header.Content>
-                </Header>
+                <Container>
+                    <Header as='h1' textAlign='left'>
+                        <Header.Content>
+                            INFORMATION
+                        </Header.Content>
+                    </Header>
 
-                <div className='cg-about-p'>
-                    <p><strong>{info.players[0].name}</strong> vs <strong>{info.players[1].name}</strong></p>
-                    <p>Time remaining: {duelState.time.minutes} m.  {duelState.time.seconds} sec.</p>
-                    <p>Task's {taskName} value: {taskPoints} points</p> 
-                </div>
-            </Container>
+                    <div className='cg-about-p'>
+                        <p><strong>{info.players[0].name}</strong> vs <strong>{info.players[1].name}</strong></p>
+                        <p>Time remaining: {duelState.time.minutes} m. {duelState.time.seconds} sec.</p>
+                        <p>Task's {taskName} value: {taskPoints} points</p>
+                    </div>
+                </Container>
             </Grid.Column>
         </Grid>
     </Container>)

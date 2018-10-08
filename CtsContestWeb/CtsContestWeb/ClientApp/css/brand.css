@@ -212,6 +212,14 @@ ul.cg-ul-dash > li::before{
     font-size: 32px;
     color: #0033A0;
 }
+
+.cg-title h3{
+    margin: 0 auto;
+    display: block;
+    font-family: 'Interstate-Regular', 'ProximaNova-Light','Franklin Gothic','Franklin Gothic','ITC Franklin Gothic',Arial,sans-serif;
+    text-align: center;
+}
+
 h3.cg-title-2{
     text-align: center;
 }
