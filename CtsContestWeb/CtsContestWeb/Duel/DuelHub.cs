@@ -13,6 +13,7 @@ namespace CtsContestWeb.Duel
 {
     public class DuelHub : Hub
     {
+        private const string WaitingPlayersGroup = "WaitingPlayerGroups"; 
         private readonly ITaskManager _taskManager;
         private readonly IDuelRepository _DuelRepository;
         private readonly ISolutionLogic _solutionLogic;
@@ -32,10 +33,10 @@ namespace CtsContestWeb.Duel
                 return;
             }
 
+           
             var firstPlayer = new PlayerDto
             {
                 ConnectionId = Context.ConnectionId,
-                Email = Context.User.FindFirst(ClaimTypes.Email).Value,
                 Name = Context.User.FindFirst(ClaimTypes.GivenName).Value
             };
 
@@ -54,11 +55,11 @@ namespace CtsContestWeb.Duel
 
                 if (task == null)
                 {
-                    UserHandler.WaitingPlayers.Add(firstPlayer);
+                    AddWaitingPlayer(firstPlayer);
                     return;
                 }
               
-                UserHandler.WaitingPlayers.Remove(secondPlayer);
+                RemoveWaitingPlayer(secondPlayer);
 
                 var Duel = new DuelDto
                 {
@@ -80,7 +81,7 @@ namespace CtsContestWeb.Duel
             }
             else
             {
-                UserHandler.WaitingPlayers.Add(firstPlayer);
+                AddWaitingPlayer(firstPlayer);
             }
 
             await base.OnConnectedAsync();
@@ -124,7 +125,7 @@ namespace CtsContestWeb.Duel
                     UserHandler.WaitingPlayers.FirstOrDefault(wp => wp.ConnectionId.Equals(Context.ConnectionId));
 
                 if (player != null)
-                    UserHandler.WaitingPlayers.Remove(player);
+                    RemoveWaitingPlayer(player);
             }
 
             await base.OnDisconnectedAsync(exception);
@@ -160,6 +161,20 @@ namespace CtsContestWeb.Duel
         {
             return UserHandler.ActiveDuels.FirstOrDefault(c =>
                 c.Players.Select(p => p.ConnectionId).Contains(Context.ConnectionId));
+        }
+
+        private async void AddWaitingPlayer(PlayerDto playerDto)
+        {
+            UserHandler.WaitingPlayers.Add(playerDto);
+            await Groups.AddToGroupAsync(playerDto.ConnectionId, WaitingPlayersGroup);
+            await Clients.Group(WaitingPlayersGroup).SendAsync("waitingPlayers", UserHandler.WaitingPlayers.Count);
+        }
+
+        private async void RemoveWaitingPlayer(PlayerDto playerDto)
+        {
+            UserHandler.WaitingPlayers.Remove(playerDto);
+            await Groups.RemoveFromGroupAsync(playerDto.ConnectionId, WaitingPlayersGroup);
+            await Clients.Group(WaitingPlayersGroup).SendAsync("waitingPlayers", UserHandler.WaitingPlayers.Count);
         }
     }
 }
