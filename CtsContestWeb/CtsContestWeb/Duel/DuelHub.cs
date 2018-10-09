@@ -15,13 +15,13 @@ namespace CtsContestWeb.Duel
     {
         private const string WaitingPlayersGroup = "WaitingPlayerGroups"; 
         private readonly ITaskManager _taskManager;
-        private readonly IDuelRepository _DuelRepository;
+        private readonly IDuelRepository _duelRepository;
         private readonly ISolutionLogic _solutionLogic;
 
-        public DuelHub(ITaskManager taskManager, IDuelRepository DuelRepository, ISolutionLogic solutionLogic)
+        public DuelHub(ITaskManager taskManager, IDuelRepository duelRepository, ISolutionLogic solutionLogic)
         {
             _taskManager = taskManager;
-            _DuelRepository = DuelRepository;
+            _duelRepository = duelRepository;
             _solutionLogic = solutionLogic;
         }
 
@@ -32,7 +32,6 @@ namespace CtsContestWeb.Duel
                 await Clients.Caller.SendAsync("closeThisWindow");
                 return;
             }
-
            
             var firstPlayer = new PlayerDto
             {
@@ -61,7 +60,7 @@ namespace CtsContestWeb.Duel
               
                 RemoveWaitingPlayer(secondPlayer);
 
-                var Duel = new DuelDto
+                var duel = new DuelDto
                 {
                     Prize = task.Value,
                     Players = new List<PlayerDto>
@@ -72,12 +71,12 @@ namespace CtsContestWeb.Duel
                     Task = task
                 };
                 
-                Duel.Id = _DuelRepository.CreateDuel(Duel);
-                UserHandler.ActiveDuels.Add(Duel);
+                duel.Id = _duelRepository.CreateDuel(duel);
+                UserHandler.ActiveDuels.Add(duel);
 
-                await Groups.AddToGroupAsync(firstPlayer.ConnectionId, Duel.GroupName);
-                await Groups.AddToGroupAsync(secondPlayer.ConnectionId, Duel.GroupName);
-                await Clients.Group(Duel.GroupName).SendAsync("DuelStarts", Duel);
+                await Groups.AddToGroupAsync(firstPlayer.ConnectionId, duel.GroupName);
+                await Groups.AddToGroupAsync(secondPlayer.ConnectionId, duel.GroupName);
+                await Clients.Group(duel.GroupName).SendAsync("DuelStarts", duel);
             }
             else
             {
@@ -102,22 +101,22 @@ namespace CtsContestWeb.Duel
 
         public override async Task OnDisconnectedAsync(Exception exception)
         {
-            var Duel = GetCurrentDuel();
+            var duel = GetCurrentDuel();
 
-            if (Duel != null)
+            if (duel != null)
             {
-                UserHandler.ActiveDuels.Remove(Duel);
+                UserHandler.ActiveDuels.Remove(duel);
 
-                var winner = Duel.Players.Single(p => !p.ConnectionId.Equals(Context.ConnectionId));
+                var winner = duel.Players.Single(p => !p.ConnectionId.Equals(Context.ConnectionId));
 
-                await Groups.RemoveFromGroupAsync(Context.ConnectionId, Duel.GroupName);
+                await Groups.RemoveFromGroupAsync(Context.ConnectionId, duel.GroupName);
                 //Currently calling Group (as the other person is removed). Should be changed to call just the winner
-                await Clients.Group(Duel.GroupName).SendAsync("opponentDisconnected", winner);
-                await Clients.Group(Duel.GroupName).SendAsync("scoreAdded");
-                await Groups.RemoveFromGroupAsync(winner.ConnectionId, Duel.GroupName);
+                await Clients.Group(duel.GroupName).SendAsync("opponentDisconnected", winner);
+                await Clients.Group(duel.GroupName).SendAsync("scoreAdded");
+                await Groups.RemoveFromGroupAsync(winner.ConnectionId, duel.GroupName);
 
-                _DuelRepository.SetWinner(Duel, winner);
-                UserHandler.ActiveDuels.Remove(Duel);
+                _duelRepository.SetWinner(duel, winner);
+                UserHandler.ActiveDuels.Remove(duel);
             }
             else
             {
@@ -134,22 +133,22 @@ namespace CtsContestWeb.Duel
         [HubMethodName("CheckSolution")]
         public async Task CheckSolution(string source, int language)
         {
-            var Duel = GetCurrentDuel();
-            var player = Duel.Players.First(p => p.ConnectionId.Equals(Context.ConnectionId));
+            var duel = GetCurrentDuel();
+            var player = duel.Players.First(p => p.ConnectionId.Equals(Context.ConnectionId));
 
-            var compileResult = await _solutionLogic.CheckSolution(Duel.Task.Id, source, language);
+            var compileResult = await _solutionLogic.CheckSolution(duel.Task.Id, source, language);
 
-            _solutionLogic.SaveDuelSolution(Duel.Id, source, player.Email, language, compileResult.Compiled && compileResult.ResultCorrect);
+            _solutionLogic.SaveDuelSolution(duel.Id, source, player.Email, language, compileResult.Compiled && compileResult.ResultCorrect);
             if (compileResult.Compiled && compileResult.ResultCorrect)
             {
-                await Clients.Group(Duel.GroupName).SendAsync("DuelHasWinner", player);
+                await Clients.Group(duel.GroupName).SendAsync("DuelHasWinner", player);
                 await Clients.Caller.SendAsync("scoreAdded");
 
-                await Groups.RemoveFromGroupAsync(Duel.Players[0].ConnectionId, Duel.GroupName);
-                await Groups.RemoveFromGroupAsync(Duel.Players[1].ConnectionId, Duel.GroupName);
+                await Groups.RemoveFromGroupAsync(duel.Players[0].ConnectionId, duel.GroupName);
+                await Groups.RemoveFromGroupAsync(duel.Players[1].ConnectionId, duel.GroupName);
 
-                _DuelRepository.SetWinner(Duel, player);
-                UserHandler.ActiveDuels.Remove(Duel);
+                _duelRepository.SetWinner(duel, player);
+                UserHandler.ActiveDuels.Remove(duel);
             }
             else
             {
