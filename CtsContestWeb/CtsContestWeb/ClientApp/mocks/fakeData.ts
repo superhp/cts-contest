@@ -3,12 +3,16 @@ export const fakeDuelInfo = {
         isLoggedIn: true,
         email: 'a@a.com',
         name: 'Petras',
-        totalBalance: 0
+        totalBalance: 0,
+        totalWins: 0,
+        totalLooses: 0
     }, {
         isLoggedIn: true,
         email: 'a@a.com',
         name: 'Antanas',
-        totalBalance: 0
+        totalBalance: 0,
+        totalWins: 0,
+        totalLooses: 0
     }],
     startTime: new Date('1995-12-17T03:24:00'),
     task: {

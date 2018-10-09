@@ -71,6 +71,14 @@ namespace CtsContestWeb.Duel
                     },
                     Task = task
                 };
+
+                Duel.Players.ForEach(player =>
+                {
+                    var totalWins = _DuelRepository.GetWonDuelsByEmail(player.Email).Count();
+                    var totalLooses = _DuelRepository.GetDuelsByEmail(player.Email).Count() - totalWins;
+                    player.TotalWins = totalWins;
+                    player.TotalLooses = totalLooses;
+                });
                 
                 Duel.Id = _DuelRepository.CreateDuel(Duel);
                 UserHandler.ActiveDuels.Add(Duel);

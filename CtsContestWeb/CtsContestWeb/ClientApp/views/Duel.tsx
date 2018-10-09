@@ -282,7 +282,7 @@ const RulesAndDuelInfo = ({info, duelState, taskName, taskPoints}: { info: DuelI
                     </Header>
 
                     <div className='cg-about-p'>
-                        <p><strong>{info.players[0].name}</strong> vs <strong>{info.players[1].name}</strong></p>
+                        <p><strong>{info.players[0].name} W: {info.players[0].totalWins} / L: {info.players[0].totalLooses}</strong> vs <strong>{info.players[1].name} W: {info.players[1].totalWins} / L: {info.players[1].totalLooses}</strong></p>
                         <p>Time remaining: {duelState.time.minutes} m. {duelState.time.seconds} sec.</p>
                         <p>Task's {taskName} value: {taskPoints} points</p>
                     </div>
