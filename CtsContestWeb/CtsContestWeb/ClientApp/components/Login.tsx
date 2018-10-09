@@ -1,12 +1,14 @@
+
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-import { Responsive, Label, Button, Header as Header, Image, Modal, Icon, Menu } from 'semantic-ui-react'
+import { Responsive, Label, Button, Header as Header, Image, Modal, Icon, Menu, Checkbox } from 'semantic-ui-react'
 import { Link, NavLink } from 'react-router-dom';
 
 interface LoginModalState {
     modalHeight: number;
     loading: boolean;
     wallet: boolean;
+    ConsentGiven: boolean;
 }
 
 export class Login extends React.Component<any, LoginModalState> {
@@ -20,10 +22,15 @@ export class Login extends React.Component<any, LoginModalState> {
         this.state = {
             modalHeight: modalHeight,
             loading: true,
-            wallet: false
+            wallet: false,
+            ConsentGiven: false,
         }
 
         this.handleResize = this.handleResize.bind(this);
+
+        if (window.location.search.indexOf("refresh=true") !== -1) {
+            window.location.replace(window.location.origin + window.location.pathname);
+        }
     }
 
     handleResize = () => {
@@ -37,13 +44,44 @@ export class Login extends React.Component<any, LoginModalState> {
     }
     public render() {
         let contents = this.props.userInfo.isLoggedIn
-            ? this.renderLoggedInView(this.props.userInfo)
-            : Login.renderLoginModal(this.state.modalHeight, this.handleResize)
+            ? this.renderLoggedInView(this.props.userInfo, this.detectIE())
+            : Login.renderLoginModal(this.state.modalHeight, this.detectIE(), this.handleResize, this.state.ConsentGiven, this.ToggleConsentCheckbox)
 
         return contents;
     }
 
-    private renderLoggedInView(userInfo: any) {
+    private detectIE() {
+        var ua = window.navigator.userAgent;
+
+        var msie = ua.indexOf('MSIE ');
+        if (msie > 0) {
+            // IE 10 or older => return version number
+            return true;
+        }
+
+        var trident = ua.indexOf('Trident/');
+        if (trident > 0) {
+            // IE 11 => return version number
+            var rv = ua.indexOf('rv:');
+            return true;
+        }
+
+        var edge = ua.indexOf('Edge/');
+        if (edge > 0) {
+            // Edge (IE 12+) => return version number
+            return true;
+        }
+
+        // other browser
+        return false;
+    }
+
+    private renderLoggedInView(userInfo: any, isIE: boolean) {
+        var addon = "";
+        if (isIE) {
+            addon = "?refresh=true";
+        }
+        
         return (
             <div className="right-menu">
                 <div className='item cg-responsive-hide'>Hello, {userInfo.name}!</div>
@@ -52,10 +90,10 @@ export class Login extends React.Component<any, LoginModalState> {
                     <div className={'cg-balance ' + (this.state.wallet ? 'cg-show' : 'cg-hidden')}>
                         <table>
                             <tbody>
-                                <tr>
+                                {/* <tr>
                                     <td>Days balance</td>
                                     <td>{this.props.userInfo.todaysBalance} pts</td>
-                                </tr>
+                                </tr> */}
                                 <tr>
                                     <td>Total balance</td>
                                     <td>{this.props.userInfo.totalBalance} pts</td>
@@ -64,24 +102,55 @@ export class Login extends React.Component<any, LoginModalState> {
                         </table>
                     </div>
                 </div>
-                <a className='item cg-responsive-hide cg-bold' href={"https://cts-contest.azurewebsites.net/.auth/logout?post_logout_redirect_uri=" + window.location.pathname}>Logout</a>
+                <a className='item cg-responsive-hide cg-bold' href={"https://cts-contest.azurewebsites.net/.auth/logout?post_logout_redirect_uri=" + window.location.pathname  + addon}>Logout</a>
             </div>
         );
     }
 
-    private static renderLoginModal(height: number, handleResize: any) {
+    private static renderLoginModal(height: number, isIE: boolean, handleResize: any, ConsentGiven: boolean, ToggleConsentCheckbox: () => void) {
+
+        var addon = "";
+        if (isIE) {
+            addon = "?refresh=true";
+        }
+       
         return <Responsive className='cg-login-mobile' onUpdate={handleResize}>
             <Modal size="tiny" className="login-modal" trigger={<NavLink style={{ height: '100%' }} className='item cg-nav-item' to="#" exact> Login </NavLink>} closeIcon>
                 <Modal.Header>Choose login method</Modal.Header>
+
                 
-                    <div className='cg-login-modal-button '>
-                        <a className='ui facebook fluid button cg-login-button' href={"https://cts-contest.azurewebsites.net/.auth/login/facebook?post_login_redirect_url=" + window.location.pathname}><Icon name='facebook' /> Login with Facebook</a>
-                    </div>
-                    <div className='cg-login-modal-button '>
-                        <a className='ui google plus fluid button cg-login-button' href={"https://cts-contest.azurewebsites.net/.auth/login/google?post_login_redirect_url=" + window.location.pathname}><Icon name='google' /> Login with Google</a>
-                    </div>
+                <div style={{ padding: "15px", textAlign: "justify" }}>
+                    <Checkbox
+                        checked={ConsentGiven}
+                        onChange={() => { ToggleConsentCheckbox(); }}
+                        label={{
+                            children: "By logging in you agree that your full name and profile photo will appear on contest's leaderboard and your email address will be stored secretly in the contest's database. After the conference, you will receive a contest overview with leaderboard from Cognizant team. You also understand that the website uses cookie in order to keep you logged in. In case you use a public laptop, you must disconnect from contest's website and Facebook/Gmail separately after you finish your session."
+                        }}
+                    />
+                </div>
+                
+                <div className='cg-login-modal-button '>
+                    <a
+                        className={`ui facebook fluid button cg-login-button${ConsentGiven ? "" : " disabled"}`}
+                        href={"https://cts-contest.azurewebsites.net/.auth/login/facebook?post_login_redirect_url=" + window.location.pathname + addon}
+                    ><Icon name='facebook' /> Login with Facebook</a>
+                </div>
+                <div className='cg-login-modal-button '>
+                    <a
+                        className={`ui google plus fluid button cg-login-button${ConsentGiven ? "" : " disabled"}`}
+                        href={"https://cts-contest.azurewebsites.net/.auth/login/google?post_login_redirect_url=" + window.location.pathname + addon}
+                    ><Icon name='google' /> Login with Google</a>
+                </div>
                 
             </Modal>
         </Responsive>;
     }
+
+    ToggleConsentCheckbox = () =>
+    {
+        this.setState({
+            ConsentGiven: !this.state.ConsentGiven,
+        });
+    }
+
 }

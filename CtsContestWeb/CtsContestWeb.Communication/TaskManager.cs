@@ -15,12 +15,14 @@ namespace CtsContestWeb.Communication
     {
         private readonly IConfiguration _iconfiguration;
         private readonly ISolutionRepository _solutionRepository;
+        private readonly IDuelRepository _duelRepository;
         private readonly IMemoryCache _cache;
 
-        public TaskManager(IConfiguration iconfiguration, ISolutionRepository solutionRepository, IMemoryCache cache)
+        public TaskManager(IConfiguration iconfiguration, ISolutionRepository solutionRepository, IDuelRepository duelRepository, IMemoryCache cache)
         {
             _iconfiguration = iconfiguration;
             _solutionRepository = solutionRepository;
+            _duelRepository = duelRepository;
             _cache = cache;
         }
 
@@ -29,13 +31,15 @@ namespace CtsContestWeb.Communication
             List<TaskDto> tasks;
             if (!_cache.TryGetValue<List<TaskDto>>("tasks", out tasks))
             {
-                tasks =  await CacheTasks();
+                tasks = await GetAllTasksFromApi();
+                CacheTasks(tasks);
             }
 
             var solvedTasks = _solutionRepository.GetSolvedTasksIdsByUserEmail(userEmail).ToList();
 
             foreach (var task in tasks)
             {
+                task.IsSolved = false;
                 if (userEmail != null)
                 {
                     if (solvedTasks.Any(t => t == task.Id))
@@ -46,16 +50,42 @@ namespace CtsContestWeb.Communication
             return tasks;
         }
 
-        public async Task<List<TaskDto>> CacheTasks(string userEmail = null)
+        private async Task<List<TaskDto>> GetAllTasksForDuel()
         {
-            var tasks = await GetAllTasksFromApi();
+            var competitionTasks = "competitionTasks";
+            List<TaskDto> tasks;
 
+            if (!_cache.TryGetValue<List<TaskDto>>(competitionTasks, out tasks))
+            {
+                tasks = await GetAllTasksForDuelFromApi();
+                CacheTasks(tasks, competitionTasks);
+            }
+
+            return tasks;
+        }
+
+        private async Task<List<TaskDto>> GetAllTasksForDuelFromApi()
+        {
+            var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
+            var client = new RestClient(umbracoApiUrl);
+
+            var request = new RestRequest("task/getAllCompetitionTasks", Method.GET);
+
+            TaskCompletionSource<List<TaskDto>> taskCompletion = new TaskCompletionSource<List<TaskDto>>();
+            client.ExecuteAsync<List<TaskDto>>(request, response => { taskCompletion.SetResult(response.Data); });
+
+            var tasks = await taskCompletion.Task;
+
+            tasks.ForEach(UpdateTaskValue);
+            return tasks;
+        }
+
+        public void CacheTasks(List<TaskDto> tasks, string name = "tasks")
+        {
             MemoryCacheEntryOptions cacheExpirationOptions = new MemoryCacheEntryOptions();
             cacheExpirationOptions.AbsoluteExpiration = DateTime.Now.AddMinutes(30);
             cacheExpirationOptions.Priority = CacheItemPriority.Normal;
-            _cache.Set<List<TaskDto>>("tasks", tasks, cacheExpirationOptions);
-
-            return tasks;
+            _cache.Set<List<TaskDto>>(name, tasks, cacheExpirationOptions);
         }
 
         private async Task<List<TaskDto>> GetAllTasksFromApi()
@@ -69,7 +99,7 @@ namespace CtsContestWeb.Communication
             client.ExecuteAsync<List<TaskDto>>(request, response => { taskCompletion.SetResult(response.Data); });
 
             var tasks = await taskCompletion.Task;
-            
+
             tasks.ForEach(UpdateTaskValue);
             return tasks;
         }
@@ -83,15 +113,12 @@ namespace CtsContestWeb.Communication
             var request = new RestRequest("task/get/{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
 
-            TaskCompletionSource<TaskDto> taskCompletion = new TaskCompletionSource<TaskDto>();
-            client.ExecuteAsync<TaskDto>(request, response =>
-            {
-                if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                    throw new ArgumentException("No task with given ID");
-                taskCompletion.SetResult(response.Data);
-            });
+            var response = await client.ExecuteTaskAsync<TaskDto>(request);
 
-            var task = await taskCompletion.Task;
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                throw new ArgumentException("No task with given ID");
+            var task = response.Data;
+
             if (userEmail != null)
             {
                 var solvedTasks = _solutionRepository.GetSolvedTasksIdsByUserEmail(userEmail);
@@ -100,6 +127,30 @@ namespace CtsContestWeb.Communication
             }
             task.Description = PrependRootUrlToImageLinks(task.Description, pictureUrl);
             UpdateTaskValue(task);
+            return task;
+        }
+
+        public async Task<TaskDto> GetTaskForDuel(IEnumerable<string> usersEmail)
+        {
+            var tasks = (await GetAllTasksForDuel()).Select(t => t.Id).ToList();
+
+            var competitions = new List<DuelDto>();
+            foreach (var email in usersEmail)
+            {
+                competitions.AddRange(_duelRepository.GetDuelsByEmail(email));
+            }
+
+            var usedTaskIds = competitions.Select(c => c.Task.Id).Distinct();
+            var availableTaskIds = tasks.Where(t => !usedTaskIds.Contains(t)).ToList();
+
+            if (availableTaskIds.Count == 0)
+                return null;
+
+            var rnd = new Random();
+            var taskNr = rnd.Next(availableTaskIds.Count);
+
+            var task = await GetTaskById(availableTaskIds[taskNr]);
+
             return task;
         }
 
@@ -113,8 +164,13 @@ namespace CtsContestWeb.Communication
 
         private void UpdateTaskValue(TaskDto task)
         {
-            double d = 8.2d * task.Value * task.Value - 20 * task.Value + 23;
-            task.Value = (int)Math.Ceiling(d / 5) * 5;
+            if (task.Value == 0)
+                task.Value = 10;
+            else
+            {
+                var d = 8.2d * task.Value * task.Value - 20 * task.Value + 23;
+                task.Value = (int)Math.Ceiling(d / 5) * 5;
+            }
         }
     }
 }

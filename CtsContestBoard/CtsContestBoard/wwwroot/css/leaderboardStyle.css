@@ -1,7 +1,6 @@
 ﻿
 
 body {
-    font-family: "Montserrat", sans-serif;
     overflow: hidden;
 }
 
@@ -14,10 +13,9 @@ body {
 }
 
 .leadheader {
-    font-family: "Montserrat", sans-serif;
     width: 100%;
     height: auto;
-    background: rgba(66, 152, 181, 1); /*rgba(54, 195, 105, 0.9)*/
+    background: var(--secondary-color);
     text-align: center;
     /*border-radius: 5px 5px 0 0;*/
 }
@@ -35,7 +33,7 @@ body {
     background: rgba(254, 254, 254, 0.9);
     width: 100%;
     text-align: left;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 3px solid var(--secondary-color);
     margin: 0 !important;
 }
 
@@ -43,8 +41,6 @@ body {
         padding: 0px !important;
     }
     .colheader h4 {
-        font-family: "Montserrat", sans-serif;
-        color: rgba(66, 152, 181, 1);
         text-align: center !important;
         font-size: 44px;
         text-transform: uppercase;
@@ -98,7 +94,6 @@ body {
             vertical-align: middle;
         }
     .users h4 {
-        font-family: "Montserrat", sans-serif;
         text-overflow: ellipsis;
         font-size: 4.5vh;
         white-space: nowrap;
@@ -108,7 +103,7 @@ body {
         /*width: 64px;*/
         height: 5vh;
         border-radius: 50%;
-        border: 2px solid rgba(0, 168, 232, 0.79);
+        /* border: 2px solid var(--primary-color); */
         margin-right: 10px;
     }
 
@@ -117,7 +112,7 @@ body {
     }
 
     .users:nth-of-type(odd) {
-        background: rgba(218, 245, 255, 0.9);
+        background:#ecf1f7;
     }
 
     .users:nth-of-type(even) {
@@ -164,4 +159,9 @@ body {
                 display: block;
                 padding-top: 4px;
             }
+}
+
+.users > .picture {
+    display: flex !important;
+    align-items: center;
 }

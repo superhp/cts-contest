@@ -6,10 +6,16 @@ import { Menu, Sidebar, Container, Segment } from 'semantic-ui-react';
 import { Button, Icon } from 'semantic-ui-react';
 import { Responsive } from 'semantic-ui-react'
 import { Header as ModalHeader, Image, Modal } from 'semantic-ui-react'
-import { Login } from './login';
+import { Login } from './Login';
+
+// Pictures
+
+const LogoPic: string = require('../assets/CognizantLogo.svg');
+
+//
 
 const links = [
-    {
+	{
         routeTo: '/',
         name: 'About'
     },
@@ -17,14 +23,26 @@ const links = [
         routeTo: '/tasks',
         name: 'Tasks'
     },
+    // {
+    //     routeTo: '/duel',
+    //     name: 'duel'
+    // },
+    // {
+    //     routeTo: '/leaderboard',
+    //     name: 'Leaderboard'
+    // },
     {
         routeTo: '/shop',
         name: 'Shopping booth'
     },
     {
         routeTo: '/prizes',
-        name: 'Prizes'
-    }
+        name: 'Conference prize'
+    },
+    // {
+    //     routeTo: '/quiz',
+    //     name: 'Quiz'
+    // }
 ];
 
 export type HeaderState = {
@@ -70,7 +88,7 @@ export class Header extends React.Component<any, HeaderState> {
                 <Responsive maxWidth={1200} onUpdate={this.handleResize} />
                 <Menu.Item className='cg-nav-header' header>
                     <div style={{ width: '100%' }}>
-                        <div style={{ float: 'left' }}><NavLink to='/' ><img className='cg-nav-logo' src="../logo.svg" alt="Cognizant logo" /></NavLink></div>
+                        <div style={{ float: 'left' }}><NavLink to='/' ><img className='cg-nav-logo' src={LogoPic} alt="Cognizant logo" /></NavLink></div>
                         <div className='cg-nav-right'>
                              {this.props.userInfo.isLoggedIn
                              ? <div className='cg-mobile-item'>
@@ -80,7 +98,7 @@ export class Header extends React.Component<any, HeaderState> {
                                             <div className='cg-user-menu-item cg-bold'>User</div>
                                             <div className='cg-user-menu-item'>{this.props.userInfo.name}</div>
                                             <div className='cg-user-menu-item cg-bold'>My wallet</div>
-                                            <div className='cg-user-menu-item'>Days balance: {this.props.userInfo.todaysBalance} pts</div>
+                                            {/* <div className='cg-user-menu-item'>Days balance: {this.props.userInfo.todaysBalance} pts</div> */}
                                             <div className='cg-user-menu-item'>Total balance: {this.props.userInfo.totalBalance} pts</div>
                                             <a className='cg-user-menu-item cg-bold' href={"https://cts-contest.azurewebsites.net/.auth/logout?post_logout_redirect_uri=" + window.location.pathname}>Logout</a>
                                     </div>

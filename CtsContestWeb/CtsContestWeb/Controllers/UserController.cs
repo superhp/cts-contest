@@ -16,12 +16,15 @@ namespace CtsContestWeb.Controllers
         private readonly IBalanceLogic _balanceLogic;
         private readonly IPurchaseRepository _purchaseRepository;
         private readonly IUserRepository _userRepository;
+        private readonly IDuelRepository _duelRepository;
 
-        public UserController(IBalanceLogic balanceLogic, IPurchaseRepository purchaseRepository, IUserRepository userRepository)
+        public UserController(IBalanceLogic balanceLogic, IPurchaseRepository purchaseRepository,
+            IUserRepository userRepository, IDuelRepository duelRepository)
         {
             _balanceLogic = balanceLogic;
             _purchaseRepository = purchaseRepository;
             _userRepository = userRepository;
+            _duelRepository = duelRepository;
         }
 
         [HttpGet("")]
@@ -36,14 +39,17 @@ namespace CtsContestWeb.Controllers
                     Name = User.FindFirst(ClaimTypes.GivenName).Value,
                     TodaysBalance = _balanceLogic.GetCurrentBalance(User.FindFirst(ClaimTypes.Email).Value),
                     TotalBalance = _balanceLogic.GetTotalBalance(User.FindFirst(ClaimTypes.Email).Value),
+                    DuelBalance = _balanceLogic.GetDuelBalance(User.FindFirst(ClaimTypes.Email).Value),
                     IsLoggedIn = true
                 };
             }
-
-            return new UserInfoDto
+            else
             {
-                IsLoggedIn = false
-            };
+                return new UserInfoDto
+                {
+                    IsLoggedIn = false
+                };
+            }
         }
 
         [HttpGet("purchases")]
@@ -65,6 +71,31 @@ namespace CtsContestWeb.Controllers
             }
 
             return new List<PurchaseDto>();
+        }
+
+        [HttpGet("duel-statistics")]
+        public UserDuelStatisticsDto GetUserDuelStatistics()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userEmail = User.FindFirst(ClaimTypes.Email).Value;
+                var totalWins = _duelRepository.GetWonDuelsByEmail(userEmail).Count();
+                var totalLooses = _duelRepository.GetDuelsByEmail(userEmail).Count() - totalWins;
+                return new UserDuelStatisticsDto()
+                {
+                    Email = userEmail,
+                    TotalWins = totalWins,
+                    TotalLooses = totalLooses
+                };
+            }
+
+            return new UserDuelStatisticsDto();
+        }
+
+        [HttpGet("users")]
+        public List<UserInfoDto> GetUsers()
+        {
+            return _userRepository.GetAllUsers().ToList();
         }
     }
 }

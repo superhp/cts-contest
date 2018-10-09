@@ -138,10 +138,10 @@ export class PurchaseModal extends React.Component<PurchaseModalProps, PurchaseM
         return (
             <Responsive onUpdate={this.handleResize}>
                 <Modal open={this.props.open}
-                    size='tiny'
+                    size='mini'
                     closeOnEscape={true}
                     closeOnRootNodeClick={true}
-                    style={{ height: window.innerHeight >= this.modalHeight ? this.modalHeight : 'auto' }}
+                    style={{ height: this.modalHeight }}
                     onClose={this.close}
                     ref={(content: any) => this.modal = content}
                 >

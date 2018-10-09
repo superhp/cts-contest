@@ -4,6 +4,7 @@ import AceEditor from 'react-ace';
 import { RouteComponentProps } from 'react-router-dom';
 import { Responsive, Grid, Segment, Divider, Header, Button, Container, Loader, Dropdown } from 'semantic-ui-react';
 import * as brace from 'brace';
+import { Task, Languages, Skeleton, CompileResult  } from '../components/models/Task';
 
 import 'brace/mode/jsx';
 import 'brace/theme/monokai';
@@ -260,6 +261,14 @@ export class TaskComponent extends React.Component<any, any> {
                     Failed testcase No. {compileResult.failedInput} out of {compileResult.totalInputs}.
                 </p>
             }
+
+            {compileResult.message ?
+                <p className="error-message">
+                    Compiler message: <br/> {compileResult.message}
+                </p>
+                    :
+                <span></span>
+            }
         </span>;
     }
 
@@ -395,28 +404,3 @@ export class TaskComponent extends React.Component<any, any> {
     }
 }
 
-interface NameToDisplayNameMap {
-    [name: string]: string;
-}
-
-interface NameToCodeMap {
-    [name: string]: number;
-}
-
-interface Languages {
-    names: NameToDisplayNameMap;
-    codes: NameToCodeMap;
-}
-
-interface Skeleton {
-    language: string;
-    skeleton: string;
-}
-
-interface CompileResult {
-    compiled: boolean;
-    resultCorrect: boolean;
-    totalInputs: number;
-    failedInput: number;
-    message: string;
-}

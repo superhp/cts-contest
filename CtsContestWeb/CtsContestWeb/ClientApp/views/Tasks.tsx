@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import 'isomorphic-fetch';
 import { Accordion, Icon, Table, Container, Header, Divider, Loader } from 'semantic-ui-react';
 import * as _ from 'lodash';
+import { Task } from '../components/models/Task';
+
+//import * as GA from 'react-ga';
+//GA.initialize('UA-109707377-1');
 
 interface TasksState {
     tasks: Task[];
@@ -16,12 +20,17 @@ export class Tasks extends React.Component<any, TasksState> {
         super();
         this.state = { tasks: [], loading: true };
 
-        fetch('api/Task')
+        fetch('api/Task', {
+            credentials: 'include'
+        })
             .then(response => response.json() as Promise<Task[]>)
             .then(data => {
                 if (this._mounted)
                     this.setState({ tasks: data, loading: false });
             });
+    }
+    componentWillMount() {
+        //GA.pageview(window.location.pathname + window.location.search);
     }
     componentDidMount() {
         this._mounted = true;
@@ -37,14 +46,16 @@ export class Tasks extends React.Component<any, TasksState> {
         return (
             <div>
                 <div className='cg-page-header'>
-                    <Container fluid>
-                        <Header as='h1' textAlign='center' inverted>
-                            <Icon name='tasks' />
-                            <Header.Content>
-                                Tasks
-                        </Header.Content>
-                        </Header>
-                    </Container>
+                    <div className='cg-page-header-overlay'>
+                        <Container fluid>
+                            <Header as='h1' textAlign='center' inverted>
+                                <Icon name='tasks' />
+                                <Header.Content>
+                                    Tasks
+                            </Header.Content>
+                            </Header>
+                        </Container>
+                    </div>
                 </div>
                 <Container>
                     {contents}
@@ -70,7 +81,7 @@ export class Tasks extends React.Component<any, TasksState> {
         let tableRows: any = [];
         tasks.forEach(t => {
             tableRows.push(
-                <Table.Row positive={t.isSolved} key={t.id}>
+                <Table.Row className={t.isSolved ? 'solved' : ''} key={t.id}>
                     <Table.Cell selectable>
                         <Link to={"/tasks/" + t.id} style={{ paddingLeft: 35 }}> {t.name}</Link>
                     </Table.Cell>

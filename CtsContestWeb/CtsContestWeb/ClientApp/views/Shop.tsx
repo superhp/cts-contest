@@ -8,6 +8,9 @@ import { PurchaseModal } from '../components/PurchaseModal';
 import { ShopItemCard } from '../components/ShopItemCard';
 import 'isomorphic-fetch';
 
+// import * as GA from 'react-ga';
+// GA.initialize('UA-109707377-1');
+
 export class Shop extends React.Component<any, any> {
     _mounted: boolean;
     constructor() {
@@ -33,6 +36,10 @@ export class Shop extends React.Component<any, any> {
             prizeDescriptionOpen: false
         };
 
+    }
+
+    componentWillMount() {
+        //GA.pageview(window.location.pathname + window.location.search);
     }
 
     componentDidMount() {
@@ -182,14 +189,16 @@ export class Shop extends React.Component<any, any> {
         return (
             <div className='cg-shop-page'>
                 <div className='cg-page-header'>
-                    <Container fluid>
-                        <Header as='h1' textAlign='center' inverted>
-                            <Icon name='tags' />
-                            <Header.Content>
-                                Shopping booth
-                            </Header.Content>
-                        </Header>
-                    </Container>
+                    <div className='cg-page-header-overlay'>
+                        <Container fluid>
+                            <Header as='h1' textAlign='center' inverted>
+                                <Icon name='tags' />
+                                <Header.Content>
+                                    Shopping booth
+                                </Header.Content>
+                            </Header>
+                        </Container>
+                    </div>
                 </div>
                 <Container>
                     {contents}
@@ -216,14 +225,16 @@ export class Shop extends React.Component<any, any> {
     private renderPrizeList(prizes: Prize[]) {
         return <div>
             <div className='cg-row last-not-grow'>
-                {prizes.map((prize, index) =>
+                {prizes
+                  .sort((a, b) => a.price - b.price)
+                  .map((prize, index) =>
                     <div className='cg-col' key={index} style={{ paddingBottom: 20 }}>  
                         <ShopItemCard
                             prize={prize}
                             onBuy={this.openPrizeModal}
                             onOpenPurchaseQR={this.openPurchasedQRModal}
                             onOpenDescription={this.openDescriptionModal}
-                            balance={this.props.userInfo.todaysBalance}
+                            balance={this.props.userInfo.totalBalance}
                             purchased={this.isPurchased(prize.id)}
                             userLogedIn={this.props.userInfo.isLoggedIn}
                             purchase={this.findPrizePurchase(prize.id)}

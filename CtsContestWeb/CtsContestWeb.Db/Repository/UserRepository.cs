@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using CtsContestWeb.Db.Entities;
+using CtsContestWeb.Dto;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -22,7 +23,7 @@ namespace CtsContestWeb.Db.Repository
         public void InsertIfNotExists(ClaimsPrincipal user)
         {
             var email = user.FindFirst(ClaimTypes.Email).Value;
-            
+
             var exists = _dbContext.Users.Any(u => u.Email.Equals(email));
 
             if (!exists)
@@ -63,6 +64,27 @@ namespace CtsContestWeb.Db.Repository
                 _dbContext.Add(userEntity);
                 _dbContext.SaveChanges();
             }
+        }
+
+        public IEnumerable<UserInfoDto> GetAllUsers()
+        {
+            var users = _dbContext.Users.ToList()
+                .GroupJoin(_dbContext.Solutions, user => user.Email, solution => solution.UserEmail, (user, solutions) => new { user, solutions })
+                .GroupJoin(_dbContext.Purchases, user => user.user.Email, purchase => purchase.UserEmail, (user, purchases) => new { user.user, user.solutions, purchases })
+                .Select(x => new
+                {
+                    Name = x.user.FullName,
+                    TotalBalance = x.solutions.Where(s => s.IsCorrect).Sum(s => s.Score) - x.purchases.Select(p => p.Cost).DefaultIfEmpty(0).Sum(),
+                    LastSolutionDate = x.solutions.Any(s => s.IsCorrect) ? x.solutions.Last(s => s.IsCorrect).Created : DateTime.MaxValue
+                })
+                .OrderByDescending(u => u.TotalBalance)
+                .ThenBy(u => u.LastSolutionDate)
+                .Select(u => new UserInfoDto
+                {
+                    Name = u.Name,
+                    TotalBalance = u.TotalBalance
+                });
+            return users; 
         }
     }
 }

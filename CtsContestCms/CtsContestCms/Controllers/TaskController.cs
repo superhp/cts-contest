@@ -46,37 +46,22 @@ namespace CtsContestCms.Controllers
         }
 
         // GET api/task/getAll
-        public List<TaskDto> GetAll()
+        public IEnumerable<TaskDto> GetAll()
         {
-            var taskDtos = new List<TaskDto>();
-            var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
+            var taskDtos = GetAllTasks();
 
-            var tasks = umbracoHelper.Content(1590).Children;
-
-            foreach (var task in tasks)
-            {
-                if (task.GetPropertyValue("enabled"))
-                {
-                    var test = task.GetPropertyValue("testCases");
-                    List<TestcaseDto> testCases = task.GetPropertyValue("testCases").ToObject<List<TestcaseDto>>();
-
-                    IEnumerable<string> outputs = testCases.Select(x => x.Output);
-
-                    if (outputs.Any())
-                        taskDtos.Add(new TaskDto
-                        {
-                            Id = task.Id,
-                            Name = task.Name,
-                            Value = task.GetPropertyValue("value"),
-                            IsEnabled = task.GetPropertyValue("enabled")
-                        });
-                }
-            }
-
-            return taskDtos;
+            return taskDtos.Where(t => !t.IsForCompetition);
         }
 
-        // GET api/task/get/{id}
+        // GET api/task/getAllCompetitionTasks
+        public IEnumerable<TaskDto> GetAllCompetitionTasks()
+        {
+            var taskDtos = GetAllTasks();
+
+            return taskDtos.Where(t => t.IsForCompetition);
+        }
+
+       // GET api/task/get/{id}
         public TaskDto Get(int id)
         {
             var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
@@ -88,12 +73,42 @@ namespace CtsContestCms.Controllers
             return GetNewTaskDto(task);
         }
 
+        private static List<TaskDto> GetAllTasks()
+        {
+            var taskDtos = new List<TaskDto>();
+            var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
+
+            var tasks = umbracoHelper.Content(1590).Children;
+
+            foreach (var task in tasks)
+            {
+                if (task.GetPropertyValue("enabled"))
+                {
+                    List<TestcaseDto> testCases = task.GetPropertyValue("testCases").ToObject<List<TestcaseDto>>();
+
+                    IEnumerable<string> outputs = testCases.Select(x => x.Output);
+
+                    if (outputs.Any())
+                        taskDtos.Add(new TaskDto
+                        {
+                            Id = task.Id,
+                            Name = task.Name,
+                            Value = task.GetPropertyValue("value"),
+                            IsEnabled = task.GetPropertyValue("enabled"),
+                            IsForCompetition = task.GetPropertyValue("competition")
+                        });
+                }
+            }
+
+            return taskDtos;
+        }
+
         private TaskDto GetNewTaskDto(dynamic task)
         {
             List<TestcaseDto> testCases = task.GetPropertyValue("testCases").ToObject<List<TestcaseDto>>();
 
-            IEnumerable<string> inputs = testCases.Select(x => x.Input);
-            IEnumerable<string> outputs = testCases.Select(x => x.Output);
+            var inputs = testCases.Select(x => string.Join("\n", x.Input.Split('\n', '\r').Where(s => s.Length != 0).Select(s => s.Trim('\r', '\n', ' '))));
+            var outputs = testCases.Select(x => x.Output);
 
             return new TaskDto
             {

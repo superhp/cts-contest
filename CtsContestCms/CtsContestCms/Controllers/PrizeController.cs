@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using CtsContestCms.Filters;
 using CtsContestCms.Models;
 using Umbraco.Web;
 using Umbraco.Web.WebApi;
 
 namespace CtsContestCms.Controllers
 {
-    [ContestIPHandler]
     public class PrizeController : UmbracoApiController
     {
         // GET api/prize/getAll

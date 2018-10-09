@@ -3,7 +3,7 @@
 }
 
 .prize-board-header {
-    color: rgb(66,152,181);
+    color: var(--color-cyan);
     text-align: center;
     text-transform: uppercase;
     font-size: 64px;

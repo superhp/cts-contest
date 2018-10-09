@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CtsContestWeb.Logic", "CtsC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CtsContestWeb.Dto", "CtsContestWeb.Dto\CtsContestWeb.Dto.csproj", "{B769B9BC-53E6-4688-8412-6FD6AD3D27F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CtsContestWeb.Tests", "CtsContestWeb.Tests\CtsContestWeb.Tests.csproj", "{A53B64A6-E90D-4369-AC5F-14505A15756C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CtsContestWeb.Tests", "CtsContestWeb.Tests\CtsContestWeb.Tests.csproj", "{A53B64A6-E90D-4369-AC5F-14505A15756C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

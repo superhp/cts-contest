@@ -47,8 +47,13 @@ namespace CtsContestBoard
             LeaderBoard,
             Prizes,
             TodayPrizes,
-            WeekPrizes
+            WeekPrizes,
+            Information,
+            JobPosters,
+            Slogan
         }
+
+        private readonly List<BoardEnum> _ignoredBoards = new List<BoardEnum> { BoardEnum.TodayPrizes };
 
         public BoardLoader(IPrizeManager prizeManager, ISolutionRepository solutionRepository, IPurchaseRepository purchaseRepository, IUserRepository userRepository, ApplicationDbContext dbContext)
         {
@@ -73,44 +78,48 @@ namespace CtsContestBoard
 
             _timer = new Timer(state =>
             {
-                lock (dbContext)
+                try
                 {
-                    SwitchBoard();
-
-                    switch (Board)
+                    lock (dbContext)
                     {
-                        case BoardEnum.LeaderBoard:
-                            UpdateLeaderBoard();
-                            Changed(nameof(LeaderBoard));
-                            break;
-                        case BoardEnum.Prizes:
-                            {
-                                GetNewPurchases();
-                                UpdatePrizes();
-                                Changed(nameof(PrizesForPoints));
+                        SwitchBoard();
+
+                        switch (Board)
+                        {
+                            case BoardEnum.LeaderBoard:
+                                UpdateLeaderBoard();
+                                Changed(nameof(LeaderBoard));
                                 break;
-                            }
-                        case BoardEnum.TodayPrizes:
-                            {
-                                GetNewPurchases();
-                                UpdateTodayPrizes();
-                                Changed(nameof(TodaysPrize));
-                                break;
-                            }
-                        case BoardEnum.WeekPrizes:
-                            {
-                                GetNewPurchases();
-                                UpdateWeekPrizes();
-                                Changed(nameof(WeeksPrize));
-                                break;
-                            }
+                            case BoardEnum.Prizes:
+                                {
+                                    GetNewPurchases();
+                                    UpdatePrizes();
+                                    Changed(nameof(PrizesForPoints));
+                                    break;
+                                }
+                            case BoardEnum.TodayPrizes:
+                                {
+                                    GetNewPurchases();
+                                    UpdateTodayPrizes();
+                                    Changed(nameof(TodaysPrize));
+                                    break;
+                                }
+                            case BoardEnum.WeekPrizes:
+                                {
+                                    GetNewPurchases();
+                                    UpdateWeekPrizes();
+                                    Changed(nameof(WeeksPrize));
+                                    break;
+                                }
+                        }
+
+                        Changed(nameof(Board));
+                        Changed(nameof(LastUpdate));
+
+                        PushUpdates();
                     }
-
-                    Changed(nameof(Board));
-                    Changed(nameof(LastUpdate));
-
-                    PushUpdates();
                 }
+                catch (Exception ex){};
             }, null, 0, 15000);
         }
 
@@ -230,10 +239,20 @@ namespace CtsContestBoard
 
         private void SwitchBoard()
         {
-            if (Board < BoardEnum.WeekPrizes)
+            /*if (Board < BoardEnum.Information)
                 Board++;
             else
-                Board = BoardEnum.LeaderBoard;
+                Board = BoardEnum.LeaderBoard;*/
+            do
+            {
+                Board = Increment(Board);
+            } while (_ignoredBoards.Contains(Board));
+        }
+
+        private BoardEnum Increment(BoardEnum value)
+        {
+            if (value < BoardEnum.JobPosters) return value + 1;
+            return BoardEnum.LeaderBoard;
         }
 
         public override void Dispose() => _timer.Dispose();

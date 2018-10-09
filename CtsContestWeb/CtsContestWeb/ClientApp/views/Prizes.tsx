@@ -8,6 +8,9 @@ import { PurchaseModal } from '../components/PurchaseModal';
 import { PrizeCard } from '../components/PrizeCard';
 import 'isomorphic-fetch';
 
+// import * as GA from 'react-ga';
+// GA.initialize('UA-109707377-1');
+
 export class Prizes extends React.Component<any, any> {
     _mounted: boolean;
     constructor() {
@@ -18,6 +21,10 @@ export class Prizes extends React.Component<any, any> {
             prizeDescriptionOpen: false
         };
 
+    }
+
+    componentWillMount() {
+        //GA.pageview(window.location.pathname + window.location.search);
     }
 
     componentDidMount() {
@@ -51,14 +58,16 @@ export class Prizes extends React.Component<any, any> {
         return (
             <div className='cg-prize-page'>
                 <div className='cg-page-header'>
-                    <Container fluid>
-                        <Header as='h1' textAlign='center' inverted>
-                            <Icon name='gift' />
-                            <Header.Content>
-                                Prizes
-                            </Header.Content>
-                        </Header>
-                    </Container>
+                    <div className='cg-page-header-overlay'>
+                        <Container fluid>
+                            <Header as='h1' textAlign='center' inverted>
+                                <Icon name='gift' />
+                                <Header.Content>
+                                    Conference Prize
+                                </Header.Content>
+                            </Header>
+                        </Container>
+                    </div>
                 </div>
                 <Container>
                     {contents}
@@ -83,7 +92,7 @@ export class Prizes extends React.Component<any, any> {
             <div>
                 <div className='cg-row'>
                     {conferencePrize.map((prize, index) =>
-                        <div className='cg-col' key={index} style={{ paddingBottom: 20 }}>
+                        <div className='cg-col main-prize-prizes' key={index} style={{ paddingBottom: 20 }}>
                             <PrizeCard
                                 prize={prize}
                                 onOpenDescription={this.openDescriptionModal}
@@ -91,7 +100,7 @@ export class Prizes extends React.Component<any, any> {
                         </div>
                     )}
                 </div>
-                <div className='cg-row last-not-grow'>
+                {/*<div className='cg-row last-not-grow'>
                     {dayPrizes.map((prize, index) =>
                         <div className='cg-col' key={index} style={{ paddingBottom: 20 }}>
                             <PrizeCard
@@ -100,7 +109,7 @@ export class Prizes extends React.Component<any, any> {
                             />
                         </div>
                     )}
-                </div>
+                </div>*/}
             </div>
         )
     }

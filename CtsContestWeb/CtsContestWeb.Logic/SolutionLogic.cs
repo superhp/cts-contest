@@ -17,18 +17,29 @@ namespace CtsContestWeb.Logic
         private readonly ITaskManager _taskManager;
         private readonly IConfiguration _iconfiguration;
         private readonly IIndex<string, ICompiler> _compilers;
+        private readonly IDuelRepository _duelRepository;
         private readonly ISolutionRepository _solutionRepository;
 
-        public SolutionLogic(ISolutionRepository solutionRepository, ITaskManager taskManager, IConfiguration iconfiguration, IIndex<string, ICompiler> compilers)
+        public SolutionLogic(ISolutionRepository solutionRepository, ITaskManager taskManager, IConfiguration iconfiguration, IIndex<string, ICompiler> compilers, IDuelRepository duelRepository)
         {
             _solutionRepository = solutionRepository;
             _taskManager = taskManager;
             _iconfiguration = iconfiguration;
             _compilers = compilers;
+            _duelRepository = duelRepository;
         }
 
-        public async Task<CompileDto> CheckSolution(int taskId, string source, int language, string userEmail)
+        public async Task<CompileDto> CheckSolution(int taskId, string source, int language)
         {
+            if (source.ToLower().Contains("fullcontact.com"))
+                return new CompileDto
+                {
+                    Compiled = false,
+                    FailedInput = 1,
+                    Message = "Hello, World! :)",
+                    TotalInputs = 1
+                };
+
             CompileDto compileResult;
             var task = await _taskManager.GetTaskById(taskId);
 
@@ -48,11 +59,6 @@ namespace CtsContestWeb.Logic
                 compileResult = await CompileWithBackupCompiler(task, source, language);
             }
 
-            if (compileResult.Compiled && compileResult.ResultCorrect)
-            {
-                SaveSolution(task, source, userEmail, language);
-            }
-
             return compileResult;
         }
 
@@ -63,8 +69,9 @@ namespace CtsContestWeb.Logic
             return await compiler.Compile(task, source, language);
         }
 
-        public void SaveSolution(TaskDto task, string source, string userEmail, int language, bool isCorrect = true)
+        public async Task SaveSolution(int taskId, string source, string userEmail, int language, bool isCorrect = true)
         {
+            var task = await _taskManager.GetTaskById(taskId);
             var solution = _solutionRepository.GetSolution(userEmail, task.Id);
 
             if (solution != null && solution.IsCorrect)
@@ -94,6 +101,36 @@ namespace CtsContestWeb.Logic
             }
 
             _solutionRepository.Upsert(solution);
+        }
+
+        public void SaveDuelSolution(int competitionId, string source, string userEmail, int language, bool resultCorrect)
+        {
+            var solution = _duelRepository.GetSolution(competitionId, userEmail);
+
+            if (solution != null && solution.IsCorrect)
+            {
+                throw new Exception($"You can't save solved solution. User: {userEmail}. CompetitionId: {competitionId}.");
+            }
+
+            if (solution == null)
+            {
+                solution = new DuelSolution
+                {
+                    UserEmail = userEmail,
+                    DuelId = competitionId,
+                    IsCorrect = resultCorrect,
+                    Language = language,
+                    Source = source
+                };
+            }
+            else
+            {
+                solution.IsCorrect = resultCorrect;
+                solution.Source = source;
+                solution.Language = language;
+            }
+
+            _duelRepository.UpsertSolution(solution);
         }
     }
 }

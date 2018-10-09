@@ -13,8 +13,8 @@ export default class PrizeBoard extends React.Component {
         // }
         return (
             <div className="container">
-                <Timer day={new Date().getDate()} hour={17} minutes={0} onlyWarning />
-                <div className='prize-list'>
+                {/*<Timer day={new Date().getDate()} hour={17} minutes={0} onlyWarning />*/}
+                <div className='prize-list' style={{ paddingTop: 50 }}>
                     {prizes.map((prize, index) =>
                         <div className='col' key={index}>
                             <PrizeCard

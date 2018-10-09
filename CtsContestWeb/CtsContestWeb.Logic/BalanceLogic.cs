@@ -8,30 +8,40 @@ namespace CtsContestWeb.Logic
 {
     public class BalanceLogic : IBalanceLogic
     {
-        private readonly ISolutionRepository _solRep;
-        private readonly IPurchaseRepository _purRep;
+        private readonly ISolutionRepository _solutionRepository;
+        private readonly IPurchaseRepository _purchaseRepository;
         private readonly ITaskManager _taskManager;
         private readonly IPrizeManager _prizeManager;
+        private readonly IDuelRepository _duelRepository;
 
-        public BalanceLogic(ISolutionRepository solRep, ITaskManager taskManager, IPurchaseRepository purRep, IPrizeManager prizeManager)
+        public BalanceLogic(ISolutionRepository solutionRepository, ITaskManager taskManager, 
+            IPurchaseRepository purchaseRepository, IPrizeManager prizeManager, IDuelRepository duelRepository)
         {
-            _solRep = solRep;
+            _solutionRepository = solutionRepository;
             _taskManager = taskManager;
-            _purRep = purRep;
+            _purchaseRepository = purchaseRepository;
             _prizeManager = prizeManager;
+            _duelRepository = duelRepository;
         }
 
         public async Task<bool> IsBalanceEnough(string userEmail, int prizeId)
         {
             var prize = await _prizeManager.GetPrizeById(prizeId);
             var price = prize.Price;
-            var balance = GetCurrentBalance(userEmail); 
+            var balance = GetTotalBalance(userEmail); 
             return balance >= price;
         }
 
         public int GetTotalBalance(string userEmail)
         {
             return GetTotalEarnedMoney(userEmail) - GetTotalSpentMoney(userEmail);
+        }
+
+        public int GetDuelBalance(string userEmail)
+        {
+            var competitions = _duelRepository.GetWonDuelsByEmail(userEmail);
+
+            return competitions.Sum(c => c.Prize);
         }
 
         public int GetCurrentBalance(string userEmail)
@@ -41,20 +51,20 @@ namespace CtsContestWeb.Logic
 
         private int GetTotalEarnedMoney(string userEmail)
         {
-            var solutions = _solRep.GetSolutionsByUserEmail(userEmail);
+            var solutions = _solutionRepository.GetSolutionsByUserEmail(userEmail);
             var sum = solutions.Where(s => s.IsCorrect).Select(x => x.Score).DefaultIfEmpty(0).Sum();
             return sum;
         }
         private int GetTotalSpentMoney(string userEmail)
         {
-            var purchases = _purRep.GetAllByUserEmail(userEmail);
+            var purchases = _purchaseRepository.GetAllByUserEmail(userEmail);
             var sum = purchases.Select(x => x.Cost).DefaultIfEmpty(0).Sum();
             return sum;
         }
 
         private int GetTodaysEarnedMoney(string userEmail)
         {
-            var solutions = _solRep.GetSolutionsByUserEmail(userEmail);
+            var solutions = _solutionRepository.GetSolutionsByUserEmail(userEmail);
             //var sum = solutions.Where(s => s.IsCorrect).Select(x => x.Score).DefaultIfEmpty(0).Sum();
             var sum = solutions.Where(s => s.IsCorrect && s.Created.Date == DateTime.Today).Select(x => x.Score).DefaultIfEmpty(0).Sum();
             return sum;
@@ -62,7 +72,7 @@ namespace CtsContestWeb.Logic
 
         private int GetTodaysSpentMoney(string userEmail)
         {
-            var purchases = _purRep.GetAllByUserEmail(userEmail);
+            var purchases = _purchaseRepository.GetAllByUserEmail(userEmail);
             //var sum = purchases.Select(x => x.Cost).DefaultIfEmpty(0).Sum();
             var sum = purchases.Where(p => p.Created.Date == DateTime.Today).Select(x => x.Cost).DefaultIfEmpty(0).Sum();
             return sum;

@@ -20,10 +20,11 @@ export default class PrizeCard extends React.Component {
         //     </Card>
         // )
         return (
+            
             <div className='prize-card'>
                 {label}
                 <div className='img-container'>
-                    <img src={this.props.prize.Picture} alt=""/>
+                    <img className='center-image' src={this.props.prize.Picture} alt=""/>
                 </div>
                 <p className='prize-card-header'>
                     {this.props.prize.Name}
