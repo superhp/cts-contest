@@ -39,6 +39,7 @@
     "@aspnet/signalr": "^1.0.0",
     "formsy-semantic-ui-react": "^0.3.3",
     "lodash": "4.17.4",
+    "react-mathjax-preview": "^0.1.10",
     "react-qr-svg": "^2.1.0",
     "semantic-ui-css": "2.2.12",
     "semantic-ui-react": "0.73.0",

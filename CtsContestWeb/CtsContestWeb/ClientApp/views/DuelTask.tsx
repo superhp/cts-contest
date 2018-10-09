@@ -15,6 +15,8 @@ import { Task, Languages, Skeleton, CompileResult  } from '../components/models/
 import { DuelInfo } from '../components/models/DuelInfo';
 import { languages } from '../assets/languages';
 
+const MathJax: any = require("react-mathjax-preview");
+
 import 'brace/mode/jsx';
 import 'brace/theme/monokai';
 
@@ -226,7 +228,7 @@ const TaskHeader = ({title}: {title: string}) => {
 
 const TaskDescription = ({description}: {description: string}) => {
     return <Grid.Column mobile={16} tablet={8} computer={8}>
-                            <div className="cg-task-content" dangerouslySetInnerHTML={{ __html: description }}></div>
+                <MathJax.default className="cg-task-content" math={description} />
             </Grid.Column>;
 }
 

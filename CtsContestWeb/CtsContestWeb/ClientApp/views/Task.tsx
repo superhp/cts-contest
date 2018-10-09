@@ -14,6 +14,8 @@ import 'brace/ext/language_tools';
 import 'brace/ext/searchbox';
 import 'brace/mode/java';
 
+const MathJax: any = require("react-mathjax-preview");
+
 export class TaskComponent extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
@@ -247,7 +249,7 @@ export class TaskComponent extends React.Component<any, any> {
     }
 
     private static renderTask(task: Task) {
-        return <div className="cg-task-content" dangerouslySetInnerHTML={{ __html: task.description }}></div>;
+        return <MathJax.default className="cg-task-content" math={task.description} />;
     }
 
     private static renderResult(compileResult: CompileResult) {        
