@@ -3,4 +3,6 @@ export interface UserInfo {
     email: string;
     name: string;
     totalBalance: number;
+    totalWins: number;
+    totalLooses: number;
 }
