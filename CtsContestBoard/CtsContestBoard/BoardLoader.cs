@@ -53,7 +53,7 @@ namespace CtsContestBoard
             Slogan
         }
 
-        private readonly List<BoardEnum> _ignoredBoards = new List<BoardEnum> { BoardEnum.TodayPrizes };
+        private readonly List<BoardEnum> _ignoredBoards = new List<BoardEnum> { BoardEnum.TodayPrizes, BoardEnum.WeekPrizes };
 
         public BoardLoader(IPrizeManager prizeManager, ISolutionRepository solutionRepository, IPurchaseRepository purchaseRepository, IUserRepository userRepository, ApplicationDbContext dbContext)
         {
