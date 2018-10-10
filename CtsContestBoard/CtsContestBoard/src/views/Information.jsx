@@ -19,8 +19,11 @@ export default class Information extends React.Component {
                     <Timer day={this.props.timer.dayGame.day} hour={this.props.timer.dayGame.hour} minutes={this.props.timer.dayGame.minute}
                         style={{ color: 'black', fontSize: 72}} informationViewText={informationViewText}/>
                 </div>
-                <p style={{ margin: 0, fontSize: 60, textAlign: 'center', paddingTop: 40,paddingBottom: 10, fontWeight: 'bold' }}>
+                {/* <p style={{ margin: 0, fontSize: 60, textAlign: 'center', paddingTop: 40,paddingBottom: 10, fontWeight: 'bold' }}>
                     Conference prize winner will be awarded on Friday at {this.renderTimeValue(this.props.timer.dayGame.hour)}:{this.renderTimeValue(this.props.timer.dayGame.minute)}        
+                </p>                 */}
+                <p style={{ margin: 0, fontSize: 60, textAlign: 'center', paddingTop: 40,paddingBottom: 10, fontWeight: 'bold' }}>
+                    Conference prizes can be purchased until {this.renderTimeValue(this.props.timer.dayGame.hour)}:{this.renderTimeValue(this.props.timer.dayGame.minute)}        
                 </p>                
                 
                 <p style={{ margin: 0, fontSize: 60, textAlign: 'center' }}>
