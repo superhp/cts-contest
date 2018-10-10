@@ -111,6 +111,15 @@ namespace CtsContestWeb.Communication
                 IsOutputCorrect = data.Stdout != null && actual.Equals(expected)
             };
 
+            // Temporary check for timeout error. Since HackerRank compiler doesn't complain about timeout error clearly, 
+            // Paiza runs as a secondary compiler and checks for timeout. 
+            if (data.Result == "timeout")
+            {
+                compileResult.Compiled = true; 
+                compileResult.Message = "Timeout. Your algorithm is not performant enough.";
+                compileResult.IsOutputCorrect = false; 
+            }
+
             return compileResult;
         }
     }
