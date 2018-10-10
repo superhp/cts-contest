@@ -71,10 +71,10 @@ namespace CtsContestWeb.Duel
                     Task = task
                 };
 
-                Duel.Players.ForEach(player =>
+                duel.Players.ForEach(player =>
                 {
-                    var totalWins = _DuelRepository.GetWonDuelsByEmail(player.Email).Count();
-                    var totalLooses = _DuelRepository.GetDuelsByEmail(player.Email).Count() - totalWins;
+                    var totalWins = _duelRepository.GetWonDuelsByEmail(player.Email).Count();
+                    var totalLooses = _duelRepository.GetDuelsByEmail(player.Email).Count() - totalWins;
                     player.TotalWins = totalWins;
                     player.TotalLooses = totalLooses;
                 });

@@ -23,10 +23,10 @@ const links = [
         routeTo: '/tasks',
         name: 'Tasks'
     },
-    {
-        routeTo: '/duel',
-        name: 'duel'
-    },
+    // {
+    //     routeTo: '/duel',
+    //     name: 'duel'
+    // },
     // {
     //     routeTo: '/leaderboard',
     //     name: 'Leaderboard'
@@ -35,10 +35,10 @@ const links = [
         routeTo: '/shop',
         name: 'Shopping booth'
     },
-    {
-        routeTo: '/prizes',
-        name: 'Conference prize'
-    },
+    // {
+    //     routeTo: '/prizes',
+    //     name: 'Conference prize'
+    // },
     // {
     //     routeTo: '/quiz',
     //     name: 'Quiz'

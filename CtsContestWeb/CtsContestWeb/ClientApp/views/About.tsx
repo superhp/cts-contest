@@ -76,13 +76,13 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                     </ul>
                                 </li>
                                 <li>Have points added to your virtual wallet</li>
-                                <li>Buy goodies in our shopping booth or save it to win the conference prize - <b>Xbox One X</b></li>
+                                <li>Buy goodies in our shopping booth</li>
                                 <li>To access leaderboard results, visit Cognizant booth</li>
-                                <li>Challenge is active from 8AM to 5PM</li>
+                                <li>Challenge is active from 8:00 to 16:30</li>
                             </ol>
                         </div>
                     </Container>
-                    <Divider />
+                    {/* <Divider />
                     <Container>
                         <div className='cg-title'>
                             <h2>2 ways to spend your points</h2>
@@ -105,12 +105,12 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                             </ul>
 
                         </div>
-                    </Container>
+                    </Container> */}
 
                     <Divider />
                     <Container>
                         <div className='cg-title'>
-                            <h2>Shopping</h2>
+                            <h2>Spending your points</h2>
                         </div>
                         <p className='cg-about-p' style={{paddingBottom: 5}}>
                             Once you earn enough points and want to purchase an item:
@@ -120,7 +120,8 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                 <li>Go to virtual shopping booth</li>
                                 <li>Select an item, click Buy
                                     <ul className='cg-ul-circle'>
-                                        <li>Click on details to read more about it</li>
+                                        <li>Click on details to read more about the item</li>
+                                        <li>Each registered contestant can purchase the same item only once</li>
                                     </ul>
                                 </li>
                                 <li>Receive a unique QR code (this is your purchase receipt)</li>
@@ -170,10 +171,13 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                         </div>
                                     </div>
                                 </li>
-                                <li>The execution time of each solution must not exceed 5 seconds and it must not consume more than 256 MB of memory. The size of the source file of a solution must not exceed 256 KB.</li>
-                                <li>There is an editor provided near each of the tasks, but you can use anything you like – just make sure to put your code into the editor before you submit.</li>
-                                <li>You can try to submit your solution as many times as you want. Once your code passes the tests, you will gain the respective amount of points and the task will be marked as solved.</li>
-                                <li>Quantity of items in stock is limited.</li>
+                                <li>The execution time of each solution must not exceed 5 seconds and it must not consume more than 256 MB of memory. The size of the source file of a solution must not exceed 256 KB</li>
+                                <li>
+                                    You can try to submit your solution as many times as you want. Once you submit a correct solution, you will gain the respective amount of points and the task will be marked as solved<br/>
+                                    <b>Cheating is strictly prohibited!</b> The organizers remain the right to nullify a solution if it includes hacking
+                                </li>
+                                <li>There is an editor provided near each of the tasks, but you can use anything you like – just make sure to put your code into the editor before you submit</li>
+                                <li>Quantity of items in stock is limited</li>
                                 <li>Price of items may change throughout the conference</li>
                             </ul>
                         </div>
