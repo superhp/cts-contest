@@ -33,7 +33,7 @@ export default class Information extends React.Component {
                     Please come to Cognizant stand to take your prize
                 </p>
                 <p style={{margin: 0, fontSize: 60, textAlign: 'center' }}>
-                    Game will be stopped from 17:00 today until 8:30 tomorrow
+                    Game will be stopped today at 16:00
                 </p>
 
                 {/*<p style={{ margin: 0, fontSize: 60, textAlign: 'center' }}>

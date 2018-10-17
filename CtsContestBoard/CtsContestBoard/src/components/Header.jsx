@@ -16,7 +16,7 @@ export default class Header extends React.Component {
                 </Menu.Item>
                 <Menu.Menu position='right'>
                     <div className='cg-title'>
-                        www.cognizantchallenge.lt
+                        ej.uz/LUchallenge
                     </div>
                     <div className='cg-timeleft'>
                         <Timer day={this.props.timer.dayGame.day} hour={this.props.timer.dayGame.hour} minutes={this.props.timer.dayGame.minute}

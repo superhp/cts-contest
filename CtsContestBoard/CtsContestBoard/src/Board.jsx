@@ -12,14 +12,14 @@ const timer = {
     dayGame: {
         day: (new Date().getDate()),
         hour: 16, 
-        minute: 30
+        minute: 0
     },
     conferenceGame: {
         /*day: 17,
         hour: 16,
         minute: 45*/
         day: (new Date().getDate()),
-        hour: 17,
+        hour: 16,
         minute: 0
     }
 }
