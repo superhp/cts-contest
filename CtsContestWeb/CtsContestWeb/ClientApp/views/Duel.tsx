@@ -225,25 +225,31 @@ export class Duel extends React.Component<any, DuelState> {
                         <RulesAndDuelInfo info={this.state.DuelInfo} duelState={this.state}
                                           taskName={this.state.DuelInfo.task.name}
                                           taskPoints={this.state.DuelInfo.task.value}/> :
-                        <Rules centered={true} duelState={this.state}/>
+                        <Rules centered={true} duelState={this.state} loggedIn={this.props.userInfo.isLoggedIn} />
                 }
                 <Divider/>
-
-                {this.getCurrentStepTemplate(this.state.step)}
-
+                
+                { 
+                    this.props.userInfo.isLoggedIn ? 
+                        this.getCurrentStepTemplate(this.state.step) : 
+                        <Container textAlign="center">
+                            <div className="error-message cg-about-p">Please login before participating in duel</div>
+                        </Container>
+                }
 
             </div>
         );
     }
 }
 
-const Rules = ({centered, duelState}: { centered: boolean, duelState: DuelState }) => {
+const Rules = ({centered, duelState, loggedIn}: { centered: boolean, duelState: DuelState, loggedIn: boolean }) => {
 
     return (
         <Container>
-            <div className='cg-about-p'>
+            { loggedIn ? <div className='cg-about-p'>
                 <div>Total wins: {duelState.totalWins}. Total looses: {duelState.totalLooses}</div>
-            </div>
+            </div> : <div></div>}
+            
             {
                 centered ?
                     <div className='cg-title'>
@@ -271,7 +277,7 @@ const RulesAndDuelInfo = ({info, duelState, taskName, taskPoints}: { info: DuelI
         <Grid columns={2} relaxed>
 
             <Grid.Column mobile={16} tablet={8} computer={8}>
-                <Rules centered={false} duelState={duelState}/>
+                <Rules centered={false} duelState={duelState} loggedIn={true}/>
             </Grid.Column>
             <Grid.Column mobile={16} tablet={8} computer={8}>
                 <Container>
