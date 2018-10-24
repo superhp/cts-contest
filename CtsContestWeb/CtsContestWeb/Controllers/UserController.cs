@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Dto;
+using CtsContestWeb.Duel;
 using CtsContestWeb.Logic;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CtsContestWeb.Controllers
@@ -43,13 +42,23 @@ namespace CtsContestWeb.Controllers
                     IsLoggedIn = true
                 };
             }
-            else
+
+            return new UserInfoDto
             {
-                return new UserInfoDto
-                {
-                    IsLoggedIn = false
-                };
+                IsLoggedIn = false
+            };
+        }
+
+        [HttpGet("canbuy")]
+        public bool CanBuyPrizes()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var email = User.FindFirst(ClaimTypes.Email).Value;
+                return !UserHandler.IsPlayerInDuel(email);
             }
+
+            return false;
         }
 
         [HttpGet("purchases")]

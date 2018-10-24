@@ -156,7 +156,7 @@ namespace CtsContestWeb.Duel
         public async Task CheckSolution(string source, int language)
         {
             var duel = GetCurrentDuel();
-            var player = duel.Players.First(p => p.ConnectionId.Equals(Context.ConnectionId));
+            var player = duel.Players.First(p => p.Email.Equals(Context.User.FindFirstValue(ClaimTypes.Email)));
 
             var compileResult = await _solutionLogic.CheckSolution(duel.Task.Id, source, language);
 

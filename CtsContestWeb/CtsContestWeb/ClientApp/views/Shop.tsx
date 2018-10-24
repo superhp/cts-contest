@@ -57,6 +57,13 @@ export class Shop extends React.Component<any, any> {
                 if (this._mounted)
                     this.setState({ purchasedItems: data });
             });
+
+        fetch('api/User/CanBuy')
+            .then(response => response.json() as Promise<boolean>)
+            .then(data => {
+                this.setState({ canBuyPrizes: data });
+            });
+            
         this._mounted = true;
     }
 
@@ -213,7 +220,7 @@ export class Shop extends React.Component<any, any> {
                         prize={this.state.prizeModalData}
                         state={this.state.purchaseModalState}
                         purchase={this.state.purchase} />
-                    <PrizeDescription 
+                    <PrizeDescription
                         open={this.state.prizeDescriptionOpen} 
                         onClose={this.closeDescriptionModal}
                         prize={this.state.prizeDescription} />
@@ -229,7 +236,7 @@ export class Shop extends React.Component<any, any> {
                   .sort((a, b) => a.price - b.price)
                   .map((prize, index) =>
                     <div className='cg-col' key={index} style={{ paddingBottom: 20 }}>  
-                        <ShopItemCard
+                        <ShopItemCard canBuyPrize={this.state.canBuyPrizes}
                             prize={prize}
                             onBuy={this.openPrizeModal}
                             onOpenPurchaseQR={this.openPurchasedQRModal}

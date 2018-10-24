@@ -6,6 +6,7 @@ using CtsContestWeb.Dto;
 using Microsoft.AspNetCore.Mvc;
 using CtsContestWeb.Logic;
 using System.Security.Claims;
+using CtsContestWeb.Duel;
 using CtsContestWeb.Filters;
 using Microsoft.AspNetCore.Authorization;
 
@@ -63,7 +64,7 @@ namespace CtsContestWeb.Controllers
             var prize = await _prizeManager.GetPrizeById(prizeId);
 
             var canBuy = await _purchaseLogic.CheckIfUserCanBuy(userEmail, prizeId);
-            if (!canBuy)
+            if (UserHandler.IsPlayerInDuel(userEmail) || !canBuy)
                 throw new Exception();   //Don't know what kind of specific exception should be here
 
             var id = _purchaseRepository.Create(userEmail, prizeId, prize.Price);

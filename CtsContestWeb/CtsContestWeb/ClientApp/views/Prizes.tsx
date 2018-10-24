@@ -33,6 +33,7 @@ export class Prizes extends React.Component<any, any> {
             .then(data => {
                 this.setState({ prizes: data, loading: false });
             });
+
         this._mounted = true;
     }
 
@@ -76,7 +77,6 @@ export class Prizes extends React.Component<any, any> {
                         onClose={this.closeDescriptionModal}
                         prize={this.state.prizeDescription} />
                 </Container>
-
             </div>
         );
     }

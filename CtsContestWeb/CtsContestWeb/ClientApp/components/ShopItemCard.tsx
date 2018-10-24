@@ -64,7 +64,7 @@ export class ShopItemCard extends React.Component<any, any> {
             return (
                 <button
                     className='cg-card-button secondary'
-                    disabled={this.props.prize.quantity <= 0 || this.props.prize.price > this.props.balance ? true : false}
+                    disabled={!this.props.canBuyPrize || this.props.prize.quantity <= 0 || this.props.prize.price > this.props.balance}
                     onClick={this.buy}
                 >Buy</button>
             )
