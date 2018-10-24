@@ -12,5 +12,6 @@ namespace CtsContestWeb.Db.Repository
         void UpsertSolution(DuelSolution solution);
         IEnumerable<DuelDto> GetWonDuelsByEmail(string userEmail);
         IEnumerable<DuelDto> GetDuelsByEmail(string email);
+        IEnumerable<DuelDto> GetLostDuelsByEmail(string playerEmail);
     }
 }

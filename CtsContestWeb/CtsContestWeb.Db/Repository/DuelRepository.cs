@@ -72,6 +72,14 @@ namespace CtsContestWeb.Db.Repository
                 .Select(DuelToDuelDto);
         }
 
+        public IEnumerable<DuelDto> GetLostDuelsByEmail(string userEmail)
+        {
+            return _dbContext.Duels
+                .Where(c => (c.FirstPlayerEmail.Equals(userEmail) || c.SecondPlayerEmail.Equals(userEmail)) &&
+                            c.WinnerEmail != null && !c.WinnerEmail.Equals(userEmail)).AsEnumerable()
+                .Select(DuelToDuelDto);
+        }
+
         private DuelDto DuelToDuelDto(Duel c)
         {
             return new DuelDto

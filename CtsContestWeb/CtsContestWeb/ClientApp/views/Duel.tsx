@@ -5,13 +5,13 @@ import {DuelTask} from './DuelTask';
 import {fakeDuelInfo} from '../mocks/fakeData';
 import {CompileResult} from '../components/models/Task';
 import {UserInfo} from '../components/models/UserInfo';
-import {DuelInfo, DuelTime, initialDuelTime} from '../components/models/DuelInfo';
+import {DuelInfo, DuelTime} from '../components/models/DuelInfo';
 
 interface DuelState {
     compileResult: CompileResult | null,
     winner: UserInfo | null,
     step: string,
-    DuelInfo: DuelInfo,
+    duelInfo: DuelInfo,
     secondsToPlay: number,
     compiling: boolean,
     time: DuelTime,
@@ -33,10 +33,10 @@ export class Duel extends React.Component<any, DuelState> {
             compileResult: null,
             winner: null,
             step: 'initial',
-            DuelInfo: fakeDuelInfo,
-            secondsToPlay: initialDuelTime.minutes * 60 + initialDuelTime.seconds,
+            duelInfo: fakeDuelInfo,
+            secondsToPlay: 0,
             compiling: false,
-            time: initialDuelTime,
+            time: { minutes: 0, seconds: 0 },
             waitingPlayers: 0,
             totalWins: 0,
             totalLooses: 0
@@ -54,7 +54,7 @@ export class Duel extends React.Component<any, DuelState> {
         });
 
         this.hubConnection.on("DuelStarts", (DuelInfo: DuelInfo) => {
-            this.setState({step: 'started', DuelInfo: DuelInfo});
+            this.setState({step: 'started', duelInfo: DuelInfo});
             this.resetDuelTimerState();
             this.timer = setInterval(() => {
                 this.countDown()
@@ -73,7 +73,7 @@ export class Duel extends React.Component<any, DuelState> {
         })
 
         this.hubConnection.on("scoreAdded", (score: number) => {
-            this.props.onIncrementBalance(this.state.DuelInfo.task.value);
+            this.props.onIncrementBalance(this.state.duelInfo.task.value);
             console.log(score + ' points added');
         })
 
@@ -83,18 +83,19 @@ export class Duel extends React.Component<any, DuelState> {
         })
 
         this.hubConnection.on("opponentDisconnected", (winningPlayer: UserInfo) => {
-            this.props.onIncrementBalance(this.state.DuelInfo.task.value);
+            this.props.onIncrementBalance(this.state.duelInfo.task.value);
             this.setState({step: 'finishedByDisconnection', winner: winningPlayer})
             console.log(`${winningPlayer.email} won. Cause: opponent disconnection. Step: 'finishedByDisconnection'`)
         })
     }
 
     countDown() {
-        let seconds = this.state.secondsToPlay - 1;
-        this.setState({
-            time: this.secondsToTime(seconds),
-            secondsToPlay: seconds,
-        });
+        let now = new Date();
+        let start = new Date(this.state.duelInfo.startTime.toString());
+        let timeElapsed = now.getTime() - start.getTime();
+        let seconds = Math.max(15 * 60 - timeElapsed / 1000, 0); // duel duration: 15 minutes
+        let time = this.secondsToTime(seconds);
+        this.setState({time: time, secondsToPlay: seconds});
 
         if (seconds == 0) {
             this.setState({step: "finishedByTimeout"});
@@ -105,7 +106,7 @@ export class Duel extends React.Component<any, DuelState> {
 
     resetDuelTimerState() {
         clearInterval(this.timer);
-        this.setState({secondsToPlay: initialDuelTime.minutes * 60 + initialDuelTime.seconds, time: initialDuelTime});
+        this.setState({secondsToPlay: 0, time: this.secondsToTime(0)});
     }
 
     secondsToTime(secs: number) {
@@ -135,9 +136,6 @@ export class Duel extends React.Component<any, DuelState> {
             .then(data => {
                 this.setState({totalWins: data.totalWins, totalLooses: data.totalLooses});
             });
-
-        let timeLeft = this.secondsToTime(this.state.secondsToPlay);
-        this.setState({time: timeLeft});
     }
 
     findOpponent = () => {
@@ -169,10 +167,10 @@ export class Duel extends React.Component<any, DuelState> {
             case 'searching':
                 return <div className="cg-title loading-text">
                     <h2>Wait for your opponent...</h2>
-                    {this.state.waitingPlayers != 1 ? <h3>{this.state.waitingPlayers} opponents are in queue</h3> : <h3>{this.state.waitingPlayers} opponent is in queue</h3> }
+                    {this.state.waitingPlayers != 1 ? <h3>{this.state.waitingPlayers} players are waiting for duel</h3> : <h3>{this.state.waitingPlayers} player is waiting for duel</h3> }
                 </div>;
             case 'started':
-                return <DuelTask info={this.state.DuelInfo} submitSolution={this.submitSolution}
+                return <DuelTask info={this.state.duelInfo} submitSolution={this.submitSolution}
                                  compilerError={this.state.compileResult}
                                  compiling={this.state.compiling}/>
             case 'finishedByWinning':
@@ -222,9 +220,9 @@ export class Duel extends React.Component<any, DuelState> {
 
                 {
                     this.state.step === "started" ?
-                        <RulesAndDuelInfo info={this.state.DuelInfo} duelState={this.state}
-                                          taskName={this.state.DuelInfo.task.name}
-                                          taskPoints={this.state.DuelInfo.task.value}/> :
+                        <RulesAndDuelInfo info={this.state.duelInfo} duelState={this.state}
+                                          taskName={this.state.duelInfo.task.name}
+                                          taskPoints={this.state.duelInfo.task.value}/> :
                         <Rules centered={true} duelState={this.state} loggedIn={this.props.userInfo.isLoggedIn} />
                 }
                 <Divider/>

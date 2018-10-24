@@ -4,10 +4,12 @@ using System.Linq;
 using Microsoft.AspNetCore.SignalR;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Timers;
 using CtsContestWeb.Communication;
 using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Dto;
 using CtsContestWeb.Logic;
+using Microsoft.Extensions.Configuration;
 
 namespace CtsContestWeb.Duel
 {
@@ -17,26 +19,37 @@ namespace CtsContestWeb.Duel
         private readonly ITaskManager _taskManager;
         private readonly IDuelRepository _duelRepository;
         private readonly ISolutionLogic _solutionLogic;
+        private readonly IConfiguration _configuration;
 
-        public DuelHub(ITaskManager taskManager, IDuelRepository duelRepository, ISolutionLogic solutionLogic)
+        public DuelHub(ITaskManager taskManager, IDuelRepository duelRepository, ISolutionLogic solutionLogic, IConfiguration configuration)
         {
             _taskManager = taskManager;
             _duelRepository = duelRepository;
             _solutionLogic = solutionLogic;
+            _configuration = configuration;
         }
 
         public override async Task OnConnectedAsync()
         {
             if (IsAlreadyConnected())
             {
-                await Clients.Caller.SendAsync("closeThisWindow");
+                var duel = GetCurrentDuel();
+                var player = new PlayerDto
+                {
+                    ConnectionId = Context.ConnectionId,
+                    Name = Context.User.FindFirstValue(ClaimTypes.GivenName),
+                    Email = Context.User.FindFirstValue(ClaimTypes.Email)
+                };
+                await Groups.AddToGroupAsync(player.ConnectionId, duel.GroupName);
+                await Clients.Caller.SendAsync("DuelStarts", duel);
                 return;
             }
            
             var firstPlayer = new PlayerDto
             {
                 ConnectionId = Context.ConnectionId,
-                Name = Context.User.FindFirst(ClaimTypes.GivenName).Value
+                Name = Context.User.FindFirstValue(ClaimTypes.GivenName),
+                Email = Context.User.FindFirstValue(ClaimTypes.Email)
             };
 
             if (UserHandler.WaitingPlayers.Count > 0)
@@ -73,14 +86,20 @@ namespace CtsContestWeb.Duel
 
                 duel.Players.ForEach(player =>
                 {
-                    var totalWins = _duelRepository.GetWonDuelsByEmail(player.Email).Count();
-                    var totalLooses = _duelRepository.GetDuelsByEmail(player.Email).Count() - totalWins;
-                    player.TotalWins = totalWins;
-                    player.TotalLooses = totalLooses;
+                    player.TotalWins = _duelRepository.GetWonDuelsByEmail(player.Email).Count();
+                    player.TotalLooses = _duelRepository.GetLostDuelsByEmail(player.Email).Count();
                 });
                 
                 duel.Id = _duelRepository.CreateDuel(duel);
                 UserHandler.ActiveDuels.Add(duel);
+
+                var duration = _configuration.GetValue<int>("DuelDurationInMinutes");
+                var timer = new Timer
+                {
+                    Interval = duration * 60 * 1000
+                };
+                timer.Elapsed += (sender, e) => DuelTimeElapsed(duel, timer);
+                timer.Start();
 
                 await Groups.AddToGroupAsync(firstPlayer.ConnectionId, duel.GroupName);
                 await Groups.AddToGroupAsync(secondPlayer.ConnectionId, duel.GroupName);
@@ -92,6 +111,12 @@ namespace CtsContestWeb.Duel
             }
 
             await base.OnConnectedAsync();
+        }
+
+        private void DuelTimeElapsed(DuelDto duel, Timer timer)
+        {
+            timer.Dispose();
+            UserHandler.ActiveDuels.Remove(duel);
         }
 
         private bool IsAlreadyConnected()
@@ -113,18 +138,7 @@ namespace CtsContestWeb.Duel
 
             if (duel != null)
             {
-                UserHandler.ActiveDuels.Remove(duel);
-
-                var winner = duel.Players.Single(p => !p.ConnectionId.Equals(Context.ConnectionId));
-
                 await Groups.RemoveFromGroupAsync(Context.ConnectionId, duel.GroupName);
-                //Currently calling Group (as the other person is removed). Should be changed to call just the winner
-                await Clients.Group(duel.GroupName).SendAsync("opponentDisconnected", winner);
-                await Clients.Group(duel.GroupName).SendAsync("scoreAdded");
-                await Groups.RemoveFromGroupAsync(winner.ConnectionId, duel.GroupName);
-
-                _duelRepository.SetWinner(duel, winner);
-                UserHandler.ActiveDuels.Remove(duel);
             }
             else
             {
@@ -167,7 +181,7 @@ namespace CtsContestWeb.Duel
         private DuelDto GetCurrentDuel()
         {
             return UserHandler.ActiveDuels.FirstOrDefault(c =>
-                c.Players.Select(p => p.ConnectionId).Contains(Context.ConnectionId));
+                c.Players.Select(p => p.Email).Contains(Context.User.FindFirstValue(ClaimTypes.Email)));
         }
 
         private async void AddWaitingPlayer(PlayerDto playerDto)

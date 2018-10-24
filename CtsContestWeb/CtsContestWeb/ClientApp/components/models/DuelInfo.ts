@@ -11,8 +11,3 @@ export interface DuelTime {
     minutes: number;
     seconds: number;
 }
-
-export const initialDuelTime : DuelTime = {
-    minutes: 0,
-    seconds: 5
-}

@@ -79,13 +79,11 @@ namespace CtsContestWeb.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var userEmail = User.FindFirst(ClaimTypes.Email).Value;
-                var totalWins = _duelRepository.GetWonDuelsByEmail(userEmail).Count();
-                var totalLooses = _duelRepository.GetDuelsByEmail(userEmail).Count() - totalWins;
-                return new UserDuelStatisticsDto()
+                return new UserDuelStatisticsDto
                 {
                     Email = userEmail,
-                    TotalWins = totalWins,
-                    TotalLooses = totalLooses
+                    TotalWins = _duelRepository.GetWonDuelsByEmail(userEmail).Count(),
+                    TotalLooses = _duelRepository.GetLostDuelsByEmail(userEmail).Count()
                 };
             }
 
