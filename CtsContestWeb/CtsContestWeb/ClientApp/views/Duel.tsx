@@ -245,7 +245,7 @@ const Rules = ({centered, duelState, loggedIn}: { centered: boolean, duelState: 
     return (
         <Container>
             { loggedIn ? <div className='cg-about-p'>
-                <div>Total wins: {duelState.totalWins}. Total looses: {duelState.totalLooses}</div>
+                <div>Total wins: {duelState.totalWins}. Total losses: {duelState.totalLooses}</div>
             </div> : <div></div>}
             
             {
