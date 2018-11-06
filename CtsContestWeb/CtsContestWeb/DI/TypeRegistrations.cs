@@ -35,13 +35,12 @@ namespace CtsContestWeb.DI
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBalanceLogic, BalanceLogic>();
             services.AddScoped<IPurchaseLogic, PurchaseLogic>();
+            services.AddScoped<ISolutionLogic, SolutionLogic>();
 
-            services.AddTransient<ITaskManager, TaskManager>();
             services.AddTransient<IPrizeManager, PrizeManager>();
             services.AddTransient<ICodeSkeletonManager, CodeSkeletonManager>();
 
-            services.AddScoped<ISolutionLogic, SolutionLogic>();
-
+            services.AddSingleton<ITaskManager, TaskManager>();
             services.AddSingleton<IConfiguration>(configuration);
 
             var builder = new ContainerBuilder();
