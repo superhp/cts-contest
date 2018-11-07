@@ -92,7 +92,9 @@ namespace CtsContestWeb.Controllers
                 {
                     Email = userEmail,
                     TotalWins = _duelRepository.GetWonDuelsByEmail(userEmail).Count(),
-                    TotalLooses = _duelRepository.GetLostDuelsByEmail(userEmail).Count()
+                    TotalLooses = _duelRepository.GetLostDuelsByEmail(userEmail).Count(),
+                    IsInDuel = UserHandler.IsPlayerInDuel(userEmail),
+                    ActivePlayers = UserHandler.WaitingPlayers.Count + UserHandler.ActiveDuels.Count * 2
                 };
             }
 
