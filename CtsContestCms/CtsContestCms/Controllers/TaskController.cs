@@ -45,23 +45,7 @@ namespace CtsContestCms.Controllers
             return taskDtos;
         }
 
-        // GET api/task/getAll
-        public IEnumerable<TaskDto> GetAll()
-        {
-            var taskDtos = GetAllTasks();
-
-            return taskDtos.Where(t => !t.IsForCompetition);
-        }
-
-        // GET api/task/getAllCompetitionTasks
-        public IEnumerable<TaskDto> GetAllCompetitionTasks()
-        {
-            var taskDtos = GetAllTasks();
-
-            return taskDtos.Where(t => t.IsForCompetition);
-        }
-
-       // GET api/task/get/{id}
+        // GET api/task/get/{id}
         public TaskDto Get(int id)
         {
             var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
@@ -73,7 +57,8 @@ namespace CtsContestCms.Controllers
             return GetNewTaskDto(task);
         }
 
-        private static List<TaskDto> GetAllTasks()
+        // GET api/task/getAll
+        public IEnumerable<TaskDto> GetAll()
         {
             var taskDtos = new List<TaskDto>();
             var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
@@ -95,7 +80,7 @@ namespace CtsContestCms.Controllers
                             Name = task.Name,
                             Value = task.GetPropertyValue("value"),
                             IsEnabled = task.GetPropertyValue("enabled"),
-                            IsForCompetition = task.GetPropertyValue("competition")
+                            IsForDuel = task.GetPropertyValue("competition")
                         });
                 }
             }

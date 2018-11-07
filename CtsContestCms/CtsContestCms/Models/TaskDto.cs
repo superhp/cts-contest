@@ -9,7 +9,7 @@ namespace CtsContestCms.Models
         public string Description { get; set; }
         public int Value { get; set; }
         public bool IsEnabled { get; set; }
-        public bool IsForCompetition { get; set; }
+        public bool IsForDuel { get; set; }
         public IEnumerable<string> Inputs { get; set; }
         public IEnumerable<string> Outputs { get; set; }
         public string InputType { get; set; }
