@@ -13,5 +13,6 @@ namespace CtsContestWeb.Dto
         public List<string> Outputs { get; set; }
 
         public string InputType { get; set; }
+        public bool IsForDuel { get; set; }
     }
 }

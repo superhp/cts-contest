@@ -18,90 +18,15 @@ namespace CtsContestWeb.Communication
         private readonly IDuelRepository _duelRepository;
         private readonly IMemoryCache _cache;
 
+        private const string RegularTasksCacheKey = "regularTasks";
+        private const string DuelTasksCacheKey = "duelTasks";
+
         public TaskManager(IConfiguration iconfiguration, ISolutionRepository solutionRepository, IDuelRepository duelRepository, IMemoryCache cache)
         {
             _iconfiguration = iconfiguration;
             _solutionRepository = solutionRepository;
             _duelRepository = duelRepository;
             _cache = cache;
-        }
-
-        public async Task<List<TaskDto>> GetAllTasks(string userEmail = null)
-        {
-            List<TaskDto> tasks;
-            if (!_cache.TryGetValue<List<TaskDto>>("tasks", out tasks))
-            {
-                tasks = await GetAllTasksFromApi();
-                CacheTasks(tasks);
-            }
-
-            var solvedTasks = _solutionRepository.GetSolvedTasksIdsByUserEmail(userEmail).ToList();
-
-            foreach (var task in tasks)
-            {
-                task.IsSolved = false;
-                if (userEmail != null)
-                {
-                    if (solvedTasks.Any(t => t == task.Id))
-                        task.IsSolved = true;
-                }
-            }
-
-            return tasks;
-        }
-
-        private async Task<List<TaskDto>> GetAllTasksForDuel()
-        {
-            var competitionTasks = "competitionTasks";
-            List<TaskDto> tasks;
-
-            if (!_cache.TryGetValue<List<TaskDto>>(competitionTasks, out tasks))
-            {
-                tasks = await GetAllTasksForDuelFromApi();
-                CacheTasks(tasks, competitionTasks);
-            }
-
-            return tasks;
-        }
-
-        private async Task<List<TaskDto>> GetAllTasksForDuelFromApi()
-        {
-            var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
-            var client = new RestClient(umbracoApiUrl);
-
-            var request = new RestRequest("task/getAllCompetitionTasks", Method.GET);
-
-            TaskCompletionSource<List<TaskDto>> taskCompletion = new TaskCompletionSource<List<TaskDto>>();
-            client.ExecuteAsync<List<TaskDto>>(request, response => { taskCompletion.SetResult(response.Data); });
-
-            var tasks = await taskCompletion.Task;
-
-            tasks.ForEach(UpdateTaskValue);
-            return tasks;
-        }
-
-        public void CacheTasks(List<TaskDto> tasks, string name = "tasks")
-        {
-            MemoryCacheEntryOptions cacheExpirationOptions = new MemoryCacheEntryOptions();
-            cacheExpirationOptions.AbsoluteExpiration = DateTime.Now.AddMinutes(30);
-            cacheExpirationOptions.Priority = CacheItemPriority.Normal;
-            _cache.Set<List<TaskDto>>(name, tasks, cacheExpirationOptions);
-        }
-
-        private async Task<List<TaskDto>> GetAllTasksFromApi()
-        {
-            var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
-            var client = new RestClient(umbracoApiUrl);
-
-            var request = new RestRequest("task/getAll", Method.GET);
-
-            TaskCompletionSource<List<TaskDto>> taskCompletion = new TaskCompletionSource<List<TaskDto>>();
-            client.ExecuteAsync<List<TaskDto>>(request, response => { taskCompletion.SetResult(response.Data); });
-
-            var tasks = await taskCompletion.Task;
-
-            tasks.ForEach(UpdateTaskValue);
-            return tasks;
         }
 
         public async Task<TaskDto> GetTaskById(int id, string userEmail = null)
@@ -132,7 +57,8 @@ namespace CtsContestWeb.Communication
 
         public async Task<TaskDto> GetTaskForDuel(IEnumerable<string> usersEmail)
         {
-            var tasks = (await GetAllTasksForDuel()).Select(t => t.Id).ToList();
+            var duelTasks = await GetTasks(DuelTasksCacheKey);
+            var duelTaskIds = duelTasks.Select(t => t.Id).ToList();
 
             var competitions = new List<DuelDto>();
             foreach (var email in usersEmail)
@@ -141,7 +67,7 @@ namespace CtsContestWeb.Communication
             }
 
             var usedTaskIds = competitions.Select(c => c.Task.Id).Distinct();
-            var availableTaskIds = tasks.Where(t => !usedTaskIds.Contains(t)).ToList();
+            var availableTaskIds = duelTaskIds.Where(t => !usedTaskIds.Contains(t)).ToList();
 
             if (availableTaskIds.Count == 0)
                 return null;
@@ -152,6 +78,63 @@ namespace CtsContestWeb.Communication
             var task = await GetTaskById(availableTaskIds[taskNr]);
 
             return task;
+        }
+
+        public async Task<List<TaskDto>> GetAllTasks(string userEmail = null)
+        {
+            var tasks = await GetTasks(RegularTasksCacheKey);
+            var solvedTasks = _solutionRepository.GetSolvedTasksIdsByUserEmail(userEmail).ToList();
+
+            foreach (var task in tasks)
+            {
+                task.IsSolved = false;
+                if (userEmail != null)
+                {
+                    if (solvedTasks.Any(t => t == task.Id))
+                        task.IsSolved = true;
+                }
+            }
+
+            return tasks;
+        }
+
+        private void CacheTasks(List<TaskDto> tasks, string name)
+        {
+            MemoryCacheEntryOptions cacheExpirationOptions = new MemoryCacheEntryOptions();
+            cacheExpirationOptions.AbsoluteExpiration = DateTime.Now.AddMinutes(30);
+            cacheExpirationOptions.Priority = CacheItemPriority.Normal;
+            _cache.Set<List<TaskDto>>(name, tasks, cacheExpirationOptions);
+        }
+
+        private async Task<List<TaskDto>> GetTasks(string cacheKey)
+        {
+            List<TaskDto> tasks;
+            if (!_cache.TryGetValue(cacheKey, out tasks))
+            {
+                var allTasks = await DownloadAllTasksAsync();
+                var duelTasks = allTasks.Where(x => x.IsForDuel).ToList();
+                CacheTasks(duelTasks, DuelTasksCacheKey);
+                var regularTasks = allTasks.Where(x => !x.IsForDuel).ToList();
+                CacheTasks(regularTasks, RegularTasksCacheKey);
+                return cacheKey == DuelTasksCacheKey ? duelTasks : regularTasks;
+            }
+            return tasks;
+        }
+
+        private async Task<List<TaskDto>> DownloadAllTasksAsync()
+        {
+            var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
+            var client = new RestClient(umbracoApiUrl);
+
+            var request = new RestRequest("task/getAll", Method.GET);
+
+            TaskCompletionSource<List<TaskDto>> taskCompletion = new TaskCompletionSource<List<TaskDto>>();
+            client.ExecuteAsync<List<TaskDto>>(request, response => { taskCompletion.SetResult(response.Data); });
+
+            var tasks = await taskCompletion.Task;
+
+            tasks.ForEach(UpdateTaskValue);
+            return tasks;
         }
 
         private string PrependRootUrlToImageLinks(string description, string url)
