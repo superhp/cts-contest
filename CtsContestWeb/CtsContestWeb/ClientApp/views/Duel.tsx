@@ -17,13 +17,16 @@ interface DuelState {
     time: DuelTime,
     totalWins: number,
     totalLooses: number,
-    waitingPlayers: number
+    waitingPlayers: number,
+    activePlayers: number,
+    isInDuel: boolean
 }
 
 export class Duel extends React.Component<any, DuelState> {
 
     hubConnection: signalR.HubConnection;
     timer: any;
+    statisticsTimer: any;
 
 
     constructor(props: any) {
@@ -39,7 +42,9 @@ export class Duel extends React.Component<any, DuelState> {
             time: { minutes: 0, seconds: 0 },
             waitingPlayers: 0,
             totalWins: 0,
-            totalLooses: 0
+            totalLooses: 0,
+            activePlayers: 0,
+            isInDuel: false
         };
 
         this.hubConnection = new signalR.HubConnectionBuilder()
@@ -127,14 +132,19 @@ export class Duel extends React.Component<any, DuelState> {
         this.hubConnection.stop()
             .then(() => console.log('Connection terminated'));
         clearInterval(this.timer);
+        clearInterval(this.statisticsTimer);
     }
 
     componentDidMount() {
+        this.statisticsTimer = setInterval(this.updateDuelStatistics, 10 * 1000); // 10 seconds
+    }
+
+    updateDuelStatistics = () => {
         fetch('api/user/duel-statistics', {
             credentials: 'include'
         }).then(response => response.json() as Promise<any>)
             .then(data => {
-                this.setState({totalWins: data.totalWins, totalLooses: data.totalLooses});
+                this.setState({totalWins: data.totalWins, totalLooses: data.totalLooses, activePlayers: data.activePlayers, isInDuel: data.isInDuel});
             });
     }
 
@@ -160,14 +170,13 @@ export class Duel extends React.Component<any, DuelState> {
                     <div>
                         <button className='cg-card-button cyan' onClick={this.findOpponent} style={{
                             "width": "15%"
-                        }}>Start
+                        }}>{ this.state.isInDuel ? "Resume" : "Start" }
                         </button>
                     </div>
                     ;</Container>;
             case 'searching':
                 return <div className="cg-title loading-text">
                     <h2>Wait for your opponent...</h2>
-                    {this.state.waitingPlayers != 1 ? <h3>{this.state.waitingPlayers} players are waiting for duel</h3> : <h3>{this.state.waitingPlayers} player is waiting for duel</h3> }
                 </div>;
             case 'started':
                 return <DuelTask info={this.state.duelInfo} submitSolution={this.submitSolution}
@@ -245,7 +254,7 @@ const Rules = ({centered, duelState, loggedIn}: { centered: boolean, duelState: 
     return (
         <Container>
             { loggedIn ? <div className='cg-about-p'>
-                <div>Total wins: {duelState.totalWins}. Total losses: {duelState.totalLooses}</div>
+                <div>Total wins: {duelState.totalWins}. Total losses: {duelState.totalLooses}. Active players: {duelState.activePlayers}</div>
             </div> : <div></div>}
             
             {
