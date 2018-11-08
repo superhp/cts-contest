@@ -79,6 +79,7 @@ namespace CtsContestCms.Controllers
                             Id = task.Id,
                             Name = task.Name,
                             Value = task.GetPropertyValue("value"),
+                            Description = ConstructDescription(task, task.GetPropertyValue("testCases").ToObject<List<TestcaseDto>>()),
                             IsEnabled = task.GetPropertyValue("enabled"),
                             IsForDuel = task.GetPropertyValue("competition")
                         });
