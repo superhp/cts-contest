@@ -34,17 +34,11 @@ namespace CtsContestWeb.Duel
             if (IsAlreadyConnected())
             {
                 var duel = GetCurrentDuel();
-                var player = new PlayerDto
-                {
-                    ConnectionId = Context.ConnectionId,
-                    Name = Context.User.FindFirstValue(ClaimTypes.GivenName),
-                    Email = Context.User.FindFirstValue(ClaimTypes.Email)
-                };
-                await Groups.AddToGroupAsync(player.ConnectionId, duel.GroupName);
+                await Groups.AddToGroupAsync(Context.ConnectionId, duel.GroupName);
                 await Clients.Caller.SendAsync("DuelStarts", duel);
                 return;
             }
-           
+
             var firstPlayer = new PlayerDto
             {
                 ConnectionId = Context.ConnectionId,
@@ -59,10 +53,8 @@ namespace CtsContestWeb.Duel
                 for (int i = 0; i < UserHandler.WaitingPlayers.Count; i++)
                 {
                     secondPlayer = UserHandler.WaitingPlayers.Skip(i).First();
-
-                    task = await _taskManager.GetTaskForDuel(new List<string> { firstPlayer.Email, secondPlayer.Email });
-                    if (task != null)
-                        break;
+                    task = await _taskManager.GetTaskForDuelAsync(new List<string> { firstPlayer.Email, secondPlayer.Email });
+                    if (task != null) break;
                 }
 
                 if (task == null)
@@ -73,24 +65,7 @@ namespace CtsContestWeb.Duel
               
                 RemoveWaitingPlayer(secondPlayer);
 
-                var duel = new DuelDto
-                {
-                    Prize = task.Value,
-                    Players = new List<PlayerDto>
-                    {
-                        firstPlayer,
-                        secondPlayer
-                    },
-                    Task = task
-                };
-
-                duel.Players.ForEach(player =>
-                {
-                    player.TotalWins = _duelRepository.GetWonDuelsByEmail(player.Email).Count();
-                    player.TotalLooses = _duelRepository.GetLostDuelsByEmail(player.Email).Count();
-                });
-                
-                duel.Id = _duelRepository.CreateDuel(duel);
+                var duel = CreateDuel(task, firstPlayer, secondPlayer);
                 UserHandler.ActiveDuels.Add(duel);
 
                 var duration = _configuration.GetValue<int>("DuelDurationInMinutes");
@@ -196,6 +171,28 @@ namespace CtsContestWeb.Duel
             UserHandler.WaitingPlayers.Remove(playerDto);
             await Groups.RemoveFromGroupAsync(playerDto.ConnectionId, WaitingPlayersGroup);
             await Clients.Group(WaitingPlayersGroup).SendAsync("waitingPlayers", UserHandler.WaitingPlayers.Count);
+        }
+
+        private DuelDto CreateDuel(TaskDto task, PlayerDto firstPlayer, PlayerDto secondPlayer)
+        {
+            var duel = new DuelDto
+            {
+                Prize = task.Value,
+                Players = new List<PlayerDto>
+                {
+                    firstPlayer,
+                    secondPlayer
+                },
+                Task = task
+            };
+            duel.Players.ForEach(player =>
+            {
+                player.TotalWins = _duelRepository.GetWonDuelsByEmail(player.Email).Count();
+                player.TotalLooses = _duelRepository.GetLostDuelsByEmail(player.Email).Count();
+            });
+            duel.Id = _duelRepository.CreateDuel(duel);
+
+            return duel;
         }
     }
 }

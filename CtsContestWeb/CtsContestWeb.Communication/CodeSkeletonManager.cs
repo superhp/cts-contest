@@ -62,7 +62,7 @@ namespace CtsContestWeb.Communication
 
             var codeSkeletonDto = await taskCompletion.Task;
 
-            var task = await _taskManager.GetTaskById(taskId);
+            var task = await _taskManager.DownloadTaskByIdAsync(taskId);
 
             var skeleton = GenerateCodeSkeletonForTask(task, codeSkeletonDto);
 

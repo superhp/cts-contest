@@ -7,7 +7,7 @@ namespace CtsContestWeb.Communication
     public interface ITaskManager
     {
         Task<List<TaskDto>> GetAllTasks(string userEmail = null);
-        Task<TaskDto> GetTaskById(int id, string userEmail = null);
-        Task<TaskDto> GetTaskForDuel(IEnumerable<string> usersEmail);
+        Task<TaskDto> DownloadTaskByIdAsync(int id, string userEmail = null);
+        Task<TaskDto> GetTaskForDuelAsync(IEnumerable<string> usersEmail);
     }
 }

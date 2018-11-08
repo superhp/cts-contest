@@ -53,7 +53,7 @@ namespace CtsContestWeb.Controllers
             if (User.Identity.IsAuthenticated) 
                 userEmail = User.FindFirst(ClaimTypes.Email).Value;
 
-            var task = await _taskManager.GetTaskById(id, userEmail);
+            var task = await _taskManager.DownloadTaskByIdAsync(id, userEmail);
 
             return new TaskDisplayDto
             {

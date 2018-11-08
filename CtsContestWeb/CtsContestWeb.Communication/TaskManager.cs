@@ -29,7 +29,7 @@ namespace CtsContestWeb.Communication
             _cache = cache;
         }
 
-        public async Task<TaskDto> GetTaskById(int id, string userEmail = null)
+        public async Task<TaskDto> DownloadTaskByIdAsync(int id, string userEmail = null)
         {
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
             var pictureUrl = _iconfiguration["UmbracoPictureUrl"];
@@ -55,27 +55,18 @@ namespace CtsContestWeb.Communication
             return task;
         }
 
-        public async Task<TaskDto> GetTaskForDuel(IEnumerable<string> usersEmail)
+        public async Task<TaskDto> GetTaskForDuelAsync(IEnumerable<string> usersEmail)
         {
-            var duelTasks = await GetTasks(DuelTasksCacheKey);
-            var duelTaskIds = duelTasks.Select(t => t.Id).ToList();
-
-            var competitions = new List<DuelDto>();
-            foreach (var email in usersEmail)
-            {
-                competitions.AddRange(_duelRepository.GetDuelsByEmail(email));
-            }
+            var duelTaskIds = (await GetTasks(DuelTasksCacheKey)).Select(t => t.Id).ToList();
+            var competitions = usersEmail.SelectMany(email => _duelRepository.GetDuelsByEmail(email));
 
             var usedTaskIds = competitions.Select(c => c.Task.Id).Distinct();
-            var availableTaskIds = duelTaskIds.Where(t => !usedTaskIds.Contains(t)).ToList();
+            var availableTaskIds = duelTaskIds.Where(id => !usedTaskIds.Contains(id)).ToList();
 
-            if (availableTaskIds.Count == 0)
-                return null;
+            if (availableTaskIds.Count == 0) return null;
 
-            var rnd = new Random();
-            var taskNr = rnd.Next(availableTaskIds.Count);
-
-            var task = await GetTaskById(availableTaskIds[taskNr]);
+            var taskId = new Random().Next(availableTaskIds.Count);
+            var task = await GetTaskAsync(DuelTasksCacheKey, availableTaskIds[taskId]);
 
             return task;
         }
@@ -119,6 +110,16 @@ namespace CtsContestWeb.Communication
                 return cacheKey == DuelTasksCacheKey ? duelTasks : regularTasks;
             }
             return tasks;
+        }
+
+        private async Task<TaskDto> GetTaskAsync(string cacheKey, int id)
+        {
+            List<TaskDto> tasks;
+            if (!_cache.TryGetValue(cacheKey, out tasks))
+            {
+                return await DownloadTaskByIdAsync(id);
+            }
+            return tasks.Find(x => x.Id == id);
         }
 
         private async Task<List<TaskDto>> DownloadAllTasksAsync()
