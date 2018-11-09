@@ -270,7 +270,7 @@ const Rules = ({centered, duelState, loggedIn}: { centered: boolean, duelState: 
 
     return (
         <Container>
-            { loggedIn ? <div className='cg-about-p'>
+            { loggedIn && !duelState.isInDuel ? <div className='cg-about-p'>
                 <div>Total wins: {duelState.totalWins}. Total losses: {duelState.totalLooses}. Active players: {duelState.activePlayers}</div>
             </div> : <div></div>}
             

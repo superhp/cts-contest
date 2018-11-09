@@ -289,6 +289,9 @@ export class TaskComponent extends React.Component<any, any> {
         const taskHeaderName = this.state.loadingTask
             ? ''
             : this.state.task.name;
+        const taskPoints = this.state.loadingTask
+            ? ''
+            : 'Value: ' + this.state.task.value + ' points';
         let selectOptions = this.state.loadingLanguages
             ? <Loader active inline='centered'>Loading</Loader>
             : TaskComponent.renderLanguages(this.state.languages, this.setMode, this.state.selectedLanguage);
@@ -331,6 +334,7 @@ export class TaskComponent extends React.Component<any, any> {
                             </Header.Content>
                         </Header>
                     </div>
+                    <div>{taskPoints}</div>
                 </Container>
 
                 <Divider />
