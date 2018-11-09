@@ -138,6 +138,8 @@ export class Duel extends React.Component<any, DuelState> {
     componentDidMount() {
         if (this.props.userInfo.isLoggedIn) this.hasUserAnyDuelTasksLeft();
         this.statisticsTimer = setInterval(this.updateDuelStatistics, 10 * 1000); // 10 seconds
+
+        this.updateDuelStatistics();
     }
 
     hasUserAnyDuelTasksLeft = () => {

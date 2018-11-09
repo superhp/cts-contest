@@ -132,6 +132,7 @@ namespace CtsContestWeb.Communication
         private async Task<List<TaskDto>> DownloadAllTasksAsync()
         {
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
+            var pictureUrl = _iconfiguration["UmbracoPictureUrl"];
             var client = new RestClient(umbracoApiUrl);
 
             var request = new RestRequest("task/getAll", Method.GET);
@@ -141,7 +142,12 @@ namespace CtsContestWeb.Communication
 
             var tasks = await taskCompletion.Task;
 
-            tasks.ForEach(UpdateTaskValue);
+            foreach (var task in tasks)
+            {
+                task.Description = PrependRootUrlToImageLinks(task.Description, pictureUrl);
+                UpdateTaskValue(task);
+            }
+
             return tasks;
         }
 
