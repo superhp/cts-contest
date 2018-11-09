@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Autofac.Features.Indexed;
@@ -15,16 +16,16 @@ namespace CtsContestWeb.Logic
     public class SolutionLogic : ISolutionLogic
     {
         private readonly ITaskManager _taskManager;
-        private readonly IConfiguration _iconfiguration;
+        private readonly IConfiguration _configuration;
         private readonly IIndex<string, ICompiler> _compilers;
         private readonly IDuelRepository _duelRepository;
         private readonly ISolutionRepository _solutionRepository;
 
-        public SolutionLogic(ISolutionRepository solutionRepository, ITaskManager taskManager, IConfiguration iconfiguration, IIndex<string, ICompiler> compilers, IDuelRepository duelRepository)
+        public SolutionLogic(ISolutionRepository solutionRepository, ITaskManager taskManager, IConfiguration configuration, IIndex<string, ICompiler> compilers, IDuelRepository duelRepository)
         {
             _solutionRepository = solutionRepository;
             _taskManager = taskManager;
-            _iconfiguration = iconfiguration;
+            _configuration = configuration;
             _compilers = compilers;
             _duelRepository = duelRepository;
         }
@@ -40,33 +41,32 @@ namespace CtsContestWeb.Logic
                     TotalInputs = 1
                 };
 
-            CompileDto compileResult;
             var task = await _taskManager.DownloadTaskByIdAsync(taskId);
+            if (task.Outputs.Count == 0)
 
-            if (task.Outputs.Count < 1)
             {
                 throw new Exception($"TaskId={taskId} doesn't have any inputs/outputs.");
             }
 
+            return await Compile(task, source, language);
+        }
+
+        private async Task<CompileDto> Compile(TaskDto task, string source, int language, int compilerId = 0)
+        {
+            CompileDto compileResult;
+            var compilerOptions = _configuration.GetSection("Compilers").GetChildren().Select(c => c.Value).ToList();
+
             try
             {
-                var compilerName = _iconfiguration["Compiler"];
-                var compiler = _compilers[compilerName];
+                var compiler = _compilers[compilerOptions[compilerId]];
                 compileResult = await compiler.Compile(task, source, language);
             }
             catch (Exception e)
             {
-                compileResult = await CompileWithBackupCompiler(task, source, language);
+                return await Compile(task, source, language, compilerId + 1);
             }
 
             return compileResult;
-        }
-
-        private async Task<CompileDto> CompileWithBackupCompiler(TaskDto task, string source, int language)
-        {
-            var compilerName = _iconfiguration["BackupCompiler"];
-            var compiler = _compilers[compilerName];
-            return await compiler.Compile(task, source, language);
         }
 
         public async Task SaveSolution(int taskId, string source, string userEmail, int language, bool isCorrect = true)

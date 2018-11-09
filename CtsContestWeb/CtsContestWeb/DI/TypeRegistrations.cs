@@ -43,20 +43,14 @@ namespace CtsContestWeb.DI
             services.AddSingleton<ITaskManager, TaskManager>();
             services.AddSingleton<IConfiguration>(configuration);
 
+            services.AddSingleton<ICompiler, HackerRankCompiler>();
+
             var builder = new ContainerBuilder();
             builder.Populate(services);
 
-            if (configuration["Compiler"].Equals("HackerRank"))
-            {
-                builder.RegisterType<HackerRankCompiler>().As<ICompiler>();
-            }
-            else
-            {
-                builder.RegisterType<PaizaCompiler>().As<ICompiler>();
-            }
-
             builder.RegisterType<HackerRankCompiler>().Keyed<ICompiler>("HackerRank");
             builder.RegisterType<PaizaCompiler>().Keyed<ICompiler>("Paiza");
+            builder.RegisterType<IdeoneCompiler>().Keyed<ICompiler>("Ideone");
 
             return builder.Build();
         }
