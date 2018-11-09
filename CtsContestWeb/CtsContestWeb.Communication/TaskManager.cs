@@ -71,6 +71,13 @@ namespace CtsContestWeb.Communication
             return task;
         }
 
+        public async Task<bool> HasPlayerAnyDuelTasksLeft(string userEmail)
+        {
+            var duelTaskIds = (await GetTasks(DuelTasksCacheKey)).Select(t => t.Id).ToList();
+            var seenTaskIds = _duelRepository.GetDuelsByEmail(userEmail).Select(t => t.Task.Id);
+            return duelTaskIds.Except(seenTaskIds).Any();
+        }
+
         public async Task<List<TaskDto>> GetAllTasks(string userEmail = null)
         {
             var tasks = await GetTasks(RegularTasksCacheKey);

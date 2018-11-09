@@ -136,7 +136,18 @@ export class Duel extends React.Component<any, DuelState> {
     }
 
     componentDidMount() {
+        if (this.props.userInfo.isLoggedIn) this.hasUserAnyDuelTasksLeft();
         this.statisticsTimer = setInterval(this.updateDuelStatistics, 10 * 1000); // 10 seconds
+    }
+
+    hasUserAnyDuelTasksLeft = () => {
+        fetch('api/user/has-duel-tasks-left', {credentials: 'include'}
+        ).then(response => response.json() as Promise<any>)
+        .then((data: boolean) => {
+            if (data === false) {
+                this.setState({step: 'noTasksLeft'})
+            }
+        });
     }
 
     updateDuelStatistics = () => {
@@ -165,6 +176,10 @@ export class Duel extends React.Component<any, DuelState> {
 
     getCurrentStepTemplate = (step: string) => {
         switch (step) {
+            case 'noTasksLeft':
+                return <div className="cg-title loading-text">
+                    <h2>You have already played all Clash-of-Code tasks </h2>
+                </div>;
             case 'initial':
                 return <Container textAlign="center">
                     <div>

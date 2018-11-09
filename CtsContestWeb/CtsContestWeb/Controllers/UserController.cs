@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
+using CtsContestWeb.Communication;
 using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Dto;
 using CtsContestWeb.Duel;
+using CtsContestWeb.Filters;
 using CtsContestWeb.Logic;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,14 +20,16 @@ namespace CtsContestWeb.Controllers
         private readonly IPurchaseRepository _purchaseRepository;
         private readonly IUserRepository _userRepository;
         private readonly IDuelRepository _duelRepository;
+        private readonly ITaskManager _taskManager;
 
         public UserController(IBalanceLogic balanceLogic, IPurchaseRepository purchaseRepository,
-            IUserRepository userRepository, IDuelRepository duelRepository)
+            IUserRepository userRepository, IDuelRepository duelRepository, ITaskManager taskManager)
         {
             _balanceLogic = balanceLogic;
             _purchaseRepository = purchaseRepository;
             _userRepository = userRepository;
             _duelRepository = duelRepository;
+            _taskManager = taskManager;
         }
 
         [HttpGet("")]
@@ -105,6 +111,14 @@ namespace CtsContestWeb.Controllers
         public List<UserInfoDto> GetUsers()
         {
             return _userRepository.GetAllUsers().ToList();
+        }
+
+        [LoggedIn]
+        [HttpGet("has-duel-tasks-left")]
+        public async Task<bool> HasUserAnyDuelTasksLeft()
+        {
+            var email = User.FindFirst(ClaimTypes.Email).Value;
+            return await _taskManager.HasPlayerAnyDuelTasksLeft(email);
         }
     }
 }
