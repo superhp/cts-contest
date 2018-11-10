@@ -20,16 +20,16 @@ namespace CtsContestWeb.Duel
         private readonly ITaskManager _taskManager;
         private readonly IDuelRepository _duelRepository;
         private readonly ISolutionLogic _solutionLogic;
-        private readonly IConfiguration _configuration;
         private readonly IHostingEnvironment _hostingEnv;
+        private readonly IDuelLogic _duelLogic;
 
-        public DuelHub(ITaskManager taskManager, IDuelRepository duelRepository, ISolutionLogic solutionLogic, IConfiguration configuration, IHostingEnvironment hostingEnv)
+        public DuelHub(ITaskManager taskManager, IDuelRepository duelRepository, ISolutionLogic solutionLogic, IHostingEnvironment hostingEnv, IDuelLogic duelLogic)
         {
             _taskManager = taskManager;
             _duelRepository = duelRepository;
             _solutionLogic = solutionLogic;
-            _configuration = configuration;
             _hostingEnv = hostingEnv;
+            _duelLogic = duelLogic;
         }
 
         public override async Task OnConnectedAsync()
@@ -68,8 +68,8 @@ namespace CtsContestWeb.Duel
               
                 RemoveWaitingPlayer(secondPlayer);
 
-                var duration = CalculateDuelDuration(task.Value);
-                var duel = CreateDuel(task, firstPlayer, secondPlayer, duration);
+                var duration = _duelLogic.CalculateDuelDuration(_hostingEnv.EnvironmentName, task.Value);
+                var duel = _duelLogic.CreateDuel(task, firstPlayer, secondPlayer, duration);
                 UserHandler.ActiveDuels.Add(duel);
 
                 var timer = new Timer
@@ -89,25 +89,6 @@ namespace CtsContestWeb.Duel
             }
 
             await base.OnConnectedAsync();
-        }
-
-        private void DuelTimeElapsed(DuelDto duel, Timer timer)
-        {
-            timer.Dispose();
-            UserHandler.ActiveDuels.Remove(duel);
-        }
-
-        private bool IsAlreadyConnected()
-        {
-            var email = Context.User.FindFirst(ClaimTypes.Email).Value;
-
-            if (UserHandler.WaitingPlayers.Select(wp => wp.Email).Contains(email))
-                return true;
-
-            if (UserHandler.ActiveDuels.SelectMany(ac => ac.Players).Select(p => p.Email).Contains(email))
-                return true;
-
-            return false;
         }
 
         public override async Task OnDisconnectedAsync(Exception exception)
@@ -156,6 +137,25 @@ namespace CtsContestWeb.Duel
             }
         }
 
+        private bool IsAlreadyConnected()
+        {
+            var email = Context.User.FindFirst(ClaimTypes.Email).Value;
+
+            if (UserHandler.WaitingPlayers.Select(wp => wp.Email).Contains(email))
+                return true;
+
+            if (UserHandler.ActiveDuels.SelectMany(ac => ac.Players).Select(p => p.Email).Contains(email))
+                return true;
+
+            return false;
+        }
+
+        private void DuelTimeElapsed(DuelDto duel, Timer timer)
+        {
+            timer.Dispose();
+            UserHandler.ActiveDuels.Remove(duel);
+        }
+
         private DuelDto GetCurrentDuel()
         {
             return UserHandler.ActiveDuels.FirstOrDefault(c =>
@@ -174,51 +174,6 @@ namespace CtsContestWeb.Duel
             UserHandler.WaitingPlayers.Remove(playerDto);
             await Groups.RemoveFromGroupAsync(playerDto.ConnectionId, WaitingPlayersGroup);
             await Clients.Group(WaitingPlayersGroup).SendAsync("waitingPlayers", UserHandler.WaitingPlayers.Count);
-        }
-
-        private DuelDto CreateDuel(TaskDto task, PlayerDto firstPlayer, PlayerDto secondPlayer, int duration)
-        {
-            var duel = new DuelDto
-            {
-                Prize = task.Value,
-                Players = new List<PlayerDto>
-                {
-                    firstPlayer,
-                    secondPlayer
-                },
-                Task = task
-            };
-            duel.Players.ForEach(player =>
-            {
-                player.TotalWins = _duelRepository.GetWonDuelsByEmail(player.Email).Count();
-                player.TotalLooses = _duelRepository.GetLostDuelsByEmail(player.Email).Count();
-            });
-            duel.Id = _duelRepository.CreateDuel(duel);
-            duel.Duration = duration;
-
-            return duel;
-        }
-
-        private int CalculateDuelDuration(int taskValue)
-        {
-            if (_hostingEnv.EnvironmentName == "Development")
-            {
-                return 2;
-            }
-            else
-            {
-                switch (taskValue)
-                {
-                    case 15:
-                        return 15;
-                    case 20:
-                        return 20;
-                    case 40:
-                        return 30;
-                    default:
-                        return _configuration.GetValue<int>("DefaultDuelDurationInMinutes");
-                }
-            }
         }
     }
 }

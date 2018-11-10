@@ -6,6 +6,7 @@ import {fakeDuelInfo} from '../mocks/fakeData';
 import {CompileResult} from '../components/models/Task';
 import {UserInfo} from '../components/models/UserInfo';
 import {DuelInfo, DuelTime} from '../components/models/DuelInfo';
+import InitDuelButton from '../components/InitDuelButton';
 
 interface DuelState {
     compileResult: CompileResult | null,
@@ -59,7 +60,7 @@ export class Duel extends React.Component<any, DuelState> {
         });
 
         this.hubConnection.on("DuelStarts", (duelInfo: DuelInfo) => {
-            this.setState({step: 'started', duelInfo: duelInfo});
+            this.setState({step: 'started', duelInfo: duelInfo, compiling: false, compileResult: null});
             this.resetDuelTimerState();
             this.timer = setInterval(() => {
                 this.countDown();
@@ -73,7 +74,7 @@ export class Duel extends React.Component<any, DuelState> {
         })
 
         this.hubConnection.on("DuelHasWinner", (winningPlayer: UserInfo) => {
-            this.setState({step: 'finishedByWinning', winner: winningPlayer});
+            this.setState({step: 'finishedByWinning', winner: winningPlayer, compiling: false, compileResult: null});
             console.log(`${winningPlayer.email} won. Cause: correct solution. Step: 'finishedByWinning'`)
         })
 
@@ -183,14 +184,7 @@ export class Duel extends React.Component<any, DuelState> {
                     <h2>You have already played all Clash-of-Code tasks </h2>
                 </div>;
             case 'initial':
-                return <Container textAlign="center">
-                    <div>
-                        <button className='cg-card-button cyan' onClick={this.findOpponent} style={{
-                            "width": "15%"
-                        }}>{ this.state.isInDuel ? "Resume" : "Start" }
-                        </button>
-                    </div>
-                    ;</Container>;
+                return <InitDuelButton name={this.state.isInDuel ? "Resume" : "Start"} findOpponent={this.findOpponent} />;
             case 'searching':
                 return <div className="cg-title loading-text">
                     <h2>Wait for your opponent...</h2>
@@ -200,26 +194,19 @@ export class Duel extends React.Component<any, DuelState> {
                                  compilerError={this.state.compileResult}
                                  compiling={this.state.compiling}/>
             case 'finishedByWinning':
-                return <div className="cg-title loading-text">
-                    <h2>{this.state.winner && this.state.winner.name} has won the Duel!</h2>
-                </div>;
+                return <div>
+                    <div className="cg-title loading-text"><h2>{this.state.winner && this.state.winner.name} has won the Duel!</h2></div>
+                    <InitDuelButton name="Play again" findOpponent={this.findOpponent}/>
+                </div>
             case 'finishedByDisconnection':
-                return <div className="cg-title loading-text">
-                    <h2>Opponent disconnected - you won!</h2>
+                return <div>
+                    <div className="cg-title loading-text"><h2>Opponent disconnected - you won!</h2></div>
+                    <InitDuelButton name="Play again" findOpponent={this.findOpponent}/>
                 </div>;
             case 'finishedByTimeout':
                 return <div>
-                    <div className="cg-title loading-text"><h2>Time for a duel has finished. There is no winner! It's a
-                        draw! </h2></div>
-                    ;
-                    <Container textAlign="center">
-                        <div>
-                            <button className='cg-card-button cyan' onClick={this.findOpponent} style={{
-                                "width": "15%"
-                            }}>Start
-                            </button>
-                        </div>
-                        ;</Container>;
+                    <div className="cg-title loading-text"><h2>Time for a duel has finished. There is no winner! It's a draw! </h2></div>
+                    <InitDuelButton name="Play again" findOpponent={this.findOpponent}/>;
                 </div>
             case 'closeWindow':
                 return <div className="cg-title loading-text">
