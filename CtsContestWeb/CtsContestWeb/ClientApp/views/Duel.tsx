@@ -58,11 +58,11 @@ export class Duel extends React.Component<any, DuelState> {
             console.log("Number of waiting players received");
         });
 
-        this.hubConnection.on("DuelStarts", (DuelInfo: DuelInfo) => {
-            this.setState({step: 'started', duelInfo: DuelInfo});
+        this.hubConnection.on("DuelStarts", (duelInfo: DuelInfo) => {
+            this.setState({step: 'started', duelInfo: duelInfo});
             this.resetDuelTimerState();
             this.timer = setInterval(() => {
-                this.countDown()
+                this.countDown();
             }, 1000);
             console.log("Game started. Step: started");
         });
@@ -98,7 +98,7 @@ export class Duel extends React.Component<any, DuelState> {
         let now = new Date();
         let start = new Date(this.state.duelInfo.startTime.toString());
         let timeElapsed = now.getTime() - start.getTime();
-        let seconds = Math.max(15 * 60 - timeElapsed / 1000, 0); // duel duration: 15 minutes
+        let seconds = Math.max(this.state.duelInfo.duration * 60 - timeElapsed / 1000, 0);
         let time = this.secondsToTime(seconds);
         this.setState({time: time, secondsToPlay: seconds});
 

@@ -10,6 +10,7 @@ using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Dto;
 using CtsContestWeb.Logic;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
 
 namespace CtsContestWeb.Duel
 {
@@ -20,13 +21,15 @@ namespace CtsContestWeb.Duel
         private readonly IDuelRepository _duelRepository;
         private readonly ISolutionLogic _solutionLogic;
         private readonly IConfiguration _configuration;
+        private readonly IHostingEnvironment _hostingEnv;
 
-        public DuelHub(ITaskManager taskManager, IDuelRepository duelRepository, ISolutionLogic solutionLogic, IConfiguration configuration)
+        public DuelHub(ITaskManager taskManager, IDuelRepository duelRepository, ISolutionLogic solutionLogic, IConfiguration configuration, IHostingEnvironment hostingEnv)
         {
             _taskManager = taskManager;
             _duelRepository = duelRepository;
             _solutionLogic = solutionLogic;
             _configuration = configuration;
+            _hostingEnv = hostingEnv;
         }
 
         public override async Task OnConnectedAsync()
@@ -65,10 +68,10 @@ namespace CtsContestWeb.Duel
               
                 RemoveWaitingPlayer(secondPlayer);
 
-                var duel = CreateDuel(task, firstPlayer, secondPlayer);
+                var duration = CalculateDuelDuration(task.Value);
+                var duel = CreateDuel(task, firstPlayer, secondPlayer, duration);
                 UserHandler.ActiveDuels.Add(duel);
 
-                var duration = _configuration.GetValue<int>("DuelDurationInMinutes");
                 var timer = new Timer
                 {
                     Interval = duration * 60 * 1000
@@ -173,7 +176,7 @@ namespace CtsContestWeb.Duel
             await Clients.Group(WaitingPlayersGroup).SendAsync("waitingPlayers", UserHandler.WaitingPlayers.Count);
         }
 
-        private DuelDto CreateDuel(TaskDto task, PlayerDto firstPlayer, PlayerDto secondPlayer)
+        private DuelDto CreateDuel(TaskDto task, PlayerDto firstPlayer, PlayerDto secondPlayer, int duration)
         {
             var duel = new DuelDto
             {
@@ -191,8 +194,31 @@ namespace CtsContestWeb.Duel
                 player.TotalLooses = _duelRepository.GetLostDuelsByEmail(player.Email).Count();
             });
             duel.Id = _duelRepository.CreateDuel(duel);
+            duel.Duration = duration;
 
             return duel;
+        }
+
+        private int CalculateDuelDuration(int taskValue)
+        {
+            if (_hostingEnv.EnvironmentName == "Development")
+            {
+                return 2;
+            }
+            else
+            {
+                switch (taskValue)
+                {
+                    case 15:
+                        return 15;
+                    case 20:
+                        return 20;
+                    case 40:
+                        return 30;
+                    default:
+                        return _configuration.GetValue<int>("DefaultDuelDurationInMinutes");
+                }
+            }
         }
     }
 }

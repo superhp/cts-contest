@@ -1,4 +1,5 @@
 export const fakeDuelInfo = {
+    duration: 15,
     players: [{
         isLoggedIn: true,
         email: 'a@a.com',
