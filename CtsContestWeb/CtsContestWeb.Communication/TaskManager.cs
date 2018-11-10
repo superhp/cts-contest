@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CtsContestWeb.Db.Repository;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace CtsContestWeb.Communication
@@ -18,10 +19,10 @@ namespace CtsContestWeb.Communication
         private readonly IDuelRepository _duelRepository;
         private readonly IMemoryCache _cache;
 
-        private const string RegularTasksCacheKey = "regularTasks";
-        private const string DuelTasksCacheKey = "duelTasks";
+        private const string TaskCacheKey = "tasks";
 
-        public TaskManager(IConfiguration iconfiguration, ISolutionRepository solutionRepository, IDuelRepository duelRepository, IMemoryCache cache)
+        public TaskManager(IConfiguration iconfiguration, ISolutionRepository solutionRepository,
+            IDuelRepository duelRepository, IMemoryCache cache)
         {
             _iconfiguration = iconfiguration;
             _solutionRepository = solutionRepository;
@@ -50,14 +51,21 @@ namespace CtsContestWeb.Communication
                 if (solvedTasks.Any(t => t == task.Id))
                     task.IsSolved = true;
             }
+
             task.Description = PrependRootUrlToImageLinks(task.Description, pictureUrl);
             UpdateTaskValue(task);
             return task;
         }
 
-        public async Task<TaskDto> GetTaskForDuelAsync(IEnumerable<string> usersEmail)
+        public async Task<TaskDto> GetCachedTaskByIdAsync(int id)
         {
-            var duelTaskIds = (await GetTasks(DuelTasksCacheKey)).Select(t => t.Id).ToList();
+            var cachedTask = (await GetTasks()).FirstOrDefault(task => task.Id == id);
+            return cachedTask ?? await DownloadTaskByIdAsync(id);
+        }
+
+        public async Task<int?> GetTaskIdForDuelAsync(IEnumerable<string> usersEmail)
+        {
+            var duelTaskIds = (await GetTasks()).Where(task => task.IsForDuel).Select(t => t.Id).ToList();
             var competitions = usersEmail.SelectMany(email => _duelRepository.GetDuelsByEmail(email));
 
             var usedTaskIds = competitions.Select(c => c.Task.Id).Distinct();
@@ -65,22 +73,19 @@ namespace CtsContestWeb.Communication
 
             if (availableTaskIds.Count == 0) return null;
 
-            var taskId = new Random().Next(availableTaskIds.Count);
-            var task = await GetTaskAsync(DuelTasksCacheKey, availableTaskIds[taskId]);
-
-            return task;
+            return new Random().Next(availableTaskIds.Count);
         }
 
         public async Task<bool> HasPlayerAnyDuelTasksLeft(string userEmail)
         {
-            var duelTaskIds = (await GetTasks(DuelTasksCacheKey)).Select(t => t.Id).ToList();
+            var duelTaskIds = (await GetTasks()).Where(task => task.IsForDuel).Select(t => t.Id).ToList();
             var seenTaskIds = _duelRepository.GetDuelsByEmail(userEmail).Select(t => t.Task.Id);
             return duelTaskIds.Except(seenTaskIds).Any();
         }
 
         public async Task<List<TaskDto>> GetAllTasks(string userEmail = null)
         {
-            var tasks = await GetTasks(RegularTasksCacheKey);
+            var tasks = (await GetTasks()).Where(task => !task.IsForDuel).ToList();
             var solvedTasks = _solutionRepository.GetSolvedTasksIdsByUserEmail(userEmail).ToList();
 
             foreach (var task in tasks)
@@ -96,37 +101,16 @@ namespace CtsContestWeb.Communication
             return tasks;
         }
 
-        private void CacheTasks(List<TaskDto> tasks, string name)
+        private async Task<List<TaskDto>> GetTasks()
         {
-            MemoryCacheEntryOptions cacheExpirationOptions = new MemoryCacheEntryOptions();
-            cacheExpirationOptions.AbsoluteExpiration = DateTime.Now.AddMinutes(30);
-            cacheExpirationOptions.Priority = CacheItemPriority.Normal;
-            _cache.Set<List<TaskDto>>(name, tasks, cacheExpirationOptions);
-        }
-
-        private async Task<List<TaskDto>> GetTasks(string cacheKey)
-        {
-            List<TaskDto> tasks;
-            if (!_cache.TryGetValue(cacheKey, out tasks))
+            if (_cache.TryGetValue(TaskCacheKey, out List<TaskDto> tasks))
             {
-                var allTasks = await DownloadAllTasksAsync();
-                var duelTasks = allTasks.Where(x => x.IsForDuel).ToList();
-                CacheTasks(duelTasks, DuelTasksCacheKey);
-                var regularTasks = allTasks.Where(x => !x.IsForDuel).ToList();
-                CacheTasks(regularTasks, RegularTasksCacheKey);
-                return cacheKey == DuelTasksCacheKey ? duelTasks : regularTasks;
+                return tasks;
             }
-            return tasks;
-        }
 
-        private async Task<TaskDto> GetTaskAsync(string cacheKey, int id)
-        {
-            List<TaskDto> tasks;
-            if (!_cache.TryGetValue(cacheKey, out tasks))
-            {
-                return await DownloadTaskByIdAsync(id);
-            }
-            return tasks.Find(x => x.Id == id);
+            var allTasks = await DownloadAllTasksAsync();
+            CacheTasks(allTasks, TaskCacheKey);
+            return allTasks;
         }
 
         private async Task<List<TaskDto>> DownloadAllTasksAsync()
@@ -151,9 +135,17 @@ namespace CtsContestWeb.Communication
             return tasks;
         }
 
+        private void CacheTasks(List<TaskDto> tasks, string name)
+        {
+            MemoryCacheEntryOptions cacheExpirationOptions = new MemoryCacheEntryOptions();
+            cacheExpirationOptions.AbsoluteExpiration = DateTime.Now.AddMinutes(30);
+            cacheExpirationOptions.Priority = CacheItemPriority.Normal;
+            _cache.Set<List<TaskDto>>(name, tasks, cacheExpirationOptions);
+        }
+
         private string PrependRootUrlToImageLinks(string description, string url)
         {
-            var htmlPattern = @"(src="")(/media/(.+?)"")";
+            const string htmlPattern = @"(src="")(/media/(.+?)"")";
             var newDescription = Regex.Replace(description, htmlPattern, "$1" + url + "$2");
 
             return newDescription;
@@ -166,7 +158,7 @@ namespace CtsContestWeb.Communication
             else
             {
                 var d = 8.2d * task.Value * task.Value - 20 * task.Value + 23;
-                task.Value = (int)Math.Ceiling(d / 5) * 5;
+                task.Value = (int) Math.Ceiling(d / 5) * 5;
             }
         }
     }

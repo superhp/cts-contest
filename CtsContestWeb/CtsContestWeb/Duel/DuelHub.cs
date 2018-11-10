@@ -49,15 +49,15 @@ namespace CtsContestWeb.Duel
             if (UserHandler.WaitingPlayers.Count > 0)
             {
                 PlayerDto secondPlayer = null;
-                TaskDto task = null;
+                int? taskId = null;
                 for (int i = 0; i < UserHandler.WaitingPlayers.Count; i++)
                 {
                     secondPlayer = UserHandler.WaitingPlayers.Skip(i).First();
-                    task = await _taskManager.GetTaskForDuelAsync(new List<string> { firstPlayer.Email, secondPlayer.Email });
-                    if (task != null) break;
+                    taskId = await _taskManager.GetTaskIdForDuelAsync(new List<string> { firstPlayer.Email, secondPlayer.Email });
+                    if (taskId != null) break;
                 }
 
-                if (task == null)
+                if (taskId == null)
                 {
                     AddWaitingPlayer(firstPlayer);
                     return;
@@ -65,7 +65,7 @@ namespace CtsContestWeb.Duel
               
                 RemoveWaitingPlayer(secondPlayer);
 
-                var duel = CreateDuel(task, firstPlayer, secondPlayer);
+                var duel = CreateDuel(await _taskManager.GetCachedTaskByIdAsync((int)taskId), firstPlayer, secondPlayer);
                 UserHandler.ActiveDuels.Add(duel);
 
                 var duration = _configuration.GetValue<int>("DuelDurationInMinutes");
