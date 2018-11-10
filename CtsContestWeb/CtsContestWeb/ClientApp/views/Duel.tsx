@@ -74,7 +74,7 @@ export class Duel extends React.Component<any, DuelState> {
         })
 
         this.hubConnection.on("DuelHasWinner", (winningPlayer: UserInfo) => {
-            this.setState({step: 'finishedByWinning', winner: winningPlayer, compiling: false, compileResult: null});
+            this.setState({step: 'finishedByWinning', winner: winningPlayer, compiling: false, compileResult: null, isInDuel: false});
             console.log(`${winningPlayer.email} won. Cause: correct solution. Step: 'finishedByWinning'`)
         })
 
@@ -103,8 +103,8 @@ export class Duel extends React.Component<any, DuelState> {
         let time = this.secondsToTime(seconds);
         this.setState({time: time, secondsToPlay: seconds});
 
-        if (seconds == 0) {
-            this.setState({step: "finishedByTimeout"});
+        if (seconds == 0 && !this.state.winner) {
+            this.setState({step: "finishedByTimeout", isInDuel: false});
             this.resetDuelTimerState();
             this.componentWillUnmount();
         }
@@ -196,6 +196,7 @@ export class Duel extends React.Component<any, DuelState> {
             case 'finishedByWinning':
                 return <div>
                     <div className="cg-title loading-text"><h2>{this.state.winner && this.state.winner.name} has won the Duel!</h2></div>
+                    <div className="task-points">Task's value was: {this.state.duelInfo.task.value} points</div>
                     <InitDuelButton name="Play again" findOpponent={this.findOpponent}/>
                 </div>
             case 'finishedByDisconnection':
