@@ -10,23 +10,27 @@ using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Dto;
 using CtsContestWeb.Logic;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
 
 namespace CtsContestWeb.Duel
 {
     public class DuelHub : Hub
     {
-        private const string WaitingPlayersGroup = "WaitingPlayerGroups"; 
+        private const string WaitingPlayersGroup = "WaitingPlayerGroups";
         private readonly ITaskManager _taskManager;
         private readonly IDuelRepository _duelRepository;
         private readonly ISolutionLogic _solutionLogic;
-        private readonly IConfiguration _configuration;
+        private readonly IHostingEnvironment _hostingEnv;
+        private readonly IDuelLogic _duelLogic;
 
-        public DuelHub(ITaskManager taskManager, IDuelRepository duelRepository, ISolutionLogic solutionLogic, IConfiguration configuration)
+        public DuelHub(ITaskManager taskManager, IDuelRepository duelRepository, ISolutionLogic solutionLogic,
+            IHostingEnvironment hostingEnv, IDuelLogic duelLogic)
         {
             _taskManager = taskManager;
             _duelRepository = duelRepository;
             _solutionLogic = solutionLogic;
-            _configuration = configuration;
+            _hostingEnv = hostingEnv;
+            _duelLogic = duelLogic;
         }
 
         public override async Task OnConnectedAsync()
@@ -53,7 +57,8 @@ namespace CtsContestWeb.Duel
                 for (int i = 0; i < UserHandler.WaitingPlayers.Count; i++)
                 {
                     secondPlayer = UserHandler.WaitingPlayers.Skip(i).First();
-                    taskId = await _taskManager.GetTaskIdForDuelAsync(new List<string> { firstPlayer.Email, secondPlayer.Email });
+                    taskId = await _taskManager.GetTaskIdForDuelAsync(new List<string>
+                        {firstPlayer.Email, secondPlayer.Email});
                     if (taskId != null) break;
                 }
 
@@ -62,13 +67,16 @@ namespace CtsContestWeb.Duel
                     AddWaitingPlayer(firstPlayer);
                     return;
                 }
-              
+
                 RemoveWaitingPlayer(secondPlayer);
 
-                var duel = CreateDuel(await _taskManager.GetCachedTaskByIdAsync((int)taskId), firstPlayer, secondPlayer);
+                var task = await _taskManager.GetCachedTaskByIdAsync((int) taskId);
+                var duration = _duelLogic.CalculateDuelDuration(_hostingEnv.EnvironmentName, task.Value);
+                var duel = _duelLogic.CreateDuel(task, firstPlayer,
+                    secondPlayer, duration);
+                
                 UserHandler.ActiveDuels.Add(duel);
 
-                var duration = _configuration.GetValue<int>("DuelDurationInMinutes");
                 var timer = new Timer
                 {
                     Interval = duration * 60 * 1000
@@ -86,25 +94,6 @@ namespace CtsContestWeb.Duel
             }
 
             await base.OnConnectedAsync();
-        }
-
-        private void DuelTimeElapsed(DuelDto duel, Timer timer)
-        {
-            timer.Dispose();
-            UserHandler.ActiveDuels.Remove(duel);
-        }
-
-        private bool IsAlreadyConnected()
-        {
-            var email = Context.User.FindFirst(ClaimTypes.Email).Value;
-
-            if (UserHandler.WaitingPlayers.Select(wp => wp.Email).Contains(email))
-                return true;
-
-            if (UserHandler.ActiveDuels.SelectMany(ac => ac.Players).Select(p => p.Email).Contains(email))
-                return true;
-
-            return false;
         }
 
         public override async Task OnDisconnectedAsync(Exception exception)
@@ -135,7 +124,8 @@ namespace CtsContestWeb.Duel
 
             var compileResult = await _solutionLogic.CheckSolution(duel.Task.Id, source, language);
 
-            _solutionLogic.SaveDuelSolution(duel.Id, source, player.Email, language, compileResult.Compiled && compileResult.ResultCorrect);
+            _solutionLogic.SaveDuelSolution(duel.Id, source, player.Email, language,
+                compileResult.Compiled && compileResult.ResultCorrect);
             if (compileResult.Compiled && compileResult.ResultCorrect)
             {
                 await Clients.Group(duel.GroupName).SendAsync("DuelHasWinner", player);
@@ -151,6 +141,25 @@ namespace CtsContestWeb.Duel
             {
                 await Clients.Caller.SendAsync("solutionChecked", compileResult);
             }
+        }
+
+        private bool IsAlreadyConnected()
+        {
+            var email = Context.User.FindFirst(ClaimTypes.Email).Value;
+
+            if (UserHandler.WaitingPlayers.Select(wp => wp.Email).Contains(email))
+                return true;
+
+            if (UserHandler.ActiveDuels.SelectMany(ac => ac.Players).Select(p => p.Email).Contains(email))
+                return true;
+
+            return false;
+        }
+
+        private void DuelTimeElapsed(DuelDto duel, Timer timer)
+        {
+            timer.Dispose();
+            UserHandler.ActiveDuels.Remove(duel);
         }
 
         private DuelDto GetCurrentDuel()
@@ -171,28 +180,6 @@ namespace CtsContestWeb.Duel
             UserHandler.WaitingPlayers.Remove(playerDto);
             await Groups.RemoveFromGroupAsync(playerDto.ConnectionId, WaitingPlayersGroup);
             await Clients.Group(WaitingPlayersGroup).SendAsync("waitingPlayers", UserHandler.WaitingPlayers.Count);
-        }
-
-        private DuelDto CreateDuel(TaskDto task, PlayerDto firstPlayer, PlayerDto secondPlayer)
-        {
-            var duel = new DuelDto
-            {
-                Prize = task.Value,
-                Players = new List<PlayerDto>
-                {
-                    firstPlayer,
-                    secondPlayer
-                },
-                Task = task
-            };
-            duel.Players.ForEach(player =>
-            {
-                player.TotalWins = _duelRepository.GetWonDuelsByEmail(player.Email).Count();
-                player.TotalLooses = _duelRepository.GetLostDuelsByEmail(player.Email).Count();
-            });
-            duel.Id = _duelRepository.CreateDuel(duel);
-
-            return duel;
         }
     }
 }

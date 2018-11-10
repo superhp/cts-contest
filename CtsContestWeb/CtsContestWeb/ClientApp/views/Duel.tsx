@@ -6,6 +6,7 @@ import {fakeDuelInfo} from '../mocks/fakeData';
 import {CompileResult} from '../components/models/Task';
 import {UserInfo} from '../components/models/UserInfo';
 import {DuelInfo, DuelTime} from '../components/models/DuelInfo';
+import InitDuelButton from '../components/InitDuelButton';
 
 interface DuelState {
     compileResult: CompileResult | null,
@@ -58,11 +59,11 @@ export class Duel extends React.Component<any, DuelState> {
             console.log("Number of waiting players received");
         });
 
-        this.hubConnection.on("DuelStarts", (DuelInfo: DuelInfo) => {
-            this.setState({step: 'started', duelInfo: DuelInfo});
+        this.hubConnection.on("DuelStarts", (duelInfo: DuelInfo) => {
+            this.setState({step: 'started', duelInfo: duelInfo, compiling: false, compileResult: null});
             this.resetDuelTimerState();
             this.timer = setInterval(() => {
-                this.countDown()
+                this.countDown();
             }, 1000);
             console.log("Game started. Step: started");
         });
@@ -73,7 +74,7 @@ export class Duel extends React.Component<any, DuelState> {
         })
 
         this.hubConnection.on("DuelHasWinner", (winningPlayer: UserInfo) => {
-            this.setState({step: 'finishedByWinning', winner: winningPlayer});
+            this.setState({step: 'finishedByWinning', winner: winningPlayer, compiling: false, compileResult: null, isInDuel: false});
             console.log(`${winningPlayer.email} won. Cause: correct solution. Step: 'finishedByWinning'`)
         })
 
@@ -98,12 +99,12 @@ export class Duel extends React.Component<any, DuelState> {
         let now = new Date();
         let start = new Date(this.state.duelInfo.startTime.toString());
         let timeElapsed = now.getTime() - start.getTime();
-        let seconds = Math.max(15 * 60 - timeElapsed / 1000, 0); // duel duration: 15 minutes
+        let seconds = Math.max(this.state.duelInfo.duration * 60 - timeElapsed / 1000, 0);
         let time = this.secondsToTime(seconds);
         this.setState({time: time, secondsToPlay: seconds});
 
-        if (seconds == 0) {
-            this.setState({step: "finishedByTimeout"});
+        if (seconds == 0 && !this.state.winner) {
+            this.setState({step: "finishedByTimeout", isInDuel: false});
             this.resetDuelTimerState();
             this.componentWillUnmount();
         }
@@ -183,14 +184,7 @@ export class Duel extends React.Component<any, DuelState> {
                     <h2>You have already played all Clash-of-Code tasks </h2>
                 </div>;
             case 'initial':
-                return <Container textAlign="center">
-                    <div>
-                        <button className='cg-card-button cyan' onClick={this.findOpponent} style={{
-                            "width": "15%"
-                        }}>{ this.state.isInDuel ? "Resume" : "Start" }
-                        </button>
-                    </div>
-                    ;</Container>;
+                return <InitDuelButton name={this.state.isInDuel ? "Resume" : "Start"} findOpponent={this.findOpponent} />;
             case 'searching':
                 return <div className="cg-title loading-text">
                     <h2>Wait for your opponent...</h2>
@@ -200,26 +194,20 @@ export class Duel extends React.Component<any, DuelState> {
                                  compilerError={this.state.compileResult}
                                  compiling={this.state.compiling}/>
             case 'finishedByWinning':
-                return <div className="cg-title loading-text">
-                    <h2>{this.state.winner && this.state.winner.name} has won the Duel!</h2>
-                </div>;
+                return <div>
+                    <div className="cg-title loading-text"><h2>{this.state.winner && this.state.winner.name} has won the Duel!</h2></div>
+                    <div className="task-points">Task's value was: {this.state.duelInfo.task.value} points</div>
+                    <InitDuelButton name="Play again" findOpponent={this.findOpponent}/>
+                </div>
             case 'finishedByDisconnection':
-                return <div className="cg-title loading-text">
-                    <h2>Opponent disconnected - you won!</h2>
+                return <div>
+                    <div className="cg-title loading-text"><h2>Opponent disconnected - you won!</h2></div>
+                    <InitDuelButton name="Play again" findOpponent={this.findOpponent}/>
                 </div>;
             case 'finishedByTimeout':
                 return <div>
-                    <div className="cg-title loading-text"><h2>Time for a duel has finished. There is no winner! It's a
-                        draw! </h2></div>
-                    ;
-                    <Container textAlign="center">
-                        <div>
-                            <button className='cg-card-button cyan' onClick={this.findOpponent} style={{
-                                "width": "15%"
-                            }}>Start
-                            </button>
-                        </div>
-                        ;</Container>;
+                    <div className="cg-title loading-text"><h2>Time for a duel has finished. There is no winner! It's a draw! </h2></div>
+                    <InitDuelButton name="Play again" findOpponent={this.findOpponent}/>;
                 </div>
             case 'closeWindow':
                 return <div className="cg-title loading-text">

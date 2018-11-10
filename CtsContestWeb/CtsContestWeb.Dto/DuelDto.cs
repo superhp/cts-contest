@@ -20,5 +20,6 @@ namespace CtsContestWeb.Dto
         public int Prize { get; set; }
         [JsonIgnore]
         public string GroupName => string.Join("", Players.Select(p => p.Email));
+        public int Duration { get; set; }
     }
 }

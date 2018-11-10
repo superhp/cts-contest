@@ -36,6 +36,7 @@ namespace CtsContestWeb.DI
             services.AddScoped<IBalanceLogic, BalanceLogic>();
             services.AddScoped<IPurchaseLogic, PurchaseLogic>();
             services.AddScoped<ISolutionLogic, SolutionLogic>();
+            services.AddScoped<IDuelLogic, DuelLogic>();
 
             services.AddTransient<IPrizeManager, PrizeManager>();
             services.AddTransient<ICodeSkeletonManager, CodeSkeletonManager>();
