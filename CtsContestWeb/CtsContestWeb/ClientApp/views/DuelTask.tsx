@@ -219,7 +219,7 @@ const TaskHeader = ({title, value}: {title: string, value: number}) => {
         <div style={{ paddingTop: 20 }}>
             <Header as='h1' textAlign='left'>
                 <Header.Content>
-					{title} ({value})
+					{title.toUpperCase()} ({value})
                 </Header.Content>
             </Header>
         </div>

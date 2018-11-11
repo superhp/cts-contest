@@ -288,7 +288,7 @@ export class TaskComponent extends React.Component<any, any> {
     render() {
         const taskHeaderName = this.state.loadingTask
             ? ''
-            : this.state.task.name;
+            : this.state.task.name.toUpperCase();
         const taskPoints = this.state.loadingTask
             ? ''
             : 'Value: ' + this.state.task.value + ' points';
