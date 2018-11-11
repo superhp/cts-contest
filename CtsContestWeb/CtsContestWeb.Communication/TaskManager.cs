@@ -73,7 +73,7 @@ namespace CtsContestWeb.Communication
 
             if (availableTaskIds.Count == 0) return null;
 
-            return new Random().Next(availableTaskIds.Count);
+            return availableTaskIds[new Random().Next(availableTaskIds.Count)];
         }
 
         public async Task<bool> HasPlayerAnyDuelTasksLeft(string userEmail)
