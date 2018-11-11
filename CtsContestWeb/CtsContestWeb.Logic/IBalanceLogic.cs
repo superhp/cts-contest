@@ -7,6 +7,5 @@ namespace CtsContestWeb.Logic
         Task<bool> IsBalanceEnough(string userEmail, int prizeId);
         int GetCurrentBalance(string userEmail);
         int GetTotalBalance(string userEmail);
-        int GetDuelBalance(string value);
     }
 }
