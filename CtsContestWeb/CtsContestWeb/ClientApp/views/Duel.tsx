@@ -40,7 +40,7 @@ export class Duel extends React.Component<any, DuelState> {
             duelInfo: fakeDuelInfo,
             secondsToPlay: 0,
             compiling: false,
-            time: { minutes: 0, seconds: 0 },
+            time: {minutes: 0, seconds: 0},
             waitingPlayers: 0,
             totalWins: 0,
             totalLooses: 0,
@@ -74,7 +74,13 @@ export class Duel extends React.Component<any, DuelState> {
         })
 
         this.hubConnection.on("DuelHasWinner", (winningPlayer: UserInfo) => {
-            this.setState({step: 'finishedByWinning', winner: winningPlayer, compiling: false, compileResult: null, isInDuel: false});
+            this.setState({
+                step: 'finishedByWinning',
+                winner: winningPlayer,
+                compiling: false,
+                compileResult: null,
+                isInDuel: false
+            });
             console.log(`${winningPlayer.email} won. Cause: correct solution. Step: 'finishedByWinning'`)
         })
 
@@ -146,11 +152,11 @@ export class Duel extends React.Component<any, DuelState> {
     hasUserAnyDuelTasksLeft = () => {
         fetch('api/user/has-duel-tasks-left', {credentials: 'include'}
         ).then(response => response.json() as Promise<any>)
-        .then((data: boolean) => {
-            if (data === false) {
-                this.setState({step: 'noTasksLeft'})
-            }
-        });
+            .then((data: boolean) => {
+                if (data === false) {
+                    this.setState({step: 'noTasksLeft'})
+                }
+            });
     }
 
     updateDuelStatistics = () => {
@@ -158,7 +164,12 @@ export class Duel extends React.Component<any, DuelState> {
             credentials: 'include'
         }).then(response => response.json() as Promise<any>)
             .then(data => {
-                this.setState({totalWins: data.totalWins, totalLooses: data.totalLooses, activePlayers: data.activePlayers, isInDuel: data.isInDuel});
+                this.setState({
+                    totalWins: data.totalWins,
+                    totalLooses: data.totalLooses,
+                    activePlayers: data.activePlayers,
+                    isInDuel: data.isInDuel
+                });
             });
     }
 
@@ -184,7 +195,8 @@ export class Duel extends React.Component<any, DuelState> {
                     <h3>You have already played all Clash-of-Code tasks </h3>
                 </div>;
             case 'initial':
-                return <InitDuelButton name={this.state.isInDuel ? "Resume" : "Start"} findOpponent={this.findOpponent} />;
+                return <InitDuelButton name={this.state.isInDuel ? "Resume" : "Start"}
+                                       findOpponent={this.findOpponent}/>;
             case 'searching':
                 return <div className="cg-title loading-text">
                     <h3>Wait for your opponent...</h3>
@@ -195,7 +207,8 @@ export class Duel extends React.Component<any, DuelState> {
                                  compiling={this.state.compiling}/>
             case 'finishedByWinning':
                 return <div>
-                    <div className="cg-title loading-text"><h3>{this.state.winner && this.state.winner.name} has won the Duel!</h3></div>
+                    <div className="cg-title loading-text"><h3>{this.state.winner && this.state.winner.name} has won the
+                        Duel!</h3></div>
                     <div className="task-points">Task's value was: {this.state.duelInfo.task.value} points</div>
                     <InitDuelButton name="Play again" findOpponent={this.findOpponent}/>
                 </div>
@@ -237,13 +250,13 @@ export class Duel extends React.Component<any, DuelState> {
                         <RulesAndDuelInfo info={this.state.duelInfo} duelState={this.state}
                                           taskName={this.state.duelInfo.task.name}
                                           taskPoints={this.state.duelInfo.task.value}/> :
-                        <Rules centered={true} duelState={this.state} loggedIn={this.props.userInfo.isLoggedIn} />
+                        <Rules centered={true} duelState={this.state} loggedIn={this.props.userInfo.isLoggedIn}/>
                 }
-                
-                
-                { 
-                    this.props.userInfo.isLoggedIn ? 
-                        this.getCurrentStepTemplate(this.state.step) : 
+
+
+                {
+                    this.props.userInfo.isLoggedIn ?
+                        this.getCurrentStepTemplate(this.state.step) :
                         <Container textAlign="center">
                             <div className="error-message cg-about-p">Please login before participating in duel</div>
                         </Container>
@@ -258,49 +271,67 @@ const Rules = ({centered, duelState, loggedIn}: { centered: boolean, duelState: 
 
     return (
         <Container>
-			{!duelState.isInDuel ?
-				<div>
-					<div className='cg-about-p'>
-						<div>Players in duel: {duelState.activePlayers}.</div>
-					</div>
-					<div className='cg-about-p'>
-						<div>Your statistics: {duelState.totalWins} wins, {duelState.totalLooses} loses.</div>
-					</div>
-					<div>
-					<div className='cg-title'>
-						<h2>Rules</h2>
-					</div>
-					<div className='cg-about-p'>
-						<ol>
-							<li>Wait to get matched with an opponent.</li>
-							<li>Solve a randomly chosen task.</li>
-							<li>Submit the correct solution faster than your opponent and win the duel!</li>
-						</ol>
-					</div>
-					</div>
-				</div>
-				:
-				<div></div>
-			}            
+            {!duelState.isInDuel ?
+                <div>
+                    <div className='cg-about-p'>
+                        <div>Players in duel: {duelState.activePlayers}.</div>
+                    </div>
+                    <div className='cg-about-p'>
+                        <div>Your statistics: {duelState.totalWins} wins, {duelState.totalLooses} loses.</div>
+                    </div>
+                    <div>
+                        <div className='cg-title'>
+                            <h2>How to duel</h2>
+                        </div>
+                        <div className='cg-about-p'>
+                            <ol>
+                                <li>Wait to get matched with a worthy opponent.</li>
+                                <li>Show your coding mastership by solving a randomly chosen task.</li>
+                                <li>Submit the correct solution faster than your opponent and win the duel!</li>
+                            </ol>
+                        </div>
+                        <div className='cg-title'>
+                            <h2>Rules</h2>
+                        </div>
+                        <div className='cg-about-p'>
+                            <ol>
+                                <li>You can fight only one opponent at a time.</li>
+                                <li>You can solve a task only once. That means you can duel until complete all the duel
+                                    tasks.
+                                </li>
+                                <li>Don't worry if you loose your connection. The progress won't be lost and you
+                                    will be able to jump back into the duel.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                :
+                <div></div>
+            }
         </Container>
     );
 }
 
-const RulesAndDuelInfo = ({info, duelState, taskName, taskPoints}: { info: DuelInfo, duelState: DuelState, taskName: string, taskPoints: number }) => {
-    return (<Container fluid>
-        <Grid columns={1} relaxed>
-			<Grid.Column mobile={16} tablet={16} computer={16} style={{ textAlign: 'center' }}>
-				<Container>
-					<div className='cg-about-p'>
-						<p>
-							<strong>{info.players[0].name} Wins: {info.players[0].totalWins} / Loses: {info.players[0].totalLooses}</strong>
-							<img src='https://static.thenounproject.com/png/161955-200.png' style={{ height: '80px' }}></img>
-							<strong>{info.players[1].name} Wins: {info.players[1].totalWins} / Loses: {info.players[1].totalLooses}</strong>
-						</p>
-						<p>Time left: {duelState.time.minutes} m. {duelState.time.seconds} sec.</p>
-					</div>
-				</Container>
-			</Grid.Column>
-        </Grid>
-    </Container>)
-}
+const RulesAndDuelInfo =
+    ({info, duelState, taskName, taskPoints}: { info: DuelInfo, duelState: DuelState, taskName: string, taskPoints: number }) => {
+        return (<Container fluid>
+            <Grid columns={1} relaxed>
+                <Grid.Column mobile={16} tablet={16} computer={16} style={{textAlign: 'center'}}>
+                    <Container>
+                        <div className='cg-about-p'>
+                            <p>
+                                <strong>{info.players[0].name} Wins: {info.players[0].totalWins} /
+                                    Loses: {info.players[0].totalLooses}</strong>
+                                <img src='https://static.thenounproject.com/png/161955-200.png'
+                                     style={{height: '80px'}}></img>
+                                <strong>{info.players[1].name} Wins: {info.players[1].totalWins} /
+                                    Loses: {info.players[1].totalLooses}</strong>
+                            </p>
+                            <p>Time left: {duelState.time.minutes} m. {duelState.time.seconds} sec.</p>
+                        </div>
+                    </Container>
+                </Grid.Column>
+            </Grid>
+        </Container>)
+    }
