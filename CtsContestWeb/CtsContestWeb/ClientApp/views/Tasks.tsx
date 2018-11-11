@@ -70,7 +70,7 @@ export class Tasks extends React.Component<any, TasksState> {
         let panels = _.chain(tasks)
             .groupBy('value')
             .map((value: any, key: any) => ({
-                title: "Tasks for " + key + " points",
+                title: "Tasks for " + key + " coins",
                 content: this.createTasksSelectionTable(value)
             }))
             .value();

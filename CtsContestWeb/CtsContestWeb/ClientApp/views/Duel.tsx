@@ -80,7 +80,7 @@ export class Duel extends React.Component<any, DuelState> {
 
         this.hubConnection.on("scoreAdded", (score: number) => {
             this.props.onIncrementBalance(this.state.duelInfo.task.value);
-            console.log(score + ' points added');
+            console.log(score + ' coins added');
         })
 
         this.hubConnection.on("closeThisWindow", () => {
@@ -196,7 +196,7 @@ export class Duel extends React.Component<any, DuelState> {
             case 'finishedByWinning':
                 return <div>
                     <div className="cg-title loading-text"><h3>{this.state.winner && this.state.winner.name} has won the Duel!</h3></div>
-                    <div className="task-points">Task's value was: {this.state.duelInfo.task.value} points</div>
+                    <div className="task-points">Task's value was: {this.state.duelInfo.task.value} coins</div>
                     <InitDuelButton name="Play again" findOpponent={this.findOpponent}/>
                 </div>
             case 'finishedByDisconnection':

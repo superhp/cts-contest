@@ -47,7 +47,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                 />
                                 <Header
                                     as='h2'
-                                    content='Solve coding tasks and earn points to win!'
+                                    content='Solve coding tasks and earn coins to win!'
                                     inverted
                                     style={{
                                         fontSize: '1.7em',
@@ -68,14 +68,14 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                         <div className='cg-about-p'>
                             <ol>
                                 <li>Login using your Facebook or Google account</li>
-                                <li>Solve coding tasks to earn points
+                                <li>Solve coding tasks to earn coins
                                     <ul className='cg-ul-dash' style={{paddingLeft: 25}}>
                                         <li>Tasks are divided into several groups based on their complexity</li>
                                         <li>Each task can be solved only once</li>
-                                        <li>You can earn 15-645 points for each correct solution, depending on task’s difficulty</li>
+                                        <li>You can earn 15-645 coins for each correct solution, depending on task’s difficulty</li>
                                     </ul>
                                 </li>
-                                <li>Have points added to your virtual wallet</li>
+                                <li>Have coins added to your virtual wallet</li>
                                 <li>Buy goodies in our shopping booth</li>
                                 <li>To access leaderboard results, visit Cognizant booth</li>
                                 <li>Challenge is active from 8:00 to 16:30</li>
@@ -85,22 +85,22 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                     {/* <Divider />
                     <Container>
                         <div className='cg-title'>
-                            <h2>2 ways to spend your points</h2>
+                            <h2>2 ways to spend your coins</h2>
                         </div>
                         <div className='cg-about-p cg-points'>
 
                             <div className='cg-title-bold'>1.  Purchase items in our virtual shopping booth</div>
                             <ul className='cg-ul-dash'>
-                                <li>Points can be spent in the shopping booth for different items</li>
+                                <li>Coins can be spent in the shopping booth for different items</li>
                                 <li>Each registered contestant can purchase the same item only once </li>
-                                <li>Points spent in shopping booth will not be added to your total balance</li>
-                                <li>Unspent points are added up to your total balance</li>
+                                <li>Coins spent in shopping booth will not be added to your total balance</li>
+                                <li>Unspent coins are added up to your total balance</li>
                             </ul>
 
-                            <div className='cg-title-bold'>2.  Save your points to win the conference prize</div>
+                            <div className='cg-title-bold'>2.  Save your coins to win the conference prize</div>
                             <ul className='cg-ul-dash'>
                                 <li>Conference prize is awarded at the end of the second day of the conference to the leading contestant based on leaderboard results</li>
-                                <li>Points spent in shopping booth are no longer valid</li>
+                                <li>Coins spent in shopping booth are no longer valid</li>
                                 <li>In case of absence, the prize will go to the next best participant in the leaderboard</li>
                             </ul>
 
@@ -110,10 +110,10 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                     <Divider />
                     <Container>
                         <div className='cg-title'>
-                            <h2>Spending your points</h2>
+                            <h2>Spending your coins</h2>
                         </div>
                         <p className='cg-about-p' style={{paddingBottom: 5}}>
-                            Once you earn enough points and want to purchase an item:
+                            Once you earn enough coins and want to purchase an item:
                         </p>
                         <div className='cg-about-p'>
                             <ul className='cg-ul-dash' style={{ paddingLeft: 25 }}>
@@ -173,7 +173,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                 </li>
                                 <li>The execution time of each solution must not exceed 5 seconds and it must not consume more than 256 MB of memory. The size of the source file of a solution must not exceed 256 KB</li>
                                 <li>
-                                    You can try to submit your solution as many times as you want. Once you submit a correct solution, you will gain the respective amount of points and the task will be marked as solved<br/>
+                                    You can try to submit your solution as many times as you want. Once you submit a correct solution, you will gain the respective amount of coins and the task will be marked as solved<br/>
                                     <b>Cheating is strictly prohibited!</b> The organizers remain the right to nullify a solution if it includes hacking
                                 </li>
                                 <li>There is an editor provided near each of the tasks, but you can use anything you like – just make sure to put your code into the editor before you submit</li>
