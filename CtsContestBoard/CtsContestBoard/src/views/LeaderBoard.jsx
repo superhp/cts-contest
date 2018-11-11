@@ -46,7 +46,7 @@ const ColumnHeader = () => (
             <h4>Total balance</h4>
         </Grid.Column>
         {/*<Grid.Column width={4} className="recent">
-            <h4>Today's points</h4>
+            <h4>Today's coins</h4>
         </Grid.Column>*/}
     </Grid>
     );

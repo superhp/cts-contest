@@ -22,7 +22,7 @@ export class ShopItemCard extends React.Component<any, any> {
             <div className='cg-card'>
                 <div className='cg-card-label'>
                     <div className='left'>
-                        Value:  {this.props.prize.price} pts
+                        Value:  {this.props.prize.price} coins
                     </div>
                 </div>
                 <div className='cg-card-image'>
