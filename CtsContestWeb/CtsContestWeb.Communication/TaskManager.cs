@@ -30,7 +30,7 @@ namespace CtsContestWeb.Communication
             _cache = cache;
         }
 
-        public async Task<TaskDto> DownloadTaskByIdAsync(int id, string userEmail = null)
+        public async Task<TaskDto> DownloadTaskByIdAsync(int id)
         {
             var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
             var pictureUrl = _iconfiguration["UmbracoPictureUrl"];
@@ -45,6 +45,16 @@ namespace CtsContestWeb.Communication
                 throw new ArgumentException("No task with given ID");
             var task = response.Data;
 
+            task.Description = PrependRootUrlToImageLinks(task.Description, pictureUrl);
+            UpdateTaskValue(task);
+            return task;
+        }
+
+        public async Task<TaskDto> GetCachedTaskByIdAsync(int id, string userEmail = null)
+        {
+            var cachedTask = (await GetTasks()).FirstOrDefault(t => t.Id == id);
+            var task = cachedTask ?? await DownloadTaskByIdAsync(id);
+
             if (userEmail != null)
             {
                 var solvedTasks = _solutionRepository.GetSolvedTasksIdsByUserEmail(userEmail);
@@ -52,15 +62,7 @@ namespace CtsContestWeb.Communication
                     task.IsSolved = true;
             }
 
-            task.Description = PrependRootUrlToImageLinks(task.Description, pictureUrl);
-            UpdateTaskValue(task);
             return task;
-        }
-
-        public async Task<TaskDto> GetCachedTaskByIdAsync(int id)
-        {
-            var cachedTask = (await GetTasks()).FirstOrDefault(task => task.Id == id);
-            return cachedTask ?? await DownloadTaskByIdAsync(id);
         }
 
         public async Task<int?> GetTaskIdForDuelAsync(IEnumerable<string> usersEmail)
