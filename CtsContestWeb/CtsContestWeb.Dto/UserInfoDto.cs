@@ -11,6 +11,5 @@ namespace CtsContestWeb.Dto
         public string Name { get; set; }
         public int TodaysBalance { get; set; }
         public int TotalBalance { get; set; }
-        public int DuelBalance { get; set; }
     }
 }

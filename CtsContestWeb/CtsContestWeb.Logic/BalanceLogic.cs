@@ -34,19 +34,19 @@ namespace CtsContestWeb.Logic
 
         public int GetTotalBalance(string userEmail)
         {
-            return GetTotalEarnedMoney(userEmail) - GetTotalSpentMoney(userEmail);
+            return GetTotalEarnedMoney(userEmail) + GetDuelBalance(userEmail) - GetTotalSpentMoney(userEmail);
+        }
+                
+        public int GetCurrentBalance(string userEmail)
+        {
+            return GetTodaysEarnedMoney(userEmail) + GetDuelBalance(userEmail) - GetTodaysSpentMoney(userEmail);
         }
 
-        public int GetDuelBalance(string userEmail)
+        private int GetDuelBalance(string userEmail)
         {
             var competitions = _duelRepository.GetWonDuelsByEmail(userEmail);
 
             return competitions.Sum(c => c.Prize);
-        }
-
-        public int GetCurrentBalance(string userEmail)
-        {
-            return GetTodaysEarnedMoney(userEmail) - GetTodaysSpentMoney(userEmail);
         }
 
         private int GetTotalEarnedMoney(string userEmail)

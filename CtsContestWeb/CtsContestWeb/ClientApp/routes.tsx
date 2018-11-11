@@ -23,8 +23,7 @@ export class Routes extends React.Component<any, any> {
                 name: '',
                 balance: 0,
                 todaysBalance: 0,
-                totalBalance: 0,
-                duelBalance: 0
+                totalBalance: 0
             }
         }
 
@@ -38,7 +37,6 @@ export class Routes extends React.Component<any, any> {
         })
         .then(response => response.json() as Promise<any>)
         .then(data => {
-            data.totalBalance += data.duelBalance;
             this.setState({userInfo: data});
         });
     }
