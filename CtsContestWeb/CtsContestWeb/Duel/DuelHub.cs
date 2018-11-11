@@ -16,14 +16,15 @@ namespace CtsContestWeb.Duel
 {
     public class DuelHub : Hub
     {
-        private const string WaitingPlayersGroup = "WaitingPlayerGroups"; 
+        private const string WaitingPlayersGroup = "WaitingPlayerGroups";
         private readonly ITaskManager _taskManager;
         private readonly IDuelRepository _duelRepository;
         private readonly ISolutionLogic _solutionLogic;
         private readonly IHostingEnvironment _hostingEnv;
         private readonly IDuelLogic _duelLogic;
 
-        public DuelHub(ITaskManager taskManager, IDuelRepository duelRepository, ISolutionLogic solutionLogic, IHostingEnvironment hostingEnv, IDuelLogic duelLogic)
+        public DuelHub(ITaskManager taskManager, IDuelRepository duelRepository, ISolutionLogic solutionLogic,
+            IHostingEnvironment hostingEnv, IDuelLogic duelLogic)
         {
             _taskManager = taskManager;
             _duelRepository = duelRepository;
@@ -52,24 +53,28 @@ namespace CtsContestWeb.Duel
             if (UserHandler.WaitingPlayers.Count > 0)
             {
                 PlayerDto secondPlayer = null;
-                TaskDto task = null;
+                int? taskId = null;
                 for (int i = 0; i < UserHandler.WaitingPlayers.Count; i++)
                 {
                     secondPlayer = UserHandler.WaitingPlayers.Skip(i).First();
-                    task = await _taskManager.GetTaskForDuelAsync(new List<string> { firstPlayer.Email, secondPlayer.Email });
-                    if (task != null) break;
+                    taskId = await _taskManager.GetTaskIdForDuelAsync(new List<string>
+                        {firstPlayer.Email, secondPlayer.Email});
+                    if (taskId != null) break;
                 }
 
-                if (task == null)
+                if (taskId == null)
                 {
                     AddWaitingPlayer(firstPlayer);
                     return;
                 }
-              
+
                 RemoveWaitingPlayer(secondPlayer);
 
+                var task = await _taskManager.GetCachedTaskByIdAsync((int) taskId);
                 var duration = _duelLogic.CalculateDuelDuration(_hostingEnv.EnvironmentName, task.Value);
-                var duel = _duelLogic.CreateDuel(task, firstPlayer, secondPlayer, duration);
+                var duel = _duelLogic.CreateDuel(task, firstPlayer,
+                    secondPlayer, duration);
+                
                 UserHandler.ActiveDuels.Add(duel);
 
                 var timer = new Timer
@@ -119,7 +124,8 @@ namespace CtsContestWeb.Duel
 
             var compileResult = await _solutionLogic.CheckSolution(duel.Task.Id, source, language);
 
-            _solutionLogic.SaveDuelSolution(duel.Id, source, player.Email, language, compileResult.Compiled && compileResult.ResultCorrect);
+            _solutionLogic.SaveDuelSolution(duel.Id, source, player.Email, language,
+                compileResult.Compiled && compileResult.ResultCorrect);
             if (compileResult.Compiled && compileResult.ResultCorrect)
             {
                 await Clients.Group(duel.GroupName).SendAsync("DuelHasWinner", player);

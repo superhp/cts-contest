@@ -8,7 +8,8 @@ namespace CtsContestWeb.Communication
     {
         Task<List<TaskDto>> GetAllTasks(string userEmail = null);
         Task<TaskDto> DownloadTaskByIdAsync(int id, string userEmail = null);
-        Task<TaskDto> GetTaskForDuelAsync(IEnumerable<string> usersEmail);
+        Task<TaskDto> GetCachedTaskByIdAsync(int id);
+        Task<int?> GetTaskIdForDuelAsync(IEnumerable<string> usersEmail);
         Task<bool> HasPlayerAnyDuelTasksLeft(string userEmail);
     }
 }
