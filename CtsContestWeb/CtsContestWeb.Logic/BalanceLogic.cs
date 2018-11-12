@@ -39,12 +39,16 @@ namespace CtsContestWeb.Logic
                 
         public int GetCurrentBalance(string userEmail)
         {
-            return GetTodaysEarnedMoney(userEmail) + GetDuelBalance(userEmail) - GetTodaysSpentMoney(userEmail);
+            return GetTodaysEarnedMoney(userEmail) + GetDuelBalance(userEmail, true) - GetTodaysSpentMoney(userEmail);
         }
 
-        private int GetDuelBalance(string userEmail)
+        private int GetDuelBalance(string userEmail, bool includeOnlyTodaysBalance = false)
         {
             var competitions = _duelRepository.GetWonDuelsByEmail(userEmail);
+            if (includeOnlyTodaysBalance)
+            {
+                competitions = competitions.Where(x => x.StartTime.Date == DateTime.Today); 
+            }
 
             return competitions.Sum(c => c.Prize);
         }
