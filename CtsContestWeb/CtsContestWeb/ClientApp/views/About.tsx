@@ -61,10 +61,6 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                 </div>
                 <Segment style={{ padding: '1em 0em 3em' }} vertical>
                     <Container style={{ paddingTop: '3em' }}>
-                        <div className='cg-title'>
-                            <h2>How to participate</h2>
-                        </div>
-
                         <div className='cg-infographic-container'>
                             <div className='cg-infographic'>
                                 <i className='lock icon cg-infographic-icon'></i>
@@ -84,7 +80,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                             <div className='cg-infographic'>
                                 <i className='shopping cart icon cg-infographic-icon'></i>
                                 <div className='cg-infographic-text-container'>
-                                    <div className='cg-infographic-title'>Use</div>
+                                    <div className='cg-infographic-title'>Spend</div>
                                     <div className='cg-infographic-text'>coins you have earned</div>
                                     <div className='cg-infographic-text-small'>buy at booth or save for big prizes</div>
                                 </div>
