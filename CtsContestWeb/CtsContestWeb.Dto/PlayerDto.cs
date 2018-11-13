@@ -6,6 +6,7 @@ namespace CtsContestWeb.Dto
     {
         [JsonIgnore]
         public string Email { get; set; }
+        public string Picture { get; set; }
         public string ConnectionId { get; set; }
         public string Name { get; set; }
         public int TotalWins { get; set; }

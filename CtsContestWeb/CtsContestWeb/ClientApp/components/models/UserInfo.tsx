@@ -5,4 +5,5 @@ export interface UserInfo {
     totalBalance: number;
     totalWins: number;
     totalLooses: number;
+    picture?: string;
 }
