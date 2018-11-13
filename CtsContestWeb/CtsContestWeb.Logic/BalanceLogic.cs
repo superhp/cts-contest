@@ -28,7 +28,7 @@ namespace CtsContestWeb.Logic
         {
             var prize = await _prizeManager.GetPrizeById(prizeId);
             var price = prize.Price;
-            var balance = GetTotalBalance(userEmail); 
+            var balance = GetCurrentBalance(userEmail); 
             return balance >= price;
         }
 

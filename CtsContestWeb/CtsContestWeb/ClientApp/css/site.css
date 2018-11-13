@@ -551,6 +551,53 @@ body{
                 padding-top: 4px;
             }
 }
+
+.duel-how-to-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.duel-how-to .duel-how-to-icon {
+    font-size: 12em;
+    color: #e8e8e8;
+    width: auto;
+    height: auto;
+    line-height: normal;
+}
+
+.duel-how-to:last-child .duel-how-to-icon {
+    margin-right: 82px;
+}
+
+.duel-how-to .duel-how-to-text-container {
+    position: relative;
+    left: 90px;
+    top: -73px;
+}
+
+.duel-how-to-title {
+    color: #0033A0;
+    font-size: 43px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.duel-how-to-text {
+    font-size: 22px;
+    margin-top: 10px;
+    padding-left: 5px;
+}
+
+@media (max-width: 950px) {
+    .duel-how-to-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .duel-how-to .duel-how-to-icon {
+        margin-right: 80px;
+    }
+}
 .task-title-name {
     display: inline-block;
     width: 75%;

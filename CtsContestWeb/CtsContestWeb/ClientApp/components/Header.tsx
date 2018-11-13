@@ -35,11 +35,11 @@ const links = [
         routeTo: '/shop',
         name: 'Shopping booth'
     },
-    // {
-    //     routeTo: '/prizes',
-    //     name: 'Conference prize'
-    // },
-    // {
+    {
+        routeTo: '/prizes',
+        name: 'Prizes'
+    },
+    //{
     //     routeTo: '/quiz',
     //     name: 'Quiz'
     // }
