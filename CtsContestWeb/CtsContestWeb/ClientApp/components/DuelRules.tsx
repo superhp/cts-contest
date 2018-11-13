@@ -10,33 +10,31 @@ const DuelRules : React.SFC<IDuelRulesProps> = (props) => {
         <Container>
             {!props.duelState.isInDuel ?
                 <div>
-                    <div className='cg-about-p'>
-                        <div>Players in duel: {props.duelState.activePlayers}.</div>
-                    </div>
-                    <div className='cg-about-p'>
-                        <div>Your statistics: {props.duelState.totalWins} wins, {props.duelState.totalLooses} loses.</div>
+                    <div className='ui label'>
+                        Players in duel
+                        <span className='detail'>{props.duelState.activePlayers}</span>
                     </div>
                     <div>
-                        <div className='duel-how-to-container'>
-                            <div className='duel-how-to'>
-                                <i className='clock outline icon duel-how-to-icon'></i>
-                                <div className='duel-how-to-text-container'>
-                                    <div className='duel-how-to-title'>Wait</div>
-                                    <div className='duel-how-to-text'>to get matched</div>
+                        <div className='cg-infographic-container'>
+                            <div className='cg-infographic'>
+                                <i className='clock outline icon cg-infographic-icon'></i>
+                                <div className='cg-infographic-text-container'>
+                                    <div className='cg-infographic-title'>Wait</div>
+                                    <div className='cg-infographic-text'>to get matched</div>
                                 </div>
                             </div>
-                            <div className='duel-how-to'>
-                                <i className='laptop icon duel-how-to-icon'></i>
-                                <div className='duel-how-to-text-container'>
-                                    <div className='duel-how-to-title'>Solve</div>
-                                    <div className='duel-how-to-text'>faster than opponent</div>
+                            <div className='cg-infographic'>
+                                <i className='laptop icon cg-infographic-icon'></i>
+                                <div className='cg-infographic-text-container'>
+                                    <div className='cg-infographic-title'>Solve</div>
+                                    <div className='cg-infographic-text'>faster than opponent</div>
                                 </div>
                             </div>
-                            <div className='duel-how-to'>
-                                <i className='trophy icon duel-how-to-icon'></i>
-                                <div className='duel-how-to-text-container'>
-                                    <div className='duel-how-to-title'>Win</div>
-                                    <div className='duel-how-to-text'>and earn coins</div>
+                            <div className='cg-infographic'>
+                                <i className='trophy icon cg-infographic-icon'></i>
+                                <div className='cg-infographic-text-container'>
+                                    <div className='cg-infographic-title'>Win</div>
+                                    <div className='cg-infographic-text'>and earn coins</div>
                                 </div>
                             </div>
                         </div>

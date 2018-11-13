@@ -60,30 +60,39 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                     </div>
                 </div>
                 <Segment style={{ padding: '1em 0em 3em' }} vertical>
-                    <Container>
+                    <Container style={{ paddingTop: '3em' }}>
                         <div className='cg-title'>
                             <h2>How to participate</h2>
                         </div>
 
-                        <div className='cg-about-p'>
-                            <ol>
-                                <li>Login using your Facebook or Google account</li>
-                                <li>Solve coding tasks to earn coins
-                                    <ul className='cg-ul-dash' style={{paddingLeft: 25}}>
-                                        <li>Tasks are divided into several groups based on their complexity</li>
-                                        <li>Each task can be solved only once</li>
-                                        <li>You can earn 15-645 coins for each correct solution, depending on task’s difficulty</li>
-                                    </ul>
-                                </li>
-                                <li>Have coins added to your virtual wallet</li>
-                                <li>Buy goodies in our shopping booth</li>
-                                <li>To access leaderboard results, visit Cognizant booth</li>
-                                <li>Challenge is active from 9:00 to 16:30</li>
-                            </ol>
+                        <div className='cg-infographic-container'>
+                            <div className='cg-infographic'>
+                                <i className='lock icon cg-infographic-icon'></i>
+                                <div className='cg-infographic-text-container'>
+                                    <div className='cg-infographic-title'>Sign in</div>
+                                    <div className='cg-infographic-text'>via Facebook or Google</div>
+                                </div>
+                            </div>
+                            <div className='cg-infographic'>
+                                <i className='laptop icon cg-infographic-icon'></i>
+                                <div className='cg-infographic-text-container'>
+                                    <div className='cg-infographic-title'>Solve</div>
+                                    <div className='cg-infographic-text'>tasks and earn coins</div>
+                                    <div className='cg-infographic-text-small'>individually or in a duel</div>    
+                                </div>
+                            </div>
+                            <div className='cg-infographic'>
+                                <i className='shopping cart icon cg-infographic-icon'></i>
+                                <div className='cg-infographic-text-container'>
+                                    <div className='cg-infographic-title'>Use</div>
+                                    <div className='cg-infographic-text'>coins you have earned</div>
+                                    <div className='cg-infographic-text-small'>buy at booth or save for big prizes</div>
+                                </div>
+                            </div>
                         </div>
                     </Container>
                     <Divider />
-                    <Container>
+                    <Container style={{ paddingTop: '3em', paddingBottom: '3em' }}>
                         <div className='cg-title'>
                             <h2>3 ways to spend your coins</h2>
                         </div>
@@ -137,7 +146,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                     </Container> */}
 
                     <Divider />
-                    <Container>
+                    <Container style={{ paddingTop: '3em', paddingBottom: '3em' }}>
                         <div className='cg-title'>
                             <h2>Other rules</h2>
                         </div>
