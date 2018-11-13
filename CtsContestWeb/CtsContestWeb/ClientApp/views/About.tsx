@@ -82,32 +82,38 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                             </ol>
                         </div>
                     </Container>
-                    {/* <Divider />
+                    <Divider />
                     <Container>
                         <div className='cg-title'>
-                            <h2>2 ways to spend your coins</h2>
+                            <h2>3 ways to spend your coins</h2>
                         </div>
                         <div className='cg-about-p cg-points'>
 
-                            <div className='cg-title-bold'>1.  Purchase items in our virtual shopping booth</div>
-                            <ul className='cg-ul-dash'>
-                                <li>Coins can be spent in the shopping booth for different items</li>
-                                <li>Each registered contestant can purchase the same item only once </li>
-                                <li>Coins spent in shopping booth will not be added to your total balance</li>
-                                <li>Unspent coins are added up to your total balance</li>
-                            </ul>
+                            <h3>Shop in the booth</h3>
+                            <div>
+                                <p className="margin-0">Coins can be spent in <a href={window.location.origin + "/shop"} target="_blank">virtual shopping booth</a> for different items. Contestants can purchase the same item only once</p>
+                                <p className="margin-0">Spent coins are not added to your day or total balance</p>
+                                <p className="margin-0">Coins can be spent in shopping booth only on the same day they are earned</p>
+                                <p>Once an item has been purchased, given QR code acts as a receipt, which must be presented at Cognizant stand to redeem the prize</p>
+                            </div>
+                            
+                            <h3>Save up for day prize</h3>
+                            <div>
+                                <p className="margin-0">At the end of each conference day, player of the day gets the <a href={window.location.origin + "/prizes"} target="_blank">day prize</a></p>
+                                <p className="margin-0"><i>Wednesday: </i>the best duelist of the day wins Bluetooth JBL Headphones</p>
+                                <p className="margin-0"><i>Thursday: </i>the player with most earned and unspent coins throughout Thursday wins Philips Electric Toothbrush</p>
+                                <p><i>Friday: </i>the player with most earned and unspent points throughout Friday wins Sony Bluetooth Speaker</p>
+                            </div>
 
-                            <div className='cg-title-bold'>2.  Save your coins to win the conference prize</div>
-                            <ul className='cg-ul-dash'>
-                                <li>Conference prize is awarded at the end of the second day of the conference to the leading contestant based on leaderboard results</li>
-                                <li>Coins spent in shopping booth are no longer valid</li>
-                                <li>In case of absence, the prize will go to the next best participant in the leaderboard</li>
-                            </ul>
-
+                            <h3>Save up for conference prize</h3>
+                            <div>
+                                <p className="margin-0"><a href={window.location.origin + "/prizes"} target="_blank">GoPro Hero 5 Black</a> is awarded at the end of Friday to the leading contestant based on leaderboard results</p>
+                                <p>In case of absence, the prize will go to the next best participant in the leaderboard {window.location.origin}</p>
+                            </div>
                         </div>
-                    </Container> */}
+                    </Container>
 
-                    <Divider />
+                    {/* <Divider />
                     <Container>
                         <div className='cg-title'>
                             <h2>Spending your coins</h2>
@@ -128,7 +134,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                 <li>Present the code to contest organizers to redeem the prize</li>
                             </ul>
                         </div>
-                    </Container>
+                    </Container> */}
 
                     <Divider />
                     <Container>
@@ -171,14 +177,12 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                         </div>
                                     </div>
                                 </li>
-                                <li>The execution time of each solution must not exceed 5 seconds and it must not consume more than 256 MB of memory. The size of the source file of a solution must not exceed 256 KB</li>
-                                <li>
-                                    You can try to submit your solution as many times as you want. Once you submit a correct solution, you will gain the respective amount of coins and the task will be marked as solved<br/>
-                                    <b>Cheating is strictly prohibited!</b> The organizers remain the right to nullify a solution if it includes hacking
-                                </li>
+                                <li>The execution time of each solution must not exceed <b>5 seconds</b> and it must not consume more than <b>256 MB of RAM</b>. The solution's source file must not exceed <b>size of 256 KB</b></li>
+                                <li>You can try to submit your solution as many times as you want. Once you submit a correct solution, you will gain the respective amount of coins and the task will be marked as solved</li>
                                 <li>There is an editor provided near each of the tasks, but you can use anything you like – just make sure to put your code into the editor before you submit</li>
-                                <li>Quantity of items in stock is limited</li>
+                                <li>Quantity of items in shopping booth is limited</li>
                                 <li>Price of items may change throughout the conference</li>
+                                <li><b>Cheating is strictly prohibited!</b> The organizers remain the right to nullify a solution if it includes hacking</li>
                             </ul>
                         </div>
                     </Container>

@@ -608,3 +608,7 @@ body{
 .task-title-solved-number {
     float: right;
 }
+
+.margin-0 {
+    margin: 0;
+}
