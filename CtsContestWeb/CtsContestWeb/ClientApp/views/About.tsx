@@ -187,7 +187,8 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                 <li>You can try to submit your solution as many times as you want. Once you submit a correct solution, you will gain the respective amount of coins and the task will be marked as solved</li>
                                 <li>There is an editor provided near each of the tasks, but you can use anything you like – just make sure to put your code into the editor before you submit</li>
                                 <li>Quantity of items in shopping booth is limited. Price of items may change throughout the conference</li>
-                                <li>Coins, earned today, cannot be spend in shopping booth tomorrow. You can either save them up for conference prize or spend them the same day you earned them</li>
+								<li>Coins, earned today, cannot be spend in shopping booth tomorrow. You can either save them up for conference prize or spend them the same day you earned them</li>
+								<li>If you take a day prize, you loose all unspent coins earned today</li>
                                 <li><b>Cheating is strictly prohibited!</b> The organizers remain the right to nullify a solution if it includes hacking</li>
                             </ul>
                         </div>
