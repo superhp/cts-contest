@@ -70,11 +70,27 @@ export class Tasks extends React.Component<any, TasksState> {
         let panels = _.chain(tasks)
             .groupBy('value')
             .map((value: any, key: any) => ({
-                title: "Tasks for " + key + " coins",
+                key: key,
+                title: this.createTaskTitle(key, value),
                 content: this.createTasksSelectionTable(value)
             }))
             .value();
         return <Accordion className='cg-accordion' panels={panels} styled fluid />;
+    }
+    private static createTaskTitle(key: number, tasks: Task[]){
+        const taskNumber = tasks.length;
+        const solvedTasks = tasks.filter(task => task.isSolved).length;
+
+        return (
+            <div className="task-title-header">
+                <div className="task-title-name">{"Tasks for " + key + " coins"}</div>
+                <div className="task-title-right">
+                    <div className="task-title-solved-number">
+                        {`${solvedTasks}/${taskNumber}`}
+                    </div>
+                </div>
+            </div>
+        )
     }
 
     private static createTasksSelectionTable(tasks: Task[]) {

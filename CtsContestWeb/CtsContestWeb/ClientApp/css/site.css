@@ -551,3 +551,14 @@ body{
                 padding-top: 4px;
             }
 }
+.task-title-name {
+    display: inline-block;
+    width: 75%;
+}
+.task-title-right {
+    display: inline-block;
+    width: 25%;
+}
+.task-title-solved-number {
+    float: right;
+}
