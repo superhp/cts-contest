@@ -37,7 +37,7 @@ const links = [
     },
     {
         routeTo: '/prizes',
-        name: 'Conference prize'
+        name: 'Prizes'
     },
     //{
     //     routeTo: '/quiz',
