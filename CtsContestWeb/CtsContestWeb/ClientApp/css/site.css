@@ -555,6 +555,7 @@ body{
 .duel-how-to-container {
     display: flex;
     justify-content: space-between;
+    margin-top: 50px;
 }
 
 .duel-how-to .duel-how-to-icon {
@@ -608,4 +609,24 @@ body{
 }
 .task-title-solved-number {
     float: right;
+}
+
+.cg-label-container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.cg-label-container .cg-label {
+    margin: 0;
+}
+
+.cg-label-container .cg-label:first-child {
+    margin-bottom: 4px;
+}
+
+.cg-username {
+    margin-right: 20px;
+    font-size: 1.1em;
+    font-weight: 600;
 }

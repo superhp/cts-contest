@@ -10,11 +10,9 @@ const DuelRules : React.SFC<IDuelRulesProps> = (props) => {
         <Container>
             {!props.duelState.isInDuel ?
                 <div>
-                    <div className='cg-about-p'>
-                        <div>Players in duel: {props.duelState.activePlayers}.</div>
-                    </div>
-                    <div className='cg-about-p'>
-                        <div>Your statistics: {props.duelState.totalWins} wins, {props.duelState.totalLooses} loses.</div>
+                    <div className='ui label'>
+                        Players in duel
+                        <span className='detail'>{props.duelState.activePlayers}</span>
                     </div>
                     <div>
                         <div className='duel-how-to-container'>
