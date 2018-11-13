@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CtsContestBoard.Db.Entities;
+using CtsContestWeb.Db.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CtsContestBoard.Db
@@ -16,6 +17,8 @@ namespace CtsContestBoard.Db
         public DbSet<Solution> Solutions { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
         public DbSet<GivenPurchase> GivenPurchases { get; set; }
+        public DbSet<Duel> Duels { get; set; }
+        public DbSet<DuelSolution> DuelSolutions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +28,14 @@ namespace CtsContestBoard.Db
 
             modelBuilder.Entity<Solution>()
                 .HasIndex(p => new { p.UserEmail, p.TaskId })
+                .IsUnique(true);
+
+            modelBuilder.Entity<Duel>()
+                .HasIndex(p => new { p.FirstPlayerEmail, p.SecondPlayerEmail, p.TaskId })
+                .IsUnique(true);
+
+            modelBuilder.Entity<DuelSolution>()
+                .HasIndex(p => new { p.UserEmail, p.DuelId })
                 .IsUnique(true);
         }
 

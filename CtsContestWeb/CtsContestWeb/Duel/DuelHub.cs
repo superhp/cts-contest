@@ -22,15 +22,17 @@ namespace CtsContestWeb.Duel
         private readonly ISolutionLogic _solutionLogic;
         private readonly IHostingEnvironment _hostingEnv;
         private readonly IDuelLogic _duelLogic;
+        private readonly IUserRepository _userRepository;
 
         public DuelHub(ITaskManager taskManager, IDuelRepository duelRepository, ISolutionLogic solutionLogic,
-            IHostingEnvironment hostingEnv, IDuelLogic duelLogic)
+            IHostingEnvironment hostingEnv, IDuelLogic duelLogic, IUserRepository userRepository)
         {
             _taskManager = taskManager;
             _duelRepository = duelRepository;
             _solutionLogic = solutionLogic;
             _hostingEnv = hostingEnv;
             _duelLogic = duelLogic;
+            _userRepository = userRepository;
         }
 
         public override async Task OnConnectedAsync()
@@ -47,7 +49,8 @@ namespace CtsContestWeb.Duel
             {
                 ConnectionId = Context.ConnectionId,
                 Name = Context.User.FindFirstValue(ClaimTypes.GivenName),
-                Email = Context.User.FindFirstValue(ClaimTypes.Email)
+                Email = Context.User.FindFirstValue(ClaimTypes.Email),
+                Picture = _userRepository.GetUser(Context.User).Picture
             };
 
             if (UserHandler.WaitingPlayers.Count > 0)

@@ -5,7 +5,7 @@ import {DuelTask} from './DuelTask';
 import {fakeDuelInfo} from '../mocks/fakeData';
 import {CompileResult} from '../components/models/Task';
 import {UserInfo} from '../components/models/UserInfo';
-import {DuelInfo, DuelTime} from '../components/models/DuelInfo';
+import { DuelInfo, DuelTime } from '../components/models/DuelInfo';
 import InitDuelButton from '../components/InitDuelButton';
 import DuelRules from '../components/DuelRules';
 
@@ -271,21 +271,50 @@ const RulesAndDuelInfo =
     ({info, duelState, taskName, taskPoints}: { info: DuelInfo, duelState: DuelState, taskName: string, taskPoints: number }) => {
         return (<Container fluid>
             <Grid columns={1} relaxed>
-                <Grid.Column mobile={16} tablet={16} computer={16} style={{textAlign: 'center'}}>
+                <Grid.Column mobile={16} tablet={16} computer={16}>
                     <Container>
                         <div className='cg-about-p'>
-                            <p>
-                                <strong>{info.players[0].name} Wins: {info.players[0].totalWins} /
-                                    Loses: {info.players[0].totalLooses}</strong>
-                                <img src='https://static.thenounproject.com/png/161955-200.png'
-                                     style={{height: '80px'}}></img>
-                                <strong>{info.players[1].name} Wins: {info.players[1].totalWins} /
-                                    Loses: {info.players[1].totalLooses}</strong>
-                            </p>
-                            <p>Time left: {duelState.time.minutes} m. {duelState.time.seconds} sec.</p>
+                            <div className="duel-header">
+                                <div className="duel-player">
+                                    <PlayerStatistics userInfo={info.players[0]}/>
+                                    <PlayerIcon userInfo={info.players[0]}/>
+                                </div>
+                               <div>
+                                    <img className="duel-center" src='https://static.thenounproject.com/png/161955-200.png'
+                                            style={{height: '80px', margin: 'auto'}}></img>
+                               </div>  
+                                <div className="duel-player second">
+                                    <PlayerStatistics userInfo={info.players[1]}/>
+                                    <PlayerIcon userInfo={info.players[1]}/>
+                                </div>
+                            </div>
+                            <p className="duel-center">Time left: {duelState.time.minutes} : {duelState.time.seconds}</p>
                         </div>
                     </Container>
                 </Grid.Column>
             </Grid>
         </Container>)
     }
+
+const PlayerIcon = ({userInfo} : {userInfo:UserInfo}) => {
+    return (
+        <div className="duel-player-identity">
+            <div className="duel-player-picture">
+            {userInfo.picture ?
+                <img src={userInfo.picture}/>
+              : ''
+            }
+            </div>
+            <div className="duel-player-name"><strong>{userInfo.name}</strong></div>
+        </div>
+    )
+}
+
+const PlayerStatistics = ({userInfo} : {userInfo:UserInfo}) => {
+    return (
+        <div className="duel-player-statistics">
+            <div className="item"><strong>{userInfo.totalWins} wins</strong></div>
+            <div className="item"><strong>{userInfo.totalLooses} loses</strong></div>
+        </div>
+    )
+}

@@ -231,7 +231,7 @@ export class Shop extends React.Component<any, any> {
     }
     private renderPrizeList(prizes: Prize[]) {
         return <div>
-            <div className='cg-row last-not-grow'>
+            <div className='cg-row'>
                 {prizes
                   .sort((a, b) => a.price - b.price)
                   .map((prize, index) =>
