@@ -78,7 +78,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                 <li>Have coins added to your virtual wallet</li>
                                 <li>Buy goodies in our shopping booth</li>
                                 <li>To access leaderboard results, visit Cognizant booth</li>
-                                <li>Challenge is active from 8:00 to 16:30</li>
+                                <li>Challenge is active from 9:00 to 16:30</li>
                             </ol>
                         </div>
                     </Container>
@@ -108,7 +108,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                             <h3>Save up for conference prize</h3>
                             <div>
                                 <p className="margin-0"><a href={window.location.origin + "/prizes"} target="_blank">GoPro Hero 5 Black</a> is awarded at the end of Friday to the leading contestant based on leaderboard results</p>
-                                <p>In case of absence, the prize will go to the next best participant in the leaderboard {window.location.origin}</p>
+                                <p>In case of absence, the prize will go to the next best participant in the leaderboard</p>
                             </div>
                         </div>
                     </Container>
@@ -178,10 +178,11 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                     </div>
                                 </li>
                                 <li>The execution time of each solution must not exceed <b>5 seconds</b> and it must not consume more than <b>256 MB of RAM</b>. The solution's source file must not exceed <b>size of 256 KB</b></li>
+                                <li>Challenge is active only during conference hours. The exact opening and closing time is shown at Cognizant stand</li>
                                 <li>You can try to submit your solution as many times as you want. Once you submit a correct solution, you will gain the respective amount of coins and the task will be marked as solved</li>
                                 <li>There is an editor provided near each of the tasks, but you can use anything you like – just make sure to put your code into the editor before you submit</li>
-                                <li>Quantity of items in shopping booth is limited</li>
-                                <li>Price of items may change throughout the conference</li>
+                                <li>Quantity of items in shopping booth is limited. Price of items may change throughout the conference</li>
+                                <li>Coins, earned today, cannot be spend in shopping booth tomorrow. You can either save them up for conference prize or spend them the same day you earned them</li>
                                 <li><b>Cheating is strictly prohibited!</b> The organizers remain the right to nullify a solution if it includes hacking</li>
                             </ul>
                         </div>
