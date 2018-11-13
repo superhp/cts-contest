@@ -82,6 +82,10 @@ export class Duel extends React.Component<any, DuelState> {
                 compileResult: null,
                 isInDuel: false
             });
+
+            this.hubConnection.stop()
+            .then(() => console.log('Connection terminated'));
+            
             console.log(`${winningPlayer.email} won. Cause: correct solution. Step: 'finishedByWinning'`)
         })
 
@@ -143,7 +147,7 @@ export class Duel extends React.Component<any, DuelState> {
         clearInterval(this.statisticsTimer);
     }
 
-    componentDidMount() {
+    componentWillMount() {
         if (this.props.userInfo.isLoggedIn) this.hasUserAnyDuelTasksLeft();
         this.statisticsTimer = setInterval(this.updateDuelStatistics, 10 * 1000); // 10 seconds
 
