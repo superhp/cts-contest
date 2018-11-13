@@ -86,5 +86,21 @@ namespace CtsContestWeb.Db.Repository
                 });
             return users; 
         }
+
+        public UserInfoDto GetUser(ClaimsPrincipal userClaims)
+        {
+            var email = userClaims.FindFirst(ClaimTypes.Email).Value;
+
+            var user = _dbContext.Users.First(u => u.Email.Equals(email));
+
+            var userInfoDto = new UserInfoDto
+            {
+                Name = user.FullName,
+                Email = user.Email,
+                Picture = user.Picture
+            };
+
+            return userInfoDto;
+        }
     }
 }
