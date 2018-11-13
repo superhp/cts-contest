@@ -17,6 +17,30 @@ const DuelRules : React.SFC<IDuelRulesProps> = (props) => {
                         <div>Your statistics: {props.duelState.totalWins} wins, {props.duelState.totalLooses} loses.</div>
                     </div>
                     <div>
+                        <div className='duel-how-to-container'>
+                            <div className='duel-how-to'>
+                                <i className='clock outline icon duel-how-to-icon'></i>
+                                <div className='duel-how-to-text-container'>
+                                    <div className='duel-how-to-title'>Wait</div>
+                                    <div className='duel-how-to-text'>to get matched</div>
+                                </div>
+                            </div>
+                            <div className='duel-how-to'>
+                                <i className='laptop icon duel-how-to-icon'></i>
+                                <div className='duel-how-to-text-container'>
+                                    <div className='duel-how-to-title'>Solve</div>
+                                    <div className='duel-how-to-text'>faster than opponent</div>
+                                </div>
+                            </div>
+                            <div className='duel-how-to'>
+                                <i className='trophy icon duel-how-to-icon'></i>
+                                <div className='duel-how-to-text-container'>
+                                    <div className='duel-how-to-title'>Win</div>
+                                    <div className='duel-how-to-text'>and earn coins</div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div className='cg-title'>
                             <h2>Rules</h2>
                         </div>
