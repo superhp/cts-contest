@@ -32,6 +32,7 @@ namespace CtsContestBoard
             services.AddTransient<IPurchaseRepository, PurchaseRepository>();
             services.AddTransient<ISolutionRepository, SolutionRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IDuelRepository, DuelRepository>();
 
             services.AddTransient<IPrizeManager, PrizeManager>();
 

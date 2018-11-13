@@ -16,6 +16,7 @@ namespace CtsContestBoard
     {
         private readonly IPrizeManager _prizeManager;
         private readonly ISolutionRepository _solutionRepository;
+        private readonly IDuelRepository _duelRepository;
         private readonly IPurchaseRepository _purchaseRepository;
         private readonly IUserRepository _userRepository;
         private readonly ApplicationDbContext _dbContext;
@@ -41,6 +42,7 @@ namespace CtsContestBoard
         private readonly List<Solution> _solutions;
         private readonly List<Purchase> _purchases;
         private List<User> _users;
+        private List<DuelDto> _duels;
 
         public enum BoardEnum
         {
@@ -55,12 +57,13 @@ namespace CtsContestBoard
 
         private readonly List<BoardEnum> _ignoredBoards = new List<BoardEnum> { BoardEnum.TodayPrizes, BoardEnum.WeekPrizes };
 
-        public BoardLoader(IPrizeManager prizeManager, ISolutionRepository solutionRepository, IPurchaseRepository purchaseRepository, IUserRepository userRepository, ApplicationDbContext dbContext)
+        public BoardLoader(IPrizeManager prizeManager, ISolutionRepository solutionRepository, IPurchaseRepository purchaseRepository, IUserRepository userRepository, IDuelRepository duelRepository, ApplicationDbContext dbContext)
         {
             _prizeManager = prizeManager;
             _solutionRepository = solutionRepository;
             _purchaseRepository = purchaseRepository;
             _userRepository = userRepository;
+            _duelRepository = duelRepository;
             _dbContext = dbContext;
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
@@ -68,6 +71,7 @@ namespace CtsContestBoard
             lock (dbContext)
             {
                 _solutions = _solutionRepository.GetAll().Where(s => s.IsCorrect).ToList();
+                _duels = _duelRepository.GetAllDuelsWithWinner().ToList();
 
                 _prizes = _prizeManager.GetAllPrizes().Result;
                 _purchases = _purchaseRepository.GetAll().ToList();
@@ -179,6 +183,7 @@ namespace CtsContestBoard
         {
             UpdateSolutions();
             UpdateUsers();
+            UpdateDuels();
 
             _leaderBoard = _users.Select(u => new ParticipantDto
             {
@@ -187,12 +192,13 @@ namespace CtsContestBoard
                 Picture = u.Picture,
                 LastSolved = _solutions.Where(s => s.UserEmail.Equals(u.Email) && s.IsCorrect)
                         .DefaultIfEmpty(new Solution()).Max(s => s.Created),
-                TotalBalance = _solutions.Where(s => s.UserEmail.Equals(u.Email) && s.IsCorrect).Sum(s => s.Score) -
+                TotalBalance = _solutions.Where(s => s.UserEmail.Equals(u.Email) && s.IsCorrect).Sum(s => s.Score) +
+                               _duels.Where(d => d.Winner.Equals(u.Email)).Sum(d => d.Prize) -
                                    _purchases.Where(s => s.UserEmail.Equals(u.Email)).Sum(s => s.Cost),
                 TodaysBalance =
                         _solutions.Where(
                                 s => s.UserEmail.Equals(u.Email) && s.Created.Date == DateTime.Today && s.IsCorrect)
-                            .Sum(s => s.Score) -
+                            .Sum(s => s.Score) + _duels.Where(d => d.Winner.Equals(u.Email) && d.StartTime.Date == DateTime.Today).Sum(d => d.Prize) -
                         _purchases.Where(s => s.UserEmail.Equals(u.Email) && s.Created.Date == DateTime.Today)
                             .Sum(s => s.Cost)
             }).OrderByDescending(l => l.TodaysBalance).ThenByDescending(l => l.TotalBalance)
@@ -212,6 +218,16 @@ namespace CtsContestBoard
 
             var newSolutions = _solutionRepository.GetAll().Where(s => s.SolutionId > lastId && s.IsCorrect).ToList();
             _solutions.AddRange(newSolutions);
+        }
+
+        private void UpdateDuels()
+        {
+            int lastId = 0;
+            if (_duels.Count > 0)
+                lastId = _duels.Max(s => s.Id);
+
+            var newDuels = _duelRepository.GetAllDuelsWithWinner().Where(s => s.Id > lastId).ToList();
+            _duels.AddRange(newDuels);
         }
 
         private void GetNewPurchases()
