@@ -36,6 +36,9 @@ namespace CtsContestBoard
         private PrizeAndApplicantDto _weeksPrize = new PrizeAndApplicantDto();
         public PrizeAndApplicantDto WeeksPrize => _weeksPrize;
 
+        private PrizeAndApplicantDto _duelsStatistics = new PrizeAndApplicantDto();
+        public PrizeAndApplicantDto DuelsStatistics => _duelsStatistics;
+
         public BoardEnum Board { get; set; }
 
         private readonly Timer _timer;
@@ -52,10 +55,11 @@ namespace CtsContestBoard
             WeekPrizes,
             Information,
             JobPosters,
-            Slogan
+            Slogan,
+            Duels
         }
 
-        private readonly List<BoardEnum> _ignoredBoards = new List<BoardEnum> { BoardEnum.TodayPrizes, BoardEnum.WeekPrizes };
+        private readonly List<BoardEnum> _ignoredBoards = new List<BoardEnum> { BoardEnum.TodayPrizes, BoardEnum.Slogan };
 
         public BoardLoader(IPrizeManager prizeManager, ISolutionRepository solutionRepository, IPurchaseRepository purchaseRepository, IUserRepository userRepository, IDuelRepository duelRepository, ApplicationDbContext dbContext)
         {
@@ -115,6 +119,12 @@ namespace CtsContestBoard
                                     Changed(nameof(WeeksPrize));
                                     break;
                                 }
+                            case BoardEnum.Duels:
+                                {
+                                    UpdateDuelsStatistics();
+                                    Changed(nameof(DuelsStatistics));
+                                    break;
+                                }
                         }
 
                         Changed(nameof(Board));
@@ -123,7 +133,7 @@ namespace CtsContestBoard
                         PushUpdates();
                     }
                 }
-                catch (Exception ex){};
+                catch (Exception ex) { };
             }, null, 0, 15000);
         }
 
@@ -149,7 +159,7 @@ namespace CtsContestBoard
             }
             else
             {
-                var dayPrizes = _purchases.Where(p => p.PrizeId == 1548 || p.PrizeId == 1550 || p.PrizeId == 1303).Select(p => p.UserEmail).ToList();
+                var dayPrizes = _purchases.Where(p => p.PrizeId == 2798 || p.PrizeId == 2801 || p.PrizeId == 2803).Select(p => p.UserEmail).ToList();
                 participants = _leaderBoard.Where(l => dayPrizes.All(dp => dp != l.Email)).OrderByDescending(p => p.TodaysBalance).ThenByDescending(p => p.LastSolved)
                     .ToList();
             }
@@ -203,6 +213,44 @@ namespace CtsContestBoard
                             .Sum(s => s.Cost)
             }).OrderByDescending(l => l.TodaysBalance).ThenByDescending(l => l.TotalBalance)
                 .ThenByDescending(l => l.LastSolved).ToList();
+        }
+
+        private void UpdateDuelsStatistics()
+        {
+            var category = "Wednesday prize";
+            var applicantsForPrize = 3;
+
+            var participants = _duels.Where(d => d.StartTime.Date == DateTime.Today).GroupBy(d => d.Winner)
+                .OrderByDescending(d => d.Count()).Select(d => new ParticipantDto
+                {
+                    Email = d.First().Winner,
+                    Name = _users.FirstOrDefault(u => u.Email.Equals(d.First().Winner))?.FullName,
+                    Picture = _users.FirstOrDefault(u => u.Email.Equals(d.First().Winner))?.Picture,
+                    TodaysBalance = d.Count()
+                }).ToList();
+            
+            var participantsNeeded = applicantsForPrize + _prizes.Count(p => p.Category.Equals(category));
+            participants = participants.Take(participantsNeeded).ToList();
+            if (participantsNeeded > participants.Count)
+                while (participantsNeeded > participants.Count)
+                    participants.Add(new ParticipantDto());
+
+            var i = 0;
+            var prize = _prizes.FirstOrDefault(p => p.Category.Equals(category));
+
+            if (prize == null)
+                _duelsStatistics = new PrizeAndApplicantDto();
+
+            _duelsStatistics = new PrizeAndApplicantDto
+            {
+                Id = prize.Id,
+                Name = prize.Name,
+                Picture = prize.Picture,
+                Price = prize.Price,
+                Quantity = prize.Quantity - _purchases.Count(np => np.PrizeId == prize.Id),
+                Category = prize.Category,
+                Applicants = participants.Skip(i++).Take(applicantsForPrize)
+            };
         }
 
         private void UpdateUsers()
@@ -267,7 +315,7 @@ namespace CtsContestBoard
 
         private BoardEnum Increment(BoardEnum value)
         {
-            if (value < BoardEnum.JobPosters) return value + 1;
+            if (value < BoardEnum.Duels) return value + 1;
             return BoardEnum.LeaderBoard;
         }
 

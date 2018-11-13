@@ -162,8 +162,19 @@ export class DuelTask extends React.Component<DuelTaskProps, any> {
     render() {
         return (
 			<div>
-				<TaskHeader title={this.props.info.task.name} value={this.props.info.task.value} />
-                <br/>
+                <Container fluid>
+                    <div style={{ paddingTop: 20 }}>
+                        <Header as='h1' textAlign='left'>
+                            <Header.Content>
+                                {this.props.info.task.name}
+                            </Header.Content>
+                        </Header>
+                    </div>
+                    <div>Value: {this.props.info.task.value} coins</div>
+                </Container>
+
+                <Divider />
+
                 <Container fluid>
                     <Grid columns={2} relaxed>
                         <TaskDescription description={this.props.info.task.description}/>

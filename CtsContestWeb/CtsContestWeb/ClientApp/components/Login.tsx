@@ -9,6 +9,8 @@ interface LoginModalState {
     loading: boolean;
     wallet: boolean;
     ConsentGiven: boolean;
+    totalWins: number;
+    totalLoses: number;
 }
 
 export class Login extends React.Component<any, LoginModalState> {
@@ -24,13 +26,17 @@ export class Login extends React.Component<any, LoginModalState> {
             loading: true,
             wallet: false,
             ConsentGiven: false,
+            totalWins: 0,
+            totalLoses: 0
         }
 
         this.handleResize = this.handleResize.bind(this);
 
         if (window.location.search.indexOf("refresh=true") !== -1) {
             window.location.replace(window.location.origin + window.location.pathname);
-        }
+        }       
+        
+        this.updateDuelStatistics();
     }
 
     handleResize = () => {
@@ -42,6 +48,19 @@ export class Login extends React.Component<any, LoginModalState> {
     toggleWallet = () => {
         this.setState({ wallet: !this.state.wallet });
     }
+
+    updateDuelStatistics = () => {
+        fetch('api/user/duel-statistics', {
+            credentials: 'include'
+        }).then(response => response.json() as Promise<any>)
+            .then(data => {
+                this.setState({
+                    totalWins: data.totalWins,
+                    totalLoses: data.totalLooses
+                });
+            });
+    }
+
     public render() {
         let contents = this.props.userInfo.isLoggedIn
             ? this.renderLoggedInView(this.props.userInfo, this.detectIE())
@@ -81,10 +100,20 @@ export class Login extends React.Component<any, LoginModalState> {
         if (isIE) {
             addon = "?refresh=true";
         }
-        
+
         return (
             <div className="right-menu">
-                <div className='item cg-responsive-hide'>Hello, {userInfo.name}!</div>
+                <div className='item cg-responsive-hide'>
+                    <div className='cg-username'>{userInfo.name}</div>
+                    <div className='cg-label-container'>
+                        <div className='ui blue label cg-label'>
+                            Duels won <span className='detail cg-label-detail'>{this.state.totalWins}</span>
+                        </div>
+                        <div className='ui blue label cg-label'>
+                            Duels lost <span className='detail cg-label-detail'>{this.state.totalLoses}</span>
+                        </div>
+                    </div>
+                </div>
                 <div style={{ position: 'relative' }}>
                     <a className={"item cg-responsive-hide cg-bold " + (this.state.wallet ? 'active' : '')} onClick={this.toggleWallet} style={{ height: '100%', width: '100%' }}>My Wallet</a>
                     <div className={'cg-balance ' + (this.state.wallet ? 'cg-show' : 'cg-hidden')}>

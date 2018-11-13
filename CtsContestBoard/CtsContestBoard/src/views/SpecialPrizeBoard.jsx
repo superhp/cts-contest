@@ -72,11 +72,7 @@ const OnePrizeBoard = ({ data, prize, props }) => (
             </Grid.Column>
             <Grid.Column width={11}>
                 <h1 className='prize-board-header'>
-                    {
-                        props.board === 'today'
-                            ? 'Days prize'
-                            : 'Conference prize'
-                    }
+                    { props.board }
                 </h1>
                 <Podium first={data[0]} second={data[1]} third={data[2]} />
             </Grid.Column>

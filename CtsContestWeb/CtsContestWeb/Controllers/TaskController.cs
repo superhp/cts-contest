@@ -4,6 +4,8 @@ using CtsContestWeb.Communication;
 using CtsContestWeb.Dto;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using CtsContestWeb.Filters;
@@ -108,6 +110,13 @@ namespace CtsContestWeb.Controllers
             else
                 userEmail = null;
             return await _codeSkeletonManager.GetCodeSkeleton(userEmail, taskId, language);
+        }
+
+        [HttpGet("[action]")]
+        public HttpResponseMessage RemoveTasksCache()
+        {
+            _taskManager.RemoveTasksCache();
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         private bool IsCognizantChallengeOver()

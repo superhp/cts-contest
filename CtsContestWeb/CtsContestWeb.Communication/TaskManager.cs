@@ -85,6 +85,11 @@ namespace CtsContestWeb.Communication
             return duelTaskIds.Except(seenTaskIds).Any();
         }
 
+        public void RemoveTasksCache()
+        {
+            _cache.Remove(TaskCacheKey);
+        }
+
         public async Task<List<TaskDto>> GetAllTasks(string userEmail = null)
         {
             var tasks = (await GetTasks()).Where(task => !task.IsForDuel).ToList();
@@ -140,7 +145,7 @@ namespace CtsContestWeb.Communication
         private void CacheTasks(List<TaskDto> tasks, string name)
         {
             MemoryCacheEntryOptions cacheExpirationOptions = new MemoryCacheEntryOptions();
-            cacheExpirationOptions.AbsoluteExpiration = DateTime.Now.AddMinutes(30);
+            cacheExpirationOptions.SlidingExpiration = TimeSpan.FromMinutes(30);
             cacheExpirationOptions.Priority = CacheItemPriority.Normal;
             _cache.Set<List<TaskDto>>(name, tasks, cacheExpirationOptions);
         }

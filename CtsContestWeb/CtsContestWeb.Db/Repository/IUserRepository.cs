@@ -9,5 +9,6 @@ namespace CtsContestWeb.Db.Repository
     {
         void InsertIfNotExists(ClaimsPrincipal user);
         IEnumerable<UserInfoDto> GetAllUsers();
+        UserInfoDto GetUser(ClaimsPrincipal user);
     }
 }

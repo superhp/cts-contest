@@ -552,12 +552,13 @@ body{
             }
 }
 
-.duel-how-to-container {
+.cg-infographic-container {
     display: flex;
     justify-content: space-between;
+    margin-top: 50px;
 }
 
-.duel-how-to .duel-how-to-icon {
+.cg-infographic .cg-infographic-icon {
     font-size: 12em;
     color: #e8e8e8;
     width: auto;
@@ -565,36 +566,88 @@ body{
     line-height: normal;
 }
 
-.duel-how-to:last-child .duel-how-to-icon {
+.cg-infographic:last-child .cg-infographic-icon {
     margin-right: 82px;
 }
 
-.duel-how-to .duel-how-to-text-container {
+.cg-infographic .cg-infographic-text-container {
     position: relative;
     left: 90px;
-    top: -73px;
+    top: -86px;
 }
 
-.duel-how-to-title {
+.cg-infographic-title {
     color: #0033A0;
     font-size: 43px;
+    line-height: 43px;
     text-transform: uppercase;
     font-weight: 600;
 }
 
-.duel-how-to-text {
+.cg-infographic-text {
     font-size: 22px;
-    margin-top: 10px;
-    padding-left: 5px;
+    padding-left: 2px;
 }
 
+.cg-infographic-text-small {
+    font-size: 16px;
+    color: #9e9e9e;
+    margin-top: 6px;
+    padding-left: 2px;
+}
+
+.duel-header {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.duel-player {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.duel-player-picture{
+    margin: auto;
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    border-radius: 25px;
+}
+.duel-player-picture i.icon {
+    font-size: 40px;
+}
+.duel-player-picture img{
+    height: 100%;
+}
+.duel-player.second {
+    flex-direction: row-reverse
+}
+
+.duel-player-statistics{
+    font-size: 1.5em;
+    padding: 0px 20px;
+}
+
+.duel-player-statistics .item{
+    padding: 5px;
+}
+
+.duel-center {
+    text-align: center;
+}
+@media (max-width: 768px) {
+    .duel-header {
+        flex-direction: column;
+    }
+}
 @media (max-width: 950px) {
-    .duel-how-to-container {
+    .cg-infographic-container {
         flex-direction: column;
         align-items: center;
     }
 
-    .duel-how-to .duel-how-to-icon {
+    .cg-infographic .cg-infographic-icon {
         margin-right: 80px;
     }
 }
@@ -608,4 +661,28 @@ body{
 }
 .task-title-solved-number {
     float: right;
+}
+
+.margin-0 {
+    margin: 0;
+}
+
+.cg-label-container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.cg-label-container .cg-label {
+    margin: 0;
+}
+
+.cg-label-container .cg-label:first-child {
+    margin-bottom: 4px;
+}
+
+.cg-username {
+    margin-right: 20px;
+    font-size: 1.1em;
+    font-weight: 600;
 }
