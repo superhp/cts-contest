@@ -100,7 +100,7 @@ export class Prizes extends React.Component<any, any> {
                         </div>
                     )}
                 </div>
-                {/*<div className='cg-row last-not-grow'>
+                <div className='cg-row last-not-grow'>
                     {dayPrizes.map((prize, index) =>
                         <div className='cg-col' key={index} style={{ paddingBottom: 20 }}>
                             <PrizeCard
@@ -109,7 +109,7 @@ export class Prizes extends React.Component<any, any> {
                             />
                         </div>
                     )}
-                </div>*/}
+                </div>
             </div>
         )
     }
