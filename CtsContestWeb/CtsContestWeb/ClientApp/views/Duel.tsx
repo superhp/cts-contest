@@ -314,7 +314,7 @@ const PlayerStatistics = ({userInfo} : {userInfo:UserInfo}) => {
     return (
         <div className="duel-player-statistics">
             <div className="item"><strong>{userInfo.totalWins} wins</strong></div>
-            <div className="item"><strong>{userInfo.totalLooses} loses</strong></div>
+            <div className="item"><strong>{userInfo.totalLooses} losses</strong></div>
         </div>
     )
 }
