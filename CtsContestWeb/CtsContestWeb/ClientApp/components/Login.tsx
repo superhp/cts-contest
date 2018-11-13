@@ -36,7 +36,7 @@ export class Login extends React.Component<any, LoginModalState> {
             window.location.replace(window.location.origin + window.location.pathname);
         }       
         
-        this.updateDuelStatistics();
+        setInterval(this.updateDuelStatistics, 10 * 1000);
     }
 
     handleResize = () => {
