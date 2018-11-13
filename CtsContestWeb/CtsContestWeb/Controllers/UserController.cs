@@ -57,13 +57,13 @@ namespace CtsContestWeb.Controllers
         [HttpGet("canbuy")]
         public bool CanBuyPrizes()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                var email = User.FindFirst(ClaimTypes.Email).Value;
-                return !UserHandler.IsPlayerInDuel(email);
-            }
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //    var email = User.FindFirst(ClaimTypes.Email).Value;
+            //    return !UserHandler.IsPlayerInDuel(email);
+            //}
 
-            return false;
+            return true;
         }
 
         [HttpGet("purchases")]
