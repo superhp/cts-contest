@@ -3,7 +3,6 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Responsive, Label, Button, Header as Header, Image, Modal, Icon, Menu, Checkbox } from 'semantic-ui-react'
 import { Link, NavLink } from 'react-router-dom';
-import {privacyPolicy} from './privacyPolicy'
 
 interface LoginModalState {
     modalHeight: number;
@@ -153,7 +152,7 @@ export class Login extends React.Component<any, LoginModalState> {
                     <Checkbox
                         checked={ConsentGiven}
                         onChange={() => { ToggleConsentCheckbox(); }}
-                        label={{children:privacyPolicy, style:{overflow: "auto", height : 200, paddingRight: 10}}}
+                        label={{children:<p>By clicking this I agree to the <NavLink to={'/privacyPolicy'} target='_blank'>terms of service</NavLink></p>}}
                     />
                 </div>
             
