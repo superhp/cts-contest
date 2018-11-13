@@ -5,16 +5,19 @@ import 'isomorphic-fetch';
 import { Accordion, Icon, Table, Container, Header, Divider, Loader } from 'semantic-ui-react';
 import * as _ from 'lodash';
 import { Task } from '../components/models/Task';
+import { UserInfo } from 'ClientApp/components/models/UserInfo';
 
 //import * as GA from 'react-ga';
 //GA.initialize('UA-109707377-1');
-
+interface TasksProps extends RouteComponentProps<any> {
+    userInfo : UserInfo;
+}
 interface TasksState {
     tasks: Task[];
     loading: boolean;
 }
 
-export class Tasks extends React.Component<any, TasksState> {
+export class Tasks extends React.Component<TasksProps, TasksState> {
     _mounted: boolean;
     constructor() {
         super();
@@ -41,7 +44,7 @@ export class Tasks extends React.Component<any, TasksState> {
     public render() {
         let contents = this.state.loading
             ? <Loader active inline='centered'>Loading</Loader>
-            : Tasks.renderTasksAccordion(this.state.tasks);
+            : this.renderTasksAccordion(this.state.tasks);
 
         return (
             <div>
@@ -66,7 +69,7 @@ export class Tasks extends React.Component<any, TasksState> {
         )
     }
 
-    private static renderTasksAccordion(tasks: Task[]) {
+    private renderTasksAccordion(tasks: Task[]) {
         let panels = _.chain(tasks)
             .groupBy('value')
             .map((value: any, key: any) => ({
@@ -77,7 +80,7 @@ export class Tasks extends React.Component<any, TasksState> {
             .value();
         return <Accordion className='cg-accordion' panels={panels} styled fluid />;
     }
-    private static createTaskTitle(key: number, tasks: Task[]){
+    private createTaskTitle(key: number, tasks: Task[]){
         const taskNumber = tasks.length;
         const solvedTasks = tasks.filter(task => task.isSolved).length;
 
@@ -86,14 +89,15 @@ export class Tasks extends React.Component<any, TasksState> {
                 <div className="task-title-name">{"Tasks for " + key + " coins"}</div>
                 <div className="task-title-right">
                     <div className="task-title-solved-number">
-                        {`${solvedTasks}/${taskNumber}`}
+                        {this.props.userInfo.isLoggedIn ? `${solvedTasks}/` : ''}
+                        {taskNumber}
                     </div>
                 </div>
             </div>
         )
     }
 
-    private static createTasksSelectionTable(tasks: Task[]) {
+    private createTasksSelectionTable(tasks: Task[]) {
         let tableRows: any = [];
         tasks.forEach(t => {
             tableRows.push(
