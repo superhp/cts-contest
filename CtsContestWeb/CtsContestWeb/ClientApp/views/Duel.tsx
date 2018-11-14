@@ -178,7 +178,7 @@ export class Duel extends React.Component<any, DuelState> {
         this.hubConnection
             .start()
             .then(() => console.log('Established connection.'))
-            .catch((err: any) => console.log('Error while establishing connection :('));
+            .catch((err: any) => console.log(err));
         console.log("Trying to start connection. Step: searching");
         this.setState({step: 'searching'});
     }

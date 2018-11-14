@@ -105,8 +105,8 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                             <h3>Save up for day prize</h3>
                             <div>
                                 <p className="margin-0">At the end of each conference day, player of the day gets the <a href={window.location.origin + "/prizes"} target="_blank">day prize</a></p>
-                                <p className="margin-0"><i>Wednesday: </i>the best duelist of the day wins Bluetooth JBL Headphones</p>
-                                <p className="margin-0"><i>Thursday: </i>the player with most earned and unspent coins throughout Thursday wins Philips Electric Toothbrush</p>
+                                <p className="margin-0"><i>Wednesday: </i>the player with most earned and unspent coins throughout Wednesday wins Bluetooth JBL Headphones</p>
+                                <p className="margin-0"><i>Thursday: </i>the player with most duel wins on Thursday wins Philips Electric Toothbrush</p>
                                 <p><i>Friday: </i>the player with most earned and unspent points throughout Friday wins Sony Bluetooth Speaker</p>
                             </div>
 
