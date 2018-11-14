@@ -647,6 +647,10 @@ body{
         align-items: center;
     }
 
+	.cg-infographic {
+		margin-left: -70px;
+	}
+
     .cg-infographic .cg-infographic-icon {
         margin-right: 80px;
     }
