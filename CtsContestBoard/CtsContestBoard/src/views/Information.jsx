@@ -23,11 +23,11 @@ export default class Information extends React.Component {
                     Conference prize winner will be awarded on Friday at {this.renderTimeValue(this.props.timer.conferenceGame.hour)}:{this.renderTimeValue(this.props.timer.conferenceGame.minute)}        
                 </p>
                 <p style={{ margin: 0, fontSize: 60, textAlign: 'center', paddingTop: 40,paddingBottom: 10, fontWeight: 'bold' }}>
-                    Items in shopping booth can be purchased and withdrawn until {this.renderTimeValue(this.props.timer.dayGame.hour)}:{this.renderTimeValue(this.props.timer.dayGame.minute)}        
+                    Items in shopping booth can be purchased and withdrawn at Cognizant stand until {this.renderTimeValue(this.props.timer.dayGame.hour)}:{this.renderTimeValue(this.props.timer.dayGame.minute)}        
                 </p>                
                  
                 <p style={{ margin: 0, fontSize: 60, textAlign: 'center' }}>
-                    Please come to Cognizant stand to take your prize
+                    The player with most duels won will be awarded at 18:00 in Cognizant stand
                 </p>
                 <p style={{margin: 0, fontSize: 60, textAlign: 'center' }}>
                     Game will be stopped today at 18:00

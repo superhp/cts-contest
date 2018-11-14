@@ -11,6 +11,7 @@ import { TaskComponent } from './views/Task';
 import { Duel } from './views/Duel';
 import { UserInfo } from './components/models/UserInfo';
 import { Leaderboard } from './views/Leaderboard';
+import PrivacyPolicy from './views/PrivacyPolicy'
 
 export class Routes extends React.Component<any, any> {
     constructor(props:any) {
@@ -65,7 +66,8 @@ export class Routes extends React.Component<any, any> {
                 <Route path='/prizes' render={(props:any) => <Prizes {...props} userInfo={this.state.userInfo} onDecrementBalance={this.decrementBalance}/>} />
                 <Route path="/tasks/:id" render={(props: any) => <TaskComponent {...props} userInfo={this.state.userInfo} onIncrementBalance={this.incrementBalance} />} />
                 <Route exact path='/quiz' component={Quiz}/>
-                <Route exact path="/leaderboard" component={Leaderboard} /> 
+                <Route exact path="/leaderboard" component={Leaderboard} />
+                <Route path='/privacyPolicy' render={() => <PrivacyPolicy/>} />
             </Layout>
         )
     }

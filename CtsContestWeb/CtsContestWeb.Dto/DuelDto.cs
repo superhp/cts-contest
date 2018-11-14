@@ -16,8 +16,20 @@ namespace CtsContestWeb.Dto
         public int Id { get; set; }
         public List<PlayerDto> Players { get; set; }
         public DateTime StartTime { get; }
-        public TaskDto Task { get; set; }
+
+        public TaskDto Task
+        {
+            get { return _task; }
+            set
+            {
+                _task = value;
+                _task.Value = CalculateDuelPrize(_task.Value);
+            }
+        }
+
         private int _prize;
+        private TaskDto _task;
+
         public int Prize {
             get {
                 return _prize;

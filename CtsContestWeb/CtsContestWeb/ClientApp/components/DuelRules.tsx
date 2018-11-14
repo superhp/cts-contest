@@ -43,7 +43,7 @@ const DuelRules : React.SFC<IDuelRulesProps> = (props) => {
                                 <p className="margin-0"><b>Opponents. </b>You can fight one opponent at a time. Your opponent is matched randomly.</p>
                                 <p className="margin-0"><b>Tasks. </b>You and your opponent get the same randomly selected task. Both of you will be solving it for the first time - once you have
                                 seen a particular task, it will not show up in your other duels.</p>
-                                <p className="margin-0"><b>Coins. </b>Duel tasks, depending on their difficulty, are worth 15, 20 or 40 coins. The first to solve the task wins. If nobody solves it in time,
+                                <p className="margin-0"><b>Coins. </b>Duel tasks, depending on their difficulty, are worth 25, 40 or 60 coins. The first to solve the task wins. If nobody solves it in time,
                                 no one is awarded.</p>
                                 <p><b>Connection. </b>You will be able to continue the duel even if you lose connection. Once reconnected, go to the Duel page and press resume.</p>
                             </div>
