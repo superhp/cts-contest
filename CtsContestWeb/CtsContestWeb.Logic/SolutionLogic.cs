@@ -58,6 +58,9 @@ namespace CtsContestWeb.Logic
 
             try
             {
+                if (compilerId > 2)
+                    return new CompileDto();
+
                 var compiler = _compilers[compilerOptions[compilerId]];
                 compileResult = await compiler.Compile(task, source, language);
             }
