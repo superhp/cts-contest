@@ -40,7 +40,11 @@ namespace CtsContestWeb
                         .AllowCredentials();
                 }));
 
-            services.AddSignalR();
+            services.AddSignalR(config =>
+            {
+                config.EnableDetailedErrors = true;
+                config.KeepAliveInterval = TimeSpan.FromMinutes(1);
+            });
 
             ApplicationContainer = TypeRegistrations.Register(services, Configuration);
 

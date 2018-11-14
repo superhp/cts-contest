@@ -53,6 +53,7 @@ export class Duel extends React.Component<any, DuelState> {
             .withUrl('/Duelhub')
             .configureLogging(signalR.LogLevel.Information)
             .build();
+        this.hubConnection.serverTimeoutInMilliseconds = 120000;
         console.log("Component mounted. Step: initial");
 
         this.hubConnection.on("waitingPlayers", (players: number) => {
