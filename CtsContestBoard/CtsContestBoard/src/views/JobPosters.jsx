@@ -22,13 +22,13 @@ export default class JobPosters extends React.Component {
     }
 
     changePoster() {
-        let newId = this.state.currentPosterId === 5 ? 0 : this.state.currentPosterId + 1;
+        let newId = this.state.currentPosterId === 10 ? 0 : this.state.currentPosterId + 1;
         if (this.refs.didMountRef) this.setState({currentPosterId: newId});
     }
 
     render() {
         return <div ref="didMountRef">
-            <img className="stretch-image" src={`../../img/ad${this.state.currentPosterId}.png`}/>
+            <img className="stretch-image" src={`../../img/${this.state.currentPosterId}.png`}/>
             </div>
     }
 }

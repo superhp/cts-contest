@@ -59,7 +59,7 @@ namespace CtsContestBoard
             Duels
         }
 
-        private readonly List<BoardEnum> _ignoredBoards = new List<BoardEnum> { BoardEnum.TodayPrizes, BoardEnum.Slogan };
+        private readonly List<BoardEnum> _ignoredBoards = new List<BoardEnum> { BoardEnum.Duels, BoardEnum.Slogan };
 
         public BoardLoader(IPrizeManager prizeManager, ISolutionRepository solutionRepository, IPurchaseRepository purchaseRepository, IUserRepository userRepository, IDuelRepository duelRepository, ApplicationDbContext dbContext)
         {

@@ -74,7 +74,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                 <div className='cg-infographic-text-container'>
                                     <div className='cg-infographic-title'>Solve</div>
                                     <div className='cg-infographic-text'>tasks and earn coins</div>
-                                    <div className='cg-infographic-text-small'>individually or in a duel</div>    
+                                    {/* <div className='cg-infographic-text-small'>individually or in a duel</div>     */}
                                 </div>
                             </div>
                             <div className='cg-infographic'>
@@ -82,7 +82,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                 <div className='cg-infographic-text-container'>
                                     <div className='cg-infographic-title'>Spend</div>
                                     <div className='cg-infographic-text'>coins you have earned</div>
-                                    <div className='cg-infographic-text-small'>buy at booth or save for big prizes</div>
+                                    <div className='cg-infographic-text-small'>buy at booth or save for big prize</div>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +90,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                     <Divider />
                     <Container style={{ paddingTop: '3em', paddingBottom: '3em' }}>
                         <div className='cg-title'>
-                            <h2>3 ways to spend your coins</h2>
+                            <h2>2 ways to spend your coins</h2>
                         </div>
                         <div className='cg-about-p cg-points'>
 
@@ -102,17 +102,17 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                 <p>Once an item has been purchased, given QR code acts as a receipt, which must be presented at Cognizant stand to redeem the prize</p>
                             </div>
                             
-                            <h3>Save up for day prize</h3>
+                            {/* <h3>Save up for day prize</h3>
                             <div>
                                 <p className="margin-0">At the end of each conference day, player of the day gets the <a href={window.location.origin + "/prizes"} target="_blank">day prize</a></p>
                                 <p className="margin-0"><i>Wednesday: </i>the player with most earned and unspent coins throughout Wednesday wins Bluetooth JBL Headphones</p>
                                 <p className="margin-0"><i>Thursday: </i>the player with most duel wins on Thursday wins Philips Electric Toothbrush</p>
                                 <p><i>Friday: </i>the player with most earned and unspent points throughout Friday wins Sony Bluetooth Speaker</p>
-                            </div>
+                            </div> */}
 
                             <h3>Save up for conference prize</h3>
                             <div>
-                                <p className="margin-0"><a href={window.location.origin + "/prizes"} target="_blank">GoPro Hero 5 Black</a> is awarded at the end of Friday to the leading contestant based on leaderboard results</p>
+                                <p className="margin-0"><a href={window.location.origin + "/prizes"} target="_blank">Xbox One X</a> is awarded at the end of conference to the leading contestant based on leaderboard results</p>
                                 <p>In case of absence, the prize will go to the next best participant in the leaderboard</p>
                             </div>
                         </div>

@@ -36,7 +36,7 @@ export class Login extends React.Component<any, LoginModalState> {
             window.location.replace(window.location.origin + window.location.pathname);
         }       
         
-        setInterval(this.updateDuelStatistics, 10 * 1000);
+        //setInterval(this.updateDuelStatistics, 10 * 1000);
     }
 
     handleResize = () => {
@@ -105,14 +105,14 @@ export class Login extends React.Component<any, LoginModalState> {
             <div className="right-menu">
                 <div className='item cg-responsive-hide'>
                     <div className='cg-username'>{userInfo.name}</div>
-                    <div className='cg-label-container'>
+                    {/* <div className='cg-label-container'>
                         <div className='ui blue label cg-label'>
                             Duels won <span className='detail cg-label-detail'>{this.state.totalWins}</span>
                         </div>
                         <div className='ui blue label cg-label'>
                             Duels lost <span className='detail cg-label-detail'>{this.state.totalLoses}</span>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div style={{ position: 'relative' }}>
                     <a className={"item cg-responsive-hide cg-bold " + (this.state.wallet ? 'active' : '')} onClick={this.toggleWallet} style={{ height: '100%', width: '100%' }}>My Wallet</a>
@@ -131,7 +131,7 @@ export class Login extends React.Component<any, LoginModalState> {
                         </table>
                     </div>
                 </div>
-                <a className='item cg-responsive-hide cg-bold' href={"https://cts-contest.azurewebsites.net/.auth/logout?post_logout_redirect_uri=" + window.location.pathname  + addon}>Logout</a>
+                <a className='item cg-responsive-hide cg-bold' href={"https://contest-cts.azurewebsites.net/.auth/logout?post_logout_redirect_uri=" + window.location.pathname  + addon}>Logout</a>
             </div>
         );
     }
@@ -160,13 +160,13 @@ export class Login extends React.Component<any, LoginModalState> {
                 <div className='cg-login-modal-button '>
                     <a
                         className={`ui facebook fluid button cg-login-button${ConsentGiven ? "" : " disabled"}`}
-                        href={"https://cts-contest.azurewebsites.net/.auth/login/facebook?post_login_redirect_url=" + window.location.pathname + addon}
+                        href={"https://contest-cts.azurewebsites.net/.auth/login/facebook?post_login_redirect_url=" + window.location.pathname + addon}
                     ><Icon name='facebook' /> Login with Facebook</a>
                 </div>
                 <div className='cg-login-modal-button '>
                     <a
                         className={`ui google plus fluid button cg-login-button${ConsentGiven ? "" : " disabled"}`}
-                        href={"https://cts-contest.azurewebsites.net/.auth/login/google?post_login_redirect_url=" + window.location.pathname + addon}
+                        href={"https://contest-cts.azurewebsites.net/.auth/login/google?post_login_redirect_url=" + window.location.pathname + addon}
                     ><Icon name='google' /> Login with Google</a>
                 </div>
                 

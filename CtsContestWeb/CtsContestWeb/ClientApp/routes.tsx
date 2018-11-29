@@ -61,7 +61,7 @@ export class Routes extends React.Component<any, any> {
             <Layout userInfo={this.state.userInfo}>
                 <Route exact path='/' component={About} />
                 <Route exact path='/tasks' render={(props) => <Tasks {...props} userInfo={this.state.userInfo}/>} /> 
-                <Route exact path='/duel' render={(props: any) => <Duel {...props} userInfo={this.state.userInfo} onIncrementBalance={this.incrementBalance} />} />
+                {/* <Route exact path='/duel' render={(props: any) => <Duel {...props} userInfo={this.state.userInfo} onIncrementBalance={this.incrementBalance} />} /> */}
                 <Route path='/shop' render={(props:any) => <Shop {...props} userInfo={this.state.userInfo} onDecrementBalance={this.decrementBalance}/>} />
                 <Route path='/prizes' render={(props:any) => <Prizes {...props} userInfo={this.state.userInfo} onDecrementBalance={this.decrementBalance}/>} />
                 <Route path="/tasks/:id" render={(props: any) => <TaskComponent {...props} userInfo={this.state.userInfo} onIncrementBalance={this.incrementBalance} />} />
