@@ -27,10 +27,10 @@ export default class Information extends React.Component {
                 </p>                
                  
                 <p style={{ margin: 0, fontSize: 60, textAlign: 'center' }}>
-                    The player with most duels won will be awarded at 18:00 in Cognizant stand
+                    The player with most duels won will be awarded at 17:00 in Cognizant stand
                 </p>
                 <p style={{margin: 0, fontSize: 60, textAlign: 'center' }}>
-                    Game will be stopped today at 18:00
+                    Game will be stopped today at 17:00
                 </p>
                 <p style={{ margin: 0, fontSize: 60, textAlign: 'center' }}>
                     Today's balance will reset and will only be valid for Conference prize.

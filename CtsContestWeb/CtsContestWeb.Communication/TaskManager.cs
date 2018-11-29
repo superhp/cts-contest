@@ -92,7 +92,7 @@ namespace CtsContestWeb.Communication
 
         public async Task<List<TaskDto>> GetAllTasks(string userEmail = null)
         {
-            var tasks = (await GetTasks()).Where(task => !task.IsForDuel).ToList();
+            var tasks = (await GetTasks())/*.Where(task => !task.IsForDuel)*/.ToList();
             var solvedTasks = _solutionRepository.GetSolvedTasksIdsByUserEmail(userEmail).ToList();
 
             foreach (var task in tasks)

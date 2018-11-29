@@ -81,10 +81,10 @@ export class Prizes extends React.Component<any, any> {
         );
     }
     private renderPrizeList(prizes: Prize[]) {
-        const dayPrizes = [];
-        dayPrizes.push(prizes.filter((prize: any) => prize.category.toLowerCase() === 'wednesday prize')[0]);
-        dayPrizes.push(prizes.filter((prize: any) => prize.category.toLowerCase() === 'thursday prize')[0]);
-        dayPrizes.push(prizes.filter((prize: any) => prize.category.toLowerCase() === 'friday prize')[0]);
+        const dayPrizes: Prize[] = [];
+        // dayPrizes.push(prizes.filter((prize: any) => prize.category.toLowerCase() === 'wednesday prize')[0]);
+        // dayPrizes.push(prizes.filter((prize: any) => prize.category.toLowerCase() === 'thursday prize')[0]);
+        // dayPrizes.push(prizes.filter((prize: any) => prize.category.toLowerCase() === 'friday prize')[0]);
         
         const conferencePrize = prizes.filter((prize: any) => prize.category.toLowerCase() === 'week prize');//[];
         //conferencePrize.push(prizes.find((prize: any) => prize.category.toLowerCase() === 'week prize'));

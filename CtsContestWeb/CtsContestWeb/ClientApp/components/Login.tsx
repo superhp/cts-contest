@@ -119,10 +119,10 @@ export class Login extends React.Component<any, LoginModalState> {
                     <div className={'cg-balance ' + (this.state.wallet ? 'cg-show' : 'cg-hidden')}>
                         <table>
                             <tbody>
-                                <tr>
+                                {/* <tr>
                                     <td>Days balance</td>
                                     <td>{this.props.userInfo.todaysBalance} coins</td>
-                                </tr>
+                                </tr> */}
                                 <tr>
                                     <td>Total balance</td>
                                     <td>{this.props.userInfo.totalBalance} coins</td>

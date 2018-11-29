@@ -11,11 +11,11 @@ import JobPosters from './views/JobPosters.jsx';
 const timer = {
     dayGame: {
         day: (new Date().getDate()),
-        hour: 18, 
+        hour: 17, 
         minute: 0
     },
     conferenceGame: {
-        day: 16,
+        day: 30,
         /*hour: 16,
         minute: 45*/
         //day: (new Date().getDate()),

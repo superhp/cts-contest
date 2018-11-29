@@ -22,7 +22,7 @@ export default class JobPosters extends React.Component {
     }
 
     changePoster() {
-        let newId = this.state.currentPosterId === 10 ? 0 : this.state.currentPosterId + 1;
+        let newId = this.state.currentPosterId === 10 ? 1 : this.state.currentPosterId + 1;
         if (this.refs.didMountRef) this.setState({currentPosterId: newId});
     }
 
