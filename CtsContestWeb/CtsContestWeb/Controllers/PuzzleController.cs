@@ -20,5 +20,11 @@ namespace CtsContestWeb.Controllers
         {
             return await _puzzleManager.GetPuzzles();
         }
+
+        [HttpGet("{id}")]
+        public async Task<PuzzleDto> Get(int id)
+        {
+            return await _puzzleManager.GetPuzzle(id);
+        }
     }
 }

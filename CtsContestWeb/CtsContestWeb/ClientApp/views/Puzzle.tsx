@@ -3,7 +3,7 @@ import 'isomorphic-fetch';
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Container, Divider, Header, Loader } from 'semantic-ui-react';
-import { PuzzleInfo } from '../components/models/Puzzle';
+import { PuzzleDto, PuzzleInfo } from '../components/models/Puzzle';
 
 interface PuzzleProps extends RouteComponentProps<any> {
     userInfo : UserInfo;
@@ -26,18 +26,18 @@ export class Puzzle extends React.Component<PuzzleProps, PuzzleState> {
     }
 
     componentDidMount() {
-        const ID = `cts-puzzle-${this.props.match.params.id}`;
-        const BASE_URL = `https://${ID}.azurewebsites.net`;
-        this.addScript(BASE_URL+"/ui");
-        fetch(BASE_URL+"/api/info")
-            .then(response => response.json() as Promise<PuzzleInfo>)
-            .then(result => {
-                this.setState({
-                    title: result.title,
-                    webComponentName: result.tagName,
-                    isLoading: false
-                });
-            });
+        fetch(`/api/Puzzle/${this.props.match.params.id}`)
+            .then(r => r.json() as Promise<PuzzleDto>)
+            .then(puzzle => {
+                this.addScript(puzzle.baseUrl + "/ui");
+                return fetch(puzzle.baseUrl + "/api/info");
+            })
+            .then(r => r.json() as Promise<PuzzleInfo>)
+            .then(result => this.setState({
+                title: result.title,
+                webComponentName: result.tagName,
+                isLoading: false
+            }));
     }
 
     private addScript(url: string) {
