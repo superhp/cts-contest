@@ -5,6 +5,7 @@ import { About } from './views/About';
 import { Leaderboard } from './views/Leaderboard';
 import PrivacyPolicy from './views/PrivacyPolicy';
 import { Prizes } from './views/Prizes';
+import { Puzzle } from './views/Puzzle';
 import { Puzzles } from "./views/Puzzles";
 import { Quiz } from './views/Quiz';
 import { Shop } from './views/Shop';
@@ -67,6 +68,7 @@ export class Routes extends React.Component<any, any> {
                 <Route exact path="/leaderboard" component={Leaderboard} />
                 <Route path='/privacyPolicy' render={() => <PrivacyPolicy/>} />
                 <Route exact path="/puzzles" render={props => <Puzzles {...props} userInfo={this.state.userInfo} />} />
+                <Route path="/puzzles/:id" render={props => <Puzzle {...props} userInfo={this.state.userInfo} />} />
             </Layout>
         )
     }
