@@ -41,6 +41,7 @@ namespace CtsContestWeb.DI
             services.AddTransient<IPrizeManager, PrizeManager>();
             services.AddTransient<ICodeSkeletonManager, CodeSkeletonManager>();
 
+            services.AddSingleton<IPuzzleManager, PuzzleManager>();
             services.AddSingleton<ITaskManager, TaskManager>();
             services.AddSingleton<IConfiguration>(configuration);
 
