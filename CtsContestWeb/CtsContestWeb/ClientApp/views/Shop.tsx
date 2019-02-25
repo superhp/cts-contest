@@ -1,12 +1,12 @@
-﻿import * as React from 'react';
-import { RouteComponentProps } from 'react-router';
-import { Grid, Container, Header, Icon, Loader, Divider } from 'semantic-ui-react';
+﻿import 'isomorphic-fetch';
+import * as React from 'react';
+import { Container, Loader } from 'semantic-ui-react';
+import { PageHeader } from '../components/PageHeader';
 //https://react.semantic-ui.com/usage stylesheet missing
 import { PrizeDescription } from '../components/PrizeDescription';
 import { PrizeModal } from '../components/PrizeModal';
 import { PurchaseModal } from '../components/PurchaseModal';
 import { ShopItemCard } from '../components/ShopItemCard';
-import 'isomorphic-fetch';
 
 // import * as GA from 'react-ga';
 // GA.initialize('UA-109707377-1');
@@ -195,18 +195,7 @@ export class Shop extends React.Component<any, any> {
 
         return (
             <div className='cg-shop-page'>
-                <div className='cg-page-header'>
-                    <div className='cg-page-header-overlay'>
-                        <Container fluid>
-                            <Header as='h1' textAlign='center' inverted>
-                                <Icon name='tags' />
-                                <Header.Content>
-                                    Shopping booth
-                                </Header.Content>
-                            </Header>
-                        </Container>
-                    </div>
-                </div>
+                <PageHeader title="Shopping booth" iconName="tags"/>
                 <Container>
                     {contents}
                     <PrizeModal

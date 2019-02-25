@@ -1,11 +1,12 @@
-﻿import * as React from 'react';
+﻿import { UserInfo } from 'ClientApp/components/models/UserInfo';
+import 'isomorphic-fetch';
+import * as _ from 'lodash';
+import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
-import 'isomorphic-fetch';
-import { Accordion, Icon, Table, Container, Header, Divider, Loader } from 'semantic-ui-react';
-import * as _ from 'lodash';
+import { Accordion, Container, Loader, Table } from 'semantic-ui-react';
 import { Task } from '../components/models/Task';
-import { UserInfo } from 'ClientApp/components/models/UserInfo';
+import { PageHeader } from '../components/PageHeader';
 
 //import * as GA from 'react-ga';
 //GA.initialize('UA-109707377-1');
@@ -48,18 +49,7 @@ export class Tasks extends React.Component<TasksProps, TasksState> {
 
         return (
             <div>
-                <div className='cg-page-header'>
-                    <div className='cg-page-header-overlay'>
-                        <Container fluid>
-                            <Header as='h1' textAlign='center' inverted>
-                                <Icon name='tasks' />
-                                <Header.Content>
-                                    Tasks
-                            </Header.Content>
-                            </Header>
-                        </Container>
-                    </div>
-                </div>
+                <PageHeader title="Tasks" iconName="tasks" />
                 <Container>
                     {contents}
                 </Container>
