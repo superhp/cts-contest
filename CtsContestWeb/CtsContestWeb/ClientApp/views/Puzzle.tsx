@@ -2,6 +2,7 @@ import { UserInfo } from 'ClientApp/components/models/UserInfo';
 import 'isomorphic-fetch';
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
+import urljoin from "url-join";
 import { Container, Divider, Header, Loader } from 'semantic-ui-react';
 import { PuzzleDto, PuzzleInfo } from '../components/models/Puzzle';
 
@@ -14,6 +15,7 @@ interface PuzzleState {
     webComponentName: string;
     isLoading: boolean;
     scripts: string[];
+    puzzleBaseUrl: string;
 }
 
 export class Puzzle extends React.Component<PuzzleProps, PuzzleState> {
@@ -22,15 +24,17 @@ export class Puzzle extends React.Component<PuzzleProps, PuzzleState> {
         title: "",
         webComponentName: "",
         isLoading: true,
-        scripts: []
+        scripts: [],
+        puzzleBaseUrl: ""
     }
 
     componentDidMount() {
         fetch(`/api/Puzzle/${this.props.match.params.id}`)
             .then(r => r.json() as Promise<PuzzleDto>)
             .then(puzzle => {
-                this.addScript(puzzle.baseUrl + "/ui");
-                return fetch(puzzle.baseUrl + "/api/info");
+                this.addScript(urljoin(puzzle.baseUrl, "/ui"));
+                this.setState({ puzzleBaseUrl: puzzle.baseUrl });
+                return fetch(urljoin(puzzle.baseUrl, "/api/info"));
             })
             .then(r => r.json() as Promise<PuzzleInfo>)
             .then(result => this.setState({
@@ -79,7 +83,7 @@ export class Puzzle extends React.Component<PuzzleProps, PuzzleState> {
             <div style={{paddingTop: 20}}>
                 <Header as="h1">{this.state.title}</Header>
                 <Divider />
-                <PuzzleComponent />
+                <PuzzleComponent api-base-url={this.state.puzzleBaseUrl} />
             </div>
         );
     }
