@@ -6,14 +6,18 @@ export const fakeDuelInfo = {
         name: 'Petras',
         totalBalance: 0,
         totalWins: 0,
-        totalLooses: 0
+        totalLooses: 0,
+        provider: "facebook",
+        accessToken: "abc"
     }, {
         isLoggedIn: true,
         email: 'a@a.com',
         name: 'Antanas',
         totalBalance: 0,
         totalWins: 0,
-        totalLooses: 0
+        totalLooses: 0,
+        provider: "google",
+        accessToken: "def"
     }],
     startTime: new Date('1995-12-17T03:24:00'),
     task: {

@@ -244,6 +244,14 @@
         "require-from-string": "^1.1.0",
         "webpack-dev-middleware": "^1.8.4",
         "webpack-node-externals": "^1.4.3"
+      },
+      "dependencies": {
+        "es6-promise": {
+          "version": "3.3.1",
+          "resolved": "https://registry.npmjs.org/es6-promise/-/es6-promise-3.3.1.tgz",
+          "integrity": "sha1-oIzd6EzNvzTQJ6FFG8kdS80ophM=",
+          "dev": true
+        }
       }
     },
     "aspnet-webpack-react": {
@@ -1553,12 +1561,6 @@
       "requires": {
         "stackframe": "^0.3.1"
       }
-    },
-    "es6-promise": {
-      "version": "3.3.1",
-      "resolved": "https://registry.npmjs.org/es6-promise/-/es6-promise-3.3.1.tgz",
-      "integrity": "sha1-oIzd6EzNvzTQJ6FFG8kdS80ophM=",
-      "dev": true
     },
     "escape-html": {
       "version": "1.0.3",

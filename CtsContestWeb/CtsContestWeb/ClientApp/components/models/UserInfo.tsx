@@ -6,4 +6,6 @@ export interface UserInfo {
     totalWins: number;
     totalLooses: number;
     picture?: string;
+    provider: string,
+    accessToken: string
 }
