@@ -15,9 +15,9 @@ export default class Header extends React.Component {
                     <img className='cg-nav-logo' src="./img/CognizantLogo.svg" alt="Cognizant logo"/>
                 </Menu.Item>
                 <Menu.Menu position='right'>
-                    <div className='cg-title'>
+                    {/*<div className='cg-title'>
                         Ej.uz/winxbox1
-                    </div>
+                    </div>*/}
                     <div className='cg-timeleft'>
                         <Timer day={this.props.timer.dayGame.day} hour={this.props.timer.dayGame.hour} minutes={this.props.timer.dayGame.minute}
                             hiddenInformationHeader={this.props.board === BoardEnum.Information ? true : null} />
