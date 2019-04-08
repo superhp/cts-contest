@@ -26,15 +26,15 @@ export default class Information extends React.Component {
                     Items in shopping booth can be purchased and withdrawn at Cognizant stand until {this.renderTimeValue(this.props.timer.dayGame.hour)}:{this.renderTimeValue(this.props.timer.dayGame.minute)}        
                 </p>                
                  
-                <p style={{ margin: 0, fontSize: 60, textAlign: 'center' }}>
+                {/*<p style={{ margin: 0, fontSize: 60, textAlign: 'center' }}>
                     The player with most duels won will be awarded at 17:00 in Cognizant stand
-                </p>
+                </p>*/}
                 <p style={{margin: 0, fontSize: 60, textAlign: 'center' }}>
-                    Game will be stopped today at 17:00
+                    Game will be stopped today at {this.renderTimeValue(this.props.timer.dayGame.hour)}:{this.renderTimeValue(this.props.timer.dayGame.minute)}
                 </p>
-                <p style={{ margin: 0, fontSize: 60, textAlign: 'center' }}>
+                {/*<p style={{ margin: 0, fontSize: 60, textAlign: 'center' }}>
                     Today's balance will reset and will only be valid for Conference prize.
-                </p>*
+                </p>*/}
             </div>
         );
     }

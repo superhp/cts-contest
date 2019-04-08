@@ -11,16 +11,16 @@ import JobPosters from './views/JobPosters.jsx';
 const timer = {
     dayGame: {
         day: (new Date().getDate()),
-        hour: 17, 
-        minute: 0
+        hour: 15, 
+        minute: 30
     },
     conferenceGame: {
-        day: 30,
+        day: new Date().getDate(),
         /*hour: 16,
         minute: 45*/
         //day: (new Date().getDate()),
-        hour: 17,
-        minute: 0
+        hour: 15,
+        minute: 30
     }
 }
 export const BoardEnum = {
