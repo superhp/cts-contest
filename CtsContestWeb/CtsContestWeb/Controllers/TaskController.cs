@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using CtsContestWeb.Db.Repository;
 using CtsContestWeb.Filters;
 using CtsContestWeb.Logic;
 using Microsoft.Extensions.Configuration;
@@ -17,15 +18,15 @@ namespace CtsContestWeb.Controllers
     [Route("api/[controller]")]
     public class TaskController : Controller
     {
-        private readonly ITaskManager _taskManager;
+        private readonly ITaskRepository _taskRepository;
         private readonly ICompiler _compiler;
         private readonly ISolutionLogic _solutionLogic;
         private readonly ICodeSkeletonManager _codeSkeletonManager;
         private readonly IConfiguration _configuration;
 
-        public TaskController(ITaskManager taskManager, ICompiler compiler, ISolutionLogic solutionLogic, ICodeSkeletonManager codeSkeletonManager, IConfiguration iconfiguration)
+        public TaskController(ITaskRepository taskRepository, ICompiler compiler, ISolutionLogic solutionLogic, ICodeSkeletonManager codeSkeletonManager, IConfiguration iconfiguration)
         {
-            _taskManager = taskManager;
+            _taskRepository = taskRepository;
             _compiler = compiler;
             _solutionLogic = solutionLogic;
             _codeSkeletonManager = codeSkeletonManager;
@@ -38,7 +39,7 @@ namespace CtsContestWeb.Controllers
             if (User.Identity.IsAuthenticated)
                 userEmail = User.FindFirst(ClaimTypes.Email).Value;
 
-            var tasks = await _taskManager.GetAllTasks(userEmail);
+            var tasks = await _taskRepository.GetAllTasks(userEmail);
             return tasks.Select(t => new TaskDisplayDto
             {
                 Id = t.Id,
@@ -55,7 +56,7 @@ namespace CtsContestWeb.Controllers
             if (User.Identity.IsAuthenticated) 
                 userEmail = User.FindFirst(ClaimTypes.Email).Value;
 
-            var task = await _taskManager.GetCachedTaskByIdAsync(id, userEmail);
+            var task = await _taskRepository.GetCachedTaskByIdAsync(id, userEmail);
 
             return new TaskDisplayDto
             {
@@ -115,7 +116,7 @@ namespace CtsContestWeb.Controllers
         [HttpGet("[action]")]
         public HttpResponseMessage RemoveTasksCache()
         {
-            _taskManager.RemoveTasksCache();
+            _taskRepository.RemoveTasksCache();
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 

@@ -15,16 +15,16 @@ namespace CtsContestWeb.Logic
 {
     public class SolutionLogic : ISolutionLogic
     {
-        private readonly ITaskManager _taskManager;
+        private readonly ITaskRepository _taskRepository;
         private readonly IConfiguration _configuration;
         private readonly IIndex<string, ICompiler> _compilers;
         private readonly IDuelRepository _duelRepository;
         private readonly ISolutionRepository _solutionRepository;
 
-        public SolutionLogic(ISolutionRepository solutionRepository, ITaskManager taskManager, IConfiguration configuration, IIndex<string, ICompiler> compilers, IDuelRepository duelRepository)
+        public SolutionLogic(ISolutionRepository solutionRepository, ITaskRepository taskRepository, IConfiguration configuration, IIndex<string, ICompiler> compilers, IDuelRepository duelRepository)
         {
             _solutionRepository = solutionRepository;
-            _taskManager = taskManager;
+            _taskRepository = taskRepository;
             _configuration = configuration;
             _compilers = compilers;
             _duelRepository = duelRepository;
@@ -41,7 +41,7 @@ namespace CtsContestWeb.Logic
                     TotalInputs = 1
                 };
 
-            var task = await _taskManager.DownloadTaskByIdAsync(taskId);
+            var task = _taskRepository.GetTaskById(taskId);
             if (task.Outputs.Count == 0)
 
             {
@@ -74,7 +74,7 @@ namespace CtsContestWeb.Logic
 
         public async Task SaveSolution(int taskId, string source, string userEmail, int language, bool isCorrect = true)
         {
-            var task = await _taskManager.DownloadTaskByIdAsync(taskId);
+            var task = _taskRepository.GetTaskById(taskId);
             var solution = _solutionRepository.GetSolution(userEmail, task.Id);
 
             if (solution != null && solution.IsCorrect)

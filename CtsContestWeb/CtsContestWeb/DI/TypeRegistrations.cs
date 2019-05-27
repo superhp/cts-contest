@@ -28,6 +28,7 @@ namespace CtsContestWeb.DI
                 )
             );
 
+            services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
             services.AddScoped<ISolutionRepository, SolutionRepository>();
             services.AddScoped<IContactInfoRepository, ContactInfoRepository>();

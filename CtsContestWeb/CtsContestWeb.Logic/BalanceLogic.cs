@@ -10,15 +10,14 @@ namespace CtsContestWeb.Logic
     {
         private readonly ISolutionRepository _solutionRepository;
         private readonly IPurchaseRepository _purchaseRepository;
-        private readonly ITaskManager _taskManager;
         private readonly IPrizeManager _prizeManager;
         private readonly IDuelRepository _duelRepository;
 
-        public BalanceLogic(ISolutionRepository solutionRepository, ITaskManager taskManager, 
+        public BalanceLogic(ISolutionRepository solutionRepository, 
             IPurchaseRepository purchaseRepository, IPrizeManager prizeManager, IDuelRepository duelRepository)
         {
             _solutionRepository = solutionRepository;
-            _taskManager = taskManager;
+
             _purchaseRepository = purchaseRepository;
             _prizeManager = prizeManager;
             _duelRepository = duelRepository;
