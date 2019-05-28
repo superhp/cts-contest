@@ -9,6 +9,7 @@ namespace CtsContestWeb.Db.Entities
         [Key]
         public int Id { get; set; }
         public string Language { get; set; }
+        public string Skeleton { get; set; }
         public string WriteLine { get; set; }
         public string ReadLine { get; set; }
         public string ReadInteger { get; set; }

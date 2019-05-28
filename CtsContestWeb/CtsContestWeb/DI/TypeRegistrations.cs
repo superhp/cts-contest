@@ -40,8 +40,9 @@ namespace CtsContestWeb.DI
             services.AddScoped<IDuelLogic, DuelLogic>();
 
             services.AddTransient<IPrizeRepository, PrizeRepository>();
-            services.AddTransient<ICodeSkeletonManager, CodeSkeletonManager>();
+            services.AddTransient<ICodeSkeletonRepository, CodeSkeletonRepository>();
 
+            services.AddTransient<ICodeSkeletonManager, CodeSkeletonManager>();
             services.AddSingleton<ITaskManager, TaskManager>();
             services.AddSingleton<IConfiguration>(configuration);
 
