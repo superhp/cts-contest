@@ -51,7 +51,10 @@ namespace CtsContestWeb.Db.Repository
             else
             {
                 task = await GetTaskById(id);
-                _cache.Set(cacheKey, task);
+                MemoryCacheEntryOptions cacheExpirationOptions = new MemoryCacheEntryOptions();
+                cacheExpirationOptions.SlidingExpiration = TimeSpan.FromMinutes(30);
+                cacheExpirationOptions.Priority = CacheItemPriority.Normal;
+                _cache.Set(cacheKey, task, cacheExpirationOptions);
             }
 
             if (userEmail != null)
