@@ -21,16 +21,17 @@ namespace CtsContestWeb.Controllers
         private readonly ITaskRepository _taskRepository;
         private readonly ICompiler _compiler;
         private readonly ISolutionLogic _solutionLogic;
-        private readonly ICodeSkeletonManager _codeSkeletonManager;
         private readonly IConfiguration _configuration;
+        private readonly ICodeSkeletonRepository _codeSkeletonRepository;
 
-        public TaskController(ITaskRepository taskRepository, ICompiler compiler, ISolutionLogic solutionLogic, ICodeSkeletonManager codeSkeletonManager, IConfiguration iconfiguration)
+        public TaskController(ITaskRepository taskRepository, ICompiler compiler, ISolutionLogic solutionLogic, IConfiguration iconfiguration,
+            ICodeSkeletonRepository codeSkeletonRepository)
         {
             _taskRepository = taskRepository;
             _compiler = compiler;
             _solutionLogic = solutionLogic;
-            _codeSkeletonManager = codeSkeletonManager;
             _configuration = iconfiguration;
+            _codeSkeletonRepository = codeSkeletonRepository;
         }
 
         public async Task<IEnumerable<TaskDisplayDto>> Get()
@@ -110,7 +111,8 @@ namespace CtsContestWeb.Controllers
                 userEmail = User.FindFirst(ClaimTypes.Email).Value;
             else
                 userEmail = null;
-            return await _codeSkeletonManager.GetCodeSkeleton(userEmail, taskId, language);
+            var languages = _compiler.GetLanguages();
+            return await _codeSkeletonRepository.GetCodeSkeleton(languages, userEmail, taskId, language);
         }
 
         [HttpGet("[action]")]
