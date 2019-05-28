@@ -82,11 +82,16 @@ export class Prizes extends React.Component<any, any> {
     }
     private renderPrizeList(prizes: Prize[]) {
         const dayPrizes: Prize[] = [];
-        // dayPrizes.push(prizes.filter((prize: any) => prize.category.toLowerCase() === 'wednesday prize')[0]);
-        dayPrizes.push(prizes.filter((prize: Prize) => prize.category.toLowerCase() === 'thursday prize')[0]);
-      //  dayPrizes.push(prizes.filter((prize: Prize) => prize.category.toLowerCase() === 'friday prize')[0]);
+        //Riga DevDays
+        const day = new Date().getDay();
+        if (day <= 4) {
+            dayPrizes.push(prizes.filter((prize: Prize) => prize.category.toLowerCase() === 'thursday prize')[0]);
+        } else {
+            dayPrizes.push(prizes.filter((prize: Prize) => prize.category.toLowerCase() === 'friday prize')[0]);
+        }
         
-   //     const conferencePrize = prizes.filter((prize: any) => prize.category.toLowerCase() === 'week prize');//[];
+        //dayPrizes.push(prizes.filter((prize: Prize) => prize.category.toLowerCase() === 'friday prize')[0]);
+        //const conferencePrize = prizes.filter((prize: any) => prize.category.toLowerCase() === 'week prize');//[];
         //conferencePrize.push(prizes.find((prize: any) => prize.category.toLowerCase() === 'week prize'));
         return (
             <div>
@@ -100,9 +105,9 @@ export class Prizes extends React.Component<any, any> {
                         </div>
                     )}
                 </div>*/}
-                <div className='cg-row last-not-grow'>
+                <div className='cg-row'>
                     {dayPrizes.map((prize, index) =>
-                        <div className='cg-col' key={index} style={{ paddingBottom: 20 }}>
+                        <div className='cg-col main-prize-prizes' key={index} style={{ paddingBottom: 20 }}>
                             <PrizeCard
                                 prize={prize}
                                 onOpenDescription={this.openDescriptionModal}
@@ -110,6 +115,7 @@ export class Prizes extends React.Component<any, any> {
                         </div>
                     )}
                 </div>
+                
             </div>
         )
     }

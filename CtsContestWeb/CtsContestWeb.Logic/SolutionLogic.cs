@@ -41,7 +41,7 @@ namespace CtsContestWeb.Logic
                     TotalInputs = 1
                 };
 
-            var task = await _taskRepository.GetTaskById(taskId);
+            var task = await _taskRepository.GetCachedTaskByIdAsync(taskId);
             if (task.Outputs.Count == 0)
 
             {
@@ -74,7 +74,7 @@ namespace CtsContestWeb.Logic
 
         public async Task SaveSolution(int taskId, string source, string userEmail, int language, bool isCorrect = true)
         {
-            var task = await _taskRepository.GetTaskById(taskId);
+            var task = await _taskRepository.GetCachedTaskByIdAsync(taskId);
             var solution = _solutionRepository.GetSolution(userEmail, task.Id);
 
             if (solution != null && solution.IsCorrect)

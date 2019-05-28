@@ -73,7 +73,8 @@ namespace CtsContestWeb.Db.Repository
             foreach (var item in prizesForPoints)
             {
                 var dtoItem = MapToDto(item);
-                dtoItem.Quantity = purchases.Count(np => np.PrizeId == item.Id);
+                var purchaseCount = purchases.Count(np => np.PrizeId == item.Id);
+                dtoItem.Quantity = dtoItem.Quantity - purchaseCount;
                 winnableDtoPrizes.Add(dtoItem);
             }
             return winnableDtoPrizes;
@@ -81,7 +82,6 @@ namespace CtsContestWeb.Db.Repository
 
         public PrizeDto GetPrizeById(int id)
         {
-
             var prize = _dbContext.Prizes.Find(id);
             if (prize == null)
             {

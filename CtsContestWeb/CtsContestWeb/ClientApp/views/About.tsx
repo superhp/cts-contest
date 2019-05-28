@@ -63,7 +63,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                     <Container style={{ paddingTop: '3em' }}>
                         <div className='cg-infographic-container'>
                             <div className='cg-infographic'>
-                                <a href="https://cts-contest.azurewebsites.net/login">
+                                <a href="https://cts-contest.azurewebsites.net/#">
                                 <i className='lock icon cg-infographic-icon'></i>
                                 <div className='cg-infographic-text-container'>
                                     <div className='cg-infographic-title'>Sign in</div>

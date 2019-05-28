@@ -360,6 +360,7 @@ export class TaskComponent extends React.Component<any, any> {
                             </div>
                             <Responsive onUpdate={this.handleResize}>
                                 <AceEditor
+                                    onLoad={editor => editor.$blockScrolling = Infinity}
                                     className='cg-editor'
                                     mode={this.state.mode}
                                     theme="monokai"

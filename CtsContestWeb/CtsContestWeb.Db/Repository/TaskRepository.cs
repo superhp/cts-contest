@@ -30,7 +30,7 @@ namespace CtsContestWeb.Db.Repository
             _dbContext = dbContext;
         }
 
-        public async Task<TaskDto> GetTaskById(int id)
+        private async Task<TaskDto> GetTaskById(int id)
         {
             var task = await _dbContext.Tasks.Include(x => x.TestCases).SingleAsync(x => x.Id == id);
 
