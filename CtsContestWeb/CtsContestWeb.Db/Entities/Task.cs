@@ -13,6 +13,7 @@ namespace CtsContestWeb.Db.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public string InputType { get; set; }
+        public string OutputType { get; set; }
         public int Value { get; set; }
         public bool Enabled { get; set; }
         public List<TaskTestCase> TestCases { get; set; }

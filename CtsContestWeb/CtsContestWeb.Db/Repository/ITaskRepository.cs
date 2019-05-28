@@ -9,7 +9,6 @@ namespace CtsContestWeb.Db.Repository
     public interface ITaskRepository
     {
         Task<List<TaskDto>> GetAllTasks(string userEmail = null);
-        TaskDto GetTaskById(int id);
         Task<TaskDto> GetCachedTaskByIdAsync(int id, string userEmail = null);
         Task<int?> GetTaskIdForDuelAsync(IEnumerable<string> usersEmail);
         Task<bool> HasPlayerAnyDuelTasksLeft(string userEmail);
