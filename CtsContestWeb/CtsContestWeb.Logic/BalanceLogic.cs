@@ -10,22 +10,22 @@ namespace CtsContestWeb.Logic
     {
         private readonly ISolutionRepository _solutionRepository;
         private readonly IPurchaseRepository _purchaseRepository;
-        private readonly IPrizeManager _prizeManager;
+        private readonly IPrizeRepository _prizeRepository;
         private readonly IDuelRepository _duelRepository;
 
         public BalanceLogic(ISolutionRepository solutionRepository, 
-            IPurchaseRepository purchaseRepository, IPrizeManager prizeManager, IDuelRepository duelRepository)
+            IPurchaseRepository purchaseRepository, IPrizeRepository prizeRepository, IDuelRepository duelRepository)
         {
             _solutionRepository = solutionRepository;
 
             _purchaseRepository = purchaseRepository;
-            _prizeManager = prizeManager;
+            _prizeRepository = prizeRepository;
             _duelRepository = duelRepository;
         }
 
-        public async Task<bool> IsBalanceEnough(string userEmail, int prizeId)
+        public bool IsBalanceEnough(string userEmail, int prizeId)
         {
-            var prize = await _prizeManager.GetPrizeById(prizeId);
+            var prize = _prizeRepository.GetPrizeById(prizeId);
             var price = prize.Price;
             var balance = GetCurrentBalance(userEmail); 
             return balance >= price;

@@ -13,25 +13,25 @@ namespace CtsContestWeb.Controllers
     [Route("api/[controller]")]
     public class PurchaseController : Controller
     {
-        private readonly IPrizeManager _prizeManager;
+        private readonly IPrizeRepository _prizeRepository;
         private readonly IPurchaseRepository _purchaseRepository;
         private readonly IPurchaseLogic _purchaseLogic;
         private readonly IBalanceLogic _balanceLogic;
 
-        public PurchaseController(IPurchaseRepository purchaseRepository, IPrizeManager prizeManager, IPurchaseLogic purchaseLogic, IBalanceLogic balanceLogic)
+        public PurchaseController(IPurchaseRepository purchaseRepository, IPrizeRepository prizeRepository, IPurchaseLogic purchaseLogic, IBalanceLogic balanceLogic)
         {
             _purchaseRepository = purchaseRepository;
-            _prizeManager = prizeManager;
+            _prizeRepository = prizeRepository;
             _purchaseLogic = purchaseLogic;
             _balanceLogic = balanceLogic;
         }
 
         [HttpGet("[action]/{id}")]
-        public async Task<PurchaseDto> GetPrizeByPurchaseGuid(Guid id)
+        public PurchaseDto GetPrizeByPurchaseGuid(Guid id)
         {
             var purchase = _purchaseRepository.GetPurchaseByPurchaseGuid(id);
 
-            var prizeDto = await _prizeManager.GetPrizeById(purchase.PrizeId);
+            var prizeDto = _prizeRepository.GetPrizeById(purchase.PrizeId);
 
             purchase.Price = prizeDto.Price;
             purchase.Name = prizeDto.Name;
@@ -55,13 +55,13 @@ namespace CtsContestWeb.Controllers
 
         [LoggedIn]
         [HttpPost("[action]")]
-        public async Task<PurchaseIdDto> Purchase([FromBody] PurchaseRequestDto req)
+        public PurchaseIdDto Purchase([FromBody] PurchaseRequestDto req)
         {
             var prizeId = req.PrizeId;
             var userEmail = User.FindFirst(ClaimTypes.Email).Value;
-            var prize = await _prizeManager.GetPrizeById(prizeId);
+            var prize = _prizeRepository.GetPrizeById(prizeId);
 
-            var canBuy = await _purchaseLogic.CheckIfUserCanBuy(userEmail, prizeId);
+            var canBuy = _purchaseLogic.CheckIfUserCanBuy(userEmail, prizeId);
             if (!canBuy)
             {
                 throw new Exception();   //Don't know what kind of specific exception should be here

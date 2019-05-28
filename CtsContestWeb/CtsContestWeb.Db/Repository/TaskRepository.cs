@@ -29,21 +29,6 @@ namespace CtsContestWeb.Db.Repository
 
         public TaskDto GetTaskById(int id)
         {
-            /*  var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
-              var pictureUrl = _iconfiguration["UmbracoPictureUrl"];
-              var client = new RestClient(umbracoApiUrl);
-
-              var request = new RestRequest("task/get/{id}", Method.GET);
-              request.AddUrlSegment("id", id.ToString());
-
-              var response = await client.ExecuteTaskAsync<TaskDto>(request);
-
-              if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                  throw new ArgumentException("No task with given ID");
-           //   var task = response.Data;
-
-              task.Description = PrependRootUrlToImageLinks(task.Description, pictureUrl);
-              */
             var task = _dbContext.Tasks.Include(x => x.TestCases).Single(x => x.Id == id);
 
             var dtoTask = new TaskDto
@@ -103,8 +88,7 @@ namespace CtsContestWeb.Db.Repository
 
         public async Task<List<TaskDto>> GetAllTasks(string userEmail = null)
         {
-            //    var tasks = (await GetTasks())/*.Where(task => !task.IsForDuel)*/.ToList();
-            var tasks = GetTasksFromDb();
+            var tasks = (await GetTasks())/*.Where(task => !task.IsForDuel)*/.ToList();
             var solvedTasks = _solutionRepository.GetSolvedTasksIdsByUserEmail(userEmail).ToList();
 
             foreach (var task in tasks)
@@ -134,18 +118,6 @@ namespace CtsContestWeb.Db.Repository
 
         private List<TaskDto> GetTasksFromDb()
         {
-            /*
-            var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
-            var pictureUrl = _iconfiguration["UmbracoPictureUrl"];
-            var client = new RestClient(umbracoApiUrl);
-
-            var request = new RestRequest("task/getAll", Method.GET);
-
-            TaskCompletionSource<List<TaskDto>> taskCompletion = new TaskCompletionSource<List<TaskDto>>();
-            client.ExecuteAsync<List<TaskDto>>(request, response => { taskCompletion.SetResult(response.Data); });
-
-            var tasks = await taskCompletion.Task;
-            */
             var tasks = _dbContext.Tasks.ToList();
             var dtoTasks = new List<TaskDto>();
 

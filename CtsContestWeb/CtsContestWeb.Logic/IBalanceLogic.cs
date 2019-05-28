@@ -4,7 +4,7 @@ namespace CtsContestWeb.Logic
 {
     public interface IBalanceLogic
     {
-        Task<bool> IsBalanceEnough(string userEmail, int prizeId);
+        bool IsBalanceEnough(string userEmail, int prizeId);
         int GetCurrentBalance(string userEmail);
         int GetTotalBalance(string userEmail);
     }

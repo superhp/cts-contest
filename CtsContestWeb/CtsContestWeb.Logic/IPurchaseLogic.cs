@@ -4,6 +4,6 @@ namespace CtsContestWeb.Logic
 {
     public interface IPurchaseLogic
     {
-        Task<bool> CheckIfUserCanBuy(string userEmail, int prizeId);
+        bool CheckIfUserCanBuy(string userEmail, int prizeId);
     }
 }
