@@ -67,7 +67,7 @@ namespace CtsContestWeb.Db.Repository
             return task;
         }
 
-        public async Task<int?> GetTaskIdForDuelAsync(IEnumerable<string> usersEmail)
+            public async Task<int?> GetTaskIdForDuelAsync(IEnumerable<string> usersEmail)
         {
             var duelTaskIds = (await GetTasks()).Where(task => task.IsForDuel).Select(t => t.Id).ToList();
             var competitions = usersEmail.SelectMany(email => _duelRepository.GetDuelsByEmail(email));
@@ -174,8 +174,8 @@ namespace CtsContestWeb.Db.Repository
 
             if (individualTask)
             {
-                inputs = testCases.Select(x => string.Join("\n", x.Input.Split('\n', '\r').Where(s => s.Length != 0).Select(s => s.Trim('\r', '\n', ' ')))).ToList();
-                outputs = testCases.Select(x => x.Output).ToList();
+                inputs = testCases.Select(x => string.Join("\n", x.Input.DecompressString().Split('\n', '\r').Where(s => s.Length != 0).Select(s => s.Trim('\r', '\n', ' ')))).ToList();
+                outputs = testCases.Select(x => x.Output.DecompressString()).ToList();
             }
 
             return new TaskDto
@@ -212,9 +212,9 @@ namespace CtsContestWeb.Db.Repository
             sb.Append("<tbody>");
             var samples = tests.Where(t => t.IsSample);
             samples.ToList().ForEach(s => sb.Append("<tr><td>")
-                                            .Append(s.Input.Replace("\n", "<br/>"))
+                                            .Append(s.Input.DecompressString().Replace("\n", "<br/>"))
                                             .Append("</td><td>")
-                                            .Append(s.Output.Replace("\n", "<br/>"))
+                                            .Append(s.Output.DecompressString().Replace("\n", "<br/>"))
                                             .Append("</td></tr>"));
             sb.Append("</tbody></table>");
             return sb.ToString();
