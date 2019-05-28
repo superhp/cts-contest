@@ -110,6 +110,11 @@ namespace CtsContestWeb.Db.Repository
             return tasks;
         }
 
+        public async Task<string> GetTaskInputType(int id)
+        {
+            return (await _dbContext.Tasks.FindAsync(id)).InputType;
+        }
+
         private async Task<List<TaskDto>> GetTasks()
         {
             if (_cache.TryGetValue(TaskCacheKey, out List<TaskDto> tasks))
