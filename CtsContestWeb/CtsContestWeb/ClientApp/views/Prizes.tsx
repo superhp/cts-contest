@@ -83,14 +83,14 @@ export class Prizes extends React.Component<any, any> {
     private renderPrizeList(prizes: Prize[]) {
         const dayPrizes: Prize[] = [];
         // dayPrizes.push(prizes.filter((prize: any) => prize.category.toLowerCase() === 'wednesday prize')[0]);
-        // dayPrizes.push(prizes.filter((prize: any) => prize.category.toLowerCase() === 'thursday prize')[0]);
-        // dayPrizes.push(prizes.filter((prize: any) => prize.category.toLowerCase() === 'friday prize')[0]);
+        dayPrizes.push(prizes.filter((prize: Prize) => prize.category.toLowerCase() === 'thursday prize')[0]);
+      //  dayPrizes.push(prizes.filter((prize: Prize) => prize.category.toLowerCase() === 'friday prize')[0]);
         
-        const conferencePrize = prizes.filter((prize: any) => prize.category.toLowerCase() === 'week prize');//[];
+   //     const conferencePrize = prizes.filter((prize: any) => prize.category.toLowerCase() === 'week prize');//[];
         //conferencePrize.push(prizes.find((prize: any) => prize.category.toLowerCase() === 'week prize'));
         return (
             <div>
-                <div className='cg-row'>
+             {/*   <div className='cg-row'>
                     {conferencePrize.map((prize, index) =>
                         <div className='cg-col main-prize-prizes' key={index} style={{ paddingBottom: 20 }}>
                             <PrizeCard
@@ -99,7 +99,7 @@ export class Prizes extends React.Component<any, any> {
                             />
                         </div>
                     )}
-                </div>
+                </div>*/}
                 <div className='cg-row last-not-grow'>
                     {dayPrizes.map((prize, index) =>
                         <div className='cg-col' key={index} style={{ paddingBottom: 20 }}>

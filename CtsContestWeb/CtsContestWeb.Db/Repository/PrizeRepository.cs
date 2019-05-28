@@ -58,9 +58,6 @@ namespace CtsContestWeb.Db.Repository
             {
                 var dtoItem = MapToDto(item);
                 dtoItem.Quantity = purchases.Count(np => np.PrizeId == item.Id);
-                //==========================
-                dtoItem.Quantity = 5;
-                //======================
                 winnableDtoPrizes.Add((dtoItem));
             }
             return winnableDtoPrizes;
@@ -77,9 +74,6 @@ namespace CtsContestWeb.Db.Repository
             {
                 var dtoItem = MapToDto(item);
                 dtoItem.Quantity = purchases.Count(np => np.PrizeId == item.Id);
-                //==========================
-                dtoItem.Quantity = 5;
-                //==========================
                 winnableDtoPrizes.Add(dtoItem);
             }
             return winnableDtoPrizes;
