@@ -65,7 +65,7 @@ namespace CtsContestWeb.Communication
                 genericCodeSkeleton.ReadLineOfIntegers = codeSkeletonEntity.ReadLineOfIntegers.Replace("\\n", "\n");
             }
 
-            var task = _taskRepository.GetTaskById(taskId);
+            var task = await _taskRepository.GetTaskById(taskId);
 
             var skeleton = GenerateCodeSkeletonForTask(task, genericCodeSkeleton);
 

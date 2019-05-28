@@ -69,7 +69,7 @@ namespace CtsContestWeb.Communication
 
             };
 
-            var task = _taskRepository.GetTaskById(taskId);
+            var task = await _taskRepository.GetTaskById(taskId);
 
             var skeleton = GenerateCodeSkeletonForTask(task, codeSkeletonDto);
 
