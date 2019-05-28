@@ -1876,8 +1876,7 @@
         "balanced-match": {
           "version": "0.4.2",
           "bundled": true,
-          "dev": true,
-          "optional": true
+          "dev": true
         },
         "bcrypt-pbkdf": {
           "version": "1.0.1",
@@ -1908,7 +1907,6 @@
           "version": "1.1.7",
           "bundled": true,
           "dev": true,
-          "optional": true,
           "requires": {
             "balanced-match": "^0.4.1",
             "concat-map": "0.0.1"
@@ -1940,7 +1938,6 @@
           "version": "1.0.5",
           "bundled": true,
           "dev": true,
-          "optional": true,
           "requires": {
             "delayed-stream": "~1.0.0"
           }
@@ -1948,8 +1945,7 @@
         "concat-map": {
           "version": "0.0.1",
           "bundled": true,
-          "dev": true,
-          "optional": true
+          "dev": true
         },
         "console-control-strings": {
           "version": "1.1.0",
@@ -2004,8 +2000,7 @@
         "delayed-stream": {
           "version": "1.0.0",
           "bundled": true,
-          "dev": true,
-          "optional": true
+          "dev": true
         },
         "delegates": {
           "version": "1.0.0",
@@ -2293,14 +2288,12 @@
         "mime-db": {
           "version": "1.27.0",
           "bundled": true,
-          "dev": true,
-          "optional": true
+          "dev": true
         },
         "mime-types": {
           "version": "2.1.15",
           "bundled": true,
           "dev": true,
-          "optional": true,
           "requires": {
             "mime-db": "~1.27.0"
           }
@@ -2316,8 +2309,7 @@
         "minimist": {
           "version": "0.0.8",
           "bundled": true,
-          "dev": true,
-          "optional": true
+          "dev": true
         },
         "mkdirp": {
           "version": "0.5.1",
@@ -2377,8 +2369,7 @@
         "number-is-nan": {
           "version": "1.0.1",
           "bundled": true,
-          "dev": true,
-          "optional": true
+          "dev": true
         },
         "oauth-sign": {
           "version": "0.8.2",
