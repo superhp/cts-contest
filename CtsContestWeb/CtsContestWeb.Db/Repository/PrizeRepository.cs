@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CtsContestWeb.Db.Entities;
+﻿using CtsContestWeb.Db.Entities;
 using CtsContestWeb.Dto;
 using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Configuration;
-using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CtsContestWeb.Db.Repository
 {
@@ -26,10 +22,10 @@ namespace CtsContestWeb.Db.Repository
         public List<PrizeDto> GetAllWinnablePrizes()
         {
             List<PrizeDto> winnablePrizes;
-     //       if (!_cache.TryGetValue<List<PrizeDto>>("winnablePrizes", out winnablePrizes))
-     {
-         winnablePrizes = GetAllWinnablePrizesFromDb(); //CacheWinnablePrizes();
-     }
+            if (!_cache.TryGetValue<List<PrizeDto>>("winnablePrizes", out winnablePrizes))
+            {
+                winnablePrizes = CacheWinnablePrizes();
+            }
 
             return winnablePrizes;
         }
@@ -98,7 +94,7 @@ namespace CtsContestWeb.Db.Repository
 
         private PrizeDto MapToDto(Prize prize)
         {
-            return  new PrizeDto
+            return new PrizeDto
             {
                 Name = prize.Name,
                 Id = prize.Id,
