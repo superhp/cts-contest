@@ -27,7 +27,7 @@ export default class LeaderBoard extends React.Component {
 const LeaderboardHeader = () => {
     return (
         <div className="leadheader">
-            <h2>Leaderboard</h2>
+            <h2>Conference leaderboard</h2>
         </div>
     )
 }

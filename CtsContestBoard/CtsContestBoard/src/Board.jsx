@@ -37,7 +37,7 @@ class Board extends React.Component {
     constructor(props) {
         super(props);
         dotnetify.react.connect("BoardLoader", this);
-        this.state = { Board: 1, PrizesForPoints: [], LeaderBoard: [], WeeksPrize: {}/*,TodaysPrize: {}*/ }
+        this.state = { Board: 1, PrizesForPoints: [], LeaderBoard: [], WeeksPrize: {}, TodaysPrize: {} }
     }
     renderSlide() {
         //switch (BoardEnum.Information) {
@@ -69,27 +69,27 @@ class Board extends React.Component {
                 for(let i = 0; i < 3; i++)
                     leaders.push({ username: undefined, points: '', picture: undefined });
                 return <SpecialPrizeBoard data={leaders} prize={this.state.TodaysPrize} board="Todays' prize"/>;
-            case BoardEnum.WeekPrizes:
+         /*   case BoardEnum.WeekPrizes:
                 var leaders = [];
                 if(this.state.WeeksPrize.Applicants !== null && this.state.WeeksPrize.Applicants !== undefined)
                     leaders = this.state.WeeksPrize.Applicants.map(user => ({ username: user.Name, points: user.TotalBalance, picture: user.Picture }));
                 for(let i = 0; i < 3; i++)
                      leaders.push({ username: undefined, points: '', picture: undefined });
 
-                return <SpecialPrizeBoard data={leaders} prize={this.state.WeeksPrize} board='Conference prize'/>;
+                return <SpecialPrizeBoard data={leaders} prize={this.state.WeeksPrize} board='Conference prize'/>;*/
             case BoardEnum.Information:
                 return <Information timer={timer} />;
             case BoardEnum.JobPosters:
                 return <JobPosters/>;
-            case BoardEnum.Slogan:
-                return <Slogan />;
-            case BoardEnum.Duels:
-                var leaders = [];
-                if (this.state.DuelsStatistics.Applicants !== null && this.state.DuelsStatistics.Applicants !== undefined)
-                    leaders = this.state.DuelsStatistics.Applicants.map(user => ({ username: user.Name, points: user.TodaysBalance, picture: user.Picture }));
-                for(let i = 0; i < 3; i++)
-                    leaders.push({ username: undefined, points: '', picture: undefined });
-                return <SpecialPrizeBoard data={leaders} prize={this.state.DuelsStatistics} board='Duels won'/>;
+            /* case BoardEnum.Slogan:
+                 return <Slogan />;
+             case BoardEnum.Duels:
+                 var leaders = [];
+                 if (this.state.DuelsStatistics.Applicants !== null && this.state.DuelsStatistics.Applicants !== undefined)
+                     leaders = this.state.DuelsStatistics.Applicants.map(user => ({ username: user.Name, points: user.TodaysBalance, picture: user.Picture }));
+                 for(let i = 0; i < 3; i++)
+                     leaders.push({ username: undefined, points: '', picture: undefined });
+                 return <SpecialPrizeBoard data={leaders} prize={this.state.DuelsStatistics} board='Duels won'/>;*/
         }
 
     }

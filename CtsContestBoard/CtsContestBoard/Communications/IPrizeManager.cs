@@ -6,7 +6,7 @@ namespace CtsContestBoard.Communications
 {
     public interface IPrizeManager
     {
-        Task<List<PrizeDto>> GetAllPrizes();
-        Task<PrizeDto> GetPrizeById(int id);
+        List<PrizeDto> GetAllPrizes();
+        PrizeDto GetPrizeById(int id);
     }
 }
