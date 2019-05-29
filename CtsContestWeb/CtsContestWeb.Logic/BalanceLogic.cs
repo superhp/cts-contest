@@ -33,12 +33,12 @@ namespace CtsContestWeb.Logic
 
         public int GetTotalBalance(string userEmail)
         {
-            return GetTotalEarnedMoney(userEmail) + GetDuelBalance(userEmail) - GetTotalSpentMoney(userEmail);
+            return GetTotalEarnedMoney(userEmail) - GetTotalSpentMoney(userEmail);
         }
                 
         public int GetCurrentBalance(string userEmail)
         {
-            return GetTodaysEarnedMoney(userEmail) + GetDuelBalance(userEmail, true) - GetTodaysSpentMoney(userEmail);
+            return GetTodaysEarnedMoney(userEmail) - GetTodaysSpentMoney(userEmail);
         }
 
         private int GetDuelBalance(string userEmail, bool includeOnlyTodaysBalance = false)

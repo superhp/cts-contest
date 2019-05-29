@@ -63,33 +63,27 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                     <Container style={{ paddingTop: '3em' }}>
                         <div className='cg-infographic-container'>
                             <div className='cg-infographic'>
-                                <a href="https://cts-contest.azurewebsites.net/#">
                                 <i className='lock icon cg-infographic-icon'></i>
                                 <div className='cg-infographic-text-container'>
                                     <div className='cg-infographic-title'>Sign in</div>
                                     <div className='cg-infographic-text'>via Facebook or Google</div>
-                                    </div>
-                                    </a>
+                                </div>
                             </div>
                             <div className='cg-infographic'>
-                                <a href="https://cts-contest.azurewebsites.net/tasks">
                                 <i className='laptop icon cg-infographic-icon'></i>
                                 <div className='cg-infographic-text-container'>
                                     <div className='cg-infographic-title'>Solve</div>
                                     <div className='cg-infographic-text'>tasks and earn coins</div>
                                     {/* <div className='cg-infographic-text-small'>individually or in a duel</div>     */}
-                                    </div>
-                                    </a>
+                                </div>
                             </div>
                             <div className='cg-infographic'>
-                                <a href="https://cts-contest.azurewebsites.net/shop">
                                 <i className='shopping cart icon cg-infographic-icon'></i>
                                 <div className='cg-infographic-text-container'>
                                     <div className='cg-infographic-title'>Spend</div>
                                     <div className='cg-infographic-text'>coins you have earned</div>
                                     <div className='cg-infographic-text-small'>buy at booth or save for big prize</div>
-                                    </div>
-                                    </a>
+                                </div>
                             </div>
                         </div>
                     </Container>
@@ -104,7 +98,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                             <div>
                                 <p className="margin-0">Coins can be spent in <a href={window.location.origin + "/shop"} target="_blank">virtual shopping booth</a> for different items. Contestants can purchase the same item only once</p>
                                 <p className="margin-0">Spent coins are not added to your day or total balance</p>
-                                <p className="margin-0">Coins can be spent in shopping booth only on the same day they are earned</p>
+                                <p className="margin-0">Coins can be spent in shopping booth only on <i>the same day</i> they are earned</p>
                                 <p>Once an item has been purchased, given QR code acts as a receipt, which must be presented at Cognizant stand to redeem the prize</p>
                             </div>
                             
@@ -116,10 +110,10 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                 <p><i>Friday: </i>the player with most earned and unspent points throughout Friday wins Sony Bluetooth Speaker</p>
                             </div> */}
 
-                            <h3>Save up for conference prize</h3>
+                            <h3>Save up for day prize</h3>
                             <div>
-                                <p className="margin-0"><a href={window.location.origin + "/prizes"} target="_blank">Xbox One X</a> is awarded at the end of conference to the leading contestant based on leaderboard results</p>
-                                <p>In case of absence, the prize will go to the next best participant in the leaderboard</p>
+                                <p className="margin-0"><a href={window.location.origin + "/prizes"} target="_blank">Bobby Anti-Theft Backpack</a> is awarded at the end of each conference day to the day's leading contestant</p>
+                                <p>In case of absence, the prize will go to the next best participant</p>
                             </div>
                         </div>
                     </Container>
@@ -159,20 +153,14 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                         <div className='col-xs-3'>
                                             <ul>
                                                 <li>C</li>
-                                                <li>Clojure</li>
-                                                <li>COBOL</li>
                                                 <li>C++</li>
                                                 <li>C#</li>
-                                                <li>D</li>
                                         </ul>
                                         </div>
                                         <div className='col-xs-3'>
                                              <ul>
-                                                <li>Erland</li>
-                                                <li>GO</li>
                                                 <li>Haskell</li>
                                                 <li>Java</li>
-                                                <li>Perl</li>
                                                 <li>PHP</li>
                                             </ul>
                                         </div>
@@ -180,10 +168,8 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                              <ul>
                                                 <li>Python 2</li>
                                                 <li>Python 3</li>
-                                                <li>R</li>
                                                 <li>Ruby</li>
                                                 <li>Scala</li>
-                                                <li>Swift</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -193,7 +179,7 @@ export class About extends React.Component<RouteComponentProps<{}>, {}> {
                                 <li>You can try to submit your solution as many times as you want. Once you submit a correct solution, you will gain the respective amount of coins and the task will be marked as solved</li>
                                 <li>There is an editor provided near each of the tasks, but you can use anything you like – just make sure to put your code into the editor before you submit</li>
                                 <li>Quantity of items in shopping booth is limited. Price of items may change throughout the conference</li>
-								<li>Coins, earned today, cannot be spend in shopping booth tomorrow. You can either save them up for conference prize or spend them the same day you earned them</li>
+								<li>Coins, earned today, cannot be spend in shopping booth tomorrow</li>
 								<li>If you take a day prize, you loose all unspent coins earned today</li>
                                 <li><b>Cheating is strictly prohibited!</b> The organizers remain the right to nullify a solution if it includes hacking</li>
                             </ul>

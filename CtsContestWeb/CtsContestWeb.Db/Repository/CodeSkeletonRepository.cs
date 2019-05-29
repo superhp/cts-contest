@@ -65,9 +65,9 @@ namespace CtsContestWeb.Communication
                 genericCodeSkeleton.ReadLineOfIntegers = codeSkeletonEntity.ReadLineOfIntegers.Replace("\\n", "\n");
             }
 
-            var task = await _taskRepository.GetCachedTaskByIdAsync(taskId);
+            var task = await _taskRepository.GetTaskInputType(taskId);
 
-            var skeleton = GenerateCodeSkeletonForTask(task, genericCodeSkeleton);
+            var skeleton = GenerateReadSkeleton(task, genericCodeSkeleton);
 
             return new CodeSkeletonDto
             {
@@ -76,38 +76,31 @@ namespace CtsContestWeb.Communication
             };
         }
 
-        public string GenerateCodeSkeletonForTask(TaskDto task, GenericCodeSkeletonDto genericSkeleton)
-        {
-            var skeleton = GenerateReadSkeleton(task, genericSkeleton);
-
-            return skeleton;
-        }
-
-        private string GenerateReadSkeleton(TaskDto task, GenericCodeSkeletonDto genericSkeleton)
+        private string GenerateReadSkeleton(string taskInputType, GenericCodeSkeletonDto genericSkeleton)
         {
             string skeleton;
 
-            if (task.InputType.Equals("Standart"))
+            if (taskInputType.Equals("Standart"))
             {
                 skeleton = AddReadLine(genericSkeleton);
             }
-            else if (task.InputType.Equals("String"))
+            else if (taskInputType.Equals("String"))
             {
                 skeleton = AddReadLine(genericSkeleton);
             }
-            else if (task.InputType.Equals("Line of integers"))
+            else if (taskInputType.Equals("Line of integers"))
             {
                 skeleton = AddReadLineOfIntegers(genericSkeleton);
             }
-            else if (task.InputType.Equals("Integer"))
+            else if (taskInputType.Equals("Integer"))
             {
                 skeleton = AddReadInteger(genericSkeleton);
             }
-            else if (task.InputType.Equals("Two lines (first integer, second list of integers)"))
+            else if (taskInputType.Equals("Two lines (first integer, second list of integers)"))
             {
                 skeleton = AddTwoLinesRead(genericSkeleton);
             }
-            else if (task.InputType.Equals("First line says how many lines of integers"))
+            else if (taskInputType.Equals("First line says how many lines of integers"))
             {
                 skeleton = AddMultiReadLines(genericSkeleton);
             }
