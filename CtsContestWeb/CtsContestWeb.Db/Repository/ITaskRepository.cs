@@ -10,6 +10,7 @@ namespace CtsContestWeb.Db.Repository
     {
         Task<string> GetTaskInputType(int id);
         Task<List<TaskDto>> GetAllTasks(string userEmail = null);
+        Task<TaskDto> GetTaskByIdAsync(int id);
         Task<TaskDto> GetCachedTaskByIdAsync(int id, string userEmail = null);
         Task<int?> GetTaskIdForDuelAsync(IEnumerable<string> usersEmail);
         Task<bool> HasPlayerAnyDuelTasksLeft(string userEmail);

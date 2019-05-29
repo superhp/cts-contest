@@ -41,7 +41,7 @@ namespace CtsContestWeb.Logic
                     TotalInputs = 1
                 };
 
-            var task = await _taskRepository.GetCachedTaskByIdAsync(taskId);
+            var task = await _taskRepository.GetTaskByIdAsync(taskId);
             if (task.Outputs.Count == 0)
 
             {

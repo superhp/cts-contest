@@ -30,7 +30,7 @@ namespace CtsContestWeb.Db.Repository
             _dbContext = dbContext;
         }
 
-        private async Task<TaskDto> GetTaskById(int id)
+        public async Task<TaskDto> GetTaskByIdAsync(int id)
         {
             var task = await _dbContext.Tasks.Include(x => x.TestCases).SingleAsync(x => x.Id == id);
 
@@ -50,7 +50,7 @@ namespace CtsContestWeb.Db.Repository
             }
             else
             {
-                task = await GetTaskById(id);
+                task = await GetTaskToCache(id);
                 MemoryCacheEntryOptions cacheExpirationOptions = new MemoryCacheEntryOptions();
                 cacheExpirationOptions.SlidingExpiration = TimeSpan.FromMinutes(30);
                 cacheExpirationOptions.Priority = CacheItemPriority.Normal;
@@ -67,7 +67,7 @@ namespace CtsContestWeb.Db.Repository
             return task;
         }
 
-            public async Task<int?> GetTaskIdForDuelAsync(IEnumerable<string> usersEmail)
+        public async Task<int?> GetTaskIdForDuelAsync(IEnumerable<string> usersEmail)
         {
             var duelTaskIds = (await GetTasks()).Where(task => task.IsForDuel).Select(t => t.Id).ToList();
             var competitions = usersEmail.SelectMany(email => _duelRepository.GetDuelsByEmail(email));
@@ -223,6 +223,34 @@ namespace CtsContestWeb.Db.Repository
                                             .Append("</td></tr>"));
             sb.Append("</tbody></table>");
             return sb.ToString();
+        }
+
+        private async System.Threading.Tasks.Task<TaskDto> GetTaskToCache(int taskId)
+        {
+            var sampleTestCases = _dbContext.TaskTestCases
+                .Include(x => x.Task)
+                .Where(x => x.TaskId == taskId)
+                .Where(x => x.IsSample);
+
+            var queriedTask = sampleTestCases.FirstOrDefault().Task;
+            var taskWithSampleTestCases = new Task
+            {
+                Created = queriedTask.Created,
+                Description = queriedTask.Description,
+                Id = queriedTask.Id,
+                InputType = queriedTask.InputType,
+                OutputType = queriedTask.OutputType,
+                Value = queriedTask.Value,
+                Name = queriedTask.Name,
+                TestCases = sampleTestCases.ToList()
+            };
+
+            var taskDto = GetNewTaskDto(taskWithSampleTestCases);
+            UpdateTaskValue(taskDto);
+
+            var taskCompletion = new TaskCompletionSource<TaskDto>();
+            taskCompletion.SetResult(taskDto);
+            return await taskCompletion.Task;
         }
     }
 }
