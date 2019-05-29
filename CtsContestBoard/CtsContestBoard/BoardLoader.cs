@@ -1,14 +1,15 @@
-﻿using CtsContestBoard.Dto;
-using DotNetify;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using CtsContestBoard.Communications;
+﻿using CtsContestBoard.Communications;
 using CtsContestBoard.Db;
 using CtsContestBoard.Db.Entities;
 using CtsContestBoard.Db.Repository;
+using CtsContestBoard.Dto;
+using DotNetify;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
 
 namespace CtsContestBoard
 {
@@ -59,7 +60,7 @@ namespace CtsContestBoard
             Duels
         }
 
-        private readonly List<BoardEnum> _ignoredBoards = new List<BoardEnum> { BoardEnum.Duels, BoardEnum.Slogan, BoardEnum.TodayPrizes };
+        private readonly List<BoardEnum> _ignoredBoards = new List<BoardEnum> { BoardEnum.Duels, BoardEnum.WeekPrizes, BoardEnum.Information, BoardEnum.Slogan };
 
         public BoardLoader(IPrizeManager prizeManager, ISolutionRepository solutionRepository, IPurchaseRepository purchaseRepository, IUserRepository userRepository, IDuelRepository duelRepository, ApplicationDbContext dbContext)
         {
@@ -75,13 +76,14 @@ namespace CtsContestBoard
             lock (dbContext)
             {
                 _solutions = _solutionRepository.GetAll().Where(s => s.IsCorrect).ToList();
-                _duels = _duelRepository.GetAllDuelsWithWinner().ToList();
+                //       _duels = _duelRepository.GetAllDuelsWithWinner().ToList();
 
-                _prizes = _prizeManager.GetAllPrizes().Result;
+                _prizes = _prizeManager.GetAllPrizes();
                 _purchases = _purchaseRepository.GetAll().ToList();
                 _users = _userRepository.GetAll().ToList();
 
-                UpdateLeaderBoard();
+                    UpdateLeaderBoard();
+
             }
 
             _timer = new Timer(state =>
@@ -193,26 +195,31 @@ namespace CtsContestBoard
         {
             UpdateSolutions();
             UpdateUsers();
-            UpdateDuels();
+            //   UpdateDuels();
 
-            _leaderBoard = _users.Select(u => new ParticipantDto
-            {
-                Name = u.FullName,
-                Email = u.Email,
-                Picture = u.Picture,
-                LastSolved = _solutions.Where(s => s.UserEmail.Equals(u.Email) && s.IsCorrect)
-                        .DefaultIfEmpty(new Solution()).Max(s => s.Created),
-                TotalBalance = _solutions.Where(s => s.UserEmail.Equals(u.Email) && s.IsCorrect).Sum(s => s.Score) +
-                               _duels.Where(d => d.Winner.Equals(u.Email)).Sum(d => d.Prize) -
-                                   _purchases.Where(s => s.UserEmail.Equals(u.Email)).Sum(s => s.Cost),
-                TodaysBalance =
-                        _solutions.Where(
-                                s => s.UserEmail.Equals(u.Email) && s.Created.Date == DateTime.Today && s.IsCorrect)
-                            .Sum(s => s.Score) + _duels.Where(d => d.Winner.Equals(u.Email) && d.StartTime.Date == DateTime.Today).Sum(d => d.Prize) -
-                        _purchases.Where(s => s.UserEmail.Equals(u.Email) && s.Created.Date == DateTime.Today)
-                            .Sum(s => s.Cost)
-            }).OrderByDescending(l => l.TodaysBalance).ThenByDescending(l => l.TotalBalance)
-                .ThenByDescending(l => l.LastSolved).ToList();
+
+                _leaderBoard = _users.Select(u => new ParticipantDto
+                {
+                    Name = u.FullName,
+                    Email = u.Email,
+                    Picture = u.Picture,
+                    LastSolved = _solutions.Where(s => s.UserEmail.Equals(u.Email) && s.IsCorrect)
+                           .DefaultIfEmpty(new Solution()).Max(s => s.Created),
+                    TotalBalance = _solutions.Where(s => s.UserEmail.Equals(u.Email) && s.IsCorrect)
+                                          .Sum(s => s.Score) /*+
+                                      _duels.Where(d => d.Winner.Equals(u.Email)).Sum(d => d.Prize)*/ -
+                                      _purchases.Where(s => s.UserEmail.Equals(u.Email)).Sum(s => s.Cost),
+                    TodaysBalance =
+                           _solutions.Where(
+                                   s => s.UserEmail.Equals(u.Email) && s.Created.Date == DateTime.Today && s.IsCorrect)
+                               .Sum(s => s.Score)/* +
+                           _duels.Where(d => d.Winner.Equals(u.Email) && d.StartTime.Date == DateTime.Today)
+                               .Sum(d => d.Prize)*/ -
+                           _purchases.Where(s => s.UserEmail.Equals(u.Email) && s.Created.Date == DateTime.Today)
+                               .Sum(s => s.Cost)
+                }).OrderByDescending(l => l.TodaysBalance).ThenByDescending(l => l.TotalBalance)
+                   .ThenByDescending(l => l.LastSolved).ToList();
+
         }
 
         private void UpdateDuelsStatistics()
@@ -228,7 +235,7 @@ namespace CtsContestBoard
                     Picture = _users.FirstOrDefault(u => u.Email.Equals(d.First().Winner))?.Picture,
                     TodaysBalance = d.Count()
                 }).ToList();
-            
+
             var participantsNeeded = applicantsForPrize + _prizes.Count(p => p.Category.Equals(category));
             participants = participants.Take(participantsNeeded).ToList();
             if (participantsNeeded > participants.Count)
@@ -315,7 +322,12 @@ namespace CtsContestBoard
 
         private BoardEnum Increment(BoardEnum value)
         {
-            if (value < BoardEnum.Duels) return value + 1;
+
+            if (value < BoardEnum.Duels)
+            {
+                return value += 1;
+            }
+
             return BoardEnum.LeaderBoard;
         }
 

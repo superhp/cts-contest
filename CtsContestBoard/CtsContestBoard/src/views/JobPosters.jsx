@@ -1,6 +1,6 @@
 import React from 'react';
 
-const JOB_POSTER_COUNT = 5;
+const JOB_POSTER_COUNT = 2;
 
 export default class JobPosters extends React.Component {
 
@@ -15,7 +15,7 @@ export default class JobPosters extends React.Component {
     }
 
     componentDidMount(){
-        let posterChanger = setInterval(this.changePoster, 1000);
+        let posterChanger = setInterval(this.changePoster, 3500);
         if (this.refs.didMountRef) this.setState({posterChanger: posterChanger});
     }
 

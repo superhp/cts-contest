@@ -23,9 +23,13 @@
     
 }
 
+.podium-explanation {
+    padding-top: 10px;
+    margin-left: auto;
+}
+
 .firstPlace {
     height: 100%;
-   
     z-index: 9999;
 }
 

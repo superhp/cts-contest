@@ -19,6 +19,7 @@ namespace CtsContestBoard.Db
         public DbSet<GivenPurchase> GivenPurchases { get; set; }
         public DbSet<Duel> Duels { get; set; }
         public DbSet<DuelSolution> DuelSolutions { get; set; }
+        public DbSet<Prize> Prizes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

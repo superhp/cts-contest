@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using CtsContestBoard.Db;
+using CtsContestBoard.Db.Entities;
 using CtsContestBoard.Dto;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using RestSharp;
 
@@ -9,57 +13,51 @@ namespace CtsContestBoard.Communications
 {
     public class PrizeManager : IPrizeManager
     {
-        private readonly IConfiguration _configuration;
+        private readonly ApplicationDbContext _dbContext;
 
-        public PrizeManager(IConfiguration configuration)
+        public PrizeManager(ApplicationDbContext dbContext)
         {
-            _configuration = configuration;
+            _dbContext = dbContext;
         }
 
-        public async Task<List<PrizeDto>> GetAllPrizes()
+        public List<PrizeDto> GetAllPrizes()
         {
-            var umbracoApiUrl = _configuration["UmbracoApiUrl"];
-            var pictureUrl = _configuration["UmbracoPictureUrl"];
-            var client = new RestClient(umbracoApiUrl);
+            var prizes = _dbContext.Prizes.ToList();
 
-            var request = new RestRequest("prize/getAll", Method.GET);
+            var prizesDto = new List<PrizeDto>();
 
-            TaskCompletionSource<List<PrizeDto>> taskCompletion = new TaskCompletionSource<List<PrizeDto>>();
-            client.ExecuteAsync<List<PrizeDto>>(request, response =>
-            {
-                taskCompletion.SetResult(response.Data);
-            });
-
-            var prizes = await taskCompletion.Task;
             foreach (var item in prizes)
             {
-                item.Picture = pictureUrl + item.Picture;
+                var dtoItem = MapToDto(item);
+                prizesDto.Add((dtoItem));
             }
 
-            return prizes;
+            return prizesDto;
         }
 
-        public async Task<PrizeDto> GetPrizeById(int id)
+        public PrizeDto GetPrizeById(int id)
         {
-            var umbracoApiUrl = _configuration["UmbracoApiUrl"];
-            var pictureUrl = _configuration["UmbracoPictureUrl"];
-            var client = new RestClient(umbracoApiUrl);
 
-            var request = new RestRequest("prize/get/{id}", Method.GET);
-            request.AddUrlSegment("id", id.ToString());
-
-            TaskCompletionSource<PrizeDto> taskCompletion = new TaskCompletionSource<PrizeDto>();
-            client.ExecuteAsync<PrizeDto>(request, response =>
+            var prize = _dbContext.Prizes.Find(id);
+            if (prize == null)
             {
-                if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                    throw new ArgumentException("No prize with given ID");
-                taskCompletion.SetResult(response.Data);
-            });
+                throw new ArgumentException("No prize with given ID");
+            }
 
-            var prize = await taskCompletion.Task;
-            prize.Picture = pictureUrl + prize.Picture;
-
-            return prize;
+            var dtoPrize = MapToDto(prize);
+            return dtoPrize;
+        }
+        private PrizeDto MapToDto(Prize prize)
+        {
+            return new PrizeDto
+            {
+                Name = prize.Name,
+                Id = prize.Id,
+                Category = prize.Category,
+                Picture = prize.Picture,
+                Price = prize.Price,
+                Quantity = prize.Quantity,
+            };
         }
     }
 }
