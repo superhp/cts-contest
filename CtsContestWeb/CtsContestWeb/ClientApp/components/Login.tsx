@@ -128,7 +128,7 @@ export class Login extends React.Component<any, LoginModalState> {
                         <table>
                             <tbody>
                                 <tr>
-                                    <td>Days balance</td>
+                                    <td>Day balance</td>
                                     <td>{this.props.userInfo.todaysBalance} coins</td>
                                 </tr>
                                 {/*<tr>
