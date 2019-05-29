@@ -64,7 +64,7 @@ export class Prizes extends React.Component<any, any> {
                             <Header as='h1' textAlign='center' inverted>
                                 <Icon name='gift' />
                                 <Header.Content>
-                                    Prizes
+                                    Day Prize
                                 </Header.Content>
                             </Header>
                         </Container>
