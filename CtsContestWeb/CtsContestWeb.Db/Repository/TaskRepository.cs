@@ -57,14 +57,26 @@ namespace CtsContestWeb.Db.Repository
                 _cache.Set(cacheKey, task, cacheExpirationOptions);
             }
 
+            bool isTaskSolved = false;
             if (userEmail != null)
             {
                 var solvedTasks = _solutionRepository.GetSolvedTasksIdsByUserEmail(userEmail);
                 if (solvedTasks.Any(t => t == task.Id))
-                    task.IsSolved = true;
+                    isTaskSolved = true;
             }
 
-            return task;
+            //needed to not set IsSolved into cache
+            return new TaskDto
+            {
+                Value = task.Value,
+                Description = task.Description,
+                Id = task.Id,
+                InputType = task.InputType,
+                Inputs = task.Inputs,
+                Name = task.Name,
+                Outputs = task.Outputs,
+                IsSolved = isTaskSolved
+            };
         }
 
             public async Task<int?> GetTaskIdForDuelAsync(IEnumerable<string> usersEmail)
