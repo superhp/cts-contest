@@ -17,6 +17,7 @@ interface PuzzleState {
     isLoading: boolean;
     scripts: string[];
     apiCaller?: (path: string, init?: RequestInit | undefined) => Promise<Response>;
+    apiBaseUrl: string;
 }
 
 export class Puzzle extends React.Component<PuzzleProps, PuzzleState> {
@@ -26,7 +27,8 @@ export class Puzzle extends React.Component<PuzzleProps, PuzzleState> {
         webComponentName: "",
         isLoading: true,
         scripts: [],
-        apiCaller: undefined
+        apiCaller: undefined,
+        apiBaseUrl: ""
     }
 
     componentDidMount() {
@@ -44,7 +46,8 @@ export class Puzzle extends React.Component<PuzzleProps, PuzzleState> {
                 title: puzzleInfo.title,
                 webComponentName: puzzleInfo.tagName,
                 isLoading: false,
-                apiCaller: this.createApiCaller(puzzleBaseUrl, this.props.userInfo.provider, this.props.userInfo.accessToken)
+                apiCaller: this.createApiCaller(puzzleBaseUrl, this.props.userInfo.provider, this.props.userInfo.accessToken),
+                apiBaseUrl: puzzleBaseUrl
             }));
     }
 
@@ -91,7 +94,7 @@ export class Puzzle extends React.Component<PuzzleProps, PuzzleState> {
                 <Header as="h1">{this.state.title}</Header>
                 <Divider />
                 {/*<div ref={ref=>ref && ref.appendChild(elem)}/>*/}
-                <PuzzleComponent call-api={this.state.apiCaller}/>
+                <PuzzleComponent api-base-url={this.state.apiBaseUrl} />
             </div>
         );
         // TODO: passing function as attribute doesn't work (since all atrributes are strings)
