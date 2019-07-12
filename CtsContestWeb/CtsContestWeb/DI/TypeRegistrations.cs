@@ -28,6 +28,7 @@ namespace CtsContestWeb.DI
                 )
             );
 
+            services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
             services.AddScoped<ISolutionRepository, SolutionRepository>();
             services.AddScoped<IContactInfoRepository, ContactInfoRepository>();
@@ -38,10 +39,11 @@ namespace CtsContestWeb.DI
             services.AddScoped<ISolutionLogic, SolutionLogic>();
             services.AddScoped<IDuelLogic, DuelLogic>();
 
-            services.AddTransient<IPrizeManager, PrizeManager>();
-            services.AddTransient<ICodeSkeletonManager, CodeSkeletonManager>();
+            services.AddTransient<IPrizeRepository, PrizeRepository>();
+            services.AddTransient<ICodeSkeletonRepository, CodeSkeletonRepository>();
 
             services.AddSingleton<IPuzzleManager, PuzzleManager>();
+            services.AddTransient<ICodeSkeletonManager, CodeSkeletonManager>();
             services.AddSingleton<ITaskManager, TaskManager>();
             services.AddSingleton<IConfiguration>(configuration);
 

@@ -9,7 +9,6 @@ import Timer from '../components/Timer.jsx';
 export default class SpecialPrizeBoard extends React.Component {
     constructor(props) {
         super(props);
-
     }
 
     render() {
@@ -60,8 +59,17 @@ const TwoPrizeBoard = ({ data }) => (
 
 const OnePrizeBoard = ({ data, prize, props }) => (
     <Grid id="special-prize-board">
+        <Grid.Row columns={1} className="second-week-prize-row">
+            <Grid.Column width={16}>
+                <h1 className='prize-board-header'>
+                    {props.board}
+                </h1>
+            </Grid.Column>
+        </Grid.Row>
+
         <Grid.Row columns={2} className="second-week-prize-row">
             <Grid.Column width={5} >
+
                 <div style={{ width: '75%' }}>
                     {
                         prize.Name
@@ -71,9 +79,6 @@ const OnePrizeBoard = ({ data, prize, props }) => (
                 </div>
             </Grid.Column>
             <Grid.Column width={11}>
-                <h1 className='prize-board-header'>
-                    { props.board }
-                </h1>
                 <Podium first={data[0]} second={data[1]} third={data[2]} />
             </Grid.Column>
         </Grid.Row>
@@ -94,8 +99,12 @@ const Podium = ({ first, second, third }) => (
                 <Grid.Column width={5} className="thirdPlace podium-step">
                     <UserCard place="third" username={third.username} points={third.points} picture={third.picture} />
                 </Grid.Column>
+   
             </Grid>
         </Grid.Column>
         <Grid.Column width={1} />
+        <div className="podium-explanation">
+            *Chart displays amount of points earned today
+        </div> 
     </Grid>
 )

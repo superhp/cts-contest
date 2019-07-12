@@ -51,7 +51,7 @@ export default class Prize extends React.Component {
     }
 
     getPurchase(purchaseId) {
-        fetch('https://contest-cts.azurewebsites.net/api/Purchase/GetPrizeByPurchaseGuid/' + purchaseId, {
+        fetch('https://cts-contest.azurewebsites.net/api/Purchase/GetPrizeByPurchaseGuid/' + purchaseId, {
             method: 'GET'
         })
         .then(response => response.json())
@@ -81,7 +81,7 @@ export default class Prize extends React.Component {
 
         const formData = new FormData();
         formData.append('Id', purchaseId);
-        fetch('https://contest-cts.azurewebsites.net/api/Purchase/GiveAway', {
+        fetch('https://cts-contest.azurewebsites.net/api/Purchase/GiveAway', {
             method: 'POST',
             body: formData
         })

@@ -4,35 +4,36 @@ using CtsContestWeb.Communication;
 using CtsContestWeb.Dto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CtsContestWeb.Db.Repository;
 
 namespace CtsContestWeb.Controllers
 {
     [Route("api/[controller]")]
     public class PrizeController : Controller
     {
-        private readonly IPrizeManager _prizeManager;
+        private readonly IPrizeRepository _prizeRepository;
 
-        public PrizeController(IPrizeManager prizeManager)
+        public PrizeController(IPrizeRepository prizeRepository)
         {
-            _prizeManager = prizeManager;
+            _prizeRepository = prizeRepository;
         }
 
         [HttpGet("[action]")]
-        public async Task<List<PrizeDto>> GetWinnables()
+        public List<PrizeDto> GetWinnables()
         {
-            return await _prizeManager.GetAllWinnablePrizes();
+            return _prizeRepository.GetAllWinnablePrizes();
         }
 
         [HttpGet("")]
-        public async Task<List<PrizeDto>> Get()
+        public List<PrizeDto> Get()
         {
-           return await _prizeManager.GetAllPrizesForPoints();
+           return _prizeRepository.GetAllPrizesForPoints();
         }
 
         [HttpGet("{id}")]
-        public async Task<PrizeDto> Get(int id)
+        public PrizeDto Get(int id)
         {
-            return await _prizeManager.GetPrizeById(id);
+            return _prizeRepository.GetPrizeById(id);
         }
     }
 }

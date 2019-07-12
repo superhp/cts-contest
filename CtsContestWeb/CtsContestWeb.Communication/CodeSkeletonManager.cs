@@ -13,14 +13,14 @@ namespace CtsContestWeb.Communication
         private readonly IConfiguration _iconfiguration;
         private readonly ISolutionRepository _solutionRepository;
         private readonly ICompiler _compiler;
-        private readonly ITaskManager _taskManager;
+        private readonly ITaskRepository _taskRepository;
 
-        public CodeSkeletonManager(IConfiguration iconfiguration, ISolutionRepository solutionRepository, ICompiler compiler, ITaskManager taskManager)
+        public CodeSkeletonManager(IConfiguration iconfiguration, ISolutionRepository solutionRepository, ICompiler compiler, ITaskRepository taskRepository)
         {
             _iconfiguration = iconfiguration;
             _solutionRepository = solutionRepository;
             _compiler = compiler;
-            _taskManager = taskManager;
+            _taskRepository = taskRepository;
         }
 
         public async Task<CodeSkeletonDto> GetCodeSkeleton(string userEmail, int taskId, string language)
@@ -46,23 +46,30 @@ namespace CtsContestWeb.Communication
             if (language.Equals("undefined"))
                 language = "Java";
 
-            var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
-            var client = new RestClient(umbracoApiUrl);
+            /* var umbracoApiUrl = _iconfiguration["UmbracoApiUrl"];
+             var client = new RestClient(umbracoApiUrl);
 
-            var request = new RestRequest("codeskeleton/get/{language}", Method.GET);
-            request.AddUrlSegment("language", language);
+             var request = new RestRequest("codeskeleton/get/{language}", Method.GET);
+             request.AddUrlSegment("language", language);
 
-            TaskCompletionSource<GenericCodeSkeletonDto> taskCompletion = new TaskCompletionSource<GenericCodeSkeletonDto>();
-            client.ExecuteAsync<GenericCodeSkeletonDto>(request, response =>
+             TaskCompletionSource<GenericCodeSkeletonDto> taskCompletion = new TaskCompletionSource<GenericCodeSkeletonDto>();
+             client.ExecuteAsync<GenericCodeSkeletonDto>(request, response =>
+             {
+                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                     throw new ArgumentException("Error getting code skeleton");
+                 taskCompletion.SetResult(response.Data);
+             });
+
+             var codeSkeletonDto = await taskCompletion.Task;
+             */
+            var codeSkeletonDto = new GenericCodeSkeletonDto
             {
-                if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                    throw new ArgumentException("Error getting code skeleton");
-                taskCompletion.SetResult(response.Data);
-            });
+                Language = "Java",
+                Skeleton = "yoooooo",
 
-            var codeSkeletonDto = await taskCompletion.Task;
+            };
 
-            var task = await _taskManager.DownloadTaskByIdAsync(taskId);
+            var task = await _taskRepository.GetCachedTaskByIdAsync(taskId);
 
             var skeleton = GenerateCodeSkeletonForTask(task, codeSkeletonDto);
 

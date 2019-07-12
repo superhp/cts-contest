@@ -20,16 +20,16 @@ namespace CtsContestWeb.Controllers
         private readonly IPurchaseRepository _purchaseRepository;
         private readonly IUserRepository _userRepository;
         private readonly IDuelRepository _duelRepository;
-        private readonly ITaskManager _taskManager;
+        private readonly ITaskRepository _taskRepository;
 
         public UserController(IBalanceLogic balanceLogic, IPurchaseRepository purchaseRepository,
-            IUserRepository userRepository, IDuelRepository duelRepository, ITaskManager taskManager)
+            IUserRepository userRepository, IDuelRepository duelRepository, ITaskRepository taskRepository)
         {
             _balanceLogic = balanceLogic;
             _purchaseRepository = purchaseRepository;
             _userRepository = userRepository;
             _duelRepository = duelRepository;
-            _taskManager = taskManager;
+            _taskRepository = taskRepository;
         }
 
         [HttpGet("")]
@@ -121,7 +121,7 @@ namespace CtsContestWeb.Controllers
         public async Task<bool> HasUserAnyDuelTasksLeft()
         {
             var email = User.FindFirst(ClaimTypes.Email).Value;
-            return await _taskManager.HasPlayerAnyDuelTasksLeft(email);
+            return await _taskRepository.HasPlayerAnyDuelTasksLeft(email);
         }
     }
 }

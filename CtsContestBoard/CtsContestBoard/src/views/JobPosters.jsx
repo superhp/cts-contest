@@ -1,5 +1,7 @@
 import React from 'react';
 
+const JOB_POSTER_COUNT = 2;
+
 export default class JobPosters extends React.Component {
 
     constructor() {
@@ -13,7 +15,7 @@ export default class JobPosters extends React.Component {
     }
 
     componentDidMount(){
-        let posterChanger = setInterval(this.changePoster, 1000);
+        let posterChanger = setInterval(this.changePoster, 3500);
         if (this.refs.didMountRef) this.setState({posterChanger: posterChanger});
     }
 
@@ -22,7 +24,7 @@ export default class JobPosters extends React.Component {
     }
 
     changePoster() {
-        let newId = this.state.currentPosterId === 10 ? 1 : this.state.currentPosterId + 1;
+        const newId = this.state.currentPosterId % JOB_POSTER_COUNT + 1;
         if (this.refs.didMountRef) this.setState({currentPosterId: newId});
     }
 

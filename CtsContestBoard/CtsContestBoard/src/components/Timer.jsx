@@ -44,8 +44,8 @@ export default class Timer extends React.Component {
 
     onReceivedProps(day, hour, minutes) {
         this.endTime = new Date(
-            2018,
-            11 - 1,
+            2019,
+            4 - 1,
             day,
             hour,
             minutes,

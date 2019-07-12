@@ -19,6 +19,29 @@ namespace CtsContestWeb.Db.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("CtsContestWeb.Db.Entities.CodeSkeleton", b =>
+                {
+                    b.Property<int>("Id");
+
+                    b.Property<string>("Language");
+
+                    b.Property<string>("ReadInputIntegerNumberOfLinesOfIntegers");
+
+                    b.Property<string>("ReadInteger");
+
+                    b.Property<string>("ReadLine");
+
+                    b.Property<string>("ReadLineOfIntegers");
+
+                    b.Property<string>("Skeleton");
+
+                    b.Property<string>("WriteLine");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CodeSkeletons");
+                });
+
             modelBuilder.Entity("CtsContestWeb.Db.Entities.ContactInfo", b =>
                 {
                     b.Property<string>("Email")
@@ -75,7 +98,7 @@ namespace CtsContestWeb.Db.Migrations
                         .IsUnique()
                         .HasFilter("[FirstPlayerEmail] IS NOT NULL AND [SecondPlayerEmail] IS NOT NULL");
 
-                    b.ToTable("Competitions");
+                    b.ToTable("Duels");
                 });
 
             modelBuilder.Entity("CtsContestWeb.Db.Entities.DuelSolution", b =>
@@ -104,7 +127,7 @@ namespace CtsContestWeb.Db.Migrations
                         .IsUnique()
                         .HasFilter("[UserEmail] IS NOT NULL");
 
-                    b.ToTable("CompetitionSolutions");
+                    b.ToTable("DuelSolutions");
                 });
 
             modelBuilder.Entity("CtsContestWeb.Db.Entities.GivenPurchase", b =>
@@ -116,6 +139,29 @@ namespace CtsContestWeb.Db.Migrations
                     b.HasKey("GivenPurchaseId");
 
                     b.ToTable("GivenPurchases");
+                });
+
+            modelBuilder.Entity("CtsContestWeb.Db.Entities.Prize", b =>
+                {
+                    b.Property<int>("Id");
+
+                    b.Property<string>("Category");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Picture");
+
+                    b.Property<int>("Price");
+
+                    b.Property<int>("Quantity");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Prizes");
                 });
 
             modelBuilder.Entity("CtsContestWeb.Db.Entities.Purchase", b =>
@@ -167,6 +213,52 @@ namespace CtsContestWeb.Db.Migrations
                         .HasFilter("[UserEmail] IS NOT NULL");
 
                     b.ToTable("Solutions");
+                });
+
+            modelBuilder.Entity("CtsContestWeb.Db.Entities.Task", b =>
+                {
+                    b.Property<int>("Id");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("Enabled");
+
+                    b.Property<string>("InputType");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("OutputType");
+
+                    b.Property<int>("Value");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tasks");
+                });
+
+            modelBuilder.Entity("CtsContestWeb.Db.Entities.TaskTestCase", b =>
+                {
+                    b.Property<int>("TaskTestCaseId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("Input");
+
+                    b.Property<bool>("IsSample");
+
+                    b.Property<string>("Output");
+
+                    b.Property<int>("TaskId");
+
+                    b.HasKey("TaskTestCaseId");
+
+                    b.HasIndex("TaskId");
+
+                    b.ToTable("TaskTestCases");
                 });
 
             modelBuilder.Entity("CtsContestWeb.Db.Entities.User", b =>
@@ -233,6 +325,14 @@ namespace CtsContestWeb.Db.Migrations
                     b.HasOne("CtsContestWeb.Db.Entities.User", "User")
                         .WithMany("Solutions")
                         .HasForeignKey("UserEmail");
+                });
+
+            modelBuilder.Entity("CtsContestWeb.Db.Entities.TaskTestCase", b =>
+                {
+                    b.HasOne("CtsContestWeb.Db.Entities.Task", "Task")
+                        .WithMany("TestCases")
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

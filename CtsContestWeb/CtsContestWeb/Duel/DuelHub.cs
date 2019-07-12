@@ -17,17 +17,17 @@ namespace CtsContestWeb.Duel
     public class DuelHub : Hub
     {
         private const string WaitingPlayersGroup = "WaitingPlayerGroups";
-        private readonly ITaskManager _taskManager;
+        private readonly ITaskRepository _taskRepository;
         private readonly IDuelRepository _duelRepository;
         private readonly ISolutionLogic _solutionLogic;
         private readonly IHostingEnvironment _hostingEnv;
         private readonly IDuelLogic _duelLogic;
         private readonly IUserRepository _userRepository;
 
-        public DuelHub(ITaskManager taskManager, IDuelRepository duelRepository, ISolutionLogic solutionLogic,
+        public DuelHub(ITaskRepository taskRepository, IDuelRepository duelRepository, ISolutionLogic solutionLogic,
             IHostingEnvironment hostingEnv, IDuelLogic duelLogic, IUserRepository userRepository)
         {
-            _taskManager = taskManager;
+            _taskRepository = taskRepository;
             _duelRepository = duelRepository;
             _solutionLogic = solutionLogic;
             _hostingEnv = hostingEnv;
@@ -60,7 +60,7 @@ namespace CtsContestWeb.Duel
                 for (int i = 0; i < UserHandler.WaitingPlayers.Count; i++)
                 {
                     secondPlayer = UserHandler.WaitingPlayers.Skip(i).First();
-                    taskId = await _taskManager.GetTaskIdForDuelAsync(new List<string>
+                    taskId = await _taskRepository.GetTaskIdForDuelAsync(new List<string>
                         {firstPlayer.Email, secondPlayer.Email});
                     if (taskId != null) break;
                 }
@@ -73,7 +73,7 @@ namespace CtsContestWeb.Duel
 
                 RemoveWaitingPlayer(secondPlayer);
 
-                var task = await _taskManager.GetCachedTaskByIdAsync((int) taskId);
+                var task = await _taskRepository.GetCachedTaskByIdAsync((int) taskId);
                 var duration = _duelLogic.CalculateDuelDuration(_hostingEnv.EnvironmentName, task.Value);
                 var duel = _duelLogic.CreateDuel(task, firstPlayer,
                     secondPlayer, duration);

@@ -18,6 +18,10 @@ namespace CtsContestWeb.Db
         public DbSet<ContactInfo> ContactInformation { get; set; }
         public DbSet<Duel> Duels { get; set; }
         public DbSet<DuelSolution> DuelSolutions { get; set; }
+        public DbSet<Task> Tasks { get; set; }
+        public DbSet<Prize> Prizes { get; set; }
+        public DbSet<TaskTestCase> TaskTestCases { get; set; }
+        public DbSet<CodeSkeleton> CodeSkeletons { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

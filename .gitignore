@@ -326,3 +326,5 @@ CtsContestWeb/.vs/CtsContestWeb/v15/sqlite3/storage.ide
 CtsContestBoard/wwwroot/bundle.js
 CtsContestBoard/CtsContestBoard/wwwroot/bundle.js
 CtsContestScanner/CtsContestScanner/package-lock.json
+/CtsContestWeb/CtsContestWeb.Db/Repository/PrizeRepository.cs
+/CtsContestWeb/CtsContestWeb.Db/Repository/IPrizeRepository.cs
