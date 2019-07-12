@@ -1,12 +1,8 @@
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router';
-import { Link, NavLink } from 'react-router-dom';
-
-import { Menu, Sidebar, Container, Segment } from 'semantic-ui-react';
-import { Button, Icon } from 'semantic-ui-react';
-import { Responsive } from 'semantic-ui-react'
-import { Header as ModalHeader, Image, Modal } from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom';
+import { Icon, Menu, Responsive } from 'semantic-ui-react';
 import { Login } from './Login';
+
 
 // Pictures
 
@@ -22,6 +18,10 @@ const links = [
     {
         routeTo: '/tasks',
         name: 'Tasks'
+    },
+    {
+        routeTo: "/puzzles",
+        name: "Puzzles"
     },
     // {
     //     routeTo: '/duel',
@@ -98,8 +98,7 @@ export class Header extends React.Component<any, HeaderState> {
                                             <div className='cg-user-menu-item cg-bold'>User</div>
                                             <div className='cg-user-menu-item'>{this.props.userInfo.name}</div>
                                             <div className='cg-user-menu-item cg-bold'>My wallet</div>
-                                            <div className='cg-user-menu-item'>Day balance: {this.props.userInfo.todaysBalance} coins</div>
-                                            {/*<div className='cg-user-menu-item'>Total balance: {this.props.userInfo.totalBalance} coins</div>*/}
+                                            <div className='cg-user-menu-item'>Total balance: {this.props.userInfo.totalBalance} coins</div>
                                             <a className='cg-user-menu-item cg-bold' href={"https://cts-contest.azurewebsites.net/.auth/logout?post_logout_redirect_uri=" + window.location.pathname}>Logout</a>
                                     </div>
                                 </div>

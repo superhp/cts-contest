@@ -1,17 +1,16 @@
 import * as React from 'react';
 import { Route } from 'react-router-dom';
 import { Layout } from './components/Layout';
-import { FetchData } from './components/FetchData';
-import { Tasks } from './views/Tasks';
 import { About } from './views/About';
-import { Prizes } from './views/Prizes';
-import { Shop } from './views/Shop';
-import { Quiz } from './views/Quiz';
-import { TaskComponent } from './views/Task';
-import { Duel } from './views/Duel';
-import { UserInfo } from './components/models/UserInfo';
 import { Leaderboard } from './views/Leaderboard';
-import PrivacyPolicy from './views/PrivacyPolicy'
+import PrivacyPolicy from './views/PrivacyPolicy';
+import { Prizes } from './views/Prizes';
+import { Puzzle } from './views/Puzzle';
+import { Puzzles } from "./views/Puzzles";
+import { Quiz } from './views/Quiz';
+import { Shop } from './views/Shop';
+import { TaskComponent } from './views/Task';
+import { Tasks } from './views/Tasks';
 
 export class Routes extends React.Component<any, any> {
     constructor(props:any) {
@@ -68,6 +67,8 @@ export class Routes extends React.Component<any, any> {
                 <Route exact path='/quiz' component={Quiz}/>
                 <Route exact path="/leaderboard" component={Leaderboard} />
                 <Route path='/privacyPolicy' render={() => <PrivacyPolicy/>} />
+                <Route exact path="/puzzles" render={props => <Puzzles {...props} userInfo={this.state.userInfo} />} />
+                <Route path="/puzzles/:id" render={props => <Puzzle {...props} userInfo={this.state.userInfo} />} />
             </Layout>
         )
     }

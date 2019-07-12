@@ -42,6 +42,7 @@ namespace CtsContestWeb.DI
             services.AddTransient<IPrizeRepository, PrizeRepository>();
             services.AddTransient<ICodeSkeletonRepository, CodeSkeletonRepository>();
 
+            services.AddSingleton<IPuzzleManager, PuzzleManager>();
             services.AddTransient<ICodeSkeletonManager, CodeSkeletonManager>();
             services.AddSingleton<ITaskManager, TaskManager>();
             services.AddSingleton<IConfiguration>(configuration);

@@ -12,5 +12,7 @@ namespace CtsContestWeb.Dto
         public string Name { get; set; }
         public int TodaysBalance { get; set; }
         public int TotalBalance { get; set; }
+        public string Provider { get; set; }
+        public string AccessToken { get; set; }
     }
 }

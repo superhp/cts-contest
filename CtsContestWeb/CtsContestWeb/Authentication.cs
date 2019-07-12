@@ -26,7 +26,8 @@ namespace CtsContestWeb
                 new Claim(ClaimTypes.Surname, "Developer"),
                 new Claim(ClaimTypes.GivenName, "Test"),
                 new Claim(ClaimTypes.Actor, "Test"),
-                new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity")
+                new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity"),
+                new Claim("AccessToken", "fake_token")
             };
 
             // Set user in current context as claims principal
@@ -64,6 +65,7 @@ namespace CtsContestWeb
                         var obj = JArray.Parse(jsonResult);
                         string userId = obj[0]["user_id"].Value<string>(); //user_id
                         var provider = obj[0]["provider_name"].Value<string>();
+                        string accessToken = obj[0]["access_token"].Value<string>();
 
                         // Create claims id
                         List<Claim> claims = new List<Claim>();
@@ -73,6 +75,7 @@ namespace CtsContestWeb
                         }
                         claims.Add(new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity"));
                         claims.Add(new Claim(ClaimTypes.Actor, provider));
+                        claims.Add(new Claim("AccessToken", accessToken));
                         // Set user in current context as claims principal
                         var identity = new GenericIdentity(userId);
                         identity.AddClaims(claims);

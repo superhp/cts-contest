@@ -37,6 +37,8 @@ namespace CtsContestWeb.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
+                var provider = User.FindFirst(ClaimTypes.Actor).Value;
+                var token = User.FindFirst("AccessToken").Value;
                 _userRepository.InsertIfNotExists(User);
                 return new UserInfoDto
                 {
@@ -44,7 +46,9 @@ namespace CtsContestWeb.Controllers
                     Name = User.FindFirst(ClaimTypes.GivenName).Value,
                     TodaysBalance = _balanceLogic.GetCurrentBalance(User.FindFirst(ClaimTypes.Email).Value),
                     TotalBalance = _balanceLogic.GetTotalBalance(User.FindFirst(ClaimTypes.Email).Value),
-                    IsLoggedIn = true
+                    IsLoggedIn = true,
+                    Provider = provider,
+                    AccessToken = token
                 };
             }
 
