@@ -1,1 +1,2 @@
 # cts-contest
+![Architecture](https://camo.githubusercontent.com/56b25f9c200bf13796e7a4aa61c89f60f6937cc490328d7659bf8f3e88e7d038/68747470733a2f2f692e696d6775722e636f6d2f6b4d4a495543792e706e67)
